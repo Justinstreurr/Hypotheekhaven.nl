@@ -168,3 +168,4 @@
   .hh-zij-open body { padding-left: 0; }
   .hh-zij { box-shadow: 8px 0 30px rgba(8, 21, 52, .15); }
 }
+.hh-knop--link { display: inline-flex; align-items: center; text-decoration: none; }

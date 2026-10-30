@@ -1,0 +1,21 @@
+---
+// "Was deze pagina nuttig?" onderaan elke pagina; de reacties staan in het dashboard (/beheer/statistieken)
+import { laad } from '../lib/content';
+
+const { t } = await laad('site');
+---
+<section class="feedback" data-stap="vraag" aria-label="Feedback over deze pagina">
+  <div class="feedback-vraag">
+    <p data-e="site:feedback.vraag" set:html={t('feedback.vraag')}></p>
+    <div class="feedback-knoppen">
+      <button type="button" data-nuttig="ja" data-e="site:feedback.ja" set:html={t('feedback.ja')}></button>
+      <button type="button" data-nuttig="nee" data-e="site:feedback.nee" set:html={t('feedback.nee')}></button>
+    </div>
+  </div>
+  <form class="feedback-opmerking">
+    <label for="feedback-tekst" data-e="site:feedback.vervolg" set:html={t('feedback.vervolg')}></label>
+    <textarea id="feedback-tekst" rows="3" maxlength="600" placeholder={t('feedback.privacy').replace(/<[^>]+>/g, '')}></textarea>
+    <button type="submit" class="btn btn-dark" data-e="site:feedback.knop" set:html={t('feedback.knop')}></button>
+  </form>
+  <p class="feedback-bedankt" role="status" data-e="site:feedback.bedankt" set:html={t('feedback.bedankt')}></p>
+</section>

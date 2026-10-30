@@ -1,0 +1,302 @@
+---
+// Dashboard met de anonieme bezoekersstatistieken. Alleen te zien voor wie is ingelogd (de API controleert dat).
+const clarity = import.meta.env.PUBLIC_CLARITY_ID;
+---
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Statistieken | Hypotheekhaven</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style is:global>
+  :root {
+    --inkt: #081534; --accent: #8E4F4B; --accent-zacht: rgba(142, 79, 75, .14); --zand: #F5F0EA; --kaart: #fff;
+    --lijn: #E9E2D8; --raster: #EFE9E1; --tekst: #081534; --tekst-2: rgba(8, 21, 52, .66); --tekst-3: rgba(8, 21, 52, .48);
+    --goed: #2f7a3d; --minder: #a5552b;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--zand); color: var(--tekst); font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  a { color: inherit; }
+  .kop { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding: 16px 28px; background: var(--inkt); color: #fff; }
+  .kop h1 { font-size: 18px; font-weight: 650; margin-right: auto; }
+  .kop a { font-size: 14px; opacity: .85; }
+  .perioden { display: flex; gap: 4px; padding: 3px; background: rgba(255, 255, 255, .1); border-radius: 10px; }
+  .perioden button { border: 0; padding: 7px 14px; border-radius: 8px; background: transparent; color: #fff; font: inherit; font-size: 14px; cursor: pointer; }
+  .perioden button[aria-pressed="true"] { background: #fff; color: var(--inkt); font-weight: 600; }
+  main { max-width: 1280px; margin: 0 auto; padding: 28px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .kaart { background: var(--kaart); border: 1px solid var(--lijn); border-radius: 14px; padding: 22px 24px; min-width: 0; }
+  .kaart h2 { font-size: 15px; font-weight: 650; margin-bottom: 4px; }
+  .kaart .uitleg { font-size: 13px; color: var(--tekst-3); margin-bottom: 16px; }
+  .tegels { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; }
+  .tegel { background: var(--kaart); border: 1px solid var(--lijn); border-radius: 14px; padding: 18px 20px; }
+  .tegel span { display: block; font-size: 13px; color: var(--tekst-2); }
+  .tegel strong { display: block; margin-top: 6px; font-size: 30px; font-weight: 600; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+  .tegel small { display: block; margin-top: 2px; font-size: 12.5px; color: var(--tekst-3); }
+  .twee { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; }
+  @media (max-width: 960px) { .twee { grid-template-columns: 1fr; } main { padding: 16px; } .kop { padding: 14px 16px; } }
+  /* lijngrafiek */
+  .grafiek { position: relative; }
+  .grafiek svg { display: block; width: 100%; height: 240px; overflow: visible; }
+  .grafiek .tip {
+    position: absolute; pointer-events: none; padding: 8px 10px; background: var(--inkt); color: #fff; border-radius: 8px;
+    font-size: 13px; white-space: nowrap; transform: translate(-50%, calc(-100% - 12px)); opacity: 0; transition: opacity .1s;
+  }
+  .grafiek .tip b { font-weight: 600; }
+  /* staaflijsten */
+  .staven { list-style: none; padding: 0; display: grid; gap: 4px; }
+  .staven li { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 8px 10px; border-radius: 8px; }
+  .staven li::before { content: ""; position: absolute; inset: 2px auto 2px 0; width: var(--deel); background: var(--accent-zacht); border-radius: 4px; }
+  .staven li:hover { background: rgba(8, 21, 52, .03); }
+  .staven li > * { position: relative; }
+  .staven .naam { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .staven .naam small { display: block; color: var(--tekst-3); font-size: 12px; }
+  .staven .getal { font-variant-numeric: tabular-nums; font-weight: 600; }
+  /* tabel */
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th { text-align: left; font-weight: 600; font-size: 12px; color: var(--tekst-3); text-transform: uppercase; letter-spacing: .05em; padding: 0 10px 10px; }
+  td { padding: 10px; border-top: 1px solid var(--raster); font-variant-numeric: tabular-nums; }
+  td.num, th.num { text-align: right; }
+  td .balk { display: block; height: 4px; margin-top: 6px; border-radius: 2px; background: var(--accent); opacity: .6; }
+  .score-ja { color: var(--goed); } .score-nee { color: var(--minder); }
+  .leeg { color: var(--tekst-3); font-size: 14px; padding: 8px 0; }
+  /* heatmap */
+  .heat-bediening { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+  .heat-bediening select { height: 38px; padding: 0 10px; border: 1px solid var(--lijn); border-radius: 8px; background: #fff; font: inherit; }
+  .heat-venster { height: 720px; overflow: hidden; border: 1px solid var(--lijn); border-radius: 10px; background: #fff; }
+  .heat-venster iframe { border: 0; transform-origin: 0 0; }
+  .schaal { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 12.5px; color: var(--tekst-3); }
+  .schaal i { display: block; width: 120px; height: 8px; border-radius: 4px; background: linear-gradient(90deg, rgba(142, 79, 75, .08), rgba(142, 79, 75, .95)); }
+  /* feedback */
+  .reacties { list-style: none; padding: 0; display: grid; gap: 10px; }
+  .reacties li { padding: 14px 16px; border: 1px solid var(--raster); border-radius: 10px; }
+  .reacties p { margin-top: 4px; }
+  .reacties small { color: var(--tekst-3); font-size: 12.5px; }
+  .melding { padding: 18px 20px; border-radius: 12px; background: #fff3e6; border: 1px solid #f2d7b6; }
+  .knop { display: inline-flex; align-items: center; height: 38px; padding: 0 14px; border-radius: 8px; background: var(--accent); color: #fff; text-decoration: none; font-size: 14px; }
+</style>
+</head>
+<body>
+<header class="kop">
+  <h1>Statistieken</h1>
+  <div class="perioden" role="group" aria-label="Periode">
+    <button type="button" data-dagen="7">7 dagen</button>
+    <button type="button" data-dagen="30" aria-pressed="true">30 dagen</button>
+    <button type="button" data-dagen="90">90 dagen</button>
+    <button type="button" data-dagen="365">Jaar</button>
+  </div>
+  {clarity && <a href={`https://clarity.microsoft.com/projects/view/${clarity}/dashboard`} target="_blank" rel="noopener">Opnames in Clarity ↗</a>}
+  <a href="/">Naar de website</a>
+</header>
+
+<main id="inhoud">
+  <p class="leeg">Laden…</p>
+</main>
+
+<script>
+  type Data = {
+    dagen: { dag: string; weergaven: number; bezoekers: number; doelen: number }[];
+    totaal: Record<string, Record<string, number>>;
+    feedback: { dag: string; pad: string; nuttig: boolean | null; opmerking: string; apparaat: string }[];
+  };
+  const DOELEN: Record<string, string> = {
+    formulier: 'Contactformulier verstuurd', bellen: 'Op telefoonnummer geklikt', whatsapp: 'WhatsApp geopend', mail: 'E-mailadres aangeklikt',
+    kennismaking: 'Op "Plan een kennismaking" geklikt', rekentool: 'Rekentool gebruikt', checklist: 'Documentenchecklist gebruikt',
+  };
+  const inhoud = document.getElementById('inhoud')!;
+  let namen: Record<string, string> = {};
+  const getal = (n: number) => n.toLocaleString('nl-NL');
+  const duur = (s: number) => (s >= 60 ? `${Math.floor(s / 60)} min ${Math.round(s % 60)} s` : `${Math.round(s)} s`);
+  const esc = (s: string) => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]!));
+  const naam = (pad: string) => namen[pad] ?? pad;
+  const som = (o: Record<string, number> = {}) => Object.values(o).reduce((a, b) => a + b, 0);
+  const sorteer = (o: Record<string, number> = {}) => Object.entries(o).sort((a, b) => b[1] - a[1]);
+
+  async function haal(url: string) {
+    const r = await fetch(url, { cache: 'no-store' });
+    if (r.status === 401) { location.href = '/beheer'; throw new Error('Niet ingelogd'); }
+    const d = await r.json();
+    if (!d.ok) throw new Error(d.fout);
+    return d;
+  }
+
+  function staafLijst(items: [string, number, string?][], leeg: string) {
+    if (!items.length) return `<p class="leeg">${leeg}</p>`;
+    const max = Math.max(...items.map(i => i[1]));
+    return `<ul class="staven">${items.map(([n, v, sub]) => `<li style="--deel:${(v / max * 100).toFixed(1)}%" title="${esc(n)}: ${getal(v)}"><span class="naam">${esc(n)}${sub ? `<small>${esc(sub)}</small>` : ''}</span><span class="getal">${getal(v)}</span></li>`).join('')}</ul>`;
+  }
+
+  // Bezoekers per dag: één lijn, raster op de achtergrond, tooltip bij de muis
+  function lijnGrafiek(dagen: Data['dagen']) {
+    const B = 1000, H = 240, ml = 36, mb = 24, mt = 10;
+    const max = Math.max(4, ...dagen.map(d => d.bezoekers));
+    const stap = Math.pow(10, Math.floor(Math.log10(max))) * (max / Math.pow(10, Math.floor(Math.log10(max))) > 5 ? 2 : 1);
+    const top = Math.ceil(max / stap) * stap;
+    const x = (i: number) => ml + (dagen.length > 1 ? i / (dagen.length - 1) : 0.5) * (B - ml - 8);
+    const y = (v: number) => mt + (1 - v / top) * (H - mt - mb);
+    const pad = dagen.map((d, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(d.bezoekers).toFixed(1)}`).join('');
+    const vlak = `${pad}L${x(dagen.length - 1)},${y(0)}L${x(0)},${y(0)}Z`;
+    const lijnen = [...Array(Math.round(top / stap) + 1)].map((_, i) => i * stap);
+    const labels = dagen.map((d, i) => ({ d, i })).filter(({ i }) => i % Math.ceil(dagen.length / 7) === 0 || i === dagen.length - 1);
+    const kort = (dag: string) => new Date(dag + 'T12:00').toLocaleDateString('nl-NL', { day: 'numeric', month: 'short' });
+    return `<div class="grafiek" data-punten='${JSON.stringify(dagen.map((d, i) => [x(i) / B, d.dag, d.bezoekers, d.weergaven, d.doelen, y(d.bezoekers) / H]))}'>
+      <svg viewBox="0 0 ${B} ${H}" preserveAspectRatio="none" role="img" aria-label="Bezoekers per dag">
+        ${lijnen.map(v => `<line x1="${ml}" x2="${B}" y1="${y(v)}" y2="${y(v)}" stroke="var(--raster)" stroke-width="1" vector-effect="non-scaling-stroke"/><text x="${ml - 8}" y="${y(v) + 4}" text-anchor="end" font-size="12" fill="var(--tekst-3)" style="font-variant-numeric:tabular-nums">${getal(v)}</text>`).join('')}
+        <path d="${vlak}" fill="var(--accent-zacht)"/>
+        <path d="${pad}" fill="none" stroke="var(--accent)" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>
+        ${labels.map(({ d, i }) => `<text x="${x(i)}" y="${H - 4}" text-anchor="middle" font-size="12" fill="var(--tekst-3)">${kort(d.dag)}</text>`).join('')}
+        <line class="kruis" y1="${mt}" y2="${y(0)}" stroke="var(--tekst-3)" stroke-width="1" vector-effect="non-scaling-stroke" opacity="0"/>
+        <circle class="stip" r="5" fill="var(--accent)" stroke="#fff" stroke-width="2" opacity="0"/>
+      </svg>
+      <div class="tip"></div>
+    </div>`;
+  }
+
+  function koppelGrafiek() {
+    const g = document.querySelector<HTMLElement>('.grafiek');
+    if (!g) return;
+    const punten = JSON.parse(g.dataset.punten!) as [number, string, number, number, number, number][];
+    const svg = g.querySelector('svg')!, tip = g.querySelector<HTMLElement>('.tip')!;
+    const kruis = svg.querySelector('.kruis')!, stip = svg.querySelector('.stip')!;
+    g.addEventListener('pointermove', e => {
+      const r = svg.getBoundingClientRect();
+      const fx = (e.clientX - r.left) / r.width;
+      const p = punten.reduce((a, b) => (Math.abs(b[0] - fx) < Math.abs(a[0] - fx) ? b : a));
+      const px = p[0] * 1000, py = p[5] * 240;
+      kruis.setAttribute('x1', String(px)); kruis.setAttribute('x2', String(px)); kruis.setAttribute('opacity', '1');
+      stip.setAttribute('cx', String(px)); stip.setAttribute('cy', String(py)); stip.setAttribute('opacity', '1');
+      tip.innerHTML = `${new Date(p[1] + 'T12:00').toLocaleDateString('nl-NL', { weekday: 'short', day: 'numeric', month: 'long' })}<br><b>${getal(p[2])}</b> bezoekers · ${getal(p[3])} weergaven${p[4] ? ` · ${getal(p[4])} aanvragen` : ''}`;
+      tip.style.left = `${p[0] * r.width}px`; tip.style.top = `${p[5] * r.height}px`; tip.style.opacity = '1';
+    });
+    g.addEventListener('pointerleave', () => { tip.style.opacity = '0'; kruis.setAttribute('opacity', '0'); stip.setAttribute('opacity', '0'); });
+  }
+
+  async function laad(dagen: number) {
+    let d: Data;
+    try { d = await haal(`/api/beheer/statistiek?dagen=${dagen}`); }
+    catch (e) { inhoud.innerHTML = `<div class="melding">${esc((e as Error).message)}</div>`; return; }
+    const t = d.totaal;
+    const bezoekers = d.dagen.reduce((a, x) => a + x.bezoekers, 0);
+    const weergaven = som(t.pv), doelen = som(t.doel);
+    const sessies = som(t.tijdn), tijd = som(t.tijd);
+    const fbJa = Object.entries(t.fb).filter(([k]) => k.endsWith('|ja')).reduce((a, [, v]) => a + v, 0);
+    const fbNee = Object.entries(t.fb).filter(([k]) => k.endsWith('|nee')).reduce((a, [, v]) => a + v, 0);
+
+    const paginas = sorteer(t.pv).map(([pad, v]) => {
+      const n = t.tijdn[pad] ?? 0;
+      const ja = t.fb[`${pad}|ja`] ?? 0, nee = t.fb[`${pad}|nee`] ?? 0;
+      return { pad, v, tijd: n ? t.tijd[pad] / n : 0, scroll: n ? t.scroll[pad] / n : 0, ja, nee };
+    });
+    const maxV = Math.max(1, ...paginas.map(p => p.v));
+    const klikken = sorteer(t.klik).slice(0, 15).map(([k, v]) => { const [pad, label] = k.split('|'); return [label, v, naam(pad)] as [string, number, string]; });
+    const doelPaginas = sorteer(t.doelpad).slice(0, 8).map(([k, v]) => { const [g, pad] = k.split('|'); return [DOELEN[g] ?? g, v, naam(pad)] as [string, number, string]; });
+
+    inhoud.innerHTML = `
+      <section class="tegels" aria-label="Kerncijfers">
+        <div class="tegel"><span>Bezoekers</span><strong>${getal(bezoekers)}</strong><small>unieke bezoekers per dag, opgeteld</small></div>
+        <div class="tegel"><span>Paginaweergaven</span><strong>${getal(weergaven)}</strong><small>${bezoekers ? (weergaven / bezoekers).toFixed(1).replace('.', ',') : 0} pagina's per bezoeker</small></div>
+        <div class="tegel"><span>Gemiddelde tijd op een pagina</span><strong>${sessies ? duur(tijd / sessies) : '–'}</strong><small>alleen de tijd dat de pagina in beeld was</small></div>
+        <div class="tegel"><span>Aanvragen</span><strong>${getal(doelen)}</strong><small>formulier, bellen, WhatsApp, rekentools</small></div>
+        <div class="tegel"><span>Omzetting</span><strong>${bezoekers ? (doelen / bezoekers * 100).toFixed(1).replace('.', ',') + '%' : '–'}</strong><small>aanvragen per 100 bezoekers</small></div>
+        <div class="tegel"><span>Vond de pagina nuttig</span><strong>${fbJa + fbNee ? Math.round(fbJa / (fbJa + fbNee) * 100) + '%' : '–'}</strong><small>${getal(fbJa + fbNee)} reacties</small></div>
+      </section>
+
+      <section class="kaart"><h2>Bezoekers per dag</h2><p class="uitleg">Beweeg met de muis over de lijn voor de cijfers per dag.</p>${lijnGrafiek(d.dagen)}</section>
+
+      <section class="kaart"><h2>Pagina's</h2><p class="uitleg">Hoe vaak elke pagina bekeken is, hoe lang en hoe ver mensen lezen, en wat ze ervan vinden.</p>
+        ${paginas.length ? `<table><thead><tr><th>Pagina</th><th class="num">Weergaven</th><th class="num">Gem. tijd</th><th class="num">Gelezen</th><th class="num">Nuttig</th></tr></thead><tbody>
+        ${paginas.slice(0, 25).map(p => `<tr><td><a href="${esc(p.pad)}" target="_blank">${esc(naam(p.pad))}</a><span class="balk" style="width:${(p.v / maxV * 100).toFixed(1)}%"></span></td><td class="num">${getal(p.v)}</td><td class="num">${p.tijd ? duur(p.tijd) : '–'}</td><td class="num">${p.scroll ? Math.round(p.scroll) + '%' : '–'}</td><td class="num">${p.ja + p.nee ? `<span class="score-ja">${p.ja} ja</span> · <span class="score-nee">${p.nee} nee</span>` : '–'}</td></tr>`).join('')}
+        </tbody></table>` : '<p class="leeg">Nog geen bezoeken in deze periode.</p>'}
+      </section>
+
+      <div class="twee">
+        <section class="kaart"><h2>Waar bezoekers vandaan komen</h2><p class="uitleg">De website waarop ze op een link klikten, of "direct" (adres getypt of bladwijzer).</p>${staafLijst(sorteer(t.bron).slice(0, 10), 'Nog geen bezoeken.')}</section>
+        <section class="kaart"><h2>Apparaten</h2><p class="uitleg">Op welk soort scherm de website bekeken wordt.</p>${staafLijst(sorteer(t.apparaat).map(([k, v]) => [k[0].toUpperCase() + k.slice(1), v]), 'Nog geen bezoeken.')}</section>
+      </div>
+
+      <div class="twee">
+        <section class="kaart"><h2>Aanvragen</h2><p class="uitleg">Momenten waarop een bezoeker contact zocht of een rekentool gebruikte.</p>${staafLijst(sorteer(t.doel).map(([k, v]) => [DOELEN[k] ?? k, v]), 'Nog geen aanvragen in deze periode.')}</section>
+        <section class="kaart"><h2>Aanvragen per pagina</h2><p class="uitleg">Op welke pagina die aanvragen begonnen.</p>${staafLijst(doelPaginas, 'Nog geen aanvragen in deze periode.')}</section>
+      </div>
+
+      <section class="kaart"><h2>Waar het meest op geklikt wordt</h2><p class="uitleg">Knoppen, links en vragen, met de pagina eronder.</p>${staafLijst(klikken, 'Nog geen klikken in deze periode.')}</section>
+
+      <section class="kaart"><h2>Heatmap</h2><p class="uitleg">Waar bezoekers klikken: hoe donkerder, hoe vaker. Van de afgelopen drie maanden. Scroll in het venster door de pagina.</p>
+        <div class="heat-bediening">
+          <select id="heat-pagina" aria-label="Pagina">${paginas.map(p => `<option value="${esc(p.pad)}">${esc(naam(p.pad))}</option>`).join('') || '<option value="/">Home</option>'}</select>
+          <select id="heat-apparaat" aria-label="Apparaat"><option value="desktop">Computer</option><option value="tablet">Tablet</option><option value="mobiel">Telefoon</option></select>
+        </div>
+        <div class="heat-venster" id="heat-venster"></div>
+        <div class="schaal"><span>weinig</span><i></i><span>veel klikken</span></div>
+      </section>
+
+      <section class="kaart"><h2>Wat bezoekers zeggen</h2><p class="uitleg">Opmerkingen bij "Was deze pagina nuttig?".</p>
+        ${d.feedback.length ? `<ul class="reacties">${d.feedback.map(f => `<li><small>${new Date(f.dag + 'T12:00').toLocaleDateString('nl-NL', { day: 'numeric', month: 'long' })} · ${esc(naam(f.pad))} · ${f.nuttig === true ? '<span class="score-ja">nuttig</span>' : f.nuttig === false ? '<span class="score-nee">niet nuttig</span>' : ''} · ${esc(f.apparaat ?? '')}</small><p>${esc(f.opmerking)}</p></li>`).join('')}</ul>` : '<p class="leeg">Nog geen opmerkingen in deze periode.</p>'}
+      </section>`;
+    koppelGrafiek();
+    toonHeatmap();
+    document.getElementById('heat-pagina')!.addEventListener('change', toonHeatmap);
+    document.getElementById('heat-apparaat')!.addEventListener('change', toonHeatmap);
+  }
+
+  // Heatmap: de echte pagina in een venster, met de klikken erover getekend
+  const BREEDTE: Record<string, number> = { desktop: 1440, tablet: 820, mobiel: 390 };
+  async function toonHeatmap() {
+    const pad = (document.getElementById('heat-pagina') as HTMLSelectElement).value;
+    const apparaat = (document.getElementById('heat-apparaat') as HTMLSelectElement).value;
+    const venster = document.getElementById('heat-venster')!;
+    const breedte = BREEDTE[apparaat];
+    const schaal = Math.min(1, venster.clientWidth / breedte);
+    const iframe = document.createElement('iframe');
+    iframe.title = 'Heatmap';
+    iframe.src = `${pad}?hh-heatmap=1`;
+    iframe.style.width = `${breedte}px`;
+    iframe.style.height = `${720 / schaal}px`;
+    iframe.style.transform = `scale(${schaal})`;
+    venster.replaceChildren(iframe);
+    const [{ cellen }] = await Promise.all([
+      haal(`/api/beheer/statistiek?heatmap=${encodeURIComponent(pad)}&apparaat=${apparaat}&maanden=3`),
+      new Promise(r => iframe.addEventListener('load', r, { once: true })),
+    ]);
+    const doc = iframe.contentDocument!;
+    const B = doc.documentElement.scrollWidth, H = doc.documentElement.scrollHeight;
+    const canvas = doc.createElement('canvas');
+    canvas.width = B; canvas.height = H;
+    Object.assign(canvas.style, { position: 'absolute', left: '0', top: '0', width: `${B}px`, height: `${H}px`, pointerEvents: 'none', zIndex: '2147483646' });
+    doc.body.append(canvas);
+    const ctx = canvas.getContext('2d')!;
+    const lijst = Object.entries(cellen as Record<string, number>).map(([k, n]) => { const [x, y] = k.split(',').map(Number); return { x: x / 100 * B, y, n }; });
+    const max = Math.max(1, ...lijst.map(c => c.n));
+    for (const c of lijst) {
+      const sterkte = 0.15 + 0.8 * Math.sqrt(c.n / max);
+      const g = ctx.createRadialGradient(c.x, c.y, 0, c.x, c.y, 34);
+      g.addColorStop(0, `rgba(142, 79, 75, ${sterkte})`);
+      g.addColorStop(1, 'rgba(142, 79, 75, 0)');
+      ctx.fillStyle = g;
+      ctx.fillRect(c.x - 34, c.y - 34, 68, 68);
+    }
+    if (!lijst.length) {
+      const p = doc.createElement('div');
+      p.textContent = 'Nog geen klikken op deze pagina voor dit apparaat.';
+      Object.assign(p.style, { position: 'fixed', top: '20px', left: '20px', zIndex: '2147483647', padding: '12px 16px', background: '#081534', color: '#fff', font: '15px system-ui', borderRadius: '8px' });
+      doc.body.append(p);
+    }
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('.perioden button').forEach(knop => knop.addEventListener('click', () => {
+    document.querySelectorAll('.perioden button').forEach(b => b.setAttribute('aria-pressed', String(b === knop)));
+    laad(Number(knop.dataset.dagen));
+  }));
+
+  (async () => {
+    try {
+      const { groepen } = await haal('/api/beheer/paginas');
+      for (const g of groepen) for (const p of g.paginas) namen[p.pad] ??= p.titel;
+      namen['/'] = 'Home';
+    } catch { /* zonder namen tonen we de adressen */ }
+    laad(30);
+  })();
+</script>
+</body>
+</html>

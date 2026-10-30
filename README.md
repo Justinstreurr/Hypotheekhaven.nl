@@ -104,3 +104,19 @@ Nieuwe tekst of foto toevoegen aan een pagina: zet het element in het `.astro`-b
   Meet dan opnieuw de breedte van elke `img[data-ei]` op schermbreedtes 390, 820, 1280 en 1920 en werk `src/content/beeldmaten.json` bij.
 - **Cookiebanner**: de site plaatst nu geen tracking-cookies en heeft daarom geen banner nodig. Komt er Google Analytics of Tag Manager bij,
   plaats dan eerst een gecertificeerde cookiebanner (Cookiebot, CookieYes of Osano) met Consent Mode v2 in `Base.astro`, vóór de GTM-code.
+
+## Statistieken en feedback
+
+Het dashboard staat op **`/beheer/statistieken`** (ook via de werkbalk van de bewerkmodus). Het toont bezoekers per dag,
+de populairste pagina's met leestijd en scrolldiepte, waar bezoekers vandaan komen, apparaten, aanvragen (formulier,
+bellen, WhatsApp, rekentools), waarop geklikt wordt, een heatmap per pagina en de reacties op
+"Was deze pagina nuttig?" onderaan elke pagina.
+
+- **Eigen statistieken zijn anoniem**: geen cookies, geen IP-adressen, geen persoonsgegevens; een bezoeker telt één
+  keer per dag via een hash die de volgende dag niet meer te herleiden is. Daarvoor is geen toestemming nodig.
+  Bezoeken met de bewerkmodus aan tellen niet mee. Code: `src/scripts/meten.js`, `src/lib/statistiek.ts`, `src/pages/api/m.ts`.
+- **Opslag**: online in Upstash Redis (in Vercel: *Storage → Upstash → Redis*, koppelen aan het project). Lokaal in `.data/`.
+- **Microsoft Clarity** (opnames van bezoeken, muisbewegingen en Clarity's eigen heatmaps): maak een project aan op
+  clarity.microsoft.com en zet het ID in `PUBLIC_CLARITY_ID`. Dan verschijnt de cookiebanner; Clarity laadt pas na
+  "Akkoord". Bezoekers wijzigen hun keuze via "Cookie-instellingen" in de footer. De cookietekst op `/juridisch` gaat
+  hier al van uit; laat die controleren voordat Clarity live gaat.

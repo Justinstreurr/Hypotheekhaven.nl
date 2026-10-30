@@ -114,6 +114,7 @@
       $('button', { class: 'hh-knop', type: 'button', onclick: fotoPaneel, text: 'Achtergrondfoto\'s' }),
       $('button', { class: 'hh-knop', type: 'button', onclick: paginaPaneel, text: 'Google & menu' }),
       $('button', { class: 'hh-knop', type: 'button', onclick: geschiedenisPaneel, text: 'Geschiedenis' }),
+      $('a', { class: 'hh-knop hh-knop--link', href: '/beheer/statistieken', text: 'Statistieken' }),
       $('span', { class: 'hh-ruimte' }),
       teller,
       terugKnop,

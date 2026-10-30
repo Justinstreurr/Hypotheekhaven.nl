@@ -1,6 +1,7 @@
 ---
 import Img from './Img.astro';
 import Logo from './Logo.astro';
+import Feedback from './Feedback.astro';
 import { laad, lijstBeeld } from '../lib/content';
 
 interface Props {
@@ -9,6 +10,7 @@ interface Props {
 const { kort = false } = Astro.props;
 const { t, img, bg, lijst } = await laad('site');
 ---
+<Feedback />
 <footer class:list={['footer', { 'footer--kort': kort }]} {...bg('footer.foto', '--foto')}>
   <slot name="kop">
 <div class="footer-kop contact container" id="contact">
@@ -101,6 +103,7 @@ const { t, img, bg, lijst } = await laad('site');
       <a href="/juridisch#privacy" data-e="site:footer.a31" set:html={t('footer.a31')}></a>
       <a href="/juridisch#cookies" data-e="site:footer.a32" set:html={t('footer.a32')}></a>
       <a href="/juridisch#klachten" data-e="site:footer.a33" set:html={t('footer.a33')}></a>
+      <button type="button" class="footer-cookieknop" data-cookie-instellingen hidden data-e="site:cookie.instellingen" set:html={t('cookie.instellingen')}></button>
     </nav>
   </div>
 </footer>

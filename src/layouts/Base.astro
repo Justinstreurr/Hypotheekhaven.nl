@@ -7,6 +7,7 @@ import '../styles/styles.css';
 import satoshi from '../assets/fonts/Satoshi-Variable.woff2?url';
 import caslon from '@fontsource/libre-caslon-text/files/libre-caslon-text-latin-400-normal.woff2?url';
 import { getImage } from 'astro:assets';
+import CookieBanner from '../components/CookieBanner.astro';
 import { laad, beeldBestand } from '../lib/content';
 import { jsonLd, seoVoor } from '../lib/seo';
 import { absoluut, bedrijf, isProductie } from '../lib/site';
@@ -62,13 +63,16 @@ const graph = seo && seo.index !== false ? jsonLd(pagina, meta, ogUrl) : null;
 <meta name="twitter:image" content={ogUrl}>
 <style is:inline set:html={`@font-face{font-family:"Satoshi";src:url("${satoshi}") format("woff2");font-weight:300 900;font-display:swap}`}></style>
 {graph && <script type="application/ld+json" set:html={JSON.stringify(graph)} />}
-<script is:inline>if (/(^|; )hh_edit=1/.test(document.cookie)) { var s = document.createElement('script'); s.src = '/beheer/editor.js'; s.defer = true; document.head.appendChild(s); }</script>
+<script is:inline>if (/(^|; )hh_edit=1/.test(document.cookie) && !location.search.includes('hh-heatmap')) { var s = document.createElement('script'); s.src = '/beheer/editor.js'; s.defer = true; document.head.appendChild(s); }</script>
 </head>
 <body data-pagina={pagina}>
 <div class="review-balk"><span class="review-balk-item" data-e="site:balk.google" set:html={t('balk.google')} /><span class="scheiding" aria-hidden="true"></span><a href={bedrijf.trustoo} target="_blank" rel="noopener" data-e="site:balk.trustoo" set:html={t('balk.trustoo')} /></div>
 <slot />
 <template id="menu-voet-tekst" set:html={t('menu.bel')} />
+<CookieBanner />
 <script>
+  import '../scripts/meten.js';
+  import '../scripts/toestemming.js';
   import '../scripts/script.js';
 </script>
 </body>

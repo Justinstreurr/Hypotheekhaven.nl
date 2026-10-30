@@ -64,7 +64,19 @@
     "footer.a33": "Klachtenprocedure",
     "balk.google": "<span class=\"sterren\" aria-hidden=\"true\">★★★★★</span><strong>5,0</strong> op Google",
     "balk.trustoo": "<strong>9,8</strong> op Trustoo",
-    "menu.bel": "Of bel 06 55 76 78 19"
+    "menu.bel": "Of bel 06 55 76 78 19",
+    "feedback.vraag": "Was deze pagina nuttig?",
+    "feedback.ja": "Ja",
+    "feedback.nee": "Nee",
+    "feedback.vervolg": "Bedankt! Wil je nog iets kwijt? Wat kan er beter?",
+    "feedback.privacy": "Schrijf hier geen persoonlijke gegevens, zoals je naam of telefoonnummer.",
+    "feedback.knop": "Versturen",
+    "feedback.bedankt": "Bedankt voor je reactie, daar doe ik wat mee.",
+    "cookie.titel": "Mag ik meekijken?",
+    "cookie.tekst": "Ik meet anoniem hoe deze website gebruikt wordt, zonder cookies. Met jouw toestemming gebruik ik ook Microsoft Clarity om te zien waar bezoekers klikken en scrollen, zodat ik de website kan verbeteren. Clarity plaatst daarvoor cookies. <a href=\"/juridisch#cookies\">Meer informatie</a>",
+    "cookie.ja": "Akkoord",
+    "cookie.nee": "Liever niet",
+    "cookie.instellingen": "Cookie-instellingen"
   },
   "i": {
     "reviews.img1": {

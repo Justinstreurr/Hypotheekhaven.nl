@@ -1,0 +1,18 @@
+---
+// Toestemming voor Microsoft Clarity (klikken, scrollen en opnames). Alleen nodig als PUBLIC_CLARITY_ID
+// is ingesteld; de eigen statistieken gebruiken geen cookies en vragen daarom geen toestemming.
+import { laad } from '../lib/content';
+
+const clarity = import.meta.env.PUBLIC_CLARITY_ID;
+const { t } = await laad('site');
+---
+{clarity && (
+  <div class="cookiebanner" role="dialog" aria-labelledby="cookie-titel" aria-describedby="cookie-tekst" data-clarity={clarity} hidden>
+    <p id="cookie-titel" class="cookiebanner-titel" data-e="site:cookie.titel" set:html={t('cookie.titel')}></p>
+    <p id="cookie-tekst" data-e="site:cookie.tekst" set:html={t('cookie.tekst')}></p>
+    <div class="cookiebanner-knoppen">
+      <button type="button" class="btn btn-dark" data-toestemming="ja" data-e="site:cookie.ja" set:html={t('cookie.ja')}></button>
+      <button type="button" class="btn btn-light" data-toestemming="nee" data-e="site:cookie.nee" set:html={t('cookie.nee')}></button>
+    </div>
+  </div>
+)}

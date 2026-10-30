@@ -45,10 +45,10 @@
     "privacy.p16": "Ik kan deze privacyverklaring op elk moment aanpassen, zonder dat vooraf aan te kondigen. Een wijziging geldt vanaf het moment dat die op de website staat. Kijk daarom af en toe of er iets is veranderd.",
     "cookies.span1": "02",
     "cookies.h21": "<b>Cookies</b>",
-    "cookies.p1": "Een cookie is een klein bestand dat een website op je computer of telefoon opslaat. Deze website plaatst zelf geen tracking- of analytische cookies en volgt je niet.",
+    "cookies.p1": "Een cookie is een klein bestand dat een website op je computer of telefoon opslaat. Deze website meet anoniem hoe de site gebruikt wordt, zonder cookies. Alleen als je daar toestemming voor geeft, gebruik ik Microsoft Clarity, dat wel cookies plaatst.",
     "cookies.h31": "Wat deze website wel gebruikt",
-    "cookies.h32": "Geen cookiemelding",
-    "cookies.p2": "Omdat deze website geen cookies plaatst waarvoor toestemming nodig is, zie je geen cookiemelding. Verandert dat, dan pas ik deze tekst aan en vraag ik vooraf om je toestemming.",
+    "cookies.h32": "Je toestemming",
+    "cookies.p2": "Bij je eerste bezoek vraag ik of je Microsoft Clarity toestaat. Kies je “Liever niet”, dan wordt Clarity niet geladen en plaatst deze website geen cookies. Je keuze pas je altijd aan via “Cookie-instellingen” onderaan elke pagina.",
     "cookies.h33": "Zelf cookies beheren",
     "cookies.p3": "In de instellingen van je browser kun je cookies altijd bekijken, blokkeren of verwijderen.",
     "klachten.span1": "03",
@@ -113,7 +113,16 @@
     ],
     "ul-2-2-2-2": [
       {
-        "li": "<strong>Lettertype van Google Fonts.</strong> Eén lettertype (Libre Caslon Text) wordt geladen vanaf de servers van Google. Daarbij ontvangt Google, zoals bij elk bezoek aan een externe server, technische gegevens zoals je IP-adres. Google Fonts plaatst hiervoor geen cookies. Meer lees je in de <a href=\"https://policies.google.com/privacy?hl=nl\" target=\"_blank\" rel=\"noopener\">privacyverklaring van Google</a>."
+        "li": "<strong>Lettertypes vanaf deze website zelf.</strong> De lettertypes worden niet bij een andere partij geladen; daarbij gaan geen gegevens naar derden."
+      },
+      {
+        "li": "<strong>Anonieme statistieken.</strong> Ik tel hoe de website gebruikt wordt: welke pagina’s bezocht worden, hoe lang, hoe ver er gescrold wordt, waarop geklikt wordt en via welke website bezoekers binnenkomen. Dat gebeurt zonder cookies en zonder dat ik je kan herkennen. Je IP-adres wordt niet opgeslagen."
+      },
+      {
+        "li": "<strong>Microsoft Clarity, alleen met je toestemming.</strong> Clarity laat zien hoe bezoekers de website gebruiken, zoals klikken, scrollen en muisbewegingen, en maakt daarvan opnames. Wat je in formulieren typt, wordt afgeschermd. Clarity plaatst hiervoor cookies en Microsoft kan gegevens buiten de EU verwerken. Meer lees je in de <a href=\"https://privacy.microsoft.com/nl-nl/privacystatement\" target=\"_blank\" rel=\"noopener\">privacyverklaring van Microsoft</a>."
+      },
+      {
+        "li": "<strong>Feedback.</strong> Geef je een reactie bij “Was deze pagina nuttig?”, dan bewaar ik die zonder je naam of contactgegevens."
       },
       {
         "li": "<strong>Links naar andere websites.</strong> Klik je op een link naar bijvoorbeeld WhatsApp, LinkedIn, Trustoo of NBG, dan gelden daar de cookie- en privacyregels van die website."

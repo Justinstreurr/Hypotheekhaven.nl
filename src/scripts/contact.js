@@ -123,6 +123,7 @@
       perMail(w, voorkeur);
     }
     knop.disabled = false;
+    dispatchEvent(new CustomEvent('hh:doel', { detail: 'formulier' }));
     toonBevestiging();
   });
 
