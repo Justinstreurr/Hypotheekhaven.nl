@@ -141,11 +141,13 @@
     const gewijzigd = new Set([...wijzigingen.values()].map(w => w.bestand));
     const zoek = $('input', { type: 'search', class: 'hh-zij-zoek', placeholder: 'Zoek een pagina…', 'aria-label': 'Zoek een pagina' });
     const STATUS = { concept: 'Concept', binnenkort: 'Binnenkort' };
-    let dicht = [];
-    try { dicht = JSON.parse(localStorage.getItem('hh-zij-groepen') || '[]'); } catch { /* geen opslag */ }
+    // Standaard staat alleen "Pagina's" open; daarna onthoudt het menu wat je open- of dichtklapt
+    let stand = {};
+    try { stand = JSON.parse(localStorage.getItem('hh-zij-stand') || '{}'); } catch { /* geen opslag */ }
+    const isOpen = titel => stand[titel] ?? titel === 'Pagina\'s';
     const onthoud = (titel, open) => {
-      dicht = open ? dicht.filter(t => t !== titel) : [...new Set([...dicht, titel])];
-      try { localStorage.setItem('hh-zij-groepen', JSON.stringify(dicht)); } catch { /* geen opslag */ }
+      stand[titel] = open;
+      try { localStorage.setItem('hh-zij-stand', JSON.stringify(stand)); } catch { /* geen opslag */ }
     };
     const link = p => {
       const huidig = p.bestand === PAGINA;
@@ -160,11 +162,11 @@
       ]));
     };
     const groep = (titel, kinderen, aantal) => {
-      const d = $('details', { class: 'hh-zij-groep', open: !dicht.includes(titel) }, [
+      const d = $('details', { class: 'hh-zij-groep', open: isOpen(titel) }, [
         $('summary', {}, [$('span', { text: titel }), aantal !== undefined && $('small', { text: String(aantal) })]),
         ...kinderen,
       ]);
-      d.addEventListener('toggle', () => onthoud(titel, d.open));
+      d.addEventListener('toggle', () => { if (!zoek.value.trim()) onthoud(titel, d.open); }); // zoeken klapt tijdelijk alles open
       return d;
     };
     const groepen = paginaLijst.flatMap(g => {
