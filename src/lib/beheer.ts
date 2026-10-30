@@ -92,8 +92,8 @@ function schoon(node: Node) {
   }
 }
 
-export function schoneHtml(html: string) {
-  const root = parse(`<div>${html}</div>`, { comment: false, blockTextElements: {} });
+export function schoneHtml(invoer: string) {
+  const root = parse(`<div>${invoer}</div>`, { comment: false, blockTextElements: {} });
   const div = root.firstChild as HTMLElement;
   schoon(div);
   // Geen lege regels aan het begin of eind, ook niet net binnen een afsluitende tag
