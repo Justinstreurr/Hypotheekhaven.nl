@@ -140,43 +140,64 @@
   function vulZijbalk(zij) {
     const gewijzigd = new Set([...wijzigingen.values()].map(w => w.bestand));
     const zoek = $('input', { type: 'search', class: 'hh-zij-zoek', placeholder: 'Zoek een pagina…', 'aria-label': 'Zoek een pagina' });
-    const STATUS = { concept: 'concept', binnenkort: 'binnenkort' };
-    const groepen = paginaLijst.map(g => $('div', { class: 'hh-zij-groep' }, [
-      $('h3', { text: g.titel }),
-      $('ul', {}, g.paginas.map(p => {
-        const huidig = p.bestand === PAGINA;
-        const anders = gewijzigd.has(p.bestand) || (p.artikel && gewijzigd.has(p.artikel));
-        return $('li', { 'data-zoek': p.titel.toLowerCase() }, $('a', {
-          href: p.pad, class: [huidig && 'is-huidig', p.artikel && 'is-artikel'].filter(Boolean).join(' '), 'aria-current': huidig ? 'page' : undefined,
-          title: anders ? 'Hier staan wijzigingen die nog niet live zijn' : undefined,
-        }, [
-          $('span', { text: p.titel }),
-          p.status && STATUS[p.status] && $('em', { class: 'hh-zij-status hh-zij-status--' + p.status, text: STATUS[p.status] }),
-          anders && $('i', { class: 'hh-zij-stip', 'aria-label': 'niet gepubliceerde wijzigingen' }),
-        ]));
-      })),
-    ]));
+    const STATUS = { concept: 'Concept', binnenkort: 'Binnenkort' };
+    let dicht = [];
+    try { dicht = JSON.parse(localStorage.getItem('hh-zij-groepen') || '[]'); } catch { /* geen opslag */ }
+    const onthoud = (titel, open) => {
+      dicht = open ? dicht.filter(t => t !== titel) : [...new Set([...dicht, titel])];
+      try { localStorage.setItem('hh-zij-groepen', JSON.stringify(dicht)); } catch { /* geen opslag */ }
+    };
+    const link = p => {
+      const huidig = p.bestand === PAGINA;
+      const anders = gewijzigd.has(p.bestand) || (p.artikel && gewijzigd.has(p.artikel));
+      return $('li', { 'data-zoek': p.titel.toLowerCase() }, $('a', {
+        href: p.pad, class: huidig ? 'is-huidig' : undefined, 'aria-current': huidig ? 'page' : undefined,
+        title: anders ? 'Hier staan wijzigingen die nog niet live zijn' : p.titel,
+      }, [
+        $('span', { class: 'hh-zij-naam', text: p.titel }),
+        p.status && STATUS[p.status] && $('em', { class: 'hh-zij-status hh-zij-status--' + p.status, text: STATUS[p.status] }),
+        anders && $('i', { class: 'hh-zij-stip', 'aria-label': 'niet gepubliceerde wijzigingen' }),
+      ]));
+    };
+    const groep = (titel, kinderen, aantal) => {
+      const d = $('details', { class: 'hh-zij-groep', open: !dicht.includes(titel) }, [
+        $('summary', {}, [$('span', { text: titel }), aantal !== undefined && $('small', { text: String(aantal) })]),
+        ...kinderen,
+      ]);
+      d.addEventListener('toggle', () => onthoud(titel, d.open));
+      return d;
+    };
+    const groepen = paginaLijst.flatMap(g => {
+      const paginas = g.paginas.filter(p => !p.artikel);
+      const artikelen = g.paginas.filter(p => p.artikel);
+      return [
+        groep(g.titel, [$('ul', {}, paginas.map(link))], paginas.length),
+        artikelen.length && groep('Blogartikelen', [$('ul', { class: 'hh-zij-artikelen' }, artikelen.map(link))], artikelen.length),
+      ];
+    });
     zoek.addEventListener('input', () => {
       const q = zoek.value.trim().toLowerCase();
       zij.querySelectorAll('li[data-zoek]').forEach(li => { li.hidden = !!q && !li.dataset.zoek.includes(q); });
+      if (q) zij.querySelectorAll('.hh-zij-groep').forEach(d => { d.open = true; });
     });
     // Onderdelen van deze pagina: elk blok met een kop
     const onderdelen = [...document.querySelectorAll('body > header, body > main > *, body > section, body > footer, main > section, main > article')]
       .filter((el, n, alle) => alle.indexOf(el) === n && !el.closest('.hh-zij'))
-      .map(el => ({ el, kop: el.querySelector('h1, h2')?.textContent.replace(/\s+/g, ' ').trim() }))
+      .map(el => ({ el, kop: el.querySelector('h1, h2')?.innerText.replace(/\s+/g, ' ').trim() }))
       .filter(o => o.kop);
     zij.replaceChildren(
       $('div', { class: 'hh-zij-kop' }, [
-        $('strong', { text: 'Website' }),
-        $('button', { type: 'button', class: 'hh-zij-uit', onclick: uitloggen, text: 'Uitloggen' }),
-        $('button', { type: 'button', class: 'hh-zij-dicht', title: 'Menu sluiten', onclick: () => zijbalk(false), text: '✕' }),
+        $('div', {}, [$('strong', { text: 'Website bewerken' }), $('span', { text: 'Kies een pagina om aan te passen' })]),
+        $('button', { type: 'button', class: 'hh-zij-dicht', title: 'Menu sluiten', 'aria-label': 'Menu sluiten', onclick: () => zijbalk(false), text: '✕' }),
       ]),
-      zoek,
-      ...groepen,
-      onderdelen.length && $('div', { class: 'hh-zij-groep' }, [
-        $('h3', { text: 'Op deze pagina' }),
-        $('ul', {}, onderdelen.map(o => $('li', {}, $('a', { href: '#', onclick: e => { e.preventDefault(); o.el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, text: o.kop.length > 42 ? o.kop.slice(0, 40) + '…' : o.kop })))),
+      $('div', { class: 'hh-zij-zoekvak' }, zoek),
+      $('nav', { class: 'hh-zij-lijsten' }, [
+        ...groepen,
+        onderdelen.length && groep('Op deze pagina', [$('ol', { class: 'hh-zij-onderdelen' }, onderdelen.map(o => $('li', {}, $('a', {
+          href: '#', title: o.kop, onclick: e => { e.preventDefault(); o.el.scrollIntoView({ behavior: 'smooth', block: 'start' }); },
+        }, $('span', { class: 'hh-zij-naam', text: o.kop })))))]),
       ]),
+      $('div', { class: 'hh-zij-voet' }, $('button', { type: 'button', class: 'hh-zij-uit', onclick: uitloggen, text: 'Uitloggen' })),
     );
   }
   const verversZijbalk = () => { const zij = document.querySelector('.hh-zij'); if (zij && paginaLijst) vulZijbalk(zij); };
