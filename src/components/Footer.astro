@@ -1,13 +1,13 @@
 ---
 import Img from './Img.astro';
 import Logo from './Logo.astro';
-import { laad } from '../lib/content';
+import { laad, lijstBeeld } from '../lib/content';
 
 interface Props {
   kort?: boolean;
 }
 const { kort = false } = Astro.props;
-const { t, img, bg } = await laad('site');
+const { t, img, bg, lijst } = await laad('site');
 ---
 <footer class:list={['footer', { 'footer--kort': kort }]} {...bg('footer.foto', '--foto')}>
   <slot name="kop">
@@ -15,19 +15,13 @@ const { t, img, bg } = await laad('site');
   <span class="eyebrow" data-e="site:contact.span1" set:html={t('contact.span1')}></span>
   <h2 data-e="site:contact.h21" set:html={t('contact.h21')}></h2>
 
-  <div class="contact-punten">
-    <div class="contact-punt">
-      <strong data-e="site:contact.strong1" set:html={t('contact.strong1')}></strong>
-      <p data-e="site:contact.p1" set:html={t('contact.p1')}></p>
-    </div>
-    <div class="contact-punt">
-      <strong data-e="site:contact.strong2" set:html={t('contact.strong2')}></strong>
-      <p data-e="site:contact.p2" set:html={t('contact.p2')}></p>
-    </div>
-    <div class="contact-punt">
-      <strong data-e="site:contact.strong3" set:html={t('contact.strong3')}></strong>
-      <p data-e="site:contact.p3" set:html={t('contact.p3')}></p>
-    </div>
+  <div class="contact-punten" data-el="site:contact-punten">
+    {lijst('contact-punten').map((x, n) => (
+      <div data-item class="contact-punt">
+        <strong data-e={`site:contact-punten.${n}.strong`} set:html={x['strong']}></strong>
+        <p data-e={`site:contact-punten.${n}.p`} set:html={x['p']}></p>
+      </div>
+    ))}
   </div>
 
   <div class="btn-row">

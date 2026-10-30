@@ -68,9 +68,6 @@
     "rt-zij.p4": "De rente die je betaalt mag je aftrekken van je inkomen. Daar gaat het eigenwoningforfait vanaf, een klein bedrag dat bij je inkomen wordt opgeteld omdat je een eigen huis hebt. Over het verschil krijg je <span data-uit=\"tarief\">0</span> terug.",
     "rt-zij.p5": "Indicatie, geen advies en geen aanbod. Belastingregels <span data-norm=\"jaar\"></span>, rente zoals jij invult.",
     "rt-zij.h32": "Plan je gratis <b>kennismaking</b>",
-    "rt-zij.li1": "Gratis en vrijblijvend",
-    "rt-zij.li2": "Online of bij je thuis, ook op zaterdag",
-    "rt-zij.li3": "Ook na de notaris je vaste aanspreekpunt",
     "rt-zij.a1": "Bespreek je uitkomst <i class=\"arrow\"></i>",
     "uitleg.span1": "Zo rekenen we",
     "uitleg.h21": "Uitleg bij <br><b>je uitkomst</b>",
@@ -108,6 +105,17 @@
       {
         "vraag": "Wat zit er níet in deze berekening?",
         "antwoord": "Verzekeringen, de kosten van je woning zelf (zoals energie en onderhoud), een aflossingsvrij deel, de bijleenregeling en het verdelen van de renteaftrek tussen partners. Ook rekenen we met één rente voor de hele looptijd, terwijl die na je rentevaste periode kan veranderen. Dat is allemaal maatwerk, en precies waar ik je in het gesprek mee help."
+      }
+    ],
+    "rt-vinkjes": [
+      {
+        "li": "Gratis en vrijblijvend"
+      },
+      {
+        "li": "Online of bij je thuis, ook op zaterdag"
+      },
+      {
+        "li": "Ook na de notaris je vaste aanspreekpunt"
       }
     ]
   }

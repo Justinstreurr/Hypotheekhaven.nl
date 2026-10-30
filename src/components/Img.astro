@@ -13,7 +13,8 @@ interface Props {
 
 const { data, sizes, loading = 'lazy', ...rest } = Astro.props;
 const { src, alt, key } = data;
-const gemeten = (maten as Record<string, string>)[key];
+// foto's in een lijst delen één maat: "home:diensten-track.*.foto"
+const gemeten = (maten as Record<string, string>)[key] ?? (maten as Record<string, string>)[key.replace(/\.\d+\./, '.*.')];
 const breedtes = [320, 480, 640, 800, 1200, 1600, 2000].filter(b => b < src.width).concat(Math.min(src.width, 2400));
 ---
 {src.format === 'svg'

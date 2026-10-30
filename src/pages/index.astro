@@ -5,7 +5,7 @@ import Header from '../components/Header.astro';
 import HeroReviews from '../components/HeroReviews.astro';
 import HeroBanks from '../components/HeroBanks.astro';
 import Footer from '../components/Footer.astro';
-import { laadPagina, initialen } from '../lib/content';
+import { laadPagina, initialen, lijstBeeld } from '../lib/content';
 
 const { t, img, bg, meta, achtergronden, lijst } = await laadPagina('home');
 ---
@@ -52,57 +52,14 @@ const { t, img, bg, meta, achtergronden, lijst } = await laadPagina('home');
       <button class="slider-knop" type="button" data-dir="1" aria-label="Volgende"><i class="arrow"></i></button>
     </div>
   </div>
-  <div class="diensten-track">
-    <a class="dienst" href="/diensten#kan-ik-kopen">
-      <div class="dienst-beeld"><Img data={img('diensten.img1')} style="object-position: center 62%" /><span class="dienst-pijl" aria-hidden="true"><i class="arrow"></i></span></div>
-      <h3 data-e="home:diensten.h31" set:html={t('diensten.h31')}></h3>
-      <p data-e="home:diensten.p2" set:html={t('diensten.p2')}></p>
-    </a>
-    <a class="dienst" href="/diensten#eerste-huis">
-      <div class="dienst-beeld"><Img data={img('diensten.img2')} style="object-position: center 45%" /><span class="dienst-pijl" aria-hidden="true"><i class="arrow"></i></span></div>
-      <h3 data-e="home:diensten.h32" set:html={t('diensten.h32')}></h3>
-      <p data-e="home:diensten.p3" set:html={t('diensten.p3')}></p>
-    </a>
-    <a class="dienst" href="/diensten#verhuizen">
-      <div class="dienst-beeld"><Img data={img('diensten.img3')} /><span class="dienst-pijl" aria-hidden="true"><i class="arrow"></i></span></div>
-      <h3 data-e="home:diensten.h33" set:html={t('diensten.h33')}></h3>
-      <p data-e="home:diensten.p4" set:html={t('diensten.p4')}></p>
-    </a>
-    <a class="dienst" href="/diensten#scheiden">
-      <div class="dienst-beeld"><Img data={img('diensten.img4')} /><span class="dienst-pijl" aria-hidden="true"><i class="arrow"></i></span></div>
-      <h3 data-e="home:diensten.h34" set:html={t('diensten.h34')}></h3>
-      <p data-e="home:diensten.p5" set:html={t('diensten.p5')}></p>
-    </a>
-    <a class="dienst" href="/diensten#overwaarde">
-      <div class="dienst-beeld"><Img data={img('diensten.img5')} /><span class="dienst-pijl" aria-hidden="true"><i class="arrow"></i></span></div>
-      <h3 data-e="home:diensten.h35" set:html={t('diensten.h35')}></h3>
-      <p data-e="home:diensten.p6" set:html={t('diensten.p6')}></p>
-    </a>
-    <a class="dienst" href="/diensten#verduurzamen">
-      <div class="dienst-beeld"><Img data={img('diensten.img6')} style="object-position: center 40%" /><span class="dienst-pijl" aria-hidden="true"><i class="arrow"></i></span></div>
-      <h3 data-e="home:diensten.h36" set:html={t('diensten.h36')}></h3>
-      <p data-e="home:diensten.p7" set:html={t('diensten.p7')}></p>
-    </a>
-    <a class="dienst" href="/diensten#verbouwen-of-verhuizen">
-      <div class="dienst-beeld"><Img data={img('diensten.img7')} style="object-position: center 60%" /><span class="dienst-pijl" aria-hidden="true"><i class="arrow"></i></span></div>
-      <h3 data-e="home:diensten.h37" set:html={t('diensten.h37')}></h3>
-      <p data-e="home:diensten.p8" set:html={t('diensten.p8')}></p>
-    </a>
-    <a class="dienst" href="/diensten#rentevast">
-      <div class="dienst-beeld"><Img data={img('diensten.img8')} /><span class="dienst-pijl" aria-hidden="true"><i class="arrow"></i></span></div>
-      <h3 data-e="home:diensten.h38" set:html={t('diensten.h38')}></h3>
-      <p data-e="home:diensten.p9" set:html={t('diensten.p9')}></p>
-    </a>
-    <a class="dienst" href="/diensten#oversluiten">
-      <div class="dienst-beeld"><Img data={img('diensten.img9')} /><span class="dienst-pijl" aria-hidden="true"><i class="arrow"></i></span></div>
-      <h3 data-e="home:diensten.h39" set:html={t('diensten.h39')}></h3>
-      <p data-e="home:diensten.p10" set:html={t('diensten.p10')}></p>
-    </a>
-    <a class="dienst" href="/diensten#ondernemer">
-      <div class="dienst-beeld"><Img data={img('diensten.img10')} /><span class="dienst-pijl" aria-hidden="true"><i class="arrow"></i></span></div>
-      <h3 data-e="home:diensten.h310" set:html={t('diensten.h310')}></h3>
-      <p data-e="home:diensten.p11" set:html={t('diensten.p11')}></p>
-    </a>
+  <div class="diensten-track" data-el="home:diensten-track">
+    {lijst('diensten-track').map((x, n) => (
+      <a data-item class="dienst" href={x['link']} data-link="link">
+        <div class="dienst-beeld"><Img data={lijstBeeld(x['foto'], `home:diensten-track.${n}.foto`)} style={x['foto'].positie ? `object-position: ${x['foto'].positie}` : undefined} /><span class="dienst-pijl" aria-hidden="true"><i class="arrow"></i></span></div>
+        <h3 data-e={`home:diensten-track.${n}.h3`} set:html={x['h3']}></h3>
+        <p data-e={`home:diensten-track.${n}.p`} set:html={x['p']}></p>
+      </a>
+    ))}
   </div>
 </section>
 
@@ -193,14 +150,10 @@ const { t, img, bg, meta, achtergronden, lijst } = await laadPagina('home');
   </div>
 
   
-  <ul class="waarom-punten container">
-    
-    <li data-e="home:waarom.li1" set:html={t('waarom.li1')}></li>
-    <li data-e="home:waarom.li2" set:html={t('waarom.li2')}></li>
-    <li data-e="home:waarom.li3" set:html={t('waarom.li3')}></li>
-    <li data-e="home:waarom.li4" set:html={t('waarom.li4')}></li>
-    <li data-e="home:waarom.li5" set:html={t('waarom.li5')}></li>
-    <li data-e="home:waarom.li6" set:html={t('waarom.li6')}></li>
+  <ul class="waarom-punten container" data-el="home:waarom-punten">
+    {lijst('waarom-punten').map((x, n) => (
+      <li data-item data-e={`home:waarom-punten.${n}.li`} set:html={x['li']}></li>
+    ))}
   </ul>
 
   <div class="waarom-voet">

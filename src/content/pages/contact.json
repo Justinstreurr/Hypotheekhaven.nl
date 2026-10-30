@@ -30,9 +30,6 @@
     "formulier.span1": "Contactformulier",
     "formulier.h21": "Stuur me een <b>bericht</b>",
     "formulier.p1": "Vertel kort waar je mee bezig bent. Dan neem ik contact met je op om een gratis kennismaking te plannen.",
-    "formulier.li1": "Gratis en vrijblijvend eerste gesprek",
-    "formulier.li2": "Online of bij je thuis aan de keukentafel, overal in Noord-Holland",
-    "formulier.li3": "Je vaste adviseur, ook na de notaris",
     "formulier.figcaption1": "<strong>Sabrina Reiz-Coenraad</strong><span>Hypotheek- en verzekeringsadviseur</span>",
     "contactformulier.label1": "Naam",
     "contactformulier.label2": "E-mailadres",
@@ -54,15 +51,6 @@
     "formulier.button1": "Nog een bericht sturen <i class=\"arrow\"></i>",
     "daarna.span1": "Hoe het verder gaat",
     "daarna.h21": "Wat gebeurt er na <b>je bericht?</b>",
-    "daarna.span2": "01",
-    "daarna.h31": "Ik neem contact met je op",
-    "daarna.p1": "Meestal binnen een werkdag bel of mail ik je terug. Zo hoor je snel van me.",
-    "daarna.span3": "02",
-    "daarna.h32": "We plannen een gratis kennismaking",
-    "daarna.p2": "Op een moment dat jou uitkomt. Gratis en vrijblijvend, ook als je daarna niet verdergaat.",
-    "daarna.span4": "03",
-    "daarna.h33": "Online of bij je thuis",
-    "daarna.p3": "Via een videocall of gewoon bij je aan de keukentafel, overal in Noord-Holland.",
     "pagina.span1": "Gratis en vrijblijvend",
     "pagina.h21": "Liever meteen <b>even bellen?</b>",
     "pagina.a1": "Bel 06 55 76 78 19 <i class=\"arrow\"></i>",
@@ -76,18 +64,51 @@
     "formulier.img1": {
       "src": "hh-sabrina-portret.jpg",
       "alt": "Portret van Sabrina Reiz-Coenraad"
-    },
-    "daarna.img1": {
-      "src": "hh-sabrina-bankje.jpg",
-      "alt": ""
-    },
-    "daarna.img2": {
-      "src": "hh-hero-kaartje.jpg",
-      "alt": ""
-    },
-    "daarna.img3": {
-      "src": "hh-enkhuizen-lucht.jpg",
-      "alt": "Enkhuizen van bovenaf, met de haven en de Zuiderkerk"
     }
+  },
+  "l": {
+    "daarna-stappen": [
+      {
+        "span": "01",
+        "h3": "Ik neem contact met je op",
+        "p": "Meestal binnen een werkdag bel of mail ik je terug. Zo hoor je snel van me.",
+        "foto": {
+          "src": "hh-sabrina-bankje.jpg",
+          "alt": "",
+          "positie": "center 30%"
+        }
+      },
+      {
+        "span": "02",
+        "h3": "We plannen een gratis kennismaking",
+        "p": "Op een moment dat jou uitkomt. Gratis en vrijblijvend, ook als je daarna niet verdergaat.",
+        "foto": {
+          "src": "hh-hero-kaartje.jpg",
+          "alt": "",
+          "positie": "62% center"
+        }
+      },
+      {
+        "span": "03",
+        "h3": "Online of bij je thuis",
+        "p": "Via een videocall of gewoon bij je aan de keukentafel, overal in Noord-Holland.",
+        "foto": {
+          "src": "hh-enkhuizen-lucht.jpg",
+          "alt": "Enkhuizen van bovenaf, met de haven en de Zuiderkerk",
+          "positie": "center 60%"
+        }
+      }
+    ],
+    "formulier-punten": [
+      {
+        "li": "Gratis en vrijblijvend eerste gesprek"
+      },
+      {
+        "li": "Online of bij je thuis aan de keukentafel, overal in Noord-Holland"
+      },
+      {
+        "li": "Je vaste adviseur, ook na de notaris"
+      }
+    ]
   }
 }

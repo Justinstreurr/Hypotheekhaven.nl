@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import HeroReviews from '../components/HeroReviews.astro';
 import Footer from '../components/Footer.astro';
-import { laadPagina } from '../lib/content';
+import { laadPagina, lijstBeeld } from '../lib/content';
 import '../styles/pagina.css';
 import '../styles/rekentool.css';
 
@@ -153,10 +153,10 @@ const { t, bg, meta, achtergronden, lijst } = await laadPagina('checklist');
 
       <div class="rt-kaart rt-kennismaking">
         <h3 data-e="checklist:rt-zij.h33" set:html={t('rt-zij.h33')}></h3>
-        <ul class="rt-vinkjes">
-          <li data-e="checklist:rt-zij.li1" set:html={t('rt-zij.li1')}></li>
-          <li data-e="checklist:rt-zij.li2" set:html={t('rt-zij.li2')}></li>
-          <li data-e="checklist:rt-zij.li3" set:html={t('rt-zij.li3')}></li>
+        <ul class="rt-vinkjes" data-el="checklist:rt-vinkjes">
+          {lijst('rt-vinkjes').map((x, n) => (
+            <li data-item data-e={`checklist:rt-vinkjes.${n}.li`} set:html={x['li']}></li>
+          ))}
         </ul>
         <a href="/contact#formulier" class="btn btn-dark rt-bespreek" data-e="checklist:rt-zij.a1" set:html={t('rt-zij.a1')}></a>
       </div>

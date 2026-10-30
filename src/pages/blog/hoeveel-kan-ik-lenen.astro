@@ -6,7 +6,7 @@ import HeroReviews from '../../components/HeroReviews.astro';
 import HeroBanks from '../../components/HeroBanks.astro';
 import Footer from '../../components/Footer.astro';
 import BlogKaart from '../../components/BlogKaart.astro';
-import { artikelen, laadPagina } from '../../lib/content';
+import { artikelen, laadPagina, lijstBeeld } from '../../lib/content';
 import '../../styles/pagina.css';
 import '../../styles/blog.css';
 
@@ -55,12 +55,10 @@ const gerelateerd = (alle.find(x => x.slug === 'hoeveel-kan-ik-lenen')?.artikel.
       </div>
       <section class="in-het-kort" aria-labelledby="in-het-kort-titel">
         <h2 id="in-het-kort-titel" data-e="blog-hoeveel-kan-ik-lenen:in-het-kort.h21" set:html={t('in-het-kort.h21')}></h2>
-        <ul class="vinkjes">
-          <li data-e="blog-hoeveel-kan-ik-lenen:in-het-kort.li1" set:html={t('in-het-kort.li1')}></li>
-          <li data-e="blog-hoeveel-kan-ik-lenen:in-het-kort.li2" set:html={t('in-het-kort.li2')}></li>
-          <li data-e="blog-hoeveel-kan-ik-lenen:in-het-kort.li3" set:html={t('in-het-kort.li3')}></li>
-          <li data-e="blog-hoeveel-kan-ik-lenen:in-het-kort.li4" set:html={t('in-het-kort.li4')}></li>
-          <li data-e="blog-hoeveel-kan-ik-lenen:in-het-kort.li5" set:html={t('in-het-kort.li5')}></li>
+        <ul class="vinkjes" data-el="blog-hoeveel-kan-ik-lenen:vinkjes">
+          {lijst('vinkjes').map((x, n) => (
+            <li data-item data-e={`blog-hoeveel-kan-ik-lenen:vinkjes.${n}.li`} set:html={x['li']}></li>
+          ))}
         </ul>
       </section>
     </header>
@@ -188,9 +186,10 @@ const gerelateerd = (alle.find(x => x.slug === 'hoeveel-kan-ik-lenen')?.artikel.
           <span class="eyebrow" data-e="blog-hoeveel-kan-ik-lenen:artikel-auteur.span1" set:html={t('artikel-auteur.span1')}></span>
           <h2 id="auteur-titel" data-e="blog-hoeveel-kan-ik-lenen:artikel-auteur.h21" set:html={t('artikel-auteur.h21')}></h2>
           <p class="artikel-auteur-rol" data-e="blog-hoeveel-kan-ik-lenen:artikel-auteur.p1" set:html={t('artikel-auteur.p1')}></p>
-          <ul class="artikel-auteur-feiten">
-            <li data-e="blog-hoeveel-kan-ik-lenen:artikel-auteur.li1" set:html={t('artikel-auteur.li1')}></li>
-            <li data-e="blog-hoeveel-kan-ik-lenen:artikel-auteur.li2" set:html={t('artikel-auteur.li2')}></li>
+          <ul class="artikel-auteur-feiten" data-el="blog-hoeveel-kan-ik-lenen:artikel-auteur-feiten">
+            {lijst('artikel-auteur-feiten').map((x, n) => (
+              <li data-item data-e={`blog-hoeveel-kan-ik-lenen:artikel-auteur-feiten.${n}.li`} set:html={x['li']}></li>
+            ))}
           </ul>
           <p class="artikel-auteur-tekst" data-e="blog-hoeveel-kan-ik-lenen:artikel-auteur.p2" set:html={t('artikel-auteur.p2')}></p>
           <a href="/over-sabrina" class="waarom-link" rel="author" data-e="blog-hoeveel-kan-ik-lenen:artikel-auteur.a1" set:html={t('artikel-auteur.a1')}></a>

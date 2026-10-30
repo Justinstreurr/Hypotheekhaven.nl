@@ -5,7 +5,7 @@ import Header from '../components/Header.astro';
 import HeroReviews from '../components/HeroReviews.astro';
 import HeroBanks from '../components/HeroBanks.astro';
 import Footer from '../components/Footer.astro';
-import { laadPagina } from '../lib/content';
+import { laadPagina, lijstBeeld } from '../lib/content';
 import '../styles/pagina.css';
 import '../styles/werkwijze.css';
 
@@ -145,10 +145,10 @@ const { t, img, bg, meta, achtergronden, lijst } = await laadPagina('werkwijze')
       <h2 data-e="werkwijze:banner.h22" set:html={t('banner.h22')}></h2>
       <p data-e="werkwijze:banner.p2" set:html={t('banner.p2')}></p>
       
-      <ul class="banner-links">
-        <li data-e="werkwijze:banner.li1" set:html={t('banner.li1')}></li>
-        <li data-e="werkwijze:banner.li2" set:html={t('banner.li2')}></li>
-        <li data-e="werkwijze:banner.li3" set:html={t('banner.li3')}></li>
+      <ul class="banner-links" data-el="werkwijze:banner-links">
+        {lijst('banner-links').map((x, n) => (
+          <li data-item data-e={`werkwijze:banner-links.${n}.li`} set:html={x['li']}></li>
+        ))}
       </ul>
       </div>
     </article>

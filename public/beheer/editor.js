@@ -245,7 +245,7 @@
 
   const huidigeWaarde = (soort, ref) => {
     const w = wijzigingen.get(sleutelVan(soort, ref));
-    if (w) return w.waarde;
+    if (w) return soort === 'lijst' ? kopie(w.waarde) : w.waarde;
     const [bestand, sleutel] = splits(ref);
     if (soort === 'beeld') return { ...(bron[bestand]?.i?.[sleutel] || {}) };
     if (soort === 'lijst') return kopie(bron[bestand]?.l?.[sleutel] || []);
@@ -391,6 +391,14 @@
         veld.dataset.e = `${ref}.${n}.${naam}`;
         veld.innerHTML = lijst[n][naam] ?? '';
       });
+      item.querySelectorAll('[data-ei]').forEach(img => {
+        const naam = splits(img.dataset.ei)[1].match(/\.([\w-]+)$/)[1];
+        img.dataset.ei = `${ref}.${n}.${naam}`;
+        const foto = lijst[n][naam];
+        if (foto?.upload && uploads.has(foto.upload)) toonFoto(img, 'img', uploadUrl(foto.upload));
+        if (foto) img.alt = foto.alt ?? '';
+      });
+      item.querySelectorAll('[data-link]').forEach(a => { if (lijst[n][a.dataset.link]) a.setAttribute('href', lijst[n][a.dataset.link]); });
       const avatar = item.querySelector('.review-avatar');
       if (avatar && lijst[n].naam) {
         const woorden = lijst[n].naam.replace(/<[^>]+>/g, '').trim().split(/\s+/);
@@ -410,18 +418,50 @@
     });
   }
 
-  function nieuwItem(houder) {
-    const item = {};
-    sjabloon(houder).querySelectorAll('[data-e]').forEach(veld => { const naam = veldVan(veld); item[naam] = NIEUW[naam] || 'Nieuwe tekst'; });
-    for (const [naam, opties] of Object.entries(JSON.parse(houder.dataset.keuzes || '{}'))) item[naam] = opties[0];
+  // Een nieuw item lijkt op het item erboven: zelfde foto, link en opmaak, maar met lege teksten
+  const NIEUW_VELD = naam => NIEUW[naam] ?? ({ h3: 'Nieuwe titel', h4: 'Nieuwe titel', p: 'Schrijf hier de tekst.', li: 'Nieuw punt', strong: 'Titel' }[naam.replace(/\d+$/, '')] || 'Nieuwe tekst');
+  function nieuwItem(houder, na) {
+    const lijst = huidigeWaarde('lijst', houder.dataset.el);
+    const basis = lijst[Math.max(0, na)];
+    const keuzes = JSON.parse(houder.dataset.keuzes || '{}');
+    if (!basis) {
+      const item = {};
+      sjabloon(houder).querySelectorAll('[data-e]').forEach(veld => { const naam = veldVan(veld); item[naam] = NIEUW_VELD(naam); });
+      for (const [naam, opties] of Object.entries(keuzes)) item[naam] = opties[0];
+      return item;
+    }
+    const item = kopie(basis);
+    for (const [naam, waarde] of Object.entries(item)) {
+      if (typeof waarde !== 'string' || keuzes[naam] || /^link\d*$/.test(naam)) continue;
+      if (/^anker\d*$/.test(naam)) item[naam] = `${waarde}-${Date.now().toString(36).slice(-4)}`;
+      else if (!/^(span|strong|link-tekst)\d*$/.test(naam)) item[naam] = NIEUW_VELD(naam);
+    }
     return item;
+  }
+
+  function linkDialoog(houder, n) {
+    const lijst = huidigeWaarde('lijst', houder.dataset.el);
+    const velden = [...new Set([...items(houder)[n].querySelectorAll('[data-link]')].map(a => a.dataset.link))];
+    const invoer = velden.map(v => $('input', { type: 'text', class: 'hh-veld', value: lijst[n][v] ?? '' }));
+    paneel('Link', [
+      $('p', { class: 'hh-uitleg', text: 'Waar gaat dit item naartoe? Bijvoorbeeld /contact, /diensten#oversluiten of een volledig adres met https://.' }),
+      ...invoer.flatMap((veld, i) => [velden.length > 1 && $('label', { class: 'hh-veldlabel', text: `Link ${i + 1}` }), veld]),
+    ], () => {
+      const fout = invoer.find(v => !/^(https?:|mailto:|tel:|\/|#)/.test(v.value.trim()));
+      if (fout) return melding('Een link begint met /, https://, mailto: of tel:', 'fout');
+      if (velden.every((v, i) => invoer[i].value.trim() === lijst[n][v])) return;
+      stap();
+      velden.forEach((v, i) => { lijst[n][v] = invoer[i].value.trim(); });
+      zetLijst(houder.dataset.el, lijst);
+      tekenLijst(houder);
+    });
   }
 
   function voegToe(houder, na) {
     stopBewerken(true);
     stap();
     const lijst = huidigeWaarde('lijst', houder.dataset.el);
-    lijst.splice(na + 1, 0, nieuwItem(houder));
+    lijst.splice(na + 1, 0, nieuwItem(houder, na));
     zetLijst(houder.dataset.el, lijst);
     tekenLijst(houder);
     verbergItemKnoppen();
@@ -479,6 +519,7 @@
         knop('↑', 'Omhoog', () => verplaats(houder, n, -1)),
         knop('↓', 'Omlaag', () => verplaats(houder, n, 1)),
         knop('+ Nieuw', 'Nieuw item hieronder', () => voegToe(houder, n)),
+        item.querySelector('[data-link]') && knop('Link', 'Waar dit item naartoe linkt', () => linkDialoog(houder, n)),
         ...Object.entries(keuzes).map(([veld, opties]) => {
           const s = $('select', { class: 'hh-keuze', title: veld, onchange: () => kies(houder, n, veld, s.value) }, opties.map(o => $('option', { value: o, text: o[0].toUpperCase() + o.slice(1), selected: lijst[n]?.[veld] === o })));
           return s;
@@ -518,7 +559,9 @@
 
   // ---------- foto's ----------
   function fotoDialoog({ el, ref, soort }) {
-    const huidig = huidigeWaarde('beeld', ref);
+    const lijstHouder = el.closest?.('[data-el]');
+    const lijstPlekFoto = lijstHouder && splits(ref)[1].match(/\.(\d+)\.([\w-]+)$/);
+    const huidig = lijstPlekFoto ? (huidigeWaarde('lijst', lijstHouder.dataset.el)[lijstPlekFoto[1]]?.[lijstPlekFoto[2]] || {}) : huidigeWaarde('beeld', ref);
     let nieuw = null;
     const voorbeeld = $('div', { class: 'hh-voorbeeld' });
     const zetVoorbeeld = url => { voorbeeld.style.backgroundImage = `url("${url}")`; };
@@ -537,6 +580,25 @@
     ];
     if (soort === 'img') inhoud.push($('label', { class: 'hh-veldlabel', text: 'Omschrijving voor slechtzienden en Google (laat leeg bij een sfeerfoto)' }), alt);
     paneel('Foto aanpassen', inhoud, () => {
+      // Foto in een lijst-item (bijv. een dienstkaart): hoort bij de lijst
+      const houder = el.closest?.('[data-el]');
+      const plek = houder && splits(ref)[1].match(/\.(\d+)\.([\w-]+)$/);
+      if (plek) {
+        const lijst = huidigeWaarde('lijst', houder.dataset.el);
+        const foto = { ...lijst[plek[1]][plek[2]] };
+        if (!nieuw && alt.value === (foto.alt ?? '')) return;
+        stap();
+        if (nieuw) {
+          const id = 'u' + Date.now();
+          uploads.set(id, { id, naam: nieuw.naam, data: nieuw.url.split(',')[1] });
+          foto.upload = id;
+        }
+        foto.alt = alt.value;
+        lijst[plek[1]][plek[2]] = foto;
+        zetLijst(houder.dataset.el, lijst);
+        tekenLijst(houder);
+        return;
+      }
       const [bestand, sleutel] = splits(ref);
       const waarde = { ...(wijzigingen.get(sleutelVan('beeld', ref))?.waarde || {}) };
       const altAnders = soort === 'img' && alt.value !== (bron[bestand]?.i?.[sleutel]?.alt ?? '');
@@ -554,6 +616,8 @@
       telBij();
     });
   }
+
+  const uploadUrl = id => 'data:image/' + (uploads.get(id).data.startsWith('iVBOR') ? 'png' : 'jpeg') + ';base64,' + uploads.get(id).data;
 
   const huidigeAchtergrond = el => {
     const s = el.style;
@@ -803,7 +867,7 @@
       if (w.soort === 'tekst') document.querySelectorAll(`[data-e="${CSS.escape(ref)}"]`).forEach(el => { el.innerHTML = w.waarde; el.classList.add('hh-gewijzigd'); });
       if (w.soort === 'attr') document.querySelectorAll('[data-ea]').forEach(el => { if (el.dataset.ea.endsWith('|' + ref)) { el.setAttribute(el.dataset.ea.split('|')[0], w.waarde); el.classList.add('hh-gewijzigd'); } });
       if (w.soort === 'beeld' && w.waarde.upload && uploads.has(w.waarde.upload)) {
-        const url = 'data:image/' + (uploads.get(w.waarde.upload).data.startsWith('iVBOR') ? 'png' : 'jpeg') + ';base64,' + uploads.get(w.waarde.upload).data;
+        const url = uploadUrl(w.waarde.upload);
         document.querySelectorAll(`[data-ei="${CSS.escape(ref)}"]`).forEach(el => { toonFoto(el, 'img', url); el.classList.add('hh-gewijzigd'); });
         document.querySelectorAll(`[data-eb="${CSS.escape(ref)}"]`).forEach(el => toonFoto(el, 'bg', url));
         document.querySelectorAll(`[data-ef="${CSS.escape(ref)}"]`).forEach(el => toonFoto(el, 'foto', url));
@@ -815,7 +879,8 @@
   async function publiceer() {
     stopBewerken(true);
     if (!wijzigingen.size) return;
-    const gebruikt = new Set([...wijzigingen.values()].map(w => w.waarde?.upload).filter(Boolean));
+    // ook foto's in lijst-items tellen mee
+    const gebruikt = new Set([...JSON.stringify([...wijzigingen.values()]).matchAll(/"upload":"([^"]+)"/g)].map(m => m[1]));
     const body = { wijzigingen: [...wijzigingen.values()], uploads: [...uploads.values()].filter(u => gebruikt.has(u.id)) };
     if (JSON.stringify(body).length > 4_000_000) return melding('Te veel nieuwe foto\'s tegelijk. Publiceer eerst een deel en daarna de rest.', 'fout', 0);
     publiceerKnop.disabled = true;

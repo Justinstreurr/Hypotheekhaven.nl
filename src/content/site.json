@@ -19,12 +19,6 @@
     "banks.span1": "Onafhankelijk, werkt samen met o.a.",
     "contact.span1": "Gratis en vrijblijvend",
     "contact.h21": "Plan een gratis <b>kennismaking</b>",
-    "contact.strong1": "Gratis",
-    "contact.p1": "Het eerste gesprek is altijd vrijblijvend, ook als je daarna niet verdergaat.",
-    "contact.strong2": "Online of thuis",
-    "contact.p2": "Wanneer het jou uitkomt. Ook op zaterdag, en via WhatsApp.",
-    "contact.strong3": "Vast contact",
-    "contact.p3": "Van de eerste berekening tot aan de notaris, en ook daarna.",
     "contact.a1": "Bel 06 55 76 78 19 <i class=\"arrow\"></i>",
     "contact.a2": "Stuur een WhatsApp <i class=\"arrow\"></i>",
     "footer.h31": "Hypotheek",
@@ -93,5 +87,21 @@
       "src": "hh-hero-fauteuil.jpg",
       "alt": ""
     }
+  },
+  "l": {
+    "contact-punten": [
+      {
+        "strong": "Gratis",
+        "p": "Het eerste gesprek is altijd vrijblijvend, ook als je daarna niet verdergaat."
+      },
+      {
+        "strong": "Online of thuis",
+        "p": "Wanneer het jou uitkomt. Ook op zaterdag, en via WhatsApp."
+      },
+      {
+        "strong": "Vast contact",
+        "p": "Van de eerste berekening tot aan de notaris, en ook daarna."
+      }
+    ]
   }
 }

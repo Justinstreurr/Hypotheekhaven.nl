@@ -8,7 +8,8 @@ import site from '../content/site.json';
 //   data-ea   tekst in een attribuut     data-eb / data-ef  achtergrondfoto
 // <bestand> is "site", de naam van een pagina in content/pages, of "blog/<slug>" voor een artikel.
 
-export type LijstItem = Record<string, string>;
+export interface LijstFoto { src: string; alt: string; positie?: string }
+export type LijstItem = Record<string, any>; // tekst (html), link of foto (LijstFoto)
 
 export interface Inhoud {
   meta?: { title: string; description: string; ogImage?: string };
@@ -127,6 +128,9 @@ export async function laad(naam: string) {
 export async function laadPagina(naam: string) {
   return laad(naam);
 }
+
+/** Foto uit een lijst-item, klaar voor <Img> */
+export const lijstBeeld = (foto: LijstFoto, key: string): Beeld => ({ key, src: beeldBestand(foto.src), alt: foto.alt, positie: foto.positie });
 
 /** Voorletters voor de avatar bij een review: eerste letter + de volgende hoofdletter ("Ton Van Bedaf" → TV) */
 export function initialen(html: string) {

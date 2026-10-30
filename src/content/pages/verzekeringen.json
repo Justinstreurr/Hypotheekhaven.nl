@@ -26,25 +26,9 @@
     "soorten.p4": "Als ondernemer of zzp’er heb je geen werkgever die je inkomen doorbetaalt als je ziek wordt. Deze verzekering geeft je een uitkering als je door ziekte of een ongeval niet of minder kunt werken.",
     "soorten.h34": "Ook je andere verzekeringen",
     "soorten.p5": "Een woonhuisverzekering is bij een hypotheek verplicht. Die regel ik graag voor je, net als je andere verzekeringen.",
-    "soorten.li1": "Woonhuis (opstal)",
-    "soorten.li2": "Inboedel",
-    "soorten.li3": "Aansprakelijkheid",
-    "soorten.li4": "Rechtsbijstand",
-    "soorten.li5": "Uitvaart",
-    "soorten.li6": "Auto",
-    "soorten.li7": "Reis",
     "hoe-het-werkt.span1": "Hoe het werkt",
     "hoe-het-werkt.h21": "Verzekeringen, <b>goed geregeld.</b><span class=\"kleur-zin\"><span>Advies</span> <span>dat</span> <span>past</span> <span>bij</span> <span>je</span> <span>hypotheek.</span></span>",
     "hoe-het-werkt.a1": "Plan een gratis kennismaking <i class=\"arrow\"></i>",
-    "hoe-het-werkt.span2": "Stap 01",
-    "hoe-het-werkt.h31": "Samen met je hypotheek",
-    "hoe-het-werkt.p1": "Verzekeringsadvies is een vast onderdeel van het gesprek over je hypotheek. Zo sluiten de twee goed op elkaar aan.",
-    "hoe-het-werkt.span3": "Stap 02",
-    "hoe-het-werkt.h32": "Of los aan te vragen",
-    "hoe-het-werkt.p2": "Heb je je hypotheek al, maar wil je weten of je verzekeringen nog passen? Dan kun je verzekeringsadvies ook los bij me aanvragen.",
-    "hoe-het-werkt.span4": "Stap 03",
-    "hoe-het-werkt.h33": "Start met een kennismaking",
-    "hoe-het-werkt.p3": "In een gratis en vrijblijvend gesprek vertel je over je situatie. Telefonisch, online of bij je thuis, wanneer het jou uitkomt.",
     "faq.span1": "Wat je moet weten",
     "faq.h21": "Vragen over <b>verzekeringen</b>",
     "faq.p1": "Staat je vraag er niet tussen? Stel hem gerust in het gratis kennismakingsgesprek."
@@ -65,18 +49,6 @@
     "soorten.img3": {
       "src": "hh-laptop-studio.jpg",
       "alt": ""
-    },
-    "hoe-het-werkt.img1": {
-      "src": "hh-planner-bank.jpg",
-      "alt": ""
-    },
-    "hoe-het-werkt.img2": {
-      "src": "hh-laptop-hakken.jpg",
-      "alt": ""
-    },
-    "hoe-het-werkt.img3": {
-      "src": "hh-sabrina-bankje.jpg",
-      "alt": ""
     }
   },
   "l": {
@@ -96,6 +68,61 @@
       {
         "vraag": "Wat bespreken we in het eerste gesprek?",
         "antwoord": "Je vertelt over je situatie en je plannen, en ik laat zien waar je op moet letten. Het gesprek is gratis en vrijblijvend, ook als je daarna niet verdergaat."
+      }
+    ],
+    "tijdlijn-stappen": [
+      {
+        "span": "Stap 01",
+        "h3": "Samen met je hypotheek",
+        "p": "Verzekeringsadvies is een vast onderdeel van het gesprek over je hypotheek. Zo sluiten de twee goed op elkaar aan.",
+        "foto": {
+          "src": "hh-planner-bank.jpg",
+          "alt": "",
+          "positie": "70% center"
+        }
+      },
+      {
+        "span": "Stap 02",
+        "h3": "Of los aan te vragen",
+        "p": "Heb je je hypotheek al, maar wil je weten of je verzekeringen nog passen? Dan kun je verzekeringsadvies ook los bij me aanvragen.",
+        "foto": {
+          "src": "hh-laptop-hakken.jpg",
+          "alt": "",
+          "positie": "center 30%"
+        }
+      },
+      {
+        "span": "Stap 03",
+        "h3": "Start met een kennismaking",
+        "p": "In een gratis en vrijblijvend gesprek vertel je over je situatie. Telefonisch, online of bij je thuis, wanneer het jou uitkomt.",
+        "foto": {
+          "src": "hh-sabrina-bankje.jpg",
+          "alt": "",
+          "positie": "center 35%"
+        }
+      }
+    ],
+    "ul": [
+      {
+        "li": "Woonhuis (opstal)"
+      },
+      {
+        "li": "Inboedel"
+      },
+      {
+        "li": "Aansprakelijkheid"
+      },
+      {
+        "li": "Rechtsbijstand"
+      },
+      {
+        "li": "Uitvaart"
+      },
+      {
+        "li": "Auto"
+      },
+      {
+        "li": "Reis"
       }
     ]
   }

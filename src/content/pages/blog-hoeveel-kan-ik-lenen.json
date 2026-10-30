@@ -16,11 +16,6 @@
     "kort-antwoord.span1": "Kort antwoord",
     "kort-antwoord.p1": "Hoeveel je kunt lenen voor een huis, hangt vooral af van je bruto inkomen, je vaste lasten en schulden, de rente en de waarde van de woning. Geldverstrekkers rekenen met landelijke leennormen die elk jaar worden bijgesteld, dus een precies bedrag krijg je alleen met een persoonlijke berekening. Nog belangrijker dan het maximum: kies een hypotheek met maandlasten waar je je comfortabel bij voelt.",
     "in-het-kort.h21": "In het kort",
-    "in-het-kort.li1": "Je inkomen is het startpunt: hoe hoger en stabieler, hoe meer leenruimte.",
-    "in-het-kort.li2": "Leningen, creditcards, private lease en je studieschuld verlagen wat je kunt lenen.",
-    "in-het-kort.li3": "De rente, je rentevaste periode en het energielabel van de woning tellen mee.",
-    "in-het-kort.li4": "Voor de kosten koper heb je eigen geld nodig, die kun je niet meefinancieren.",
-    "in-het-kort.li5": "Maximaal lenen is niet hetzelfde als comfortabel lenen.",
     "artikel-zij.span1": "In dit artikel",
     "artikel-zij.li1": "<a href=\"#hoe-berekend\">Hoe wordt het berekend?</a>",
     "artikel-zij.li2": "<a href=\"#schulden\">Schulden en vaste lasten</a>",
@@ -74,8 +69,6 @@
     "artikel-auteur.span1": "Over de schrijver",
     "artikel-auteur.h21": "Sabrina Reiz-Coenraad",
     "artikel-auteur.p1": "Onafhankelijk hypotheek- en verzekeringsadviseur in Noord-Holland",
-    "artikel-auteur.li1": "Meer dan 25 jaar ervaring",
-    "artikel-auteur.li2": "Partner van NBG Hypotheken",
     "artikel-auteur.p2": "Ik help mensen bij het kopen van een huis, het aanpassen van hun hypotheek en het regelen van de verzekeringen die daarbij horen. Persoonlijk, duidelijk en met één vast aanspreekpunt, van het eerste gesprek tot ver na de notaris.",
     "artikel-auteur.a1": "Meer over Sabrina <i class=\"arrow\"></i>",
     "artikel.span1": "Deel dit artikel",
@@ -143,6 +136,31 @@
       {
         "vraag": "Moet ik het maximale bedrag lenen?",
         "antwoord": "Nee. Het maximum is een grens, geen advies. Ik kijk samen met je naar maandlasten waar je je comfortabel bij voelt, nu en later."
+      }
+    ],
+    "artikel-auteur-feiten": [
+      {
+        "li": "Meer dan 25 jaar ervaring"
+      },
+      {
+        "li": "Partner van NBG Hypotheken"
+      }
+    ],
+    "vinkjes": [
+      {
+        "li": "Je inkomen is het startpunt: hoe hoger en stabieler, hoe meer leenruimte."
+      },
+      {
+        "li": "Leningen, creditcards, private lease en je studieschuld verlagen wat je kunt lenen."
+      },
+      {
+        "li": "De rente, je rentevaste periode en het energielabel van de woning tellen mee."
+      },
+      {
+        "li": "Voor de kosten koper heb je eigen geld nodig, die kun je niet meefinancieren."
+      },
+      {
+        "li": "Maximaal lenen is niet hetzelfde als comfortabel lenen."
       }
     ]
   }

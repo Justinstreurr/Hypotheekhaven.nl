@@ -5,7 +5,7 @@ import Header from '../components/Header.astro';
 import HeroReviews from '../components/HeroReviews.astro';
 import HeroBanks from '../components/HeroBanks.astro';
 import Footer from '../components/Footer.astro';
-import { laadPagina } from '../lib/content';
+import { laadPagina, lijstBeeld } from '../lib/content';
 import '../styles/pagina.css';
 import '../styles/verzekeringen.css';
 
@@ -84,14 +84,10 @@ const { t, img, bg, meta, achtergronden, lijst } = await laadPagina('verzekering
   <div class="soorten-overig">
     <h3 data-e="verzekeringen:soorten.h34" set:html={t('soorten.h34')}></h3>
     <p data-e="verzekeringen:soorten.p5" set:html={t('soorten.p5')}></p>
-    <ul>
-      <li data-e="verzekeringen:soorten.li1" set:html={t('soorten.li1')}></li>
-      <li data-e="verzekeringen:soorten.li2" set:html={t('soorten.li2')}></li>
-      <li data-e="verzekeringen:soorten.li3" set:html={t('soorten.li3')}></li>
-      <li data-e="verzekeringen:soorten.li4" set:html={t('soorten.li4')}></li>
-      <li data-e="verzekeringen:soorten.li5" set:html={t('soorten.li5')}></li>
-      <li data-e="verzekeringen:soorten.li6" set:html={t('soorten.li6')}></li>
-      <li data-e="verzekeringen:soorten.li7" set:html={t('soorten.li7')}></li>
+    <ul data-el="verzekeringen:ul">
+      {lijst('ul').map((x, n) => (
+        <li data-item data-e={`verzekeringen:ul.${n}.li`} set:html={x['li']}></li>
+      ))}
     </ul>
   </div>
 </section>
@@ -105,31 +101,17 @@ const { t, img, bg, meta, achtergronden, lijst } = await laadPagina('verzekering
 
   <div class="tijdlijn">
     <div class="tijdlijn-lijn" aria-hidden="true"><div class="tijdlijn-vulling"></div></div>
-    <ol class="tijdlijn-stappen">
-      <li class="tijdlijn-stap">
-        <div class="tijdlijn-tekst">
-          <span class="tijdlijn-nr" data-e="verzekeringen:hoe-het-werkt.span2" set:html={t('hoe-het-werkt.span2')}></span>
-          <h3 data-e="verzekeringen:hoe-het-werkt.h31" set:html={t('hoe-het-werkt.h31')}></h3>
-          <p data-e="verzekeringen:hoe-het-werkt.p1" set:html={t('hoe-het-werkt.p1')}></p>
-        </div>
-        <Img data={img('hoe-het-werkt.img1')} class="tijdlijn-foto" style="object-position: 70% center" />
-      </li>
-      <li class="tijdlijn-stap is-links">
-        <div class="tijdlijn-tekst">
-          <span class="tijdlijn-nr" data-e="verzekeringen:hoe-het-werkt.span3" set:html={t('hoe-het-werkt.span3')}></span>
-          <h3 data-e="verzekeringen:hoe-het-werkt.h32" set:html={t('hoe-het-werkt.h32')}></h3>
-          <p data-e="verzekeringen:hoe-het-werkt.p2" set:html={t('hoe-het-werkt.p2')}></p>
-        </div>
-        <Img data={img('hoe-het-werkt.img2')} class="tijdlijn-foto" style="object-position: center 30%" />
-      </li>
-      <li class="tijdlijn-stap">
-        <div class="tijdlijn-tekst">
-          <span class="tijdlijn-nr" data-e="verzekeringen:hoe-het-werkt.span4" set:html={t('hoe-het-werkt.span4')}></span>
-          <h3 data-e="verzekeringen:hoe-het-werkt.h33" set:html={t('hoe-het-werkt.h33')}></h3>
-          <p data-e="verzekeringen:hoe-het-werkt.p3" set:html={t('hoe-het-werkt.p3')}></p>
-        </div>
-        <Img data={img('hoe-het-werkt.img3')} class="tijdlijn-foto" style="object-position: center 35%" />
-      </li>
+    <ol class="tijdlijn-stappen" data-el="verzekeringen:tijdlijn-stappen">
+      {lijst('tijdlijn-stappen').map((x, n) => (
+        <li data-item class:list={['tijdlijn-stap', { 'is-links': n % 2 === 1 }]}>
+          <div class="tijdlijn-tekst">
+            <span class="tijdlijn-nr" data-e={`verzekeringen:tijdlijn-stappen.${n}.span`} set:html={x['span']}></span>
+            <h3 data-e={`verzekeringen:tijdlijn-stappen.${n}.h3`} set:html={x['h3']}></h3>
+            <p data-e={`verzekeringen:tijdlijn-stappen.${n}.p`} set:html={x['p']}></p>
+          </div>
+          <Img data={lijstBeeld(x['foto'], `verzekeringen:tijdlijn-stappen.${n}.foto`)} style={x['foto'].positie ? `object-position: ${x['foto'].positie}` : undefined} class="tijdlijn-foto" />
+        </li>
+      ))}
     </ol>
   </div>
 </section>

@@ -5,11 +5,11 @@ import Header from '../components/Header.astro';
 import HeroReviews from '../components/HeroReviews.astro';
 import HeroBanks from '../components/HeroBanks.astro';
 import Footer from '../components/Footer.astro';
-import { laadPagina } from '../lib/content';
+import { laadPagina, lijstBeeld } from '../lib/content';
 import '../styles/pagina.css';
 import '../styles/over-sabrina.css';
 
-const { t, img, bg, meta, achtergronden } = await laadPagina('over-sabrina');
+const { t, img, bg, meta, achtergronden, lijst } = await laadPagina('over-sabrina');
 ---
 <Base pagina="over-sabrina" meta={meta} preload={achtergronden['hero.foto1']}>
 <header class="hero hero--pagina">
@@ -80,21 +80,20 @@ const { t, img, bg, meta, achtergronden } = await laadPagina('over-sabrina');
 <section class="over-verhaal-sectie container" aria-label="Mijn verhaal">
   <div>
     
-    <div class="over-verhaal">
-      <p data-e="over-sabrina:over-verhaal-sectie.p1" set:html={t('over-verhaal-sectie.p1')}></p>
-      <p data-e="over-sabrina:over-verhaal-sectie.p2" set:html={t('over-verhaal-sectie.p2')}></p>
-      <p data-e="over-sabrina:over-verhaal-sectie.p3" set:html={t('over-verhaal-sectie.p3')}></p>
+    <div class="over-verhaal" data-el="over-sabrina:over-verhaal">
+      {lijst('over-verhaal').map((x, n) => (
+        <p data-item data-e={`over-sabrina:over-verhaal.${n}.p`} set:html={x['p']}></p>
+      ))}
     </div>
     <p class="over-handtekening" data-e="over-sabrina:over-verhaal-sectie.p4" set:html={t('over-verhaal-sectie.p4')}></p>
   </div>
 </section>
 
 <section class="over-cijfers container" aria-label="Hypotheekhaven in cijfers">
-  <ul class="cijfers-lijst">
-    <li><strong class="cijfer" data-e="over-sabrina:over-cijfers.strong1" set:html={t('over-cijfers.strong1')}></strong><p data-e="over-sabrina:over-cijfers.p1" set:html={t('over-cijfers.p1')}></p></li>
-    <li><strong class="cijfer" data-e="over-sabrina:over-cijfers.strong2" set:html={t('over-cijfers.strong2')}></strong><p data-e="over-sabrina:over-cijfers.p2" set:html={t('over-cijfers.p2')}></p></li>
-    <li><strong class="cijfer" data-e="over-sabrina:over-cijfers.strong3" set:html={t('over-cijfers.strong3')}></strong><p data-e="over-sabrina:over-cijfers.p3" set:html={t('over-cijfers.p3')}></p></li>
-    <li><strong class="cijfer" data-e="over-sabrina:over-cijfers.strong4" set:html={t('over-cijfers.strong4')}></strong><p data-e="over-sabrina:over-cijfers.p4" set:html={t('over-cijfers.p4')}></p></li>
+  <ul class="cijfers-lijst" data-el="over-sabrina:cijfers-lijst">
+    {lijst('cijfers-lijst').map((x, n) => (
+      <li data-item><strong class="cijfer" data-e={`over-sabrina:cijfers-lijst.${n}.strong`} set:html={x['strong']}></strong><p data-e={`over-sabrina:cijfers-lijst.${n}.p`} set:html={x['p']}></p></li>
+    ))}
   </ul>
 </section>
 
@@ -107,39 +106,17 @@ const { t, img, bg, meta, achtergronden } = await laadPagina('over-sabrina');
 
   <div class="tijdlijn">
     <div class="tijdlijn-lijn" aria-hidden="true"><div class="tijdlijn-vulling"></div></div>
-    <ol class="tijdlijn-stappen">
-      <li class="tijdlijn-stap">
-        <div class="tijdlijn-tekst">
-          <span class="tijdlijn-nr" data-e="over-sabrina:werkwijze.span2" set:html={t('werkwijze.span2')}></span>
-          <h3 data-e="over-sabrina:werkwijze.h31" set:html={t('werkwijze.h31')}></h3>
-          <p data-e="over-sabrina:werkwijze.p1" set:html={t('werkwijze.p1')}></p>
-        </div>
-        <Img data={img('werkwijze.img1')} class="tijdlijn-foto" style="object-position: center 35%" />
-      </li>
-      <li class="tijdlijn-stap is-links">
-        <div class="tijdlijn-tekst">
-          <span class="tijdlijn-nr" data-e="over-sabrina:werkwijze.span3" set:html={t('werkwijze.span3')}></span>
-          <h3 data-e="over-sabrina:werkwijze.h32" set:html={t('werkwijze.h32')}></h3>
-          <p data-e="over-sabrina:werkwijze.p2" set:html={t('werkwijze.p2')}></p>
-        </div>
-        <Img data={img('werkwijze.img2')} class="tijdlijn-foto" style="object-position: 75% center" />
-      </li>
-      <li class="tijdlijn-stap">
-        <div class="tijdlijn-tekst">
-          <span class="tijdlijn-nr" data-e="over-sabrina:werkwijze.span4" set:html={t('werkwijze.span4')}></span>
-          <h3 data-e="over-sabrina:werkwijze.h33" set:html={t('werkwijze.h33')}></h3>
-          <p data-e="over-sabrina:werkwijze.p3" set:html={t('werkwijze.p3')}></p>
-        </div>
-        <Img data={img('werkwijze.img3')} class="tijdlijn-foto" style="object-position: 62% center" />
-      </li>
-      <li class="tijdlijn-stap is-links">
-        <div class="tijdlijn-tekst">
-          <span class="tijdlijn-nr" data-e="over-sabrina:werkwijze.span5" set:html={t('werkwijze.span5')}></span>
-          <h3 data-e="over-sabrina:werkwijze.h34" set:html={t('werkwijze.h34')}></h3>
-          <p data-e="over-sabrina:werkwijze.p4" set:html={t('werkwijze.p4')}></p>
-        </div>
-        <Img data={img('werkwijze.img4')} class="tijdlijn-foto" style="object-position: center 55%" />
-      </li>
+    <ol class="tijdlijn-stappen" data-el="over-sabrina:tijdlijn-stappen">
+      {lijst('tijdlijn-stappen').map((x, n) => (
+        <li data-item class:list={['tijdlijn-stap', { 'is-links': n % 2 === 1 }]}>
+          <div class="tijdlijn-tekst">
+            <span class="tijdlijn-nr" data-e={`over-sabrina:tijdlijn-stappen.${n}.span`} set:html={x['span']}></span>
+            <h3 data-e={`over-sabrina:tijdlijn-stappen.${n}.h3`} set:html={x['h3']}></h3>
+            <p data-e={`over-sabrina:tijdlijn-stappen.${n}.p`} set:html={x['p']}></p>
+          </div>
+          <Img data={lijstBeeld(x['foto'], `over-sabrina:tijdlijn-stappen.${n}.foto`)} style={x['foto'].positie ? `object-position: ${x['foto'].positie}` : undefined} class="tijdlijn-foto" />
+        </li>
+      ))}
     </ol>
   </div>
 </section>
@@ -216,19 +193,13 @@ const { t, img, bg, meta, achtergronden } = await laadPagina('over-sabrina');
   <span class="eyebrow" data-e="over-sabrina:contact.span1" set:html={t('contact.span1')}></span>
   <h2 data-e="over-sabrina:contact.h21" set:html={t('contact.h21')}></h2>
 
-  <div class="contact-punten">
-    <div class="contact-punt">
-      <strong data-e="over-sabrina:contact.strong1" set:html={t('contact.strong1')}></strong>
-      <p data-e="over-sabrina:contact.p1" set:html={t('contact.p1')}></p>
-    </div>
-    <div class="contact-punt">
-      <strong data-e="over-sabrina:contact.strong2" set:html={t('contact.strong2')}></strong>
-      <p data-e="over-sabrina:contact.p2" set:html={t('contact.p2')}></p>
-    </div>
-    <div class="contact-punt">
-      <strong data-e="over-sabrina:contact.strong3" set:html={t('contact.strong3')}></strong>
-      <p data-e="over-sabrina:contact.p3" set:html={t('contact.p3')}></p>
-    </div>
+  <div class="contact-punten" data-el="over-sabrina:contact-punten">
+    {lijst('contact-punten').map((x, n) => (
+      <div data-item class="contact-punt">
+        <strong data-e={`over-sabrina:contact-punten.${n}.strong`} set:html={x['strong']}></strong>
+        <p data-e={`over-sabrina:contact-punten.${n}.p`} set:html={x['p']}></p>
+      </div>
+    ))}
   </div>
 
   <div class="btn-row">

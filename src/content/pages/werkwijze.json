@@ -53,9 +53,6 @@
     "banner.span2": "Documenten",
     "banner.h22": "De <b>vergelijkingskaarten</b>",
     "banner.p2": "Mijn dienstverlening op een vaste manier beschreven, zodat je die makkelijk kunt vergelijken met andere adviseurs.",
-    "banner.li1": "<a href=\"https://nbg.nl/wp-content/uploads/documents/Vergelijkingskaart-hypotheek-Hypotheekhaven.pdf\" target=\"_blank\" rel=\"noopener\">Hypotheek <i class=\"arrow\"></i></a>",
-    "banner.li2": "<a href=\"https://nbg.nl/wp-content/uploads/documents/Vergelijkingskaart-risicos-afdekken-Hypotheekhaven.pdf\" target=\"_blank\" rel=\"noopener\">Risico’s afdekken <i class=\"arrow\"></i></a>",
-    "banner.li3": "<a href=\"https://nbg.nl/wp-content/uploads/documents/Vergelijkingskaart-vermogen-opbouwen-Hypotheekhaven.pdf\" target=\"_blank\" rel=\"noopener\">Vermogen opbouwen <i class=\"arrow\"></i></a>",
     "faq.span1": "Goed om te weten",
     "faq.h21": "Vragen over <b>werkwijze en kosten</b>",
     "faq.p1": "Staat je vraag er niet tussen? Stel hem gerust in het gratis kennismakingsgesprek."
@@ -107,6 +104,17 @@
       {
         "vraag": "Moet ik al een huis op het oog hebben?",
         "antwoord": "Nee. Het is juist prettig om vooraf te weten wat er mogelijk is. Dan kun je gerichter zoeken en weet je waar je staat als je een huis vindt dat je bevalt."
+      }
+    ],
+    "banner-links": [
+      {
+        "li": "<a href=\"https://nbg.nl/wp-content/uploads/documents/Vergelijkingskaart-hypotheek-Hypotheekhaven.pdf\" target=\"_blank\" rel=\"noopener\">Hypotheek <i class=\"arrow\"></i></a>"
+      },
+      {
+        "li": "<a href=\"https://nbg.nl/wp-content/uploads/documents/Vergelijkingskaart-risicos-afdekken-Hypotheekhaven.pdf\" target=\"_blank\" rel=\"noopener\">Risico’s afdekken <i class=\"arrow\"></i></a>"
+      },
+      {
+        "li": "<a href=\"https://nbg.nl/wp-content/uploads/documents/Vergelijkingskaart-vermogen-opbouwen-Hypotheekhaven.pdf\" target=\"_blank\" rel=\"noopener\">Vermogen opbouwen <i class=\"arrow\"></i></a>"
       }
     ]
   }

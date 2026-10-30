@@ -5,11 +5,11 @@ import Header from '../components/Header.astro';
 import HeroReviews from '../components/HeroReviews.astro';
 import HeroBanks from '../components/HeroBanks.astro';
 import Footer from '../components/Footer.astro';
-import { laadPagina } from '../lib/content';
+import { laadPagina, lijstBeeld } from '../lib/content';
 import '../styles/pagina.css';
 import '../styles/diensten.css';
 
-const { t, img, bg, meta, achtergronden } = await laadPagina('diensten');
+const { t, img, bg, meta, achtergronden, lijst } = await laadPagina('diensten');
 ---
 <Base pagina="diensten" meta={meta} preload={achtergronden['hero.foto1']}>
 <header class="hero hero--pagina">
@@ -42,169 +42,45 @@ const { t, img, bg, meta, achtergronden } = await laadPagina('diensten');
     <button type="button" role="tab" class="tabs-knop is-actief" aria-selected="true" aria-controls="tab-kopen" id="knop-kopen" data-e="diensten:tabs.button1" set:html={t('tabs.button1')}></button>
     <button type="button" role="tab" class="tabs-knop" aria-selected="false" aria-controls="tab-huidig" id="knop-huidig" data-e="diensten:tabs.button2" set:html={t('tabs.button2')}></button>
   </div>
-  <div class="tab-paneel is-actief" id="tab-kopen" role="tabpanel" aria-labelledby="knop-kopen">
-        <div class="tab-kaart is-actief" id="kan-ik-kopen" tabindex="0">
-          <div class="tab-foto"><Img data={img('kan-ik-kopen.img1')} style="object-position: center 62%" /></div>
-          <div class="tab-tekst">
-            <span class="tab-nr" data-e="diensten:kan-ik-kopen.span1" set:html={t('kan-ik-kopen.span1')}></span>
-            <h3 data-e="diensten:kan-ik-kopen.h31" set:html={t('kan-ik-kopen.h31')}></h3>
-            <div class="tab-meer">
-              <p data-e="diensten:kan-ik-kopen.p1" set:html={t('kan-ik-kopen.p1')}></p>
-              <ul class="tab-punten">
-          <li data-e="diensten:kan-ik-kopen.li1" set:html={t('kan-ik-kopen.li1')}></li>
-          <li data-e="diensten:kan-ik-kopen.li2" set:html={t('kan-ik-kopen.li2')}></li>
-          <li data-e="diensten:kan-ik-kopen.li3" set:html={t('kan-ik-kopen.li3')}></li>
-      </ul>
-              <a href="/contact#formulier" class="waarom-link" data-e="diensten:kan-ik-kopen.a1" set:html={t('kan-ik-kopen.a1')}></a>
+  <div class="tab-paneel is-actief" id="tab-kopen" role="tabpanel" aria-labelledby="knop-kopen" data-el="diensten:tab-paneel">
+        {lijst('tab-paneel').map((x, n) => (
+          <div data-item class:list={['tab-kaart', { 'is-actief': n === 0 }]} id={x['anker']} tabindex="0">
+            <div class="tab-foto"><Img data={lijstBeeld(x['foto'], `diensten:tab-paneel.${n}.foto`)} style={x['foto'].positie ? `object-position: ${x['foto'].positie}` : undefined} /></div>
+            <div class="tab-tekst">
+              <span class="tab-nr" data-e={`diensten:tab-paneel.${n}.span`} set:html={x['span']}></span>
+              <h3 data-e={`diensten:tab-paneel.${n}.h3`} set:html={x['h3']}></h3>
+              <div class="tab-meer">
+                <p data-e={`diensten:tab-paneel.${n}.p`} set:html={x['p']}></p>
+                <ul class="tab-punten">
+            <li data-e={`diensten:tab-paneel.${n}.li`} set:html={x['li']}></li>
+            <li data-e={`diensten:tab-paneel.${n}.li2`} set:html={x['li2']}></li>
+            <li data-e={`diensten:tab-paneel.${n}.li3`} set:html={x['li3']}></li>
+        </ul>
+                <a href={x['link']} data-link="link" class="waarom-link" data-e={`diensten:tab-paneel.${n}.link-tekst`} set:html={x['link-tekst']}></a>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="tab-kaart" id="eerste-huis" tabindex="0">
-          <div class="tab-foto"><Img data={img('eerste-huis.img1')} style="object-position: center 45%" /></div>
-          <div class="tab-tekst">
-            <span class="tab-nr" data-e="diensten:eerste-huis.span1" set:html={t('eerste-huis.span1')}></span>
-            <h3 data-e="diensten:eerste-huis.h31" set:html={t('eerste-huis.h31')}></h3>
-            <div class="tab-meer">
-              <p data-e="diensten:eerste-huis.p1" set:html={t('eerste-huis.p1')}></p>
-              <ul class="tab-punten">
-          <li data-e="diensten:eerste-huis.li1" set:html={t('eerste-huis.li1')}></li>
-          <li data-e="diensten:eerste-huis.li2" set:html={t('eerste-huis.li2')}></li>
-          <li data-e="diensten:eerste-huis.li3" set:html={t('eerste-huis.li3')}></li>
-      </ul>
-              <a href="/contact#formulier" class="waarom-link" data-e="diensten:eerste-huis.a1" set:html={t('eerste-huis.a1')}></a>
-            </div>
-          </div>
-        </div>
-        <div class="tab-kaart" id="verhuizen" tabindex="0">
-          <div class="tab-foto"><Img data={img('verhuizen.img1')} style="object-position: center 60%" /></div>
-          <div class="tab-tekst">
-            <span class="tab-nr" data-e="diensten:verhuizen.span1" set:html={t('verhuizen.span1')}></span>
-            <h3 data-e="diensten:verhuizen.h31" set:html={t('verhuizen.h31')}></h3>
-            <div class="tab-meer">
-              <p data-e="diensten:verhuizen.p1" set:html={t('verhuizen.p1')}></p>
-              <ul class="tab-punten">
-          <li data-e="diensten:verhuizen.li1" set:html={t('verhuizen.li1')}></li>
-          <li data-e="diensten:verhuizen.li2" set:html={t('verhuizen.li2')}></li>
-          <li data-e="diensten:verhuizen.li3" set:html={t('verhuizen.li3')}></li>
-      </ul>
-              <a href="/contact#formulier" class="waarom-link" data-e="diensten:verhuizen.a1" set:html={t('verhuizen.a1')}></a>
-            </div>
-          </div>
-        </div>
-        <div class="tab-kaart" id="verbouwen-of-verhuizen" tabindex="0">
-          <div class="tab-foto"><Img data={img('verbouwen-of-verhuizen.img1')} style="object-position: center 60%" /></div>
-          <div class="tab-tekst">
-            <span class="tab-nr" data-e="diensten:verbouwen-of-verhuizen.span1" set:html={t('verbouwen-of-verhuizen.span1')}></span>
-            <h3 data-e="diensten:verbouwen-of-verhuizen.h31" set:html={t('verbouwen-of-verhuizen.h31')}></h3>
-            <div class="tab-meer">
-              <p data-e="diensten:verbouwen-of-verhuizen.p1" set:html={t('verbouwen-of-verhuizen.p1')}></p>
-              <ul class="tab-punten">
-          <li data-e="diensten:verbouwen-of-verhuizen.li1" set:html={t('verbouwen-of-verhuizen.li1')}></li>
-          <li data-e="diensten:verbouwen-of-verhuizen.li2" set:html={t('verbouwen-of-verhuizen.li2')}></li>
-          <li data-e="diensten:verbouwen-of-verhuizen.li3" set:html={t('verbouwen-of-verhuizen.li3')}></li>
-      </ul>
-              <a href="/contact#formulier" class="waarom-link" data-e="diensten:verbouwen-of-verhuizen.a1" set:html={t('verbouwen-of-verhuizen.a1')}></a>
-            </div>
-          </div>
-        </div>
-        <div class="tab-kaart" id="ondernemer" tabindex="0">
-          <div class="tab-foto"><Img data={img('ondernemer.img1')} style="object-position: center 35%" /></div>
-          <div class="tab-tekst">
-            <span class="tab-nr" data-e="diensten:ondernemer.span1" set:html={t('ondernemer.span1')}></span>
-            <h3 data-e="diensten:ondernemer.h31" set:html={t('ondernemer.h31')}></h3>
-            <div class="tab-meer">
-              <p data-e="diensten:ondernemer.p1" set:html={t('ondernemer.p1')}></p>
-              <ul class="tab-punten">
-          <li data-e="diensten:ondernemer.li1" set:html={t('ondernemer.li1')}></li>
-          <li data-e="diensten:ondernemer.li2" set:html={t('ondernemer.li2')}></li>
-          <li data-e="diensten:ondernemer.li3" set:html={t('ondernemer.li3')}></li>
-      </ul>
-              <a href="/contact#formulier" class="waarom-link" data-e="diensten:ondernemer.a1" set:html={t('ondernemer.a1')}></a>
-            </div>
-          </div>
-        </div>
+        ))}
   </div>
-  <div class="tab-paneel" id="tab-huidig" role="tabpanel" aria-labelledby="knop-huidig">
-        <div class="tab-kaart is-actief" id="rentevast" tabindex="0">
-          <div class="tab-foto"><Img data={img('rentevast.img1')} style="object-position: center" /></div>
-          <div class="tab-tekst">
-            <span class="tab-nr" data-e="diensten:rentevast.span1" set:html={t('rentevast.span1')}></span>
-            <h3 data-e="diensten:rentevast.h31" set:html={t('rentevast.h31')}></h3>
-            <div class="tab-meer">
-              <p data-e="diensten:rentevast.p1" set:html={t('rentevast.p1')}></p>
-              <ul class="tab-punten">
-          <li data-e="diensten:rentevast.li1" set:html={t('rentevast.li1')}></li>
-          <li data-e="diensten:rentevast.li2" set:html={t('rentevast.li2')}></li>
-          <li data-e="diensten:rentevast.li3" set:html={t('rentevast.li3')}></li>
-      </ul>
-              <a href="/contact#formulier" class="waarom-link" data-e="diensten:rentevast.a1" set:html={t('rentevast.a1')}></a>
+  <div class="tab-paneel" id="tab-huidig" role="tabpanel" aria-labelledby="knop-huidig" data-el="diensten:tab-paneel-2">
+        {lijst('tab-paneel-2').map((x, n) => (
+          <div data-item class:list={['tab-kaart', { 'is-actief': n === 0 }]} id={x['anker']} tabindex="0">
+            <div class="tab-foto"><Img data={lijstBeeld(x['foto'], `diensten:tab-paneel-2.${n}.foto`)} style={x['foto'].positie ? `object-position: ${x['foto'].positie}` : undefined} /></div>
+            <div class="tab-tekst">
+              <span class="tab-nr" data-e={`diensten:tab-paneel-2.${n}.span`} set:html={x['span']}></span>
+              <h3 data-e={`diensten:tab-paneel-2.${n}.h3`} set:html={x['h3']}></h3>
+              <div class="tab-meer">
+                <p data-e={`diensten:tab-paneel-2.${n}.p`} set:html={x['p']}></p>
+                <ul class="tab-punten">
+            <li data-e={`diensten:tab-paneel-2.${n}.li`} set:html={x['li']}></li>
+            <li data-e={`diensten:tab-paneel-2.${n}.li2`} set:html={x['li2']}></li>
+            <li data-e={`diensten:tab-paneel-2.${n}.li3`} set:html={x['li3']}></li>
+        </ul>
+                <a href={x['link']} data-link="link" class="waarom-link" data-e={`diensten:tab-paneel-2.${n}.link-tekst`} set:html={x['link-tekst']}></a>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="tab-kaart" id="oversluiten" tabindex="0">
-          <div class="tab-foto"><Img data={img('oversluiten.img1')} style="object-position: 75% center" /></div>
-          <div class="tab-tekst">
-            <span class="tab-nr" data-e="diensten:oversluiten.span1" set:html={t('oversluiten.span1')}></span>
-            <h3 data-e="diensten:oversluiten.h31" set:html={t('oversluiten.h31')}></h3>
-            <div class="tab-meer">
-              <p data-e="diensten:oversluiten.p1" set:html={t('oversluiten.p1')}></p>
-              <ul class="tab-punten">
-          <li data-e="diensten:oversluiten.li1" set:html={t('oversluiten.li1')}></li>
-          <li data-e="diensten:oversluiten.li2" set:html={t('oversluiten.li2')}></li>
-          <li data-e="diensten:oversluiten.li3" set:html={t('oversluiten.li3')}></li>
-      </ul>
-              <a href="/contact#formulier" class="waarom-link" data-e="diensten:oversluiten.a1" set:html={t('oversluiten.a1')}></a>
-            </div>
-          </div>
-        </div>
-        <div class="tab-kaart" id="overwaarde" tabindex="0">
-          <div class="tab-foto"><Img data={img('overwaarde.img1')} style="object-position: 70% center" /></div>
-          <div class="tab-tekst">
-            <span class="tab-nr" data-e="diensten:overwaarde.span1" set:html={t('overwaarde.span1')}></span>
-            <h3 data-e="diensten:overwaarde.h31" set:html={t('overwaarde.h31')}></h3>
-            <div class="tab-meer">
-              <p data-e="diensten:overwaarde.p1" set:html={t('overwaarde.p1')}></p>
-              <ul class="tab-punten">
-          <li data-e="diensten:overwaarde.li1" set:html={t('overwaarde.li1')}></li>
-          <li data-e="diensten:overwaarde.li2" set:html={t('overwaarde.li2')}></li>
-          <li data-e="diensten:overwaarde.li3" set:html={t('overwaarde.li3')}></li>
-      </ul>
-              <a href="/contact#formulier" class="waarom-link" data-e="diensten:overwaarde.a1" set:html={t('overwaarde.a1')}></a>
-            </div>
-          </div>
-        </div>
-        <div class="tab-kaart" id="verduurzamen" tabindex="0">
-          <div class="tab-foto"><Img data={img('verduurzamen.img1')} style="object-position: center 40%" /></div>
-          <div class="tab-tekst">
-            <span class="tab-nr" data-e="diensten:verduurzamen.span1" set:html={t('verduurzamen.span1')}></span>
-            <h3 data-e="diensten:verduurzamen.h31" set:html={t('verduurzamen.h31')}></h3>
-            <div class="tab-meer">
-              <p data-e="diensten:verduurzamen.p1" set:html={t('verduurzamen.p1')}></p>
-              <ul class="tab-punten">
-          <li data-e="diensten:verduurzamen.li1" set:html={t('verduurzamen.li1')}></li>
-          <li data-e="diensten:verduurzamen.li2" set:html={t('verduurzamen.li2')}></li>
-          <li data-e="diensten:verduurzamen.li3" set:html={t('verduurzamen.li3')}></li>
-      </ul>
-              <a href="/contact#formulier" class="waarom-link" data-e="diensten:verduurzamen.a1" set:html={t('verduurzamen.a1')}></a>
-            </div>
-          </div>
-        </div>
-        <div class="tab-kaart" id="scheiden" tabindex="0">
-          <div class="tab-foto"><Img data={img('scheiden.img1')} style="object-position: center" /></div>
-          <div class="tab-tekst">
-            <span class="tab-nr" data-e="diensten:scheiden.span1" set:html={t('scheiden.span1')}></span>
-            <h3 data-e="diensten:scheiden.h31" set:html={t('scheiden.h31')}></h3>
-            <div class="tab-meer">
-              <p data-e="diensten:scheiden.p1" set:html={t('scheiden.p1')}></p>
-              <ul class="tab-punten">
-          <li data-e="diensten:scheiden.li1" set:html={t('scheiden.li1')}></li>
-          <li data-e="diensten:scheiden.li2" set:html={t('scheiden.li2')}></li>
-          <li data-e="diensten:scheiden.li3" set:html={t('scheiden.li3')}></li>
-      </ul>
-              <a href="/contact#formulier" class="waarom-link" data-e="diensten:scheiden.a1" set:html={t('scheiden.a1')}></a>
-            </div>
-          </div>
-        </div>
+        ))}
   </div>
 </section>
 

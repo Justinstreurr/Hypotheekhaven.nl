@@ -58,9 +58,6 @@
     "rt-zij.p3": "<span class=\"rt-euro\">€</span><span data-uit=\"hoofd\">0</span>",
     "rt-zij.p4": "Indicatie, geen advies en geen aanbod. We rekenen met bruto maandlasten en de rentes die jij invult. De boeterente die je bank echt rekent, staat op je aflosnota.",
     "rt-zij.h32": "Plan je gratis <b>kennismaking</b>",
-    "rt-zij.li1": "Ik vergelijk de rentes van veel geldverstrekkers",
-    "rt-zij.li2": "Eerlijk advies, ook als oversluiten niet loont",
-    "rt-zij.li3": "Gratis en vrijblijvend, online of bij je thuis",
     "rt-zij.a1": "Bespreek je uitkomst <i class=\"arrow\"></i>",
     "uitleg.span1": "Goed om te weten",
     "uitleg.h21": "Je rente loopt af, <br><b>wat nu?</b>",
@@ -98,6 +95,17 @@
       {
         "vraag": "Wat zit er níet in deze berekening?",
         "antwoord": "Belastingvoordeel op je maandlasten, een eventuele renteopslag of -korting, NHG-kosten, extra aflossingen die je dit jaar al hebt gedaan en bijzondere voorwaarden van je bank. Precies dat zoek ik voor je uit."
+      }
+    ],
+    "rt-vinkjes": [
+      {
+        "li": "Ik vergelijk de rentes van veel geldverstrekkers"
+      },
+      {
+        "li": "Eerlijk advies, ook als oversluiten niet loont"
+      },
+      {
+        "li": "Gratis en vrijblijvend, online of bij je thuis"
       }
     ]
   }

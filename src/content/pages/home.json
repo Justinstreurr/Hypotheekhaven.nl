@@ -14,26 +14,6 @@
     "diensten.p1": "Ik help je om overzicht te krijgen en begeleid je stap voor stap, zodat je weet waar je aan toe bent.",
     "diensten.a1": "Plan een gratis kennismaking <i class=\"arrow\"></i>",
     "diensten.small1": "Swipe voor meer",
-    "diensten.h31": "Kan ik een huis kopen?",
-    "diensten.p2": "Je wilt weten wat er mogelijk is voordat je gaat zoeken. Ik reken het samen met je door: hoeveel je kunt lenen én welke maandlasten prettig voelen.",
-    "diensten.h32": "Je eerste huis kopen",
-    "diensten.p3": "Alles is nieuw: bieden, voorwaarden, de notaris. Ik leg elke stap uit en regel de hypotheek, zodat jij je kunt richten op je nieuwe thuis.",
-    "diensten.h33": "Verhuizen naar een ander huis",
-    "diensten.p4": "Je huidige huis verkopen en een nieuw huis kopen. We kijken naar je overwaarde, een eventuele overbrugging en wat je meeneemt van je huidige hypotheek.",
-    "diensten.h34": "Scheiden en je hypotheek",
-    "diensten.p5": "Een ingrijpende periode, met veel vragen over het huis. Ik zoek met je uit of je in het huis kunt blijven en wat er nodig is om de hypotheek goed te regelen.",
-    "diensten.h35": "Overwaarde opnemen",
-    "diensten.p6": "Je huis is meer waard geworden. Ik laat zien wat je met die overwaarde kunt doen en wat dat betekent voor je maandlasten.",
-    "diensten.h36": "Je huis verduurzamen",
-    "diensten.p7": "Zonnepanelen, isolatie of een warmtepomp. Ik laat zien hoe je dat financiert, ook met de extra leenruimte die er voor verduurzamen is.",
-    "diensten.h37": "Verbouwen of verhuizen?",
-    "diensten.p8": "Je huis past niet meer helemaal bij je. Ga je verbouwen, dan kijken we hoe je dat slim financiert. Twijfel je nog, dan zet ik verbouwen en verhuizen naast elkaar, met wat het betekent voor je maandlasten.",
-    "diensten.h38": "Je rentevaste periode loopt af",
-    "diensten.p9": "Je rente verandert binnenkort. We vergelijken verlengen, oversluiten en extra aflossen, zodat je kiest wat het beste bij je past.",
-    "diensten.h39": "Hypotheek oversluiten",
-    "diensten.p10": "Misschien kan het goedkoper of beter passend. Ik zet de boeterente en de kosten af tegen wat je bespaart, en vertel je eerlijk of oversluiten de moeite waard is.",
-    "diensten.h310": "Ondernemer en een hypotheek",
-    "diensten.p11": "Als ondernemer is je inkomen anders opgebouwd. Ik weet welke geldverstrekkers goed naar jouw cijfers kijken, zodat je niet onnodig wordt afgewezen.",
     "waarom.span1": "Daarom Hypotheekhaven",
     "waarom.h21": "Waarom klanten voor <b>Hypotheekhaven</b> kiezen",
     "waarom.tekst1": "Mijn contact met je stopt niet als de hypotheek rond is. Verandert er iets, of heb je een vraag? Bel me gewoon, ook jaren later.",
@@ -48,12 +28,6 @@
     "waarom.span6": "Online of thuis",
     "waarom.tekst6": "Kennis van de markt en van de regels, zodat je niet voor verrassingen komt te staan.",
     "waarom.span7": "25+ jaar ervaring",
-    "waarom.li1": "Eerste gesprek altijd gratis en vrijblijvend",
-    "waarom.li2": "Je vaste adviseur, nu én in de jaren daarna",
-    "waarom.li3": "Online of bij je aan de keukentafel",
-    "waarom.li4": "100% onafhankelijk",
-    "waarom.li5": "Meer dan 25 jaar ervaring",
-    "waarom.li6": "Deskundig en persoonlijk advies",
     "waarom.a1": "Plan een gratis kennismaking <i class=\"arrow\"></i>",
     "advies.span1": "Mijn manier van adviseren",
     "advies.h21": "Een hypotheek die past bij <b>jouw situatie</b>",
@@ -114,46 +88,6 @@
     },
     "hero.foto2": {
       "src": "hh-hero-fauteuil.jpg",
-      "alt": ""
-    },
-    "diensten.img1": {
-      "src": "hh-stel-tablet.jpg",
-      "alt": "Stel op de bank kijkt samen op een tablet"
-    },
-    "diensten.img2": {
-      "src": "hh-sleutel.jpg",
-      "alt": "Sleutel van een nieuw huis in de hand"
-    },
-    "diensten.img3": {
-      "src": "hh-woonkamer-breed.jpg",
-      "alt": ""
-    },
-    "diensten.img4": {
-      "src": "hh-hand-tas.jpg",
-      "alt": ""
-    },
-    "diensten.img5": {
-      "src": "hh-hero-fauteuil.jpg",
-      "alt": ""
-    },
-    "diensten.img6": {
-      "src": "hh-verbouwen.jpg",
-      "alt": "Iemand verft een kamer met een verfroller"
-    },
-    "diensten.img7": {
-      "src": "hh-verhuisdozen.jpg",
-      "alt": "Verhuisdozen met een pizza en twee glazen bubbels"
-    },
-    "diensten.img8": {
-      "src": "hh-hero-kaartje.jpg",
-      "alt": ""
-    },
-    "diensten.img9": {
-      "src": "hh-laptop-studio.jpg",
-      "alt": ""
-    },
-    "diensten.img10": {
-      "src": "hh-sabrina-bankje.jpg",
       "alt": ""
     },
     "waarom.img1": {
@@ -297,6 +231,122 @@
         "bron": "google",
         "tekst": "“Sabrina heeft ons geweldig geholpen bij onze hypotheekaanvraag. Ze is geduldig, duidelijk en neemt alle tijd voor je. Ik kan haar iedereen aanbevelen!”",
         "naam": "Judith Wals"
+      }
+    ],
+    "waarom-punten": [
+      {
+        "li": "Eerste gesprek altijd gratis en vrijblijvend"
+      },
+      {
+        "li": "Je vaste adviseur, nu én in de jaren daarna"
+      },
+      {
+        "li": "Online of bij je aan de keukentafel"
+      },
+      {
+        "li": "100% onafhankelijk"
+      },
+      {
+        "li": "Meer dan 25 jaar ervaring"
+      },
+      {
+        "li": "Deskundig en persoonlijk advies"
+      }
+    ],
+    "diensten-track": [
+      {
+        "h3": "Kan ik een huis kopen?",
+        "p": "Je wilt weten wat er mogelijk is voordat je gaat zoeken. Ik reken het samen met je door: hoeveel je kunt lenen én welke maandlasten prettig voelen.",
+        "foto": {
+          "src": "hh-stel-tablet.jpg",
+          "alt": "Stel op de bank kijkt samen op een tablet",
+          "positie": "center 62%"
+        },
+        "link": "/diensten#kan-ik-kopen"
+      },
+      {
+        "h3": "Je eerste huis kopen",
+        "p": "Alles is nieuw: bieden, voorwaarden, de notaris. Ik leg elke stap uit en regel de hypotheek, zodat jij je kunt richten op je nieuwe thuis.",
+        "foto": {
+          "src": "hh-sleutel.jpg",
+          "alt": "Sleutel van een nieuw huis in de hand",
+          "positie": "center 45%"
+        },
+        "link": "/diensten#eerste-huis"
+      },
+      {
+        "h3": "Verhuizen naar een ander huis",
+        "p": "Je huidige huis verkopen en een nieuw huis kopen. We kijken naar je overwaarde, een eventuele overbrugging en wat je meeneemt van je huidige hypotheek.",
+        "foto": {
+          "src": "hh-woonkamer-breed.jpg",
+          "alt": ""
+        },
+        "link": "/diensten#verhuizen"
+      },
+      {
+        "h3": "Scheiden en je hypotheek",
+        "p": "Een ingrijpende periode, met veel vragen over het huis. Ik zoek met je uit of je in het huis kunt blijven en wat er nodig is om de hypotheek goed te regelen.",
+        "foto": {
+          "src": "hh-hand-tas.jpg",
+          "alt": ""
+        },
+        "link": "/diensten#scheiden"
+      },
+      {
+        "h3": "Overwaarde opnemen",
+        "p": "Je huis is meer waard geworden. Ik laat zien wat je met die overwaarde kunt doen en wat dat betekent voor je maandlasten.",
+        "foto": {
+          "src": "hh-hero-fauteuil.jpg",
+          "alt": ""
+        },
+        "link": "/diensten#overwaarde"
+      },
+      {
+        "h3": "Je huis verduurzamen",
+        "p": "Zonnepanelen, isolatie of een warmtepomp. Ik laat zien hoe je dat financiert, ook met de extra leenruimte die er voor verduurzamen is.",
+        "foto": {
+          "src": "hh-verbouwen.jpg",
+          "alt": "Iemand verft een kamer met een verfroller",
+          "positie": "center 40%"
+        },
+        "link": "/diensten#verduurzamen"
+      },
+      {
+        "h3": "Verbouwen of verhuizen?",
+        "p": "Je huis past niet meer helemaal bij je. Ga je verbouwen, dan kijken we hoe je dat slim financiert. Twijfel je nog, dan zet ik verbouwen en verhuizen naast elkaar, met wat het betekent voor je maandlasten.",
+        "foto": {
+          "src": "hh-verhuisdozen.jpg",
+          "alt": "Verhuisdozen met een pizza en twee glazen bubbels",
+          "positie": "center 60%"
+        },
+        "link": "/diensten#verbouwen-of-verhuizen"
+      },
+      {
+        "h3": "Je rentevaste periode loopt af",
+        "p": "Je rente verandert binnenkort. We vergelijken verlengen, oversluiten en extra aflossen, zodat je kiest wat het beste bij je past.",
+        "foto": {
+          "src": "hh-hero-kaartje.jpg",
+          "alt": ""
+        },
+        "link": "/diensten#rentevast"
+      },
+      {
+        "h3": "Hypotheek oversluiten",
+        "p": "Misschien kan het goedkoper of beter passend. Ik zet de boeterente en de kosten af tegen wat je bespaart, en vertel je eerlijk of oversluiten de moeite waard is.",
+        "foto": {
+          "src": "hh-laptop-studio.jpg",
+          "alt": ""
+        },
+        "link": "/diensten#oversluiten"
+      },
+      {
+        "h3": "Ondernemer en een hypotheek",
+        "p": "Als ondernemer is je inkomen anders opgebouwd. Ik weet welke geldverstrekkers goed naar jouw cijfers kijken, zodat je niet onnodig wordt afgewezen.",
+        "foto": {
+          "src": "hh-sabrina-bankje.jpg",
+          "alt": ""
+        },
+        "link": "/diensten#ondernemer"
       }
     ]
   }

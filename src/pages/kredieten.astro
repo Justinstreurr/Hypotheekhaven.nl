@@ -6,7 +6,7 @@ import Img from '../components/Img.astro';
 import Header from '../components/Header.astro';
 import HeroReviews from '../components/HeroReviews.astro';
 import Footer from '../components/Footer.astro';
-import { laadPagina } from '../lib/content';
+import { laadPagina, lijstBeeld } from '../lib/content';
 import '../styles/pagina.css';
 import '../styles/verzekeringen.css';
 import '../styles/kredieten.css';
@@ -72,32 +72,14 @@ const waarschuwingSmal = await getImage({ src: smal, format: 'webp', quality: 80
       <button class="slider-knop" type="button" data-dir="1" aria-label="Volgende"><i class="arrow"></i></button>
     </div>
   </div>
-  <div class="diensten-track">
-    <a class="dienst" href="/contact#formulier">
-      <div class="dienst-beeld"><Img data={img('waarvoor.img1')} style="object-position: center 55%" /><span class="dienst-pijl" aria-hidden="true"><i class="arrow"></i></span></div>
-      <h3 data-e="kredieten:waarvoor.h31" set:html={t('waarvoor.h31')}></h3>
-      <p data-e="kredieten:waarvoor.p2" set:html={t('waarvoor.p2')}></p>
-    </a>
-    <a class="dienst" href="#lening-of-hypotheek">
-      <div class="dienst-beeld"><Img data={img('waarvoor.img2')} style="object-position: center 40%" /><span class="dienst-pijl" aria-hidden="true"><i class="arrow"></i></span></div>
-      <h3 data-e="kredieten:waarvoor.h32" set:html={t('waarvoor.h32')}></h3>
-      <p data-e="kredieten:waarvoor.p3" set:html={t('waarvoor.p3')}></p>
-    </a>
-    <a class="dienst" href="/contact#formulier">
-      <div class="dienst-beeld"><Img data={img('waarvoor.img3')} style="object-position: center 60%" /><span class="dienst-pijl" aria-hidden="true"><i class="arrow"></i></span></div>
-      <h3 data-e="kredieten:waarvoor.h33" set:html={t('waarvoor.h33')}></h3>
-      <p data-e="kredieten:waarvoor.p4" set:html={t('waarvoor.p4')}></p>
-    </a>
-    <a class="dienst" href="/contact#formulier">
-      <div class="dienst-beeld"><Img data={img('waarvoor.img4')} style="object-position: center 35%" /><span class="dienst-pijl" aria-hidden="true"><i class="arrow"></i></span></div>
-      <h3 data-e="kredieten:waarvoor.h34" set:html={t('waarvoor.h34')}></h3>
-      <p data-e="kredieten:waarvoor.p5" set:html={t('waarvoor.p5')}></p>
-    </a>
-    <a class="dienst" href="/contact#formulier">
-      <div class="dienst-beeld"><Img data={img('waarvoor.img5')} /><span class="dienst-pijl" aria-hidden="true"><i class="arrow"></i></span></div>
-      <h3 data-e="kredieten:waarvoor.h35" set:html={t('waarvoor.h35')}></h3>
-      <p data-e="kredieten:waarvoor.p6" set:html={t('waarvoor.p6')}></p>
-    </a>
+  <div class="diensten-track" data-el="kredieten:diensten-track">
+    {lijst('diensten-track').map((x, n) => (
+      <a data-item class="dienst" href={x['link']} data-link="link">
+        <div class="dienst-beeld"><Img data={lijstBeeld(x['foto'], `kredieten:diensten-track.${n}.foto`)} style={x['foto'].positie ? `object-position: ${x['foto'].positie}` : undefined} /><span class="dienst-pijl" aria-hidden="true"><i class="arrow"></i></span></div>
+        <h3 data-e={`kredieten:diensten-track.${n}.h3`} set:html={x['h3']}></h3>
+        <p data-e={`kredieten:diensten-track.${n}.p`} set:html={x['p']}></p>
+      </a>
+    ))}
   </div>
 </section>
 
@@ -111,21 +93,19 @@ const waarschuwingSmal = await getImage({ src: smal, format: 'webp', quality: 80
     <div class="keuze-kolom">
       <span class="keuze-label" data-e="kredieten:lening-of-hypotheek.span2" set:html={t('lening-of-hypotheek.span2')}></span>
       <h3 data-e="kredieten:lening-of-hypotheek.h31" set:html={t('lening-of-hypotheek.h31')}></h3>
-      <ul>
-        <li data-e="kredieten:lening-of-hypotheek.li1" set:html={t('lening-of-hypotheek.li1')}></li>
-        <li data-e="kredieten:lening-of-hypotheek.li2" set:html={t('lening-of-hypotheek.li2')}></li>
-        <li data-e="kredieten:lening-of-hypotheek.li3" set:html={t('lening-of-hypotheek.li3')}></li>
-        <li data-e="kredieten:lening-of-hypotheek.li4" set:html={t('lening-of-hypotheek.li4')}></li>
+      <ul data-el="kredieten:ul">
+        {lijst('ul').map((x, n) => (
+          <li data-item data-e={`kredieten:ul.${n}.li`} set:html={x['li']}></li>
+        ))}
       </ul>
     </div>
     <div class="keuze-kolom keuze-kolom--donker">
       <span class="keuze-label" data-e="kredieten:lening-of-hypotheek.span3" set:html={t('lening-of-hypotheek.span3')}></span>
       <h3 data-e="kredieten:lening-of-hypotheek.h32" set:html={t('lening-of-hypotheek.h32')}></h3>
-      <ul>
-        <li data-e="kredieten:lening-of-hypotheek.li5" set:html={t('lening-of-hypotheek.li5')}></li>
-        <li data-e="kredieten:lening-of-hypotheek.li6" set:html={t('lening-of-hypotheek.li6')}></li>
-        <li data-e="kredieten:lening-of-hypotheek.li7" set:html={t('lening-of-hypotheek.li7')}></li>
-        <li data-e="kredieten:lening-of-hypotheek.li8" set:html={t('lening-of-hypotheek.li8')}></li>
+      <ul data-el="kredieten:ul-2">
+        {lijst('ul-2').map((x, n) => (
+          <li data-item data-e={`kredieten:ul-2.${n}.li`} set:html={x['li']}></li>
+        ))}
       </ul>
       <a href="/diensten#overwaarde" class="keuze-link" data-e="kredieten:lening-of-hypotheek.a1" set:html={t('lening-of-hypotheek.a1')}></a>
     </div>
@@ -141,39 +121,17 @@ const waarschuwingSmal = await getImage({ src: smal, format: 'webp', quality: 80
 
   <div class="tijdlijn">
     <div class="tijdlijn-lijn" aria-hidden="true"><div class="tijdlijn-vulling"></div></div>
-    <ol class="tijdlijn-stappen">
-      <li class="tijdlijn-stap">
-        <div class="tijdlijn-tekst">
-          <span class="tijdlijn-nr" data-e="kredieten:hoe-het-werkt.span2" set:html={t('hoe-het-werkt.span2')}></span>
-          <h3 data-e="kredieten:hoe-het-werkt.h31" set:html={t('hoe-het-werkt.h31')}></h3>
-          <p data-e="kredieten:hoe-het-werkt.p1" set:html={t('hoe-het-werkt.p1')}></p>
-        </div>
-        <Img data={img('hoe-het-werkt.img1')} class="tijdlijn-foto" style="object-position: center 35%" />
-      </li>
-      <li class="tijdlijn-stap is-links">
-        <div class="tijdlijn-tekst">
-          <span class="tijdlijn-nr" data-e="kredieten:hoe-het-werkt.span3" set:html={t('hoe-het-werkt.span3')}></span>
-          <h3 data-e="kredieten:hoe-het-werkt.h32" set:html={t('hoe-het-werkt.h32')}></h3>
-          <p data-e="kredieten:hoe-het-werkt.p2" set:html={t('hoe-het-werkt.p2')}></p>
-        </div>
-        <Img data={img('hoe-het-werkt.img2')} class="tijdlijn-foto" style="object-position: 70% center" />
-      </li>
-      <li class="tijdlijn-stap">
-        <div class="tijdlijn-tekst">
-          <span class="tijdlijn-nr" data-e="kredieten:hoe-het-werkt.span4" set:html={t('hoe-het-werkt.span4')}></span>
-          <h3 data-e="kredieten:hoe-het-werkt.h33" set:html={t('hoe-het-werkt.h33')}></h3>
-          <p data-e="kredieten:hoe-het-werkt.p3" set:html={t('hoe-het-werkt.p3')}></p>
-        </div>
-        <Img data={img('hoe-het-werkt.img3')} class="tijdlijn-foto" style="object-position: center 30%" />
-      </li>
-      <li class="tijdlijn-stap is-links">
-        <div class="tijdlijn-tekst">
-          <span class="tijdlijn-nr" data-e="kredieten:hoe-het-werkt.span5" set:html={t('hoe-het-werkt.span5')}></span>
-          <h3 data-e="kredieten:hoe-het-werkt.h34" set:html={t('hoe-het-werkt.h34')}></h3>
-          <p data-e="kredieten:hoe-het-werkt.p4" set:html={t('hoe-het-werkt.p4')}></p>
-        </div>
-        <Img data={img('hoe-het-werkt.img4')} class="tijdlijn-foto" style="object-position: center 40%" />
-      </li>
+    <ol class="tijdlijn-stappen" data-el="kredieten:tijdlijn-stappen">
+      {lijst('tijdlijn-stappen').map((x, n) => (
+        <li data-item class:list={['tijdlijn-stap', { 'is-links': n % 2 === 1 }]}>
+          <div class="tijdlijn-tekst">
+            <span class="tijdlijn-nr" data-e={`kredieten:tijdlijn-stappen.${n}.span`} set:html={x['span']}></span>
+            <h3 data-e={`kredieten:tijdlijn-stappen.${n}.h3`} set:html={x['h3']}></h3>
+            <p data-e={`kredieten:tijdlijn-stappen.${n}.p`} set:html={x['p']}></p>
+          </div>
+          <Img data={lijstBeeld(x['foto'], `kredieten:tijdlijn-stappen.${n}.foto`)} style={x['foto'].positie ? `object-position: ${x['foto'].positie}` : undefined} class="tijdlijn-foto" />
+        </li>
+      ))}
     </ol>
   </div>
 </section>
@@ -215,19 +173,13 @@ const waarschuwingSmal = await getImage({ src: smal, format: 'webp', quality: 80
   <span class="eyebrow" data-e="kredieten:contact.span1" set:html={t('contact.span1')}></span>
   <h2 data-e="kredieten:contact.h21" set:html={t('contact.h21')}></h2>
 
-  <div class="contact-punten">
-    <div class="contact-punt">
-      <strong data-e="kredieten:contact.strong1" set:html={t('contact.strong1')}></strong>
-      <p data-e="kredieten:contact.p1" set:html={t('contact.p1')}></p>
-    </div>
-    <div class="contact-punt">
-      <strong data-e="kredieten:contact.strong2" set:html={t('contact.strong2')}></strong>
-      <p data-e="kredieten:contact.p2" set:html={t('contact.p2')}></p>
-    </div>
-    <div class="contact-punt">
-      <strong data-e="kredieten:contact.strong3" set:html={t('contact.strong3')}></strong>
-      <p data-e="kredieten:contact.p3" set:html={t('contact.p3')}></p>
-    </div>
+  <div class="contact-punten" data-el="kredieten:contact-punten">
+    {lijst('contact-punten').map((x, n) => (
+      <div data-item class="contact-punt">
+        <strong data-e={`kredieten:contact-punten.${n}.strong`} set:html={x['strong']}></strong>
+        <p data-e={`kredieten:contact-punten.${n}.p`} set:html={x['p']}></p>
+      </div>
+    ))}
   </div>
 
   <p class="krediet-waarschuwing-voet" data-e="kredieten:contact.p4" set:html={t('contact.p4')}></p>

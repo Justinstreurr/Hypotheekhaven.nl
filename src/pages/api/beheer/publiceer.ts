@@ -6,7 +6,7 @@ export const prerender = false;
 
 const json = (data: unknown, status = 200) => new Response(JSON.stringify(data), { status, headers: { 'content-type': 'application/json' } });
 
-type Waarde = string | { upload?: string; alt?: string } | Record<string, string>[];
+type Waarde = string | { upload?: string; alt?: string } | Record<string, unknown>[];
 interface Wijziging {
   bestand: string;
   soort: 'tekst' | 'attr' | 'beeld' | 'meta' | 'lijst' | 'artikel';
@@ -22,16 +22,32 @@ const STATUSSEN = ['gepubliceerd', 'concept', 'binnenkort'];
 
 class Fout extends Error {}
 
-function schoneLijst(huidig: Record<string, string>[] | undefined, waarde: Waarde) {
+type Uploads = Map<string, { src: string }>;
+
+// Een lijst-item bestaat uit teksten (html), keuzes, links/ankers (platte tekst) en foto's
+function schoneLijst(huidig: Record<string, unknown>[] | undefined, waarde: Waarde, uploads: Uploads) {
   if (!Array.isArray(waarde) || waarde.length > 100) throw new Fout('Ongeldige lijst');
   const velden = huidig?.[0] ? Object.keys(huidig[0]) : null;
   return waarde.map(item => {
     if (typeof item !== 'object' || item === null) throw new Fout('Ongeldige lijst');
-    const schoon: Record<string, string> = {};
-    for (const [veld, v] of Object.entries(item)) {
+    const schoon: Record<string, unknown> = {};
+    for (const [veld, v] of Object.entries(item as Record<string, unknown>)) {
       if (velden && !velden.includes(veld)) continue;
-      if (KEUZES[veld]) { if (!KEUZES[veld].includes(String(v))) throw new Fout(`Ongeldige keuze voor ${veld}`); schoon[veld] = String(v); }
-      else schoon[veld] = schoneHtml(String(v));
+      if (KEUZES[veld]) {
+        if (!KEUZES[veld].includes(String(v))) throw new Fout(`Ongeldige keuze voor ${veld}`);
+        schoon[veld] = String(v);
+      } else if (v && typeof v === 'object') {
+        const f = v as { src?: string; alt?: string; positie?: string; upload?: string };
+        const src = f.upload ? uploads.get(f.upload)?.src : f.src;
+        if (!src || !/^[\w/.-]+\.(jpe?g|png|webp|svg)$/i.test(src)) throw new Fout('Ongeldige foto in een lijst');
+        schoon[veld] = { src, alt: schoneTekst(f.alt ?? ''), ...(f.positie ? { positie: schoneTekst(f.positie) } : {}) };
+      } else if (/^link\d*$/.test(veld)) {
+        const link = String(v).trim();
+        if (!/^(https?:|mailto:|tel:|\/|#)/i.test(link)) throw new Fout('Een link begint met /, https://, mailto: of tel:');
+        schoon[veld] = link;
+      } else if (/^anker\d*$/.test(veld)) {
+        schoon[veld] = String(v).toLowerCase().replace(/[^a-z0-9-]+/g, '-').replace(/^-|-$/g, '') || 'item';
+      } else schoon[veld] = schoneHtml(String(v));
     }
     return schoon;
   });
@@ -94,7 +110,7 @@ export const POST: APIRoute = async ({ request, cookies }) => {
         inhoud.meta[w.sleutel as 'title' | 'description'] = schoneTekst(String(w.waarde));
       } else if (w.soort === 'lijst') {
         if (!inhoud.l || !(w.sleutel in inhoud.l)) throw new Fout(`Onbekende lijst ${w.bestand}:${w.sleutel}`);
-        inhoud.l[w.sleutel] = schoneLijst(inhoud.l[w.sleutel], w.waarde);
+        inhoud.l[w.sleutel] = schoneLijst(inhoud.l[w.sleutel], w.waarde, uploads);
       } else if (w.soort === 'artikel') {
         const a = (inhoud as Artikel).artikel;
         const v = String(w.waarde);

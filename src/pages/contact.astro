@@ -5,11 +5,11 @@ import Header from '../components/Header.astro';
 import HeroReviews from '../components/HeroReviews.astro';
 import HeroBanks from '../components/HeroBanks.astro';
 import Footer from '../components/Footer.astro';
-import { laadPagina } from '../lib/content';
+import { laadPagina, lijstBeeld } from '../lib/content';
 import '../styles/pagina.css';
 import '../styles/contact.css';
 
-const { t, img, bg, meta, achtergronden } = await laadPagina('contact');
+const { t, img, bg, meta, achtergronden, lijst } = await laadPagina('contact');
 ---
 <Base pagina="contact" meta={meta} preload={achtergronden['hero.foto1']}>
 <header class="hero hero--pagina">
@@ -76,10 +76,10 @@ const { t, img, bg, meta, achtergronden } = await laadPagina('contact');
       <h2 id="formulier-kop" data-e="contact:formulier.h21" set:html={t('formulier.h21')}></h2>
       <p class="formulier-intro" data-e="contact:formulier.p1" set:html={t('formulier.p1')}></p>
 
-      <ul class="formulier-punten">
-        <li data-e="contact:formulier.li1" set:html={t('formulier.li1')}></li>
-        <li data-e="contact:formulier.li2" set:html={t('formulier.li2')}></li>
-        <li data-e="contact:formulier.li3" set:html={t('formulier.li3')}></li>
+      <ul class="formulier-punten" data-el="contact:formulier-punten">
+        {lijst('formulier-punten').map((x, n) => (
+          <li data-item data-e={`contact:formulier-punten.${n}.li`} set:html={x['li']}></li>
+        ))}
       </ul>
 
       <figure class="formulier-sabrina">
@@ -184,22 +184,14 @@ const { t, img, bg, meta, achtergronden } = await laadPagina('contact');
     <span class="eyebrow" data-e="contact:daarna.span1" set:html={t('daarna.span1')}></span>
     <h2 id="daarna-kop" data-e="contact:daarna.h21" set:html={t('daarna.h21')}></h2>
   </div>
-  <ol class="daarna-stappen">
-    <li>
-      <div class="daarna-foto"><Img data={img('daarna.img1')} style="object-position: center 30%" loading="lazy" /><span class="daarna-nr" data-e="contact:daarna.span2" set:html={t('daarna.span2')}></span></div>
-      <h3 data-e="contact:daarna.h31" set:html={t('daarna.h31')}></h3>
-      <p data-e="contact:daarna.p1" set:html={t('daarna.p1')}></p>
-    </li>
-    <li>
-      <div class="daarna-foto"><Img data={img('daarna.img2')} style="object-position: 62% center" loading="lazy" /><span class="daarna-nr" data-e="contact:daarna.span3" set:html={t('daarna.span3')}></span></div>
-      <h3 data-e="contact:daarna.h32" set:html={t('daarna.h32')}></h3>
-      <p data-e="contact:daarna.p2" set:html={t('daarna.p2')}></p>
-    </li>
-    <li>
-      <div class="daarna-foto"><Img data={img('daarna.img3')} style="object-position: center 60%" loading="lazy" /><span class="daarna-nr" data-e="contact:daarna.span4" set:html={t('daarna.span4')}></span></div>
-      <h3 data-e="contact:daarna.h33" set:html={t('daarna.h33')}></h3>
-      <p data-e="contact:daarna.p3" set:html={t('daarna.p3')}></p>
-    </li>
+  <ol class="daarna-stappen" data-el="contact:daarna-stappen">
+    {lijst('daarna-stappen').map((x, n) => (
+      <li data-item>
+        <div class="daarna-foto"><Img data={lijstBeeld(x['foto'], `contact:daarna-stappen.${n}.foto`)} style={x['foto'].positie ? `object-position: ${x['foto'].positie}` : undefined} loading="lazy" /><span class="daarna-nr" data-e={`contact:daarna-stappen.${n}.span`} set:html={x['span']}></span></div>
+        <h3 data-e={`contact:daarna-stappen.${n}.h3`} set:html={x['h3']}></h3>
+        <p data-e={`contact:daarna-stappen.${n}.p`} set:html={x['p']}></p>
+      </li>
+    ))}
   </ol>
 </section>
 

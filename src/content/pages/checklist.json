@@ -56,9 +56,6 @@
     "rt-zij.h32": "Zo lever je ze <b>aan</b>",
     "rt-zij.p5": "Je uploadt je documenten in je eigen beveiligde omgeving, het liefst twee werkdagen voor het adviesgesprek. Ik leg je stap voor stap uit hoe dat werkt, zodat het meestal in één keer goed gaat.",
     "rt-zij.h33": "Plan je gratis <b>kennismaking</b>",
-    "rt-zij.li1": "Je hoeft nog niets mee te nemen",
-    "rt-zij.li2": "Gratis en vrijblijvend, online of bij je thuis",
-    "rt-zij.li3": "Daarna krijg je je definitieve lijst van mij",
     "rt-zij.a1": "Plan een kennismaking <i class=\"arrow\"></i>",
     "uitleg.span1": "Goed om te weten",
     "uitleg.h21": "Vragen over <br><b>je documenten</b>",
@@ -92,6 +89,17 @@
       {
         "vraag": "Is mijn informatie veilig?",
         "antwoord": "Deze checklist verstuurt niets: wat je aanklikt, blijft in je eigen browser. Je echte documenten lever je later aan in een beveiligde omgeving, niet per gewone e-mail."
+      }
+    ],
+    "rt-vinkjes": [
+      {
+        "li": "Je hoeft nog niets mee te nemen"
+      },
+      {
+        "li": "Gratis en vrijblijvend, online of bij je thuis"
+      },
+      {
+        "li": "Daarna krijg je je definitieve lijst van mij"
       }
     ]
   }

@@ -19,47 +19,17 @@
     "waarvoor.p1": "Een lening is een verplichting voor langere tijd. Daarom begint het bij jouw verhaal: waarvoor wil je lenen, welk bedrag heb je nodig en welke maandlast voelt goed?",
     "waarvoor.a1": "Bespreek jouw mogelijkheden <i class=\"arrow\"></i>",
     "waarvoor.small1": "Swipe voor meer",
-    "waarvoor.h31": "Auto of camper",
-    "waarvoor.p2": "Een andere auto nodig of plannen voor een camper? Denk naast de aanschaf ook aan onderhoud, verzekering en hoe lang je hem wilt rijden.",
-    "waarvoor.h32": "Verbouwen of verduurzamen",
-    "waarvoor.p3": "Een nieuwe keuken, een badkamer of isolatie. Ik zet je mogelijkheden op een rij, en kijk of het via je hypotheek voordeliger kan.",
-    "waarvoor.h33": "Een nieuwe inrichting",
-    "waarvoor.p4": "Net verhuisd of toe aan iets nieuws? Een lening kan helpen, zolang de maandlast prettig blijft naast je woonlasten.",
-    "waarvoor.h34": "Een grote uitgave",
-    "waarvoor.p5": "Een opleiding, een bruiloft of iets anders dat je liever niet in één keer betaalt. We kijken wat past bij je budget.",
-    "waarvoor.h35": "Bestaande leningen bekijken",
-    "waarvoor.p6": "Heb je meerdere leningen? Dan kijken we of samenvoegen of oversluiten past. Let op: een lagere maandlast bij een langere looptijd betekent niet automatisch lagere totale kosten.",
     "lening-of-hypotheek.span1": "Lening of hypotheek?",
     "lening-of-hypotheek.h21": "Twee routes, <b>eerlijk vergeleken</b>",
     "lening-of-hypotheek.p1": "Heb je een eigen huis? Dan kun je soms ook via je hypotheek lenen. Ik reken beide routes voor je door, zodat je zelf kunt kiezen.",
     "lening-of-hypotheek.span2": "Route 1",
     "lening-of-hypotheek.h31": "Een losse lening",
-    "lening-of-hypotheek.li1": "Snel geregeld, zonder taxatie of notaris",
-    "lening-of-hypotheek.li2": "Vaste looptijd en vast maandbedrag bij een persoonlijke lening",
-    "lening-of-hypotheek.li3": "Staat geregistreerd bij het BKR",
-    "lening-of-hypotheek.li4": "Telt mee als je later een hypotheek aanvraagt, en kan je maximale hypotheek verlagen",
     "lening-of-hypotheek.span3": "Route 2",
     "lening-of-hypotheek.h32": "Via je hypotheek",
-    "lening-of-hypotheek.li5": "De rente is vaak lager dan bij een losse lening",
-    "lening-of-hypotheek.li6": "Bij verbouwen van je eigen huis is de rente soms aftrekbaar",
-    "lening-of-hypotheek.li7": "Wel kosten voor bijvoorbeeld taxatie en notaris",
-    "lening-of-hypotheek.li8": "Je betaalt het bedrag over een langere periode af",
     "lening-of-hypotheek.a1": "Meer over overwaarde opnemen <i class=\"arrow\"></i>",
     "hoe-het-werkt.span1": "Hoe het werkt",
     "hoe-het-werkt.h21": "Lenen, <b>met overzicht.</b><span class=\"kleur-zin\"><span>Een</span> <span>lening</span> <span>die</span> <span>past</span> <span>bij</span> <span>je</span> <span>budget.</span></span>",
     "hoe-het-werkt.a1": "Bespreek jouw mogelijkheden <i class=\"arrow\"></i>",
-    "hoe-het-werkt.span2": "Stap 01",
-    "hoe-het-werkt.h31": "Kennismaken",
-    "hoe-het-werkt.p1": "In een gratis en vrijblijvend gesprek vertel je wat je van plan bent. Telefonisch, online of bij je thuis, wanneer het jou uitkomt.",
-    "hoe-het-werkt.span3": "Stap 02",
-    "hoe-het-werkt.h32": "Je budget in kaart",
-    "hoe-het-werkt.p2": "We zetten je inkomen, vaste lasten en lopende leningen op een rij. Zo zie je wat je elke maand echt kunt missen.",
-    "hoe-het-werkt.span4": "Stap 03",
-    "hoe-het-werkt.h33": "Een passend voorstel",
-    "hoe-het-werkt.p3": "Je krijgt een voorstel met het bedrag, de looptijd en het maandbedrag. Als het kan, zet ik de route via je hypotheek ernaast.",
-    "hoe-het-werkt.span5": "Stap 04",
-    "hoe-het-werkt.h34": "Aanvragen en daarna",
-    "hoe-het-werkt.p4": "Ik regel de aanvraag met je en blijf je aanspreekpunt. Ook als je later wilt aflossen of je situatie verandert.",
     "aanbieders.span1": "Onafhankelijk vergeleken",
     "aanbieders.h21": "Bij welke aanbieders <b>ik kan aanvragen</b>",
     "aanbieders.p1": "Via NBG werk ik samen met een kredietspecialist. Die vergelijkt de mogelijkheden bij verschillende aanbieders en onderzoekt welke lening bij jouw situatie past.",
@@ -68,12 +38,6 @@
     "faq.p1": "Staat je vraag er niet tussen? Stel hem gerust in het gratis kennismakingsgesprek.",
     "contact.span1": "Gratis en vrijblijvend",
     "contact.h21": "Plan een gratis <b>kennismaking</b>",
-    "contact.strong1": "Gratis",
-    "contact.p1": "Het eerste gesprek is altijd vrijblijvend, ook als je daarna niet verdergaat.",
-    "contact.strong2": "Online of thuis",
-    "contact.p2": "Wanneer het jou uitkomt. Ook op zaterdag, en via WhatsApp.",
-    "contact.strong3": "Vast contact",
-    "contact.p3": "Van de eerste berekening tot aan de notaris, en ook daarna.",
     "contact.p4": "<strong>Let op! Geld lenen kost geld.</strong>",
     "contact.a1": "Bel 06 55 76 78 19 <i class=\"arrow\"></i>",
     "contact.a2": "Stuur een WhatsApp <i class=\"arrow\"></i>"
@@ -85,42 +49,6 @@
     },
     "hero.foto1": {
       "src": "hh-woonkamer-breed.jpg",
-      "alt": ""
-    },
-    "waarvoor.img1": {
-      "src": "hh-auto-camper.jpg",
-      "alt": "Caravan met luifel op een camping in de avond"
-    },
-    "waarvoor.img2": {
-      "src": "hh-verbouwen.jpg",
-      "alt": "Iemand verft een kamer met een verfroller"
-    },
-    "waarvoor.img3": {
-      "src": "hh-interieur-woonkamer.jpg",
-      "alt": ""
-    },
-    "waarvoor.img4": {
-      "src": "hh-champagne.jpg",
-      "alt": ""
-    },
-    "waarvoor.img5": {
-      "src": "hh-planner-bank.jpg",
-      "alt": ""
-    },
-    "hoe-het-werkt.img1": {
-      "src": "hh-sabrina-bankje.jpg",
-      "alt": ""
-    },
-    "hoe-het-werkt.img2": {
-      "src": "hh-planner-bank.jpg",
-      "alt": ""
-    },
-    "hoe-het-werkt.img3": {
-      "src": "hh-laptop-hakken.jpg",
-      "alt": ""
-    },
-    "hoe-het-werkt.img4": {
-      "src": "hh-laptop-zwart.jpg",
       "alt": ""
     },
     "aanbieders.img1": {
@@ -169,6 +97,141 @@
       {
         "vraag": "Wat kost advies over een lening?",
         "antwoord": "Niets. Voor het advies over je lening en het afsluiten ervan betaal je mij geen kosten. Je betaalt alleen de rente aan de kredietverstrekker. Die zie je vooraf in het voorstel."
+      }
+    ],
+    "contact-punten": [
+      {
+        "strong": "Gratis",
+        "p": "Het eerste gesprek is altijd vrijblijvend, ook als je daarna niet verdergaat."
+      },
+      {
+        "strong": "Online of thuis",
+        "p": "Wanneer het jou uitkomt. Ook op zaterdag, en via WhatsApp."
+      },
+      {
+        "strong": "Vast contact",
+        "p": "Van de eerste berekening tot aan de notaris, en ook daarna."
+      }
+    ],
+    "tijdlijn-stappen": [
+      {
+        "span": "Stap 01",
+        "h3": "Kennismaken",
+        "p": "In een gratis en vrijblijvend gesprek vertel je wat je van plan bent. Telefonisch, online of bij je thuis, wanneer het jou uitkomt.",
+        "foto": {
+          "src": "hh-sabrina-bankje.jpg",
+          "alt": "",
+          "positie": "center 35%"
+        }
+      },
+      {
+        "span": "Stap 02",
+        "h3": "Je budget in kaart",
+        "p": "We zetten je inkomen, vaste lasten en lopende leningen op een rij. Zo zie je wat je elke maand echt kunt missen.",
+        "foto": {
+          "src": "hh-planner-bank.jpg",
+          "alt": "",
+          "positie": "70% center"
+        }
+      },
+      {
+        "span": "Stap 03",
+        "h3": "Een passend voorstel",
+        "p": "Je krijgt een voorstel met het bedrag, de looptijd en het maandbedrag. Als het kan, zet ik de route via je hypotheek ernaast.",
+        "foto": {
+          "src": "hh-laptop-hakken.jpg",
+          "alt": "",
+          "positie": "center 30%"
+        }
+      },
+      {
+        "span": "Stap 04",
+        "h3": "Aanvragen en daarna",
+        "p": "Ik regel de aanvraag met je en blijf je aanspreekpunt. Ook als je later wilt aflossen of je situatie verandert.",
+        "foto": {
+          "src": "hh-laptop-zwart.jpg",
+          "alt": "",
+          "positie": "center 40%"
+        }
+      }
+    ],
+    "ul-2": [
+      {
+        "li": "De rente is vaak lager dan bij een losse lening"
+      },
+      {
+        "li": "Bij verbouwen van je eigen huis is de rente soms aftrekbaar"
+      },
+      {
+        "li": "Wel kosten voor bijvoorbeeld taxatie en notaris"
+      },
+      {
+        "li": "Je betaalt het bedrag over een langere periode af"
+      }
+    ],
+    "ul": [
+      {
+        "li": "Snel geregeld, zonder taxatie of notaris"
+      },
+      {
+        "li": "Vaste looptijd en vast maandbedrag bij een persoonlijke lening"
+      },
+      {
+        "li": "Staat geregistreerd bij het BKR"
+      },
+      {
+        "li": "Telt mee als je later een hypotheek aanvraagt, en kan je maximale hypotheek verlagen"
+      }
+    ],
+    "diensten-track": [
+      {
+        "h3": "Auto of camper",
+        "p": "Een andere auto nodig of plannen voor een camper? Denk naast de aanschaf ook aan onderhoud, verzekering en hoe lang je hem wilt rijden.",
+        "foto": {
+          "src": "hh-auto-camper.jpg",
+          "alt": "Caravan met luifel op een camping in de avond",
+          "positie": "center 55%"
+        },
+        "link": "/contact#formulier"
+      },
+      {
+        "h3": "Verbouwen of verduurzamen",
+        "p": "Een nieuwe keuken, een badkamer of isolatie. Ik zet je mogelijkheden op een rij, en kijk of het via je hypotheek voordeliger kan.",
+        "foto": {
+          "src": "hh-verbouwen.jpg",
+          "alt": "Iemand verft een kamer met een verfroller",
+          "positie": "center 40%"
+        },
+        "link": "#lening-of-hypotheek"
+      },
+      {
+        "h3": "Een nieuwe inrichting",
+        "p": "Net verhuisd of toe aan iets nieuws? Een lening kan helpen, zolang de maandlast prettig blijft naast je woonlasten.",
+        "foto": {
+          "src": "hh-interieur-woonkamer.jpg",
+          "alt": "",
+          "positie": "center 60%"
+        },
+        "link": "/contact#formulier"
+      },
+      {
+        "h3": "Een grote uitgave",
+        "p": "Een opleiding, een bruiloft of iets anders dat je liever niet in één keer betaalt. We kijken wat past bij je budget.",
+        "foto": {
+          "src": "hh-champagne.jpg",
+          "alt": "",
+          "positie": "center 35%"
+        },
+        "link": "/contact#formulier"
+      },
+      {
+        "h3": "Bestaande leningen bekijken",
+        "p": "Heb je meerdere leningen? Dan kijken we of samenvoegen of oversluiten past. Let op: een lagere maandlast bij een langere looptijd betekent niet automatisch lagere totale kosten.",
+        "foto": {
+          "src": "hh-planner-bank.jpg",
+          "alt": ""
+        },
+        "link": "/contact#formulier"
       }
     ]
   }
