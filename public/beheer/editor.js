@@ -6,7 +6,8 @@
   if (!PAGINA || window.__hhEditor) return;
   window.__hhEditor = true;
 
-  const CONCEPT = 'hh-concept:' + location.pathname;
+  const CONCEPT = 'hh-concept';
+  let bewaard = true;               // staat het concept veilig in de browser?
   const bron = {};                 // { bestand: inhoud } zoals op de server
   const wijzigingen = new Map();   // "soort|bestand:sleutel" -> { bestand, soort, sleutel, waarde }
   const uploads = new Map();       // id -> { id, naam, data }
@@ -45,7 +46,10 @@
     bouwBalk();
     herstelConcept();
     document.addEventListener('click', klik, true);
-    window.addEventListener('beforeunload', e => { if (wijzigingen.size) { e.preventDefault(); e.returnValue = ''; } });
+    window.addEventListener('beforeunload', e => {
+      stopBewerken(true);
+      if (wijzigingen.size && !bewaard) { e.preventDefault(); e.returnValue = ''; }
+    });
   }
 
   // ---------- werkbalk ----------
@@ -77,11 +81,16 @@
 
   function telBij() {
     const n = wijzigingen.size;
-    teller.textContent = n ? n + (n === 1 ? ' wijziging' : ' wijzigingen') + ' nog niet live' : 'Geen wijzigingen';
+    const paginas = new Set([...wijzigingen.values()].map(w => w.bestand).filter(b => b !== 'site' && b !== PAGINA)).size;
+    teller.textContent = n
+      ? n + (n === 1 ? ' wijziging' : ' wijzigingen') + ' nog niet live' + (paginas ? ` (ook op ${paginas} andere pagina${paginas === 1 ? '' : '\'s'})` : '')
+      : 'Geen wijzigingen';
     publiceerKnop.disabled = !n;
+    // Het concept geldt voor de hele site: je kunt vrij naar een andere pagina en daar verder
     try {
-      sessionStorage.setItem(CONCEPT, JSON.stringify({ w: [...wijzigingen.values()], u: [...uploads.values()] }));
-    } catch { /* te groot of geen opslag: concept alleen in dit tabblad */ }
+      localStorage.setItem(CONCEPT, JSON.stringify({ w: [...wijzigingen.values()], u: [...uploads.values()] }));
+      bewaard = true;
+    } catch { bewaard = false; /* te groot of geen opslag: dan waarschuwen bij weggaan */ }
   }
 
   function melding(tekst, soort = 'ok', ms = 6000) {
@@ -355,7 +364,7 @@
   // ---------- concept, publiceren, uitloggen ----------
   function herstelConcept() {
     let c;
-    try { c = JSON.parse(sessionStorage.getItem(CONCEPT) || 'null'); } catch { c = null; }
+    try { c = JSON.parse(localStorage.getItem(CONCEPT) || 'null'); } catch { c = null; }
     if (!c) return;
     c.u.forEach(u => uploads.set(u.id, u));
     c.w.forEach(w => {
@@ -371,7 +380,6 @@
       }
     });
     telBij();
-    if (wijzigingen.size) melding('Je niet-gepubliceerde wijzigingen zijn teruggezet.', 'ok', 4000);
   }
 
   async function publiceer() {
@@ -388,7 +396,7 @@
       if (!d.ok) throw new Error(d.fout);
       wijzigingen.clear();
       uploads.clear();
-      try { sessionStorage.removeItem(CONCEPT); } catch { /* geen opslag */ }
+      try { localStorage.removeItem(CONCEPT); } catch { /* geen opslag */ }
       document.querySelectorAll('.hh-gewijzigd').forEach(el => el.classList.remove('hh-gewijzigd'));
       telBij();
       if (lokaal) { melding('Opgeslagen. De pagina wordt ververst.'); setTimeout(() => location.reload(), 900); }
@@ -406,7 +414,7 @@
   function allesTerug() {
     if (!wijzigingen.size || !confirm('Alle wijzigingen die nog niet live staan weggooien?')) return;
     wijzigingen.clear();
-    try { sessionStorage.removeItem(CONCEPT); } catch { /* geen opslag */ }
+    try { localStorage.removeItem(CONCEPT); } catch { /* geen opslag */ }
     location.reload();
   }
 
@@ -414,6 +422,7 @@
     if (wijzigingen.size && !confirm('Je hebt wijzigingen die nog niet live staan. Toch uitloggen?')) return;
     await fetch('/api/beheer/login', { method: 'DELETE' });
     wijzigingen.clear();
+    try { localStorage.removeItem(CONCEPT); } catch { /* geen opslag */ }
     location.reload();
   }
 
