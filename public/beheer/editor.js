@@ -244,6 +244,8 @@
   function toets(e) {
     if (e.key === 'Escape') { e.preventDefault(); stopBewerken(false); }
     else if (e.key === 'Enter' && !actief?.hasAttribute('data-rijk')) { e.preventDefault(); document.execCommand('insertLineBreak'); }
+    // In een FAQ-vraag (<summary>) klapt een spatie de vraag open en dicht in plaats van te typen
+    else if (e.key === ' ' && actief?.closest('summary, button')) { e.preventDefault(); document.execCommand('insertText', false, ' '); }
   }
 
   function plak(e) {
