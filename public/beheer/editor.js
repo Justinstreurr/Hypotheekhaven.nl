@@ -79,6 +79,7 @@
       stopBewerken(true);
       if (wijzigingen.size && !bewaard) { e.preventDefault(); e.returnValue = ''; }
     });
+    if (localStorage.getItem('hh-zij') !== 'dicht') zijbalk(true);
     const scroll = sessionStorage.getItem(SCROLL);
     if (scroll) { sessionStorage.removeItem(SCROLL); requestAnimationFrame(() => scrollTo(0, Number(scroll))); }
   }
@@ -100,6 +101,7 @@
     const artikel = PAGINA.startsWith('blog/') ? PAGINA : PAGINA.startsWith('blog-') ? 'blog/' + PAGINA.slice(5) : null;
     const status = artikel && bron[artikel]?.artikel?.status;
     const balk = $('div', { class: 'hh-balk', role: 'toolbar', 'aria-label': 'Bewerkmodus' }, [
+      $('button', { class: 'hh-knop hh-knop--menu', type: 'button', onclick: () => zijbalk(!document.querySelector('.hh-zij')), title: 'Alle pagina\'s', text: '☰ Pagina\'s' }),
       $('span', { class: 'hh-label', text: lokaal ? 'Bewerkmodus (lokaal)' : 'Bewerkmodus' }),
       status === 'concept' && $('span', { class: 'hh-concept', text: 'Concept: nog niet zichtbaar in het blog' }),
       schakel,
@@ -112,12 +114,71 @@
       teller,
       terugKnop,
       publiceerKnop,
-      $('button', { class: 'hh-knop hh-knop--stil', type: 'button', onclick: uitloggen, text: 'Uitloggen' }),
     ]);
     document.body.append(balk);
   }
 
+  // ---------- menu links: alle pagina's en de onderdelen van deze pagina ----------
+  let paginaLijst = null;
+  async function zijbalk(open) {
+    document.querySelector('.hh-zij')?.remove();
+    document.documentElement.classList.toggle('hh-zij-open', open);
+    try { localStorage.setItem('hh-zij', open ? 'open' : 'dicht'); } catch { /* geen opslag */ }
+    if (!open) return;
+    const zij = $('aside', { class: 'hh-zij', 'aria-label': 'Pagina\'s van de website' });
+    document.body.append(zij);
+    if (!paginaLijst) {
+      try { paginaLijst = (await api('/api/beheer/paginas')).groepen; } catch (e) { zij.append($('p', { class: 'hh-zij-leeg', text: e.message })); return; }
+    }
+    vulZijbalk(zij);
+  }
+
+  function vulZijbalk(zij) {
+    const gewijzigd = new Set([...wijzigingen.values()].map(w => w.bestand));
+    const zoek = $('input', { type: 'search', class: 'hh-zij-zoek', placeholder: 'Zoek een pagina…', 'aria-label': 'Zoek een pagina' });
+    const STATUS = { concept: 'concept', binnenkort: 'binnenkort' };
+    const groepen = paginaLijst.map(g => $('div', { class: 'hh-zij-groep' }, [
+      $('h3', { text: g.titel }),
+      $('ul', {}, g.paginas.map(p => {
+        const huidig = p.bestand === PAGINA;
+        const anders = gewijzigd.has(p.bestand) || (p.artikel && gewijzigd.has(p.artikel));
+        return $('li', { 'data-zoek': p.titel.toLowerCase() }, $('a', {
+          href: p.pad, class: [huidig && 'is-huidig', p.artikel && 'is-artikel'].filter(Boolean).join(' '), 'aria-current': huidig ? 'page' : undefined,
+          title: anders ? 'Hier staan wijzigingen die nog niet live zijn' : undefined,
+        }, [
+          $('span', { text: p.titel }),
+          p.status && STATUS[p.status] && $('em', { class: 'hh-zij-status hh-zij-status--' + p.status, text: STATUS[p.status] }),
+          anders && $('i', { class: 'hh-zij-stip', 'aria-label': 'niet gepubliceerde wijzigingen' }),
+        ]));
+      })),
+    ]));
+    zoek.addEventListener('input', () => {
+      const q = zoek.value.trim().toLowerCase();
+      zij.querySelectorAll('li[data-zoek]').forEach(li => { li.hidden = !!q && !li.dataset.zoek.includes(q); });
+    });
+    // Onderdelen van deze pagina: elk blok met een kop
+    const onderdelen = [...document.querySelectorAll('body > header, body > main > *, body > section, body > footer, main > section, main > article')]
+      .filter((el, n, alle) => alle.indexOf(el) === n && !el.closest('.hh-zij'))
+      .map(el => ({ el, kop: el.querySelector('h1, h2')?.textContent.replace(/\s+/g, ' ').trim() }))
+      .filter(o => o.kop);
+    zij.replaceChildren(
+      $('div', { class: 'hh-zij-kop' }, [
+        $('strong', { text: 'Website' }),
+        $('button', { type: 'button', class: 'hh-zij-uit', onclick: uitloggen, text: 'Uitloggen' }),
+        $('button', { type: 'button', class: 'hh-zij-dicht', title: 'Menu sluiten', onclick: () => zijbalk(false), text: '✕' }),
+      ]),
+      zoek,
+      ...groepen,
+      onderdelen.length && $('div', { class: 'hh-zij-groep' }, [
+        $('h3', { text: 'Op deze pagina' }),
+        $('ul', {}, onderdelen.map(o => $('li', {}, $('a', { href: '#', onclick: e => { e.preventDefault(); o.el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, text: o.kop.length > 42 ? o.kop.slice(0, 40) + '…' : o.kop })))),
+      ]),
+    );
+  }
+  const verversZijbalk = () => { const zij = document.querySelector('.hh-zij'); if (zij && paginaLijst) vulZijbalk(zij); };
+
   function telBij() {
+    verversZijbalk();
     const n = wijzigingen.size;
     const paginas = new Set([...wijzigingen.values()].map(w => w.bestand).filter(b => b !== 'site' && b !== PAGINA)).size;
     teller.textContent = n
