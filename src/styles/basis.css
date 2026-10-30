@@ -1,0 +1,11 @@
+/* Achtergrondfoto's uit de content: inline staat --bg-l (breed) en --bg-m (smal) */
+[data-eb] { --bg: var(--bg-l); }
+@media (max-width: 767px) {
+  [data-eb] { --bg: var(--bg-m); }
+}
+
+/* width/height staan op elke <img> tegen verspringen tijdens het laden; de hoogte volgt de breedte */
+img { height: auto; }
+
+/* Alleen voor schermlezers */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }

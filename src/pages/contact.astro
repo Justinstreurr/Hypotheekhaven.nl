@@ -1,0 +1,223 @@
+---
+import Base from '../layouts/Base.astro';
+import Img from '../components/Img.astro';
+import Header from '../components/Header.astro';
+import HeroReviews from '../components/HeroReviews.astro';
+import HeroBanks from '../components/HeroBanks.astro';
+import Footer from '../components/Footer.astro';
+import { laadPagina } from '../lib/content';
+import '../styles/pagina.css';
+import '../styles/contact.css';
+
+const { t, img, bg, meta, achtergronden } = await laadPagina('contact');
+---
+<Base pagina="contact" meta={meta} preload={achtergronden['hero.foto1']}>
+<header class="hero hero--pagina">
+  <div class="hero-slides">
+    <div class="hero-slide hero-slide--contact is-active" {...bg('hero.foto1', 'background-image', '')}></div>
+  </div>
+  <div class="hero-overlay"></div>
+
+  
+
+  <Header />
+
+  <div class="hero-content">
+    <nav class="kruimelpad" aria-label="Kruimelpad"><a href="/" data-e="contact:hero.a1" set:html={t('hero.a1')}></a><span aria-hidden="true">/</span><span aria-current="page" data-e="contact:hero.span1" set:html={t('hero.span1')}></span></nav>
+    <h1 data-e="contact:hero.h11" set:html={t('hero.h11')}></h1>
+    <p data-e="contact:hero.p1" set:html={t('hero.p1')}></p>
+  </div>
+  <HeroReviews />
+  <HeroBanks />
+</header>
+
+<main>
+
+<section class="direct container" aria-labelledby="direct-kop">
+  <div class="direct-kop">
+    <span class="eyebrow" data-e="contact:direct.span1" set:html={t('direct.span1')}></span>
+    <h2 id="direct-kop" data-e="contact:direct.h21" set:html={t('direct.h21')}></h2>
+    <p data-e="contact:direct.p1" set:html={t('direct.p1')}></p>
+    
+  </div>
+
+  <ul class="direct-lijst">
+    <li class="direct-punt">
+      <span class="direct-label" data-e="contact:direct.span2" set:html={t('direct.span2')}></span>
+      <a class="direct-waarde" href="tel:+31655767819" data-e="contact:direct.a1" set:html={t('direct.a1')}></a>
+      <p data-e="contact:direct.p2" set:html={t('direct.p2')}></p>
+      <a class="direct-link" href="tel:+31655767819" data-e="contact:direct.a2" set:html={t('direct.a2')}></a>
+    </li>
+    <li class="direct-punt">
+      <span class="direct-label" data-e="contact:direct.span3" set:html={t('direct.span3')}></span>
+      <a class="direct-waarde" href="tel:+31858001977" data-e="contact:direct.a3" set:html={t('direct.a3')}></a>
+      <p data-e="contact:direct.p3" set:html={t('direct.p3')}></p>
+      <a class="direct-link" href="tel:+31858001977" data-e="contact:direct.a4" set:html={t('direct.a4')}></a>
+    </li>
+    <li class="direct-punt">
+      <span class="direct-label" data-e="contact:direct.span4" set:html={t('direct.span4')}></span>
+      <a class="direct-waarde" href="https://wa.me/31655767819" target="_blank" rel="noopener" data-e="contact:direct.a5" set:html={t('direct.a5')}></a>
+      <p data-e="contact:direct.p4" set:html={t('direct.p4')}></p>
+      <a class="direct-link" href="https://wa.me/31655767819" target="_blank" rel="noopener" data-e="contact:direct.a6" set:html={t('direct.a6')}></a>
+    </li>
+    <li class="direct-punt">
+      <span class="direct-label" data-e="contact:direct.span5" set:html={t('direct.span5')}></span>
+      <a class="direct-waarde direct-waarde--mail" href="mailto:info@hypotheekhaven.nl" data-e="contact:direct.a7" set:html={t('direct.a7')}></a>
+      <p data-e="contact:direct.p5" set:html={t('direct.p5')}></p>
+      <a class="direct-link" href="mailto:info@hypotheekhaven.nl" data-e="contact:direct.a8" set:html={t('direct.a8')}></a>
+    </li>
+  </ul>
+</section>
+
+<section class="formulier-sectie" id="formulier" aria-labelledby="formulier-kop">
+  <div class="formulier-raster container">
+    <div class="formulier-zij">
+      <span class="eyebrow" data-e="contact:formulier.span1" set:html={t('formulier.span1')}></span>
+      <h2 id="formulier-kop" data-e="contact:formulier.h21" set:html={t('formulier.h21')}></h2>
+      <p class="formulier-intro" data-e="contact:formulier.p1" set:html={t('formulier.p1')}></p>
+
+      <ul class="formulier-punten">
+        <li data-e="contact:formulier.li1" set:html={t('formulier.li1')}></li>
+        <li data-e="contact:formulier.li2" set:html={t('formulier.li2')}></li>
+        <li data-e="contact:formulier.li3" set:html={t('formulier.li3')}></li>
+      </ul>
+
+      <figure class="formulier-sabrina">
+        <Img data={img('formulier.img1')} width="600" height="592" loading="lazy" />
+        <figcaption data-e="contact:formulier.figcaption1" set:html={t('formulier.figcaption1')}></figcaption>
+      </figure>
+    </div>
+
+    <div class="formulier-vak">
+      
+      <form class="contactformulier" action="/api/contact" method="post" novalidate>
+        <div class="veld-hp" aria-hidden="true"><label>Laat dit veld leeg <input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
+        <div class="veld-rij">
+          <div class="veld">
+            <label for="naam" data-e="contact:contactformulier.label1" set:html={t('contactformulier.label1')}></label>
+            <input id="naam" name="naam" type="text" autocomplete="name" required aria-describedby="naam-fout">
+            <p class="veld-fout" id="naam-fout" hidden></p>
+          </div>
+          <div class="veld">
+            <label for="email" data-e="contact:contactformulier.label2" set:html={t('contactformulier.label2')}></label>
+            <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="email-fout">
+            <p class="veld-fout" id="email-fout" hidden></p>
+          </div>
+        </div>
+
+        <div class="veld-rij">
+          <div class="veld">
+            <label for="telefoon" data-e="contact:contactformulier.label3" set:html={t('contactformulier.label3')}></label>
+            <input id="telefoon" name="telefoon" type="tel" autocomplete="tel" inputmode="tel" aria-describedby="telefoon-fout">
+            <p class="veld-fout" id="telefoon-fout" hidden></p>
+          </div>
+          <div class="veld">
+            <label for="onderwerp" data-e="contact:contactformulier.label4" set:html={t('contactformulier.label4')}></label>
+            <div class="veld-select">
+              <select id="onderwerp" name="onderwerp" required aria-describedby="onderwerp-fout">
+                <option value="" selected disabled>Kies een onderwerp</option>
+                <optgroup label="Hypotheek">
+                  <option>Kan ik een huis kopen?</option>
+                  <option>Je eerste huis kopen</option>
+                  <option>Verhuizen naar een ander huis</option>
+                  <option>Scheiden en je hypotheek</option>
+                  <option>Overwaarde opnemen</option>
+                  <option>Je huis verduurzamen</option>
+                  <option>Verbouwen of verhuizen?</option>
+                  <option>Je rentevaste periode loopt af</option>
+                  <option>Hypotheek oversluiten</option>
+                  <option>Ondernemer en een hypotheek</option>
+                </optgroup>
+                <optgroup label="Overig">
+                  <option>Verzekeringen</option>
+                  <option>Iets anders</option>
+                </optgroup>
+              </select>
+            </div>
+            <p class="veld-fout" id="onderwerp-fout" hidden></p>
+          </div>
+        </div>
+
+        <fieldset class="veld veld-keuze">
+          <legend data-e="contact:contactformulier.legend1" set:html={t('contactformulier.legend1')}></legend>
+          <div class="keuze-rij">
+            <label class="keuze"><input type="radio" name="voorkeur" value="Online"><span data-e="contact:contactformulier.span1" set:html={t('contactformulier.span1')}></span></label>
+            <label class="keuze"><input type="radio" name="voorkeur" value="Bij mij thuis"><span data-e="contact:contactformulier.span2" set:html={t('contactformulier.span2')}></span></label>
+            <label class="keuze"><input type="radio" name="voorkeur" value="Maakt niet uit" checked><span data-e="contact:contactformulier.span3" set:html={t('contactformulier.span3')}></span></label>
+          </div>
+        </fieldset>
+
+        <div class="veld">
+          <label for="bericht" data-e="contact:contactformulier.label5" set:html={t('contactformulier.label5')}></label>
+          <textarea id="bericht" name="bericht" rows="6" required aria-describedby="bericht-hint bericht-fout"></textarea>
+          <p class="veld-hint" id="bericht-hint" data-e="contact:contactformulier.p1" set:html={t('contactformulier.p1')}></p>
+          <p class="veld-fout" id="bericht-fout" hidden></p>
+        </div>
+
+        <div class="veld veld-akkoord">
+          <label class="vinkje" for="akkoord">
+            <input id="akkoord" name="akkoord" type="checkbox" required aria-describedby="akkoord-fout">
+            <span data-e="contact:contactformulier.span4" set:html={t('contactformulier.span4')}></span>
+          </label>
+          <p class="veld-fout" id="akkoord-fout" hidden></p>
+        </div>
+
+        <div class="formulier-voet">
+          <button type="submit" class="btn btn-dark" data-e="contact:contactformulier.button1" set:html={t('contactformulier.button1')}></button>
+          <p class="formulier-noot" data-e="contact:contactformulier.p2" set:html={t('contactformulier.p2')}></p>
+        </div>
+      </form>
+
+      <div class="formulier-bevestiging" role="status" aria-live="polite" tabindex="-1" hidden>
+        <span class="eyebrow" data-e="contact:formulier.span2" set:html={t('formulier.span2')}></span>
+        <h3 data-e="contact:formulier.h31" set:html={t('formulier.h31')}></h3>
+        <p data-e="contact:formulier.p2" set:html={t('formulier.p2')}></p>
+        <p data-e="contact:formulier.p3" set:html={t('formulier.p3')}></p>
+        <button type="button" class="waarom-link bevestiging-opnieuw" data-e="contact:formulier.button1" set:html={t('formulier.button1')}></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="daarna container" aria-labelledby="daarna-kop">
+  <div class="daarna-kop">
+    <span class="eyebrow" data-e="contact:daarna.span1" set:html={t('daarna.span1')}></span>
+    <h2 id="daarna-kop" data-e="contact:daarna.h21" set:html={t('daarna.h21')}></h2>
+  </div>
+  <ol class="daarna-stappen">
+    <li>
+      <div class="daarna-foto"><Img data={img('daarna.img1')} style="object-position: center 30%" loading="lazy" /><span class="daarna-nr" data-e="contact:daarna.span2" set:html={t('daarna.span2')}></span></div>
+      <h3 data-e="contact:daarna.h31" set:html={t('daarna.h31')}></h3>
+      <p data-e="contact:daarna.p1" set:html={t('daarna.p1')}></p>
+    </li>
+    <li>
+      <div class="daarna-foto"><Img data={img('daarna.img2')} style="object-position: 62% center" loading="lazy" /><span class="daarna-nr" data-e="contact:daarna.span3" set:html={t('daarna.span3')}></span></div>
+      <h3 data-e="contact:daarna.h32" set:html={t('daarna.h32')}></h3>
+      <p data-e="contact:daarna.p2" set:html={t('daarna.p2')}></p>
+    </li>
+    <li>
+      <div class="daarna-foto"><Img data={img('daarna.img3')} style="object-position: center 60%" loading="lazy" /><span class="daarna-nr" data-e="contact:daarna.span4" set:html={t('daarna.span4')}></span></div>
+      <h3 data-e="contact:daarna.h33" set:html={t('daarna.h33')}></h3>
+      <p data-e="contact:daarna.p3" set:html={t('daarna.p3')}></p>
+    </li>
+  </ol>
+</section>
+
+</main>
+
+<Footer kort>
+<Fragment slot="kop">
+<div class="footer-kop contact container">
+    <span class="eyebrow" data-e="contact:pagina.span1" set:html={t('pagina.span1')}></span>
+    <h2 data-e="contact:pagina.h21" set:html={t('pagina.h21')}></h2>
+    <div class="btn-row">
+      <a href="tel:+31655767819" class="btn btn-dark" data-e="contact:pagina.a1" set:html={t('pagina.a1')}></a>
+      <a href="https://wa.me/31655767819" target="_blank" rel="noopener" class="btn btn-light" data-e="contact:pagina.a2" set:html={t('pagina.a2')}></a>
+    </div>
+  </div>
+</Fragment>
+</Footer>
+<script>
+  import '../scripts/contact.js';
+</script>
+</Base>

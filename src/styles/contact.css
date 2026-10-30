@@ -1,0 +1,225 @@
+/* CONTACTPAGINA (laad na styles.css en pagina.css)
+   Rustig opgebouwd: direct contact tussen dunne lijnen (zand), formulier (beige), drie stappen (zand), footer. */
+
+/* Kopfoto: Sabrina met haar telefoon staat rechts van het midden */
+.hero-slide--contact { background-position: 52% 38%; }
+
+/* Gedeelde kopmaat voor de secties op deze pagina */
+.direct h2, .formulier-sectie h2, .daarna h2 {
+  font-size: var(--h2); font-weight: 400; line-height: 1.1; letter-spacing: -1px;
+}
+.direct h2 b, .formulier-sectie h2 b, .daarna h2 b {
+  font-family: "Libre Caslon Text", Georgia, serif; font-weight: 400; letter-spacing: -.04em;
+}
+
+/* ===== DIRECT CONTACT ===== */
+.direct { padding-top: var(--sectie); padding-bottom: var(--sectie); }
+.direct-kop { display: grid; grid-template-columns: 5fr 7fr; column-gap: 60px; align-items: end; margin-bottom: 72px; }
+.direct-kop .eyebrow { grid-column: 1 / -1; }
+.direct-kop p { font-size: var(--intro); line-height: 1.5; color: rgba(8, 21, 52, .75); max-width: 460px; justify-self: end; }
+
+.direct-lijst {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); /* geen lijnen boven en onder */
+}
+.direct-punt { display: flex; flex-direction: column; padding: 36px 32px 34px; }
+.direct-punt:first-child { padding-left: 0; }
+.direct-punt:last-child { padding-right: 0; }
+.direct-punt + .direct-punt { border-left: 1px solid rgba(8, 21, 52, .2); }
+.direct-label {
+  font-size: 11px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--rozenhout); margin-bottom: 22px;
+}
+.direct-waarde {
+  font-family: "Libre Caslon Text", Georgia, serif; font-weight: 400;
+  font-size: clamp(24px, 2.1vw, 32px); letter-spacing: -.04em; line-height: 1.15;
+  margin-bottom: 14px; transition: color .3s;
+}
+.direct-waarde--mail { font-size: clamp(20px, 1.6vw, 25px); overflow-wrap: anywhere; }
+.direct-waarde:hover { color: var(--rozenhout); }
+.direct-punt p { font-size: 15px; line-height: 1.5; color: rgba(8, 21, 52, .75); max-width: 280px; margin-bottom: 26px; }
+.direct-link {
+  margin-top: auto; align-self: flex-start;
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 15px; font-weight: 500; color: var(--inkt);
+  padding-bottom: 4px; border-bottom: 1px solid rgba(8, 21, 52, .3);
+  transition: color .3s, border-color .3s;
+}
+.direct-link .arrow { width: 14px; height: 12px; }
+.direct-link:hover { color: var(--rozenhout); border-color: var(--rozenhout); }
+.direct-link:hover .arrow { transform: translateX(4px); }
+
+/* ===== FORMULIER ===== */
+.formulier-sectie { background: var(--beige); padding-top: var(--sectie); padding-bottom: var(--sectie); scroll-margin-top: 0; }
+.formulier-raster { display: grid; grid-template-columns: 5fr 7fr; column-gap: clamp(48px, 7vw, 120px); align-items: start; }
+
+.formulier-zij h2 { margin-bottom: 22px; }
+.formulier-intro { font-size: var(--intro); line-height: 1.5; color: rgba(8, 21, 52, .75); max-width: 440px; margin-bottom: 36px; }
+.formulier-punten { border-top: 1px solid rgba(8, 21, 52, .2); max-width: 440px; margin-bottom: 48px; }
+.formulier-punten li {
+  position: relative; padding: 14px 0 14px 30px; font-size: 16px; line-height: 1.45;
+  border-bottom: 1px solid rgba(8, 21, 52, .2);
+}
+.formulier-punten li::before { /* vinkje in rozenhout, zoals bij Daarom Hypotheekhaven */
+  content: ""; position: absolute; left: 2px; top: 19px; width: 12px; height: 7px;
+  border-left: 1.5px solid var(--rozenhout); border-bottom: 1.5px solid var(--rozenhout);
+  transform: rotate(-45deg);
+}
+.formulier-sabrina { display: flex; align-items: center; gap: 20px; }
+.formulier-sabrina img { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; object-position: center 30%; }
+.formulier-sabrina strong { display: block; font-size: 17px; font-weight: 500; margin-bottom: 4px; }
+.formulier-sabrina span { font-size: 14px; color: rgba(8, 21, 52, .75); }
+
+/* Het formulier zelf: op zand, recht, met ruimte */
+.formulier-vak { background: var(--zand); padding: clamp(32px, 4vw, 56px); }
+.contactformulier { display: flex; flex-direction: column; gap: 28px; }
+.veld-rij { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.veld { display: flex; flex-direction: column; min-width: 0; border: 0; }
+
+.veld > label, .veld-keuze legend {
+  font-size: 13px; font-weight: 500; letter-spacing: .02em; color: rgba(8, 21, 52, .8);
+  margin-bottom: 10px; padding: 0;
+}
+.veld-optioneel { font-weight: 400; color: rgba(8, 21, 52, .62); }
+
+.veld input[type="text"], .veld input[type="email"], .veld input[type="tel"],
+.veld select, .veld textarea {
+  width: 100%; font: inherit; font-size: 16px; color: var(--inkt);
+  background: var(--white);
+  border: 1px solid rgba(8, 21, 52, .25); border-radius: 0;
+  padding: 0 16px; height: 52px;
+  -webkit-appearance: none; appearance: none;
+  transition: border-color .3s, box-shadow .3s;
+}
+.veld textarea { height: auto; min-height: 150px; padding: 14px 16px; line-height: 1.5; resize: vertical; }
+.veld input:hover, .veld select:hover, .veld textarea:hover { border-color: rgba(8, 21, 52, .45); }
+.veld input:focus, .veld select:focus, .veld textarea:focus {
+  outline: none; border-color: var(--rozenhout); box-shadow: 0 0 0 1px var(--rozenhout);
+}
+.veld-select { position: relative; }
+.veld-select::after { /* eigen pijltje, dun zoals de rest */
+  content: ""; position: absolute; right: 20px; top: 50%; width: 8px; height: 8px; margin-top: -6px;
+  border-right: 1.3px solid var(--inkt); border-bottom: 1.3px solid var(--inkt);
+  transform: rotate(45deg); pointer-events: none;
+}
+.veld select { padding-right: 48px; cursor: pointer; }
+.veld select:invalid { color: rgba(8, 21, 52, .62); }
+.veld select option { color: var(--inkt); }
+
+.veld-hint { font-size: 13px; line-height: 1.45; color: rgba(8, 21, 52, .6); margin-top: 8px; }
+.veld-fout { font-size: 13px; line-height: 1.4; color: var(--rozenhout-donker); margin-top: 8px; }
+.veld-fout::before { content: "! "; font-weight: 600; }
+.veld [aria-invalid="true"] { border-color: var(--rozenhout); }
+
+/* Keuze online / thuis / maakt niet uit: drie rechte vakjes naast elkaar */
+.veld-keuze { margin: 0; padding: 0; min-width: 0; }
+.keuze-rij { display: grid; grid-template-columns: repeat(3, 1fr); }
+.keuze { position: relative; cursor: pointer; }
+.keuze input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.keuze span {
+  display: flex; align-items: center; justify-content: center; height: 52px; padding: 0 12px;
+  font-size: 15px; text-align: center; background: var(--white);
+  border: 1px solid rgba(8, 21, 52, .25); margin-left: -1px;
+  transition: background .3s, color .3s, border-color .3s;
+}
+.keuze:first-child span { margin-left: 0; }
+.keuze:hover span { border-color: rgba(8, 21, 52, .45); }
+.keuze input:checked + span { position: relative; z-index: 1; background: var(--inkt); border-color: var(--inkt); color: var(--white); }
+.keuze input:focus-visible + span { position: relative; z-index: 2; outline: 2px solid var(--rozenhout); outline-offset: 2px; }
+
+/* Akkoord met privacyverklaring */
+.vinkje { display: flex; align-items: flex-start; gap: 14px; font-size: 15px; line-height: 1.45; cursor: pointer; }
+.vinkje input {
+  flex: none; width: 20px; height: 20px; margin-top: 1px; cursor: pointer;
+  -webkit-appearance: none; appearance: none; border-radius: 0;
+  background: var(--white); border: 1px solid rgba(8, 21, 52, .35);
+  display: grid; place-items: center; transition: background .3s, border-color .3s;
+}
+.vinkje input::after {
+  content: ""; width: 10px; height: 5px; margin-top: -3px;
+  border-left: 1.5px solid var(--white); border-bottom: 1.5px solid var(--white);
+  transform: rotate(-45deg); opacity: 0;
+}
+.vinkje input:checked { background: var(--rozenhout); border-color: var(--rozenhout); }
+.vinkje input:checked::after { opacity: 1; }
+.vinkje input:focus-visible { outline: 2px solid var(--rozenhout); outline-offset: 2px; }
+.vinkje input[aria-invalid="true"] { border-color: var(--rozenhout); }
+.vinkje a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(8, 21, 52, .35); }
+.vinkje a:hover { color: var(--rozenhout); text-decoration-color: var(--rozenhout); }
+
+.formulier-voet { display: flex; align-items: center; flex-wrap: wrap; gap: 18px 28px; padding-top: 4px; }
+.formulier-voet .btn { border: 0; cursor: pointer; font-family: inherit; }
+.formulier-voet .btn:focus-visible { outline: 2px solid var(--inkt); outline-offset: 3px; }
+.formulier-noot { font-size: 13px; line-height: 1.45; color: rgba(8, 21, 52, .6); max-width: 260px; }
+
+/* Bevestiging na verzenden */
+.formulier-bevestiging { outline: none; }
+.formulier-bevestiging h3 { font-size: 32px; letter-spacing: -.5px; line-height: 1.15; margin-bottom: 20px; }
+.formulier-bevestiging p { font-size: 16px; line-height: 1.55; color: rgba(8, 21, 52, .75); max-width: 520px; margin-bottom: 14px; }
+.formulier-bevestiging p a { color: var(--inkt); text-decoration: underline; text-underline-offset: 3px; }
+.formulier-bevestiging p a:hover { color: var(--rozenhout); }
+.bevestiging-opnieuw { margin-top: 18px; background: none; border: 0; font-family: inherit; cursor: pointer; }
+
+/* ===== WAT GEBEURT ER NA JE BERICHT? ===== */
+.daarna { padding-top: var(--sectie); padding-bottom: var(--sectie); background: var(--beige); }
+.daarna-kop { text-align: center; margin-bottom: 64px; }
+/* Drie stappen als fotokaarten met een groot nummer, verbonden door een lijn (in de stijl van de site) */
+.daarna-stappen { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; position: relative; }
+.daarna-stappen li { background: var(--zand); display: flex; flex-direction: column; }
+.daarna-foto { position: relative; aspect-ratio: 4 / 3; overflow: hidden; }
+.daarna-foto img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s cubic-bezier(.22, 1, .36, 1); }
+.daarna-stappen li:hover .daarna-foto img { transform: scale(1.04); }
+.daarna-nr {
+  position: absolute; left: 0; bottom: 0;
+  display: grid; place-items: center; width: 64px; height: 64px;
+  background: var(--inkt); color: var(--kameel);
+  font-size: 22px; font-weight: 300; letter-spacing: -.02em;
+}
+.daarna-stappen h3 { font-size: 24px; font-weight: 400; letter-spacing: -0.3px; line-height: 1.2; margin: 30px 30px 12px; }
+.daarna-stappen p { font-size: 16px; line-height: 1.55; color: rgba(8, 21, 52, .75); margin: 0 30px 34px; }
+
+/* ===== FOOTER: kortere kop zonder de drie contactpunten ===== */
+.footer--kort .footer-kop { padding-top: 140px; padding-bottom: 130px; }
+.footer--kort .contact h2 { margin-bottom: 48px; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .direct-kop { grid-template-columns: 1fr; row-gap: 18px; margin-bottom: 48px; }
+  .direct-kop p { justify-self: start; }
+  .direct-lijst { grid-template-columns: 1fr 1fr; }
+  .direct-punt { padding: 32px 28px; }
+  .direct-punt:nth-child(odd) { padding-left: 0; }
+  .direct-punt:nth-child(even) { padding-right: 0; }
+  .direct-punt:nth-child(3) { border-left: 0; }
+  .formulier-raster { grid-template-columns: 1fr; row-gap: 48px; }
+  .formulier-sabrina { display: none; }
+  .formulier-punten { margin-bottom: 0; }
+  .daarna-stappen { grid-template-columns: 1fr; gap: 16px; }
+}
+@media (max-width: 767px) {
+  /* Direct contact op mobiel: alles in het midden */
+  .direct-kop { text-align: center; justify-items: center; }
+  .direct-kop p { justify-self: center; }
+  .direct-punt { align-items: center; text-align: center; }
+  .direct-punt p { margin-left: auto; margin-right: auto; }
+  .direct-link { align-self: center; }
+  .direct-lijst { grid-template-columns: 1fr; border-bottom: 0; }
+  .direct-punt, .direct-punt:nth-child(n) { padding: 24px 0; border-left: 0; }
+  .direct-punt:nth-child(n+2) { border-top: 0; }
+  .direct-label { margin-bottom: 14px; }
+  .direct-waarde { font-size: 26px; }
+  .direct-waarde--mail { font-size: 22px; }
+  .direct-punt p { margin-bottom: 18px; }
+  .formulier-vak { padding: 28px 20px 32px; }
+  .veld-rij { grid-template-columns: 1fr; }
+  .keuze span { font-size: 14px; padding: 0 6px; }
+  .formulier-bevestiging h3 { font-size: 26px; }
+  .daarna-kop { margin-bottom: 40px; }
+  .daarna-stappen h3 { font-size: 22px; margin: 24px 22px 10px; }
+  .daarna-stappen p { margin: 0 22px 26px; }
+  .daarna-kop { text-align: center; }
+  .footer--kort .footer-kop { padding-top: 90px; padding-bottom: 80px; }
+  .footer--kort .contact h2 { margin-bottom: 36px; }
+}
+
+/* Onzichtbaar veld tegen spamrobots */
+.veld-hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }

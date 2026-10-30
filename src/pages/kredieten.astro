@@ -1,0 +1,246 @@
+---
+import Base from '../layouts/Base.astro';
+import { getImage } from 'astro:assets';
+import smal from '../assets/img/afm-kredietwaarschuwing-smal.jpg';
+import Img from '../components/Img.astro';
+import Header from '../components/Header.astro';
+import HeroReviews from '../components/HeroReviews.astro';
+import Footer from '../components/Footer.astro';
+import { laadPagina } from '../lib/content';
+import '../styles/pagina.css';
+import '../styles/verzekeringen.css';
+import '../styles/kredieten.css';
+
+const { t, img, bg, meta, achtergronden } = await laadPagina('kredieten');
+// De AFM-waarschuwing is wettelijk verplicht en staat daarom vast, niet in de bewerkmodus
+const waarschuwingSmal = await getImage({ src: smal, format: 'webp', quality: 80 });
+---
+<Base pagina="kredieten" meta={meta} preload={achtergronden['hero.foto1']}>
+<div class="krediet-waarschuwing" role="note">
+  <picture>
+    <source media="(max-width: 767px)" srcset={waarschuwingSmal.src} type="image/webp">
+    <Img data={img('pagina.img1')} loading="eager" sizes="100vw" />
+  </picture>
+</div>
+
+<header class="hero hero--pagina">
+  <div class="hero-slides">
+    <div class="hero-slide hero-slide--kredieten is-active" {...bg('hero.foto1', 'background-image', '')}></div>
+  </div>
+  <div class="hero-overlay"></div>
+
+  
+
+  <Header />
+
+  <div class="hero-content">
+    <nav class="kruimelpad" aria-label="Kruimelpad"><a href="/" data-e="kredieten:hero.a1" set:html={t('hero.a1')}></a><span aria-hidden="true">/</span><span data-e="kredieten:hero.span1" set:html={t('hero.span1')}></span></nav>
+    <h1 data-e="kredieten:hero.h11" set:html={t('hero.h11')}></h1>
+    <p data-e="kredieten:hero.p1" set:html={t('hero.p1')}></p>
+    <div class="btn-row">
+      <a href="/contact#formulier" class="btn btn-dark" data-e="kredieten:hero.a2" set:html={t('hero.a2')}></a>
+      <a href="#hoe-het-werkt" class="btn btn-light" data-e="kredieten:hero.a3" set:html={t('hero.a3')}></a>
+    </div>
+  </div>
+  <HeroReviews />
+</header>
+
+<main>
+
+<section class="samen container">
+  <div class="samen-kop">
+    <span class="eyebrow" data-e="kredieten:samen.span1" set:html={t('samen.span1')}></span>
+    <h2 data-e="kredieten:samen.h21" set:html={t('samen.h21')}></h2>
+  </div>
+  <div class="samen-tekst">
+    <p class="samen-lead" data-e="kredieten:samen.p1" set:html={t('samen.p1')}></p>
+    <p data-e="kredieten:samen.p2" set:html={t('samen.p2')}></p>
+  </div>
+</section>
+
+<section class="diensten diensten--kredieten" id="waarvoor">
+  <div class="diensten-zij">
+    <div>
+      <span class="eyebrow" data-e="kredieten:waarvoor.span1" set:html={t('waarvoor.span1')}></span>
+      <h2 data-e="kredieten:waarvoor.h21" set:html={t('waarvoor.h21')}></h2>
+      <p data-e="kredieten:waarvoor.p1" set:html={t('waarvoor.p1')}></p>
+      <a href="/contact#formulier" class="btn btn-dark" data-e="kredieten:waarvoor.a1" set:html={t('waarvoor.a1')}></a>
+    </div>
+    <div class="diensten-pijlen">
+      <button class="slider-knop" type="button" data-dir="-1" aria-label="Vorige"><i class="arrow arrow--terug"></i></button>
+      <span class="diensten-teller" aria-live="polite"><span><strong data-diensten-nr>1</strong> / <span data-diensten-totaal>5</span></span><small data-e="kredieten:waarvoor.small1" set:html={t('waarvoor.small1')}></small></span>
+      <button class="slider-knop" type="button" data-dir="1" aria-label="Volgende"><i class="arrow"></i></button>
+    </div>
+  </div>
+  <div class="diensten-track">
+    <a class="dienst" href="/contact#formulier">
+      <div class="dienst-beeld"><Img data={img('waarvoor.img1')} style="object-position: center 55%" /><span class="dienst-pijl" aria-hidden="true"><i class="arrow"></i></span></div>
+      <h3 data-e="kredieten:waarvoor.h31" set:html={t('waarvoor.h31')}></h3>
+      <p data-e="kredieten:waarvoor.p2" set:html={t('waarvoor.p2')}></p>
+    </a>
+    <a class="dienst" href="#lening-of-hypotheek">
+      <div class="dienst-beeld"><Img data={img('waarvoor.img2')} style="object-position: center 40%" /><span class="dienst-pijl" aria-hidden="true"><i class="arrow"></i></span></div>
+      <h3 data-e="kredieten:waarvoor.h32" set:html={t('waarvoor.h32')}></h3>
+      <p data-e="kredieten:waarvoor.p3" set:html={t('waarvoor.p3')}></p>
+    </a>
+    <a class="dienst" href="/contact#formulier">
+      <div class="dienst-beeld"><Img data={img('waarvoor.img3')} style="object-position: center 60%" /><span class="dienst-pijl" aria-hidden="true"><i class="arrow"></i></span></div>
+      <h3 data-e="kredieten:waarvoor.h33" set:html={t('waarvoor.h33')}></h3>
+      <p data-e="kredieten:waarvoor.p4" set:html={t('waarvoor.p4')}></p>
+    </a>
+    <a class="dienst" href="/contact#formulier">
+      <div class="dienst-beeld"><Img data={img('waarvoor.img4')} style="object-position: center 35%" /><span class="dienst-pijl" aria-hidden="true"><i class="arrow"></i></span></div>
+      <h3 data-e="kredieten:waarvoor.h34" set:html={t('waarvoor.h34')}></h3>
+      <p data-e="kredieten:waarvoor.p5" set:html={t('waarvoor.p5')}></p>
+    </a>
+    <a class="dienst" href="/contact#formulier">
+      <div class="dienst-beeld"><Img data={img('waarvoor.img5')} /><span class="dienst-pijl" aria-hidden="true"><i class="arrow"></i></span></div>
+      <h3 data-e="kredieten:waarvoor.h35" set:html={t('waarvoor.h35')}></h3>
+      <p data-e="kredieten:waarvoor.p6" set:html={t('waarvoor.p6')}></p>
+    </a>
+  </div>
+</section>
+
+<section class="keuze container" id="lening-of-hypotheek">
+  <div class="keuze-kop">
+    <span class="eyebrow" data-e="kredieten:lening-of-hypotheek.span1" set:html={t('lening-of-hypotheek.span1')}></span>
+    <h2 data-e="kredieten:lening-of-hypotheek.h21" set:html={t('lening-of-hypotheek.h21')}></h2>
+    <p data-e="kredieten:lening-of-hypotheek.p1" set:html={t('lening-of-hypotheek.p1')}></p>
+  </div>
+  <div class="keuze-kolommen">
+    <div class="keuze-kolom">
+      <span class="keuze-label" data-e="kredieten:lening-of-hypotheek.span2" set:html={t('lening-of-hypotheek.span2')}></span>
+      <h3 data-e="kredieten:lening-of-hypotheek.h31" set:html={t('lening-of-hypotheek.h31')}></h3>
+      <ul>
+        <li data-e="kredieten:lening-of-hypotheek.li1" set:html={t('lening-of-hypotheek.li1')}></li>
+        <li data-e="kredieten:lening-of-hypotheek.li2" set:html={t('lening-of-hypotheek.li2')}></li>
+        <li data-e="kredieten:lening-of-hypotheek.li3" set:html={t('lening-of-hypotheek.li3')}></li>
+        <li data-e="kredieten:lening-of-hypotheek.li4" set:html={t('lening-of-hypotheek.li4')}></li>
+      </ul>
+    </div>
+    <div class="keuze-kolom keuze-kolom--donker">
+      <span class="keuze-label" data-e="kredieten:lening-of-hypotheek.span3" set:html={t('lening-of-hypotheek.span3')}></span>
+      <h3 data-e="kredieten:lening-of-hypotheek.h32" set:html={t('lening-of-hypotheek.h32')}></h3>
+      <ul>
+        <li data-e="kredieten:lening-of-hypotheek.li5" set:html={t('lening-of-hypotheek.li5')}></li>
+        <li data-e="kredieten:lening-of-hypotheek.li6" set:html={t('lening-of-hypotheek.li6')}></li>
+        <li data-e="kredieten:lening-of-hypotheek.li7" set:html={t('lening-of-hypotheek.li7')}></li>
+        <li data-e="kredieten:lening-of-hypotheek.li8" set:html={t('lening-of-hypotheek.li8')}></li>
+      </ul>
+      <a href="/diensten#overwaarde" class="keuze-link" data-e="kredieten:lening-of-hypotheek.a1" set:html={t('lening-of-hypotheek.a1')}></a>
+    </div>
+  </div>
+</section>
+
+<section class="werkwijze container" id="hoe-het-werkt">
+  <div class="werkwijze-kop">
+    <span class="eyebrow" data-e="kredieten:hoe-het-werkt.span1" set:html={t('hoe-het-werkt.span1')}></span>
+    <h2 data-e="kredieten:hoe-het-werkt.h21" set:html={t('hoe-het-werkt.h21')}></h2>
+    <a href="/contact#formulier" class="btn btn-dark" data-e="kredieten:hoe-het-werkt.a1" set:html={t('hoe-het-werkt.a1')}></a>
+  </div>
+
+  <div class="tijdlijn">
+    <div class="tijdlijn-lijn" aria-hidden="true"><div class="tijdlijn-vulling"></div></div>
+    <ol class="tijdlijn-stappen">
+      <li class="tijdlijn-stap">
+        <div class="tijdlijn-tekst">
+          <span class="tijdlijn-nr" data-e="kredieten:hoe-het-werkt.span2" set:html={t('hoe-het-werkt.span2')}></span>
+          <h3 data-e="kredieten:hoe-het-werkt.h31" set:html={t('hoe-het-werkt.h31')}></h3>
+          <p data-e="kredieten:hoe-het-werkt.p1" set:html={t('hoe-het-werkt.p1')}></p>
+        </div>
+        <Img data={img('hoe-het-werkt.img1')} class="tijdlijn-foto" style="object-position: center 35%" />
+      </li>
+      <li class="tijdlijn-stap is-links">
+        <div class="tijdlijn-tekst">
+          <span class="tijdlijn-nr" data-e="kredieten:hoe-het-werkt.span3" set:html={t('hoe-het-werkt.span3')}></span>
+          <h3 data-e="kredieten:hoe-het-werkt.h32" set:html={t('hoe-het-werkt.h32')}></h3>
+          <p data-e="kredieten:hoe-het-werkt.p2" set:html={t('hoe-het-werkt.p2')}></p>
+        </div>
+        <Img data={img('hoe-het-werkt.img2')} class="tijdlijn-foto" style="object-position: 70% center" />
+      </li>
+      <li class="tijdlijn-stap">
+        <div class="tijdlijn-tekst">
+          <span class="tijdlijn-nr" data-e="kredieten:hoe-het-werkt.span4" set:html={t('hoe-het-werkt.span4')}></span>
+          <h3 data-e="kredieten:hoe-het-werkt.h33" set:html={t('hoe-het-werkt.h33')}></h3>
+          <p data-e="kredieten:hoe-het-werkt.p3" set:html={t('hoe-het-werkt.p3')}></p>
+        </div>
+        <Img data={img('hoe-het-werkt.img3')} class="tijdlijn-foto" style="object-position: center 30%" />
+      </li>
+      <li class="tijdlijn-stap is-links">
+        <div class="tijdlijn-tekst">
+          <span class="tijdlijn-nr" data-e="kredieten:hoe-het-werkt.span5" set:html={t('hoe-het-werkt.span5')}></span>
+          <h3 data-e="kredieten:hoe-het-werkt.h34" set:html={t('hoe-het-werkt.h34')}></h3>
+          <p data-e="kredieten:hoe-het-werkt.p4" set:html={t('hoe-het-werkt.p4')}></p>
+        </div>
+        <Img data={img('hoe-het-werkt.img4')} class="tijdlijn-foto" style="object-position: center 40%" />
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="aanbieders container" id="aanbieders">
+  <div class="aanbieders-kop">
+    <span class="eyebrow" data-e="kredieten:aanbieders.span1" set:html={t('aanbieders.span1')}></span>
+    <h2 data-e="kredieten:aanbieders.h21" set:html={t('aanbieders.h21')}></h2>
+    <p data-e="kredieten:aanbieders.p1" set:html={t('aanbieders.p1')}></p>
+  </div>
+  <ul class="aanbieders-lijst">
+    <li><Img data={img('aanbieders.img1')} style="max-height:46px" loading="lazy" /></li>
+    <li><Img data={img('aanbieders.img2')} style="max-height:56px" loading="lazy" /></li>
+    <li><Img data={img('aanbieders.img3')} style="max-height:72px" loading="lazy" /></li>
+    <li><Img data={img('aanbieders.img4')} style="max-height:72px" loading="lazy" /></li>
+    <li><Img data={img('aanbieders.img5')} style="max-height:38px" loading="lazy" /></li>
+    <li><Img data={img('aanbieders.img6')} style="max-height:50px" loading="lazy" /></li>
+  </ul>
+</section>
+
+<section class="faq faq--kredieten container">
+  <div class="faq-side">
+    <span class="eyebrow" data-e="kredieten:faq.span1" set:html={t('faq.span1')}></span>
+    <h2 data-e="kredieten:faq.h21" set:html={t('faq.h21')}></h2>
+    <p data-e="kredieten:faq.p1" set:html={t('faq.p1')}></p>
+  </div>
+  <div class="faq-list">
+    <details open><summary data-e="kredieten:faq.summary1" set:html={t('faq.summary1')}></summary><p data-e="kredieten:faq.p2" set:html={t('faq.p2')}></p></details>
+    <details><summary data-e="kredieten:faq.summary2" set:html={t('faq.summary2')}></summary><p data-e="kredieten:faq.p3" set:html={t('faq.p3')}></p></details>
+    <details><summary data-e="kredieten:faq.summary3" set:html={t('faq.summary3')}></summary><p data-e="kredieten:faq.p4" set:html={t('faq.p4')}></p></details>
+    <details><summary data-e="kredieten:faq.summary4" set:html={t('faq.summary4')}></summary><p data-e="kredieten:faq.p5" set:html={t('faq.p5')}></p></details>
+    <details><summary data-e="kredieten:faq.summary5" set:html={t('faq.summary5')}></summary><p data-e="kredieten:faq.p6" set:html={t('faq.p6')}></p></details>
+  </div>
+</section>
+
+</main>
+
+<Footer>
+<Fragment slot="kop">
+<div class="footer-kop contact container" id="contact">
+  <span class="eyebrow" data-e="kredieten:contact.span1" set:html={t('contact.span1')}></span>
+  <h2 data-e="kredieten:contact.h21" set:html={t('contact.h21')}></h2>
+
+  <div class="contact-punten">
+    <div class="contact-punt">
+      <strong data-e="kredieten:contact.strong1" set:html={t('contact.strong1')}></strong>
+      <p data-e="kredieten:contact.p1" set:html={t('contact.p1')}></p>
+    </div>
+    <div class="contact-punt">
+      <strong data-e="kredieten:contact.strong2" set:html={t('contact.strong2')}></strong>
+      <p data-e="kredieten:contact.p2" set:html={t('contact.p2')}></p>
+    </div>
+    <div class="contact-punt">
+      <strong data-e="kredieten:contact.strong3" set:html={t('contact.strong3')}></strong>
+      <p data-e="kredieten:contact.p3" set:html={t('contact.p3')}></p>
+    </div>
+  </div>
+
+  <p class="krediet-waarschuwing-voet" data-e="kredieten:contact.p4" set:html={t('contact.p4')}></p>
+
+  <div class="btn-row">
+    <a href="tel:+31655767819" class="btn btn-dark" data-e="kredieten:contact.a1" set:html={t('contact.a1')}></a>
+    <a href="https://wa.me/31655767819" target="_blank" rel="noopener" class="btn btn-light" data-e="kredieten:contact.a2" set:html={t('contact.a2')}></a>
+  </div>
+  </div>
+</Fragment>
+</Footer>
+
+<div class="hulp-cursor" aria-hidden="true"><span class="hulp-cursor-bol">Lees meer</span></div>
+</Base>

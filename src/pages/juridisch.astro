@@ -1,0 +1,207 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import HeroReviews from '../components/HeroReviews.astro';
+import HeroBanks from '../components/HeroBanks.astro';
+import Footer from '../components/Footer.astro';
+import { laadPagina } from '../lib/content';
+import '../styles/pagina.css';
+import '../styles/juridisch.css';
+
+const { t, bg, meta, achtergronden } = await laadPagina('juridisch');
+---
+<Base pagina="juridisch" meta={meta} preload={achtergronden['hero.foto1']}>
+<header class="hero hero--pagina">
+  <div class="hero-slides">
+    <div class="hero-slide is-active" {...bg('hero.foto1', 'background-image', '')}></div>
+  </div>
+  <div class="hero-overlay"></div>
+
+  
+
+  <Header />
+
+  <div class="hero-content">
+    <nav class="kruimelpad" aria-label="Kruimelpad"><a href="/" data-e="juridisch:hero.a1" set:html={t('hero.a1')}></a><span aria-hidden="true">/</span><span data-e="juridisch:hero.span1" set:html={t('hero.span1')}></span></nav>
+    <h1 data-e="juridisch:hero.h11" set:html={t('hero.h11')}></h1>
+    <p data-e="juridisch:hero.p1" set:html={t('hero.p1')}></p>
+  </div>
+  <HeroReviews />
+  <HeroBanks />
+</header>
+
+<main class="juridisch container">
+  <aside class="toc" aria-label="Inhoud van deze pagina">
+    <span class="eyebrow" data-e="juridisch:toc.span1" set:html={t('toc.span1')}></span>
+    <ol>
+      <li data-e="juridisch:toc.li1" set:html={t('toc.li1')}></li>
+      <li data-e="juridisch:toc.li2" set:html={t('toc.li2')}></li>
+      <li data-e="juridisch:toc.li3" set:html={t('toc.li3')}></li>
+      <li data-e="juridisch:toc.li4" set:html={t('toc.li4')}></li>
+    </ol>
+    <p class="toc-vraag" data-e="juridisch:toc.p1" set:html={t('toc.p1')}></p>
+  </aside>
+
+  <article class="juridisch-tekst">
+    
+    <p class="bijgewerkt" data-e="juridisch:juridisch-tekst.p1" set:html={t('juridisch-tekst.p1')}></p>
+    <p class="juridisch-intro" data-e="juridisch:juridisch-tekst.p2" set:html={t('juridisch-tekst.p2')}></p>
+
+    
+    <section class="juridisch-sectie" id="privacy">
+      <span class="eyebrow" data-e="juridisch:privacy.span1" set:html={t('privacy.span1')}></span>
+      <h2 data-e="juridisch:privacy.h21" set:html={t('privacy.h21')}></h2>
+      <p class="lead" data-e="juridisch:privacy.p1" set:html={t('privacy.p1')}></p>
+
+      <h3 data-e="juridisch:privacy.h31" set:html={t('privacy.h31')}></h3>
+      <p data-e="juridisch:privacy.p2" set:html={t('privacy.p2')}></p>
+      <ul>
+        <li data-e="juridisch:privacy.li1" set:html={t('privacy.li1')}></li>
+        <li data-e="juridisch:privacy.li2" set:html={t('privacy.li2')}></li>
+        <li data-e="juridisch:privacy.li3" set:html={t('privacy.li3')}></li>
+        <li data-e="juridisch:privacy.li4" set:html={t('privacy.li4')}></li>
+        <li data-e="juridisch:privacy.li5" set:html={t('privacy.li5')}></li>
+        <li data-e="juridisch:privacy.li6" set:html={t('privacy.li6')}></li>
+        <li data-e="juridisch:privacy.li7" set:html={t('privacy.li7')}></li>
+        <li data-e="juridisch:privacy.li8" set:html={t('privacy.li8')}></li>
+      </ul>
+      <p data-e="juridisch:privacy.p3" set:html={t('privacy.p3')}></p>
+
+      <h3 data-e="juridisch:privacy.h32" set:html={t('privacy.h32')}></h3>
+      <p data-e="juridisch:privacy.p4" set:html={t('privacy.p4')}></p>
+      <ul>
+        <li data-e="juridisch:privacy.li9" set:html={t('privacy.li9')}></li>
+        <li data-e="juridisch:privacy.li10" set:html={t('privacy.li10')}></li>
+        <li data-e="juridisch:privacy.li11" set:html={t('privacy.li11')}></li>
+        <li data-e="juridisch:privacy.li12" set:html={t('privacy.li12')}></li>
+        <li data-e="juridisch:privacy.li13" set:html={t('privacy.li13')}></li>
+        <li data-e="juridisch:privacy.li14" set:html={t('privacy.li14')}></li>
+        <li data-e="juridisch:privacy.li15" set:html={t('privacy.li15')}></li>
+        <li data-e="juridisch:privacy.li16" set:html={t('privacy.li16')}></li>
+      </ul>
+      <p data-e="juridisch:privacy.p5" set:html={t('privacy.p5')}></p>
+      <p data-e="juridisch:privacy.p6" set:html={t('privacy.p6')}></p>
+      <p data-e="juridisch:privacy.p7" set:html={t('privacy.p7')}></p>
+
+      <h3 data-e="juridisch:privacy.h33" set:html={t('privacy.h33')}></h3>
+      <p data-e="juridisch:privacy.p8" set:html={t('privacy.p8')}></p>
+      <ul>
+        <li data-e="juridisch:privacy.li17" set:html={t('privacy.li17')}></li>
+        <li data-e="juridisch:privacy.li18" set:html={t('privacy.li18')}></li>
+        <li data-e="juridisch:privacy.li19" set:html={t('privacy.li19')}></li>
+        <li data-e="juridisch:privacy.li20" set:html={t('privacy.li20')}></li>
+      </ul>
+
+      <h3 data-e="juridisch:privacy.h34" set:html={t('privacy.h34')}></h3>
+      <p data-e="juridisch:privacy.p9" set:html={t('privacy.p9')}></p>
+
+      <h3 data-e="juridisch:privacy.h35" set:html={t('privacy.h35')}></h3>
+      <p data-e="juridisch:privacy.p10" set:html={t('privacy.p10')}></p>
+      <p data-e="juridisch:privacy.p11" set:html={t('privacy.p11')}></p>
+
+      <h3 data-e="juridisch:privacy.h36" set:html={t('privacy.h36')}></h3>
+      <p data-e="juridisch:privacy.p12" set:html={t('privacy.p12')}></p>
+      <ul>
+        <li data-e="juridisch:privacy.li21" set:html={t('privacy.li21')}></li>
+        <li data-e="juridisch:privacy.li22" set:html={t('privacy.li22')}></li>
+        <li data-e="juridisch:privacy.li23" set:html={t('privacy.li23')}></li>
+        <li data-e="juridisch:privacy.li24" set:html={t('privacy.li24')}></li>
+        <li data-e="juridisch:privacy.li25" set:html={t('privacy.li25')}></li>
+      </ul>
+      <p data-e="juridisch:privacy.p13" set:html={t('privacy.p13')}></p>
+
+      <h3 data-e="juridisch:privacy.h37" set:html={t('privacy.h37')}></h3>
+      <p data-e="juridisch:privacy.p14" set:html={t('privacy.p14')}></p>
+
+      <h3 data-e="juridisch:privacy.h38" set:html={t('privacy.h38')}></h3>
+      <p data-e="juridisch:privacy.p15" set:html={t('privacy.p15')}></p>
+
+      <h3 data-e="juridisch:privacy.h39" set:html={t('privacy.h39')}></h3>
+      <p data-e="juridisch:privacy.p16" set:html={t('privacy.p16')}></p>
+    </section>
+
+    
+    
+    
+    <section class="juridisch-sectie" id="cookies">
+      <span class="eyebrow" data-e="juridisch:cookies.span1" set:html={t('cookies.span1')}></span>
+      <h2 data-e="juridisch:cookies.h21" set:html={t('cookies.h21')}></h2>
+      <p class="lead" data-e="juridisch:cookies.p1" set:html={t('cookies.p1')}></p>
+
+      <h3 data-e="juridisch:cookies.h31" set:html={t('cookies.h31')}></h3>
+      <ul>
+        <li data-e="juridisch:cookies.li1" set:html={t('cookies.li1')}></li>
+        <li data-e="juridisch:cookies.li2" set:html={t('cookies.li2')}></li>
+      </ul>
+
+      <h3 data-e="juridisch:cookies.h32" set:html={t('cookies.h32')}></h3>
+      <p data-e="juridisch:cookies.p2" set:html={t('cookies.p2')}></p>
+
+      <h3 data-e="juridisch:cookies.h33" set:html={t('cookies.h33')}></h3>
+      <p data-e="juridisch:cookies.p3" set:html={t('cookies.p3')}></p>
+    </section>
+
+    
+    <section class="juridisch-sectie" id="klachten">
+      <span class="eyebrow" data-e="juridisch:klachten.span1" set:html={t('klachten.span1')}></span>
+      <h2 data-e="juridisch:klachten.h21" set:html={t('klachten.h21')}></h2>
+      <p class="lead" data-e="juridisch:klachten.p1" set:html={t('klachten.p1')}></p>
+      <p data-e="juridisch:klachten.p2" set:html={t('klachten.p2')}></p>
+
+      <ol class="stappen">
+        <li>
+          <div>
+            <h3 data-e="juridisch:klachten.h31" set:html={t('klachten.h31')}></h3>
+            <p data-e="juridisch:klachten.p3" set:html={t('klachten.p3')}></p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3 data-e="juridisch:klachten.h32" set:html={t('klachten.h32')}></h3>
+            <p data-e="juridisch:klachten.p4" set:html={t('klachten.p4')}></p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3 data-e="juridisch:klachten.h33" set:html={t('klachten.h33')}></h3>
+            <p data-e="juridisch:klachten.p5" set:html={t('klachten.p5')}></p>
+          </div>
+        </li>
+      </ol>
+
+      <dl class="gegevens" aria-label="Contactgegevens KiFiD">
+        <dt data-e="juridisch:klachten.dt1" set:html={t('klachten.dt1')}></dt><dd data-e="juridisch:klachten.dd1" set:html={t('klachten.dd1')}></dd>
+        <dt data-e="juridisch:klachten.dt2" set:html={t('klachten.dt2')}></dt><dd data-e="juridisch:klachten.dd2" set:html={t('klachten.dd2')}></dd>
+        <dt data-e="juridisch:klachten.dt3" set:html={t('klachten.dt3')}></dt><dd data-e="juridisch:klachten.dd3" set:html={t('klachten.dd3')}></dd>
+        <dt data-e="juridisch:klachten.dt4" set:html={t('klachten.dt4')}></dt><dd data-e="juridisch:klachten.dd4" set:html={t('klachten.dd4')}></dd>
+        <dt data-e="juridisch:klachten.dt5" set:html={t('klachten.dt5')}></dt><dd data-e="juridisch:klachten.dd5" set:html={t('klachten.dd5')}></dd>
+        <dt data-e="juridisch:klachten.dt6" set:html={t('klachten.dt6')}></dt><dd data-e="juridisch:klachten.dd6" set:html={t('klachten.dd6')}></dd>
+      </dl>
+      <p data-e="juridisch:klachten.p6" set:html={t('klachten.p6')}></p>
+    </section>
+
+    
+    <section class="juridisch-sectie" id="gegevens">
+      <span class="eyebrow" data-e="juridisch:gegevens.span1" set:html={t('gegevens.span1')}></span>
+      <h2 data-e="juridisch:gegevens.h21" set:html={t('gegevens.h21')}></h2>
+      <dl class="gegevens" aria-label="Bedrijfsgegevens Hypotheekhaven">
+        <dt data-e="juridisch:gegevens.dt1" set:html={t('gegevens.dt1')}></dt><dd data-e="juridisch:gegevens.dd1" set:html={t('gegevens.dd1')}></dd>
+        <dt data-e="juridisch:gegevens.dt2" set:html={t('gegevens.dt2')}></dt><dd data-e="juridisch:gegevens.dd2" set:html={t('gegevens.dd2')}></dd>
+        <dt data-e="juridisch:gegevens.dt3" set:html={t('gegevens.dt3')}></dt><dd data-e="juridisch:gegevens.dd3" set:html={t('gegevens.dd3')}></dd>
+        <dt data-e="juridisch:gegevens.dt4" set:html={t('gegevens.dt4')}></dt><dd data-e="juridisch:gegevens.dd4" set:html={t('gegevens.dd4')}></dd>
+        <dt data-e="juridisch:gegevens.dt5" set:html={t('gegevens.dt5')}></dt><dd data-e="juridisch:gegevens.dd5" set:html={t('gegevens.dd5')}></dd>
+        <dt data-e="juridisch:gegevens.dt6" set:html={t('gegevens.dt6')}></dt><dd data-e="juridisch:gegevens.dd6" set:html={t('gegevens.dd6')}></dd>
+        <dt data-e="juridisch:gegevens.dt7" set:html={t('gegevens.dt7')}></dt><dd data-e="juridisch:gegevens.dd7" set:html={t('gegevens.dd7')}></dd>
+        <dt data-e="juridisch:gegevens.dt8" set:html={t('gegevens.dt8')}></dt><dd data-e="juridisch:gegevens.dd8" set:html={t('gegevens.dd8')}></dd>
+        <dt data-e="juridisch:gegevens.dt9" set:html={t('gegevens.dt9')}></dt><dd data-e="juridisch:gegevens.dd9" set:html={t('gegevens.dd9')}></dd>
+      </dl>
+      <p data-e="juridisch:gegevens.p1" set:html={t('gegevens.p1')}></p>
+    </section>
+  </article>
+</main>
+
+<Footer />
+<script>
+  import '../scripts/juridisch.js';
+</script>
+</Base>

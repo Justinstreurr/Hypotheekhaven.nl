@@ -1,0 +1,241 @@
+---
+import Base from '../layouts/Base.astro';
+import Img from '../components/Img.astro';
+import Header from '../components/Header.astro';
+import HeroReviews from '../components/HeroReviews.astro';
+import HeroBanks from '../components/HeroBanks.astro';
+import Footer from '../components/Footer.astro';
+import { laadPagina } from '../lib/content';
+import '../styles/pagina.css';
+import '../styles/over-sabrina.css';
+
+const { t, img, bg, meta, achtergronden } = await laadPagina('over-sabrina');
+---
+<Base pagina="over-sabrina" meta={meta} preload={achtergronden['hero.foto1']}>
+<header class="hero hero--pagina">
+  <div class="hero-slides">
+    <div class="hero-slide hero-slide--over is-active" {...bg('hero.foto1', 'background-image', '')}></div>
+  </div>
+  <div class="hero-overlay"></div>
+
+  
+
+  <Header />
+
+  <div class="hero-content">
+    <nav class="kruimelpad" aria-label="Kruimelpad"><a href="/" data-e="over-sabrina:hero.a1" set:html={t('hero.a1')}></a><span aria-hidden="true">/</span><span aria-current="page" data-e="over-sabrina:hero.span1" set:html={t('hero.span1')}></span></nav>
+    <h1 data-e="over-sabrina:hero.h11" set:html={t('hero.h11')}></h1>
+    <p data-e="over-sabrina:hero.p1" set:html={t('hero.p1')}></p>
+  </div>
+  <HeroReviews />
+  <HeroBanks />
+</header>
+
+<main>
+
+<section class="over-intro container" aria-labelledby="intro-kop">
+  <div class="over-intro-kop">
+    <span class="eyebrow" data-e="over-sabrina:over-intro.span1" set:html={t('over-intro.span1')}></span>
+    <h2 id="intro-kop" data-e="over-sabrina:over-intro.h21" set:html={t('over-intro.h21')}></h2>
+    <p class="over-lead" data-e="over-sabrina:over-intro.p1" set:html={t('over-intro.p1')}></p>
+  </div>
+
+  <div class="bento">
+    <span class="bento-tegel bento-tegel--duim" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 11v9H4v-9z"></path><path d="M7 11l4-7c1.5 0 2.5 1 2.5 2.5V10h5a2 2 0 0 1 2 2.3l-1.2 6A2 2 0 0 1 17.3 20H7"></path></svg></span>
+
+    <div class="bento-kaart bento-kaart--cijfer bento-a">
+      <strong data-e="over-sabrina:over-intro.strong1" set:html={t('over-intro.strong1')}></strong>
+      <p data-e="over-sabrina:over-intro.p2" set:html={t('over-intro.p2')}></p>
+    </div>
+
+    <figure class="bento-kaart bento-kaart--quote bento-b">
+      <blockquote data-e="over-sabrina:over-intro.blockquote1" set:html={t('over-intro.blockquote1')}></blockquote>
+      <div class="bento-persoon">
+        <Img data={img('over-intro.img1')} />
+        <figcaption data-e="over-sabrina:over-intro.figcaption1" set:html={t('over-intro.figcaption1')}></figcaption>
+      </div>
+    </figure>
+
+    <figure class="bento-kaart bento-kaart--quote bento-kaart--donker bento-c">
+      <blockquote data-e="over-sabrina:over-intro.blockquote2" set:html={t('over-intro.blockquote2')}></blockquote>
+      <div class="bento-persoon">
+        <Img data={img('over-intro.img2')} style="object-position: center 30%" />
+        <figcaption>
+          <strong data-e="over-sabrina:over-intro.strong2" set:html={t('over-intro.strong2')}></strong>
+          <span data-e="over-sabrina:over-intro.span2" set:html={t('over-intro.span2')}></span>
+          <Img data={img('over-intro.img3')} class="bento-bron" />
+        </figcaption>
+      </div>
+    </figure>
+
+    <div class="bento-kaart bento-kaart--cijfer bento-d">
+      <strong data-e="over-sabrina:over-intro.strong3" set:html={t('over-intro.strong3')}></strong>
+      <p data-e="over-sabrina:over-intro.p3" set:html={t('over-intro.p3')}></p>
+    </div>
+
+    <span class="bento-tegel bento-tegel--hart" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"></path></svg></span>
+  </div>
+</section>
+
+<section class="over-verhaal-sectie container" aria-label="Mijn verhaal">
+  <div>
+    
+    <div class="over-verhaal">
+      <p data-e="over-sabrina:over-verhaal-sectie.p1" set:html={t('over-verhaal-sectie.p1')}></p>
+      <p data-e="over-sabrina:over-verhaal-sectie.p2" set:html={t('over-verhaal-sectie.p2')}></p>
+      <p data-e="over-sabrina:over-verhaal-sectie.p3" set:html={t('over-verhaal-sectie.p3')}></p>
+    </div>
+    <p class="over-handtekening" data-e="over-sabrina:over-verhaal-sectie.p4" set:html={t('over-verhaal-sectie.p4')}></p>
+  </div>
+</section>
+
+<section class="over-cijfers container" aria-label="Hypotheekhaven in cijfers">
+  <ul class="cijfers-lijst">
+    <li><strong class="cijfer" data-e="over-sabrina:over-cijfers.strong1" set:html={t('over-cijfers.strong1')}></strong><p data-e="over-sabrina:over-cijfers.p1" set:html={t('over-cijfers.p1')}></p></li>
+    <li><strong class="cijfer" data-e="over-sabrina:over-cijfers.strong2" set:html={t('over-cijfers.strong2')}></strong><p data-e="over-sabrina:over-cijfers.p2" set:html={t('over-cijfers.p2')}></p></li>
+    <li><strong class="cijfer" data-e="over-sabrina:over-cijfers.strong3" set:html={t('over-cijfers.strong3')}></strong><p data-e="over-sabrina:over-cijfers.p3" set:html={t('over-cijfers.p3')}></p></li>
+    <li><strong class="cijfer" data-e="over-sabrina:over-cijfers.strong4" set:html={t('over-cijfers.strong4')}></strong><p data-e="over-sabrina:over-cijfers.p4" set:html={t('over-cijfers.p4')}></p></li>
+  </ul>
+</section>
+
+<section class="werkwijze container" aria-labelledby="waarden-kop">
+  <div class="werkwijze-kop">
+    <span class="eyebrow" data-e="over-sabrina:werkwijze.span1" set:html={t('werkwijze.span1')}></span>
+    <h2 id="waarden-kop" data-e="over-sabrina:werkwijze.h21" set:html={t('werkwijze.h21')}></h2>
+    <a href="/contact#formulier" class="btn btn-dark" data-e="over-sabrina:werkwijze.a1" set:html={t('werkwijze.a1')}></a>
+  </div>
+
+  <div class="tijdlijn">
+    <div class="tijdlijn-lijn" aria-hidden="true"><div class="tijdlijn-vulling"></div></div>
+    <ol class="tijdlijn-stappen">
+      <li class="tijdlijn-stap">
+        <div class="tijdlijn-tekst">
+          <span class="tijdlijn-nr" data-e="over-sabrina:werkwijze.span2" set:html={t('werkwijze.span2')}></span>
+          <h3 data-e="over-sabrina:werkwijze.h31" set:html={t('werkwijze.h31')}></h3>
+          <p data-e="over-sabrina:werkwijze.p1" set:html={t('werkwijze.p1')}></p>
+        </div>
+        <Img data={img('werkwijze.img1')} class="tijdlijn-foto" style="object-position: center 35%" />
+      </li>
+      <li class="tijdlijn-stap is-links">
+        <div class="tijdlijn-tekst">
+          <span class="tijdlijn-nr" data-e="over-sabrina:werkwijze.span3" set:html={t('werkwijze.span3')}></span>
+          <h3 data-e="over-sabrina:werkwijze.h32" set:html={t('werkwijze.h32')}></h3>
+          <p data-e="over-sabrina:werkwijze.p2" set:html={t('werkwijze.p2')}></p>
+        </div>
+        <Img data={img('werkwijze.img2')} class="tijdlijn-foto" style="object-position: 75% center" />
+      </li>
+      <li class="tijdlijn-stap">
+        <div class="tijdlijn-tekst">
+          <span class="tijdlijn-nr" data-e="over-sabrina:werkwijze.span4" set:html={t('werkwijze.span4')}></span>
+          <h3 data-e="over-sabrina:werkwijze.h33" set:html={t('werkwijze.h33')}></h3>
+          <p data-e="over-sabrina:werkwijze.p3" set:html={t('werkwijze.p3')}></p>
+        </div>
+        <Img data={img('werkwijze.img3')} class="tijdlijn-foto" style="object-position: 62% center" />
+      </li>
+      <li class="tijdlijn-stap is-links">
+        <div class="tijdlijn-tekst">
+          <span class="tijdlijn-nr" data-e="over-sabrina:werkwijze.span5" set:html={t('werkwijze.span5')}></span>
+          <h3 data-e="over-sabrina:werkwijze.h34" set:html={t('werkwijze.h34')}></h3>
+          <p data-e="over-sabrina:werkwijze.p4" set:html={t('werkwijze.p4')}></p>
+        </div>
+        <Img data={img('werkwijze.img4')} class="tijdlijn-foto" style="object-position: center 55%" />
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="sabrina over-daarna" aria-labelledby="daarna-kop">
+  <div class="sabrina-tekst">
+    <span class="eyebrow" data-e="over-sabrina:sabrina.span1" set:html={t('sabrina.span1')}></span>
+    <h2 id="daarna-kop" data-e="over-sabrina:sabrina.h21" set:html={t('sabrina.h21')}></h2>
+    <blockquote class="over-citaat">
+      <p data-e="over-sabrina:sabrina.p1" set:html={t('sabrina.p1')}></p>
+      <footer data-e="over-sabrina:sabrina.footer1" set:html={t('sabrina.footer1')}></footer>
+    </blockquote>
+    <p data-e="over-sabrina:sabrina.p2" set:html={t('sabrina.p2')}></p>
+    <a href="/verzekeringen" class="btn btn-dark" data-e="over-sabrina:sabrina.a1" set:html={t('sabrina.a1')}></a>
+  </div>
+  <Img data={img('sabrina.img1')} class="sabrina-foto" loading="lazy" />
+</section>
+
+<section class="over-reviews" aria-labelledby="reviews-kop">
+  <div class="container">
+    <div class="reviews-kop">
+      <div><span class="eyebrow" data-e="over-sabrina:over-reviews.span1" set:html={t('over-reviews.span1')}></span>
+      <h2 id="reviews-kop" data-e="over-sabrina:over-reviews.h21" set:html={t('over-reviews.h21')}></h2></div>
+      <p data-e="over-sabrina:over-reviews.p1" set:html={t('over-reviews.p1')}></p>
+    </div>
+    <div class="over-reviews-raster">
+      <figure class="review">
+        <span class="review-bron"><Img data={img('over-reviews.img1')} /></span>
+        <blockquote data-e="over-sabrina:over-reviews.blockquote1" set:html={t('over-reviews.blockquote1')}></blockquote>
+        <figcaption data-e="over-sabrina:over-reviews.figcaption1" set:html={t('over-reviews.figcaption1')}></figcaption>
+      </figure>
+      <figure class="review">
+        <span class="review-bron"><Img data={img('over-reviews.img2')} /><span aria-label="5 sterren" data-e="over-sabrina:over-reviews.span2" set:html={t('over-reviews.span2')}></span></span>
+        <blockquote data-e="over-sabrina:over-reviews.blockquote2" set:html={t('over-reviews.blockquote2')}></blockquote>
+        <figcaption data-e="over-sabrina:over-reviews.figcaption2" set:html={t('over-reviews.figcaption2')}></figcaption>
+      </figure>
+      <figure class="review">
+        <span class="review-bron"><Img data={img('over-reviews.img3')} /></span>
+        <blockquote data-e="over-sabrina:over-reviews.blockquote3" set:html={t('over-reviews.blockquote3')}></blockquote>
+        <figcaption data-e="over-sabrina:over-reviews.figcaption3" set:html={t('over-reviews.figcaption3')}></figcaption>
+      </figure>
+    </div>
+    <div class="over-reviews-voet">
+      <a href="/#reviews" class="waarom-link" data-e="over-sabrina:over-reviews.a1" set:html={t('over-reviews.a1')}></a>
+      <a href="https://trustoo.nl/noord-holland/enkhuizen/hypotheekadviseur/hypotheekhaven/" target="_blank" rel="noopener" class="waarom-link" data-e="over-sabrina:over-reviews.a2" set:html={t('over-reviews.a2')}></a>
+    </div>
+  </div>
+</section>
+
+<section class="over-nbg container" aria-labelledby="nbg-kop">
+  <div class="over-nbg-kop">
+    <span class="eyebrow" data-e="over-sabrina:over-nbg.span1" set:html={t('over-nbg.span1')}></span>
+    <h2 id="nbg-kop" data-e="over-sabrina:over-nbg.h21" set:html={t('over-nbg.h21')}></h2>
+  </div>
+  <div class="over-nbg-tekst">
+    <p data-e="over-sabrina:over-nbg.p1" set:html={t('over-nbg.p1')}></p>
+    <p data-e="over-sabrina:over-nbg.p2" set:html={t('over-nbg.p2')}></p>
+    <div class="over-nbg-logos">
+      <Img data={img('over-nbg.img1')} />
+      <Img data={img('over-nbg.img2')} />
+    </div>
+    <div class="btn-row">
+      <a href="/contact#formulier" class="btn btn-dark" data-e="over-sabrina:over-nbg.a1" set:html={t('over-nbg.a1')}></a>
+      <a href="/werkwijze" class="waarom-link" data-e="over-sabrina:over-nbg.a2" set:html={t('over-nbg.a2')}></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<Footer>
+<Fragment slot="kop">
+<div class="footer-kop contact container" id="contact">
+  <span class="eyebrow" data-e="over-sabrina:contact.span1" set:html={t('contact.span1')}></span>
+  <h2 data-e="over-sabrina:contact.h21" set:html={t('contact.h21')}></h2>
+
+  <div class="contact-punten">
+    <div class="contact-punt">
+      <strong data-e="over-sabrina:contact.strong1" set:html={t('contact.strong1')}></strong>
+      <p data-e="over-sabrina:contact.p1" set:html={t('contact.p1')}></p>
+    </div>
+    <div class="contact-punt">
+      <strong data-e="over-sabrina:contact.strong2" set:html={t('contact.strong2')}></strong>
+      <p data-e="over-sabrina:contact.p2" set:html={t('contact.p2')}></p>
+    </div>
+    <div class="contact-punt">
+      <strong data-e="over-sabrina:contact.strong3" set:html={t('contact.strong3')}></strong>
+      <p data-e="over-sabrina:contact.p3" set:html={t('contact.p3')}></p>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a href="/contact#formulier" class="btn btn-dark" data-e="over-sabrina:contact.a1" set:html={t('contact.a1')}></a>
+    <a href="tel:+31655767819" class="btn btn-light" data-e="over-sabrina:contact.a2" set:html={t('contact.a2')}></a>
+  </div>
+  </div>
+</Fragment>
+</Footer>
+</Base>

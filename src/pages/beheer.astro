@@ -1,0 +1,81 @@
+---
+// Inlogpagina voor de bewerkmodus. Wordt niet geïndexeerd en staat niet in de sitemap.
+---
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Inloggen | Hypotheekhaven</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>
+  :root { --inkt: #081534; --rozenhout: #8E4F4B; --zand: #F5F0EA; --linnen: #EAE1D6; }
+  * { box-sizing: border-box; margin: 0; }
+  body { min-height: 100vh; display: grid; place-items: center; padding: 24px; background: var(--zand); color: var(--inkt); font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { width: 100%; max-width: 400px; background: #fff; padding: 40px 36px; box-shadow: 0 20px 60px rgba(8, 21, 52, .08); }
+  svg { width: 40px; height: 40px; fill: var(--inkt); margin-bottom: 20px; }
+  h1 { font-size: 26px; font-weight: 500; margin-bottom: 6px; }
+  p { color: rgba(8, 21, 52, .7); margin-bottom: 24px; }
+  label { display: block; font-weight: 500; margin-bottom: 6px; }
+  input { width: 100%; height: 50px; padding: 0 14px; border: 1px solid #cfc6bb; font: inherit; background: #fff; }
+  input:focus-visible { outline: 2px solid var(--rozenhout); outline-offset: 1px; }
+  button, .knop { display: flex; align-items: center; justify-content: center; width: 100%; height: 50px; margin-top: 16px; border: 0; background: var(--inkt); color: #fff; font: inherit; font-weight: 500; cursor: pointer; text-decoration: none; }
+  .licht { background: var(--linnen); color: var(--inkt); }
+  .fout { color: #a12a2a; margin: 12px 0 0; min-height: 1.5em; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main>
+  <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M11.5 91.5V44.5L28 35V66L56 80V27L87.5 11.5V91.5H72V36L41 51.5V91.5Z"/></svg>
+  <section id="inloggen">
+    <h1>Website bewerken</h1>
+    <p>Log in om teksten en foto's op de site aan te passen.</p>
+    <form id="form">
+      <label for="wachtwoord">Wachtwoord</label>
+      <input id="wachtwoord" name="wachtwoord" type="password" autocomplete="current-password" required>
+      <button type="submit">Inloggen</button>
+      <p class="fout" id="fout" role="alert"></p>
+    </form>
+  </section>
+  <section id="binnen" hidden>
+    <h1>Je bent ingelogd</h1>
+    <p>Ga naar een pagina en klik op een tekst of foto om die aan te passen. Klaar? Druk onderin op <strong>Publiceren</strong>.</p>
+    <a class="knop" href="/">Naar de website</a>
+    <button type="button" class="licht" id="uit">Uitloggen</button>
+  </section>
+</main>
+<script>
+  const form = document.getElementById('form') as HTMLFormElement;
+  const fout = document.getElementById('fout')!;
+  const toon = (binnen: boolean) => {
+    document.getElementById('inloggen')!.hidden = binnen;
+    document.getElementById('binnen')!.hidden = !binnen;
+  };
+  fetch('/api/beheer/sessie').then(r => r.json()).then(s => toon(s.ingelogd)).catch(() => {});
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    fout.textContent = '';
+    const knop = form.querySelector('button')!;
+    knop.disabled = true;
+    try {
+      const r = await fetch('/api/beheer/login', {
+        method: 'POST', headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ wachtwoord: (form.elements.namedItem('wachtwoord') as HTMLInputElement).value }),
+      });
+      const d = await r.json();
+      if (d.ok) location.href = '/';
+      else fout.textContent = d.fout;
+    } catch {
+      fout.textContent = 'Er ging iets mis. Controleer je internetverbinding.';
+    }
+    knop.disabled = false;
+  });
+  document.getElementById('uit')!.addEventListener('click', async () => {
+    await fetch('/api/beheer/login', { method: 'DELETE' });
+    toon(false);
+  });
+</script>
+</body>
+</html>

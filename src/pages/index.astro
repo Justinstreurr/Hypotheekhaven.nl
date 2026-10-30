@@ -1,0 +1,413 @@
+---
+import Base from '../layouts/Base.astro';
+import Img from '../components/Img.astro';
+import Header from '../components/Header.astro';
+import HeroReviews from '../components/HeroReviews.astro';
+import HeroBanks from '../components/HeroBanks.astro';
+import Footer from '../components/Footer.astro';
+import { laadPagina } from '../lib/content';
+
+const { t, img, bg, meta, achtergronden } = await laadPagina('home');
+---
+<Base pagina="home" meta={meta} preload={achtergronden['hero.foto1']}>
+<header class="hero">
+  <div class="hero-slides">
+    <div class="hero-slide hero-slide--sabrina is-active" {...bg('hero.foto1', 'background-image', '')}></div>
+    <div class="hero-slide hero-slide--fauteuil" {...bg('hero.foto2', 'background-image', '')}></div>
+  </div>
+  <div class="hero-overlay"></div>
+
+  
+
+  <Header />
+
+  <div class="hero-content">
+    <h1 data-e="home:hero.h11" set:html={t('hero.h11')}></h1>
+    <p data-e="home:hero.p1" set:html={t('hero.p1')}></p>
+    <div class="btn-row">
+      <a href="/contact#formulier" class="btn btn-dark" data-e="home:hero.a1" set:html={t('hero.a1')}></a>
+      <a href="#diensten" class="btn btn-light" data-e="home:hero.a2" set:html={t('hero.a2')}></a>
+    </div>
+  </div>
+
+  <HeroReviews />
+  <HeroBanks />
+</header>
+
+<section class="herkenning container" id="herkenning">
+  <p class="herkenning-zin" data-e="home:herkenning.p1" set:html={t('herkenning.p1')}></p>
+</section>
+
+<section class="diensten" id="diensten">
+  <div class="diensten-zij">
+    <div>
+      <span class="eyebrow" data-e="home:diensten.span1" set:html={t('diensten.span1')}></span>
+      <h2 data-e="home:diensten.h21" set:html={t('diensten.h21')}></h2>
+      <p data-e="home:diensten.p1" set:html={t('diensten.p1')}></p>
+      <a href="/contact#formulier" class="btn btn-dark" data-e="home:diensten.a1" set:html={t('diensten.a1')}></a>
+    </div>
+    <div class="diensten-pijlen">
+      <button class="slider-knop" type="button" data-dir="-1" aria-label="Vorige"><i class="arrow arrow--terug"></i></button>
+      <span class="diensten-teller" aria-live="polite"><span><strong data-diensten-nr>1</strong> / <span data-diensten-totaal>10</span></span><small data-e="home:diensten.small1" set:html={t('diensten.small1')}></small></span>
+      <button class="slider-knop" type="button" data-dir="1" aria-label="Volgende"><i class="arrow"></i></button>
+    </div>
+  </div>
+  <div class="diensten-track">
+    <a class="dienst" href="/diensten#kan-ik-kopen">
+      <div class="dienst-beeld"><Img data={img('diensten.img1')} style="object-position: center 62%" /><span class="dienst-pijl" aria-hidden="true"><i class="arrow"></i></span></div>
+      <h3 data-e="home:diensten.h31" set:html={t('diensten.h31')}></h3>
+      <p data-e="home:diensten.p2" set:html={t('diensten.p2')}></p>
+    </a>
+    <a class="dienst" href="/diensten#eerste-huis">
+      <div class="dienst-beeld"><Img data={img('diensten.img2')} style="object-position: center 45%" /><span class="dienst-pijl" aria-hidden="true"><i class="arrow"></i></span></div>
+      <h3 data-e="home:diensten.h32" set:html={t('diensten.h32')}></h3>
+      <p data-e="home:diensten.p3" set:html={t('diensten.p3')}></p>
+    </a>
+    <a class="dienst" href="/diensten#verhuizen">
+      <div class="dienst-beeld"><Img data={img('diensten.img3')} /><span class="dienst-pijl" aria-hidden="true"><i class="arrow"></i></span></div>
+      <h3 data-e="home:diensten.h33" set:html={t('diensten.h33')}></h3>
+      <p data-e="home:diensten.p4" set:html={t('diensten.p4')}></p>
+    </a>
+    <a class="dienst" href="/diensten#scheiden">
+      <div class="dienst-beeld"><Img data={img('diensten.img4')} /><span class="dienst-pijl" aria-hidden="true"><i class="arrow"></i></span></div>
+      <h3 data-e="home:diensten.h34" set:html={t('diensten.h34')}></h3>
+      <p data-e="home:diensten.p5" set:html={t('diensten.p5')}></p>
+    </a>
+    <a class="dienst" href="/diensten#overwaarde">
+      <div class="dienst-beeld"><Img data={img('diensten.img5')} /><span class="dienst-pijl" aria-hidden="true"><i class="arrow"></i></span></div>
+      <h3 data-e="home:diensten.h35" set:html={t('diensten.h35')}></h3>
+      <p data-e="home:diensten.p6" set:html={t('diensten.p6')}></p>
+    </a>
+    <a class="dienst" href="/diensten#verduurzamen">
+      <div class="dienst-beeld"><Img data={img('diensten.img6')} style="object-position: center 40%" /><span class="dienst-pijl" aria-hidden="true"><i class="arrow"></i></span></div>
+      <h3 data-e="home:diensten.h36" set:html={t('diensten.h36')}></h3>
+      <p data-e="home:diensten.p7" set:html={t('diensten.p7')}></p>
+    </a>
+    <a class="dienst" href="/diensten#verbouwen-of-verhuizen">
+      <div class="dienst-beeld"><Img data={img('diensten.img7')} style="object-position: center 60%" /><span class="dienst-pijl" aria-hidden="true"><i class="arrow"></i></span></div>
+      <h3 data-e="home:diensten.h37" set:html={t('diensten.h37')}></h3>
+      <p data-e="home:diensten.p8" set:html={t('diensten.p8')}></p>
+    </a>
+    <a class="dienst" href="/diensten#rentevast">
+      <div class="dienst-beeld"><Img data={img('diensten.img8')} /><span class="dienst-pijl" aria-hidden="true"><i class="arrow"></i></span></div>
+      <h3 data-e="home:diensten.h38" set:html={t('diensten.h38')}></h3>
+      <p data-e="home:diensten.p9" set:html={t('diensten.p9')}></p>
+    </a>
+    <a class="dienst" href="/diensten#oversluiten">
+      <div class="dienst-beeld"><Img data={img('diensten.img9')} /><span class="dienst-pijl" aria-hidden="true"><i class="arrow"></i></span></div>
+      <h3 data-e="home:diensten.h39" set:html={t('diensten.h39')}></h3>
+      <p data-e="home:diensten.p10" set:html={t('diensten.p10')}></p>
+    </a>
+    <a class="dienst" href="/diensten#ondernemer">
+      <div class="dienst-beeld"><Img data={img('diensten.img10')} /><span class="dienst-pijl" aria-hidden="true"><i class="arrow"></i></span></div>
+      <h3 data-e="home:diensten.h310" set:html={t('diensten.h310')}></h3>
+      <p data-e="home:diensten.p11" set:html={t('diensten.p11')}></p>
+    </a>
+  </div>
+</section>
+
+<section class="waarom" id="waarom">
+  <div class="waarom-kop container">
+    <span class="eyebrow" data-e="home:waarom.span1" set:html={t('waarom.span1')}></span>
+    <h2 data-e="home:waarom.h21" set:html={t('waarom.h21')}></h2>
+  </div>
+
+  <div class="waarom-podium container">
+    <div class="waarom-fotos waarom-fotos--links" aria-hidden="true">
+      <Img data={img('waarom.img1')} style="object-position: 62% center" />
+      <Img data={img('waarom.img2')} style="object-position: center 45%" />
+    </div>
+
+    <div class="wiel">
+      <div class="wiel-venster">
+        <ul class="wiel-lijst">
+          <li><button class="wiel-item is-actief" type="button" data-tekst={t('waarom.tekst1')} data-ea="data-tekst|home:waarom.tekst1">
+            <span class="wiel-icoon" aria-hidden="true"><svg viewBox="0 0 64 64"><circle class="vlak" cx="36" cy="30" r="16"></circle>
+    <path d="M13.5 24A20 20 0 0 1 47 13.5"></path>
+    <path d="M47.5 7v6.8h-6.8"></path>
+    <path d="M50.5 40A20 20 0 0 1 17 50.5"></path>
+    <path d="M16.5 57v-6.8h6.8"></path>
+    <path d="M21 34 32 24.5 43 34"></path>
+    <path d="M24.5 31v13h15V31"></path>
+    <path d="M29.5 44v-6.5h5V44"></path>
+    <path d="M37 27.5v-3.5h2.5v6"></path></svg></span>
+            <span class="wiel-titel" data-e="home:waarom.span2" set:html={t('waarom.span2')}></span>
+            <span class="wiel-pijl" aria-hidden="true"><i class="arrow"></i></span>
+          </button></li>
+          <li><button class="wiel-item" type="button" data-tekst={t('waarom.tekst2')} data-ea="data-tekst|home:waarom.tekst2">
+            <span class="wiel-icoon" aria-hidden="true"><Img data={img('waarom.img3')} /></span>
+            <span class="wiel-titel" data-e="home:waarom.span3" set:html={t('waarom.span3')}></span>
+            <span class="wiel-pijl" aria-hidden="true"><i class="arrow"></i></span>
+          </button></li>
+          <li><button class="wiel-item" type="button" data-tekst={t('waarom.tekst3')} data-ea="data-tekst|home:waarom.tekst3">
+            <span class="wiel-icoon" aria-hidden="true"><Img data={img('waarom.img4')} /></span>
+            <span class="wiel-titel" data-e="home:waarom.span4" set:html={t('waarom.span4')}></span>
+            <span class="wiel-pijl" aria-hidden="true"><i class="arrow"></i></span>
+          </button></li>
+          <li><button class="wiel-item" type="button" data-tekst={t('waarom.tekst4')} data-ea="data-tekst|home:waarom.tekst4">
+            <span class="wiel-icoon" aria-hidden="true"><svg viewBox="0 0 64 64"><circle class="vlak" cx="32" cy="42" r="15"></circle>
+    <circle cx="32" cy="10" r="3"></circle>
+    <path d="M32 13v39"></path>
+    <path d="M23 57h18M26 57l2-5h8l2 5"></path>
+    <path d="M11 19h42"></path>
+    <path d="M11 19 5 36M11 19l6 17M53 19l-6 17M53 19l6 17"></path>
+    <path d="M4 36h14a7 7 0 0 1-14 0zM46 36h14a7 7 0 0 1-14 0z"></path>
+    <path d="M8 34.5h6M9.5 32.5h3"></path></svg></span>
+            <span class="wiel-titel" data-e="home:waarom.span5" set:html={t('waarom.span5')}></span>
+            <span class="wiel-pijl" aria-hidden="true"><i class="arrow"></i></span>
+          </button></li>
+          <li><button class="wiel-item" type="button" data-tekst={t('waarom.tekst5')} data-ea="data-tekst|home:waarom.tekst5">
+            <span class="wiel-icoon" aria-hidden="true"><svg viewBox="0 0 64 64"><circle class="vlak" cx="40" cy="30" r="16"></circle>
+    <path d="M13 44V17a3 3 0 0 1 3-3h32a3 3 0 0 1 3 3v27"></path>
+    <path d="M6 45h52l-3 5H9z"></path>
+    <path d="M27 50.5h10"></path>
+    <circle class="punt" cx="32" cy="17.5" r=".9"></circle>
+    <path d="M24.5 32 32 25.5l7.5 6.5"></path>
+    <path d="M27 30v9h10v-9"></path>
+    <path d="M31 39v-4h2v4"></path></svg></span>
+            <span class="wiel-titel" data-e="home:waarom.span6" set:html={t('waarom.span6')}></span>
+            <span class="wiel-pijl" aria-hidden="true"><i class="arrow"></i></span>
+          </button></li>
+          <li><button class="wiel-item" type="button" data-tekst={t('waarom.tekst6')} data-ea="data-tekst|home:waarom.tekst6">
+            <span class="wiel-icoon" aria-hidden="true"><svg viewBox="0 0 64 64"><circle class="vlak" cx="32" cy="26" r="17"></circle>
+    <circle cx="32" cy="26" r="14"></circle>
+    <circle cx="32" cy="26" r="10"></circle>
+    <path d="M32.00 20.80L33.35 24.14L36.95 24.39L34.19 26.71L35.06 30.21L32.00 28.30L28.94 30.21L29.81 26.71L27.05 24.39L30.65 24.14Z"></path>
+    <path d="M24.5 37.5 19 55l7-3.5 4 6 2.4-9"></path>
+    <path d="M39.5 37.5 45 55l-7-3.5-4 6-2.4-9"></path>
+    <path d="M17 41c-6-5-8-15-2-25M47 41c6-5 8-15 2-25"></path>
+    <path d="M13 25c-3.5 2-4.5 6.5-3.2 9.5 3.3-1 5.3-4.6 3.2-9.5zM15.5 15c-3.5 1-5.5 5-4.6 8.2 3.3-.6 5.6-4 4.6-8.2z"></path>
+    <path d="M51 25c3.5 2 4.5 6.5 3.2 9.5-3.3-1-5.3-4.6-3.2-9.5zM48.5 15c3.5 1 5.5 5 4.6 8.2-3.3-.6-5.6-4-4.6-8.2z"></path></svg></span>
+            <span class="wiel-titel" data-e="home:waarom.span7" set:html={t('waarom.span7')}></span>
+            <span class="wiel-pijl" aria-hidden="true"><i class="arrow"></i></span>
+          </button></li>
+        </ul>
+      </div>
+      <p class="wiel-tekst" aria-live="polite" set:html={t('waarom.tekst1')}></p>
+    </div>
+
+    <div class="waarom-fotos waarom-fotos--rechts" aria-hidden="true">
+      <Img data={img('waarom.img5')} style="object-position: center 35%" />
+      <Img data={img('waarom.img6')} />
+    </div>
+  </div>
+
+  
+  <ul class="waarom-punten container">
+    
+    <li data-e="home:waarom.li1" set:html={t('waarom.li1')}></li>
+    <li data-e="home:waarom.li2" set:html={t('waarom.li2')}></li>
+    <li data-e="home:waarom.li3" set:html={t('waarom.li3')}></li>
+    <li data-e="home:waarom.li4" set:html={t('waarom.li4')}></li>
+    <li data-e="home:waarom.li5" set:html={t('waarom.li5')}></li>
+    <li data-e="home:waarom.li6" set:html={t('waarom.li6')}></li>
+  </ul>
+
+  <div class="waarom-voet">
+    <a href="/contact#formulier" class="waarom-link" data-e="home:waarom.a1" set:html={t('waarom.a1')}></a>
+  </div>
+</section>
+
+<section class="verhaal" id="advies">
+  <div class="verhaal-pin">
+    <div class="verhaal-podium">
+      <div class="verhaal-scene is-actief" {...bg('advies.foto1', '--foto', '--pos: 55% 40%; --links: .78; --midden: .5')}>
+        <div class="verhaal-dim" aria-hidden="true"></div>
+        <div class="verhaal-tekst">
+          <span class="eyebrow" data-e="home:advies.span1" set:html={t('advies.span1')}></span>
+          <h2 data-e="home:advies.h21" set:html={t('advies.h21')}></h2>
+          <p data-e="home:advies.p1" set:html={t('advies.p1')}></p>
+        </div>
+        <div class="verhaal-label" style="left: 62%; top: 18%; height: 22%"><strong data-e="home:advies.strong1" set:html={t('advies.strong1')}></strong><span data-e="home:advies.span2" set:html={t('advies.span2')}></span></div>
+        
+        <blockquote class="verhaal-quote" data-e="home:advies.blockquote1" set:html={t('advies.blockquote1')}></blockquote>
+      </div>
+      <div class="verhaal-scene" data-overgang="zwart" {...bg('advies.foto2', '--foto', '--pos: 70% center')}>
+        <div class="verhaal-dim" aria-hidden="true"></div>
+        <div class="verhaal-tekst">
+          <span class="eyebrow" data-e="home:advies.span3" set:html={t('advies.span3')}></span>
+          <h2 data-e="home:advies.h22" set:html={t('advies.h22')}></h2>
+          <p data-e="home:advies.p2" set:html={t('advies.p2')}></p>
+          <p data-e="home:advies.p3" set:html={t('advies.p3')}></p>
+        </div>
+        <div class="verhaal-label" style="left: 58%; top: 18%; height: 24%"><strong data-e="home:advies.strong2" set:html={t('advies.strong2')}></strong><span data-e="home:advies.span4" set:html={t('advies.span4')}></span></div>
+        <div class="verhaal-label" style="left: 84%; top: 70%; height: 18%"><strong data-e="home:advies.strong3" set:html={t('advies.strong3')}></strong><span data-e="home:advies.span5" set:html={t('advies.span5')}></span></div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<section class="werkwijze container" id="werkwijze">
+  <div class="werkwijze-kop">
+    <span class="eyebrow" data-e="home:werkwijze.span1" set:html={t('werkwijze.span1')}></span>
+    <h2 data-e="home:werkwijze.h21" set:html={t('werkwijze.h21')}></h2>
+    <a href="/contact#formulier" class="btn btn-dark" data-e="home:werkwijze.a1" set:html={t('werkwijze.a1')}></a>
+  </div>
+
+  <div class="tijdlijn">
+    <div class="tijdlijn-lijn" aria-hidden="true"><div class="tijdlijn-vulling"></div></div>
+    <ol class="tijdlijn-stappen">
+      <li class="tijdlijn-stap">
+        <div class="tijdlijn-tekst">
+          <span class="tijdlijn-nr" data-e="home:werkwijze.span2" set:html={t('werkwijze.span2')}></span>
+          <h3 data-e="home:werkwijze.h31" set:html={t('werkwijze.h31')}></h3>
+          <p data-e="home:werkwijze.p1" set:html={t('werkwijze.p1')}></p>
+        </div>
+        <Img data={img('werkwijze.img1')} class="tijdlijn-foto" style="object-position: 62% center" />
+      </li>
+      <li class="tijdlijn-stap is-links">
+        <div class="tijdlijn-tekst">
+          <span class="tijdlijn-nr" data-e="home:werkwijze.span3" set:html={t('werkwijze.span3')}></span>
+          <h3 data-e="home:werkwijze.h32" set:html={t('werkwijze.h32')}></h3>
+          <p data-e="home:werkwijze.p2" set:html={t('werkwijze.p2')}></p>
+        </div>
+        <Img data={img('werkwijze.img2')} class="tijdlijn-foto" style="object-position: center 30%" />
+      </li>
+      <li class="tijdlijn-stap">
+        <div class="tijdlijn-tekst">
+          <span class="tijdlijn-nr" data-e="home:werkwijze.span4" set:html={t('werkwijze.span4')}></span>
+          <h3 data-e="home:werkwijze.h33" set:html={t('werkwijze.h33')}></h3>
+          <p data-e="home:werkwijze.p3" set:html={t('werkwijze.p3')}></p>
+        </div>
+        <Img data={img('werkwijze.img3')} class="tijdlijn-foto" style="object-position: center 40%" />
+      </li>
+      <li class="tijdlijn-stap is-links">
+        <div class="tijdlijn-tekst">
+          <span class="tijdlijn-nr" data-e="home:werkwijze.span5" set:html={t('werkwijze.span5')}></span>
+          <h3 data-e="home:werkwijze.h34" set:html={t('werkwijze.h34')}></h3>
+          <p data-e="home:werkwijze.p4" set:html={t('werkwijze.p4')}></p>
+        </div>
+        <Img data={img('werkwijze.img4')} class="tijdlijn-foto" style="object-position: center 45%" />
+      </li>
+      <li class="tijdlijn-label" aria-hidden="true"><span>Na de notaris</span></li>
+      <li class="tijdlijn-stap tijdlijn-stap--na">
+        <div class="tijdlijn-tekst">
+          <h3 data-e="home:werkwijze.h35" set:html={t('werkwijze.h35')}></h3>
+          <p data-e="home:werkwijze.p5" set:html={t('werkwijze.p5')}></p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="reviews container" id="reviews">
+  <div class="reviews-kop">
+    <div><span class="eyebrow" data-e="home:reviews.span1" set:html={t('reviews.span1')}></span>
+    <h2 data-e="home:reviews.h21" set:html={t('reviews.h21')}></h2></div>
+    <p data-e="home:reviews.p1" set:html={t('reviews.p1')}></p>
+  </div>
+
+  <div class="reviews-balk">
+    <div class="reviews-voortgang" aria-hidden="true"><span></span></div>
+    <div class="reviews-bediening">
+      <span class="reviews-teller" aria-live="polite">1/9</span>
+      <div class="reviews-pijlen">
+        <button class="reviews-pijl" type="button" data-dir="-1" aria-label="Vorige review"><i class="arrow arrow--terug"></i></button>
+        <button class="reviews-pijl" type="button" data-dir="1" aria-label="Volgende review"><i class="arrow"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="reviews-track">
+    <figure class="review">
+      <span class="review-bron"><Img data={img('reviews.img1')} /></span>
+      <blockquote data-e="home:reviews.blockquote1" set:html={t('reviews.blockquote1')}></blockquote>
+      <figcaption data-e="home:reviews.figcaption1" set:html={t('reviews.figcaption1')}></figcaption>
+    </figure>
+    <figure class="review">
+      <span class="review-bron"><Img data={img('reviews.img2')} /><span aria-label="5 sterren" data-e="home:reviews.span2" set:html={t('reviews.span2')}></span></span>
+      <blockquote data-e="home:reviews.blockquote2" set:html={t('reviews.blockquote2')}></blockquote>
+      <figcaption data-e="home:reviews.figcaption2" set:html={t('reviews.figcaption2')}></figcaption>
+    </figure>
+    <figure class="review">
+      <span class="review-bron"><Img data={img('reviews.img3')} /></span>
+      <blockquote data-e="home:reviews.blockquote3" set:html={t('reviews.blockquote3')}></blockquote>
+      <figcaption data-e="home:reviews.figcaption3" set:html={t('reviews.figcaption3')}></figcaption>
+    </figure>
+    <figure class="review">
+      <span class="review-bron"><Img data={img('reviews.img4')} /></span>
+      <blockquote data-e="home:reviews.blockquote4" set:html={t('reviews.blockquote4')}></blockquote>
+      <figcaption data-e="home:reviews.figcaption4" set:html={t('reviews.figcaption4')}></figcaption>
+    </figure>
+    <figure class="review">
+      <span class="review-bron"><Img data={img('reviews.img5')} /></span>
+      <blockquote data-e="home:reviews.blockquote5" set:html={t('reviews.blockquote5')}></blockquote>
+      <figcaption data-e="home:reviews.figcaption5" set:html={t('reviews.figcaption5')}></figcaption>
+    </figure>
+    <figure class="review">
+      <span class="review-bron"><Img data={img('reviews.img6')} /><span aria-label="5 sterren" data-e="home:reviews.span3" set:html={t('reviews.span3')}></span></span>
+      <blockquote data-e="home:reviews.blockquote6" set:html={t('reviews.blockquote6')}></blockquote>
+      <figcaption data-e="home:reviews.figcaption6" set:html={t('reviews.figcaption6')}></figcaption>
+    </figure>
+    <figure class="review">
+      <span class="review-bron"><Img data={img('reviews.img7')} /></span>
+      <blockquote data-e="home:reviews.blockquote7" set:html={t('reviews.blockquote7')}></blockquote>
+      <figcaption data-e="home:reviews.figcaption7" set:html={t('reviews.figcaption7')}></figcaption>
+    </figure>
+    <figure class="review">
+      <span class="review-bron"><Img data={img('reviews.img8')} /></span>
+      <blockquote data-e="home:reviews.blockquote8" set:html={t('reviews.blockquote8')}></blockquote>
+      <figcaption data-e="home:reviews.figcaption8" set:html={t('reviews.figcaption8')}></figcaption>
+    </figure>
+    <figure class="review">
+      <span class="review-bron"><Img data={img('reviews.img9')} /></span>
+      <blockquote data-e="home:reviews.blockquote9" set:html={t('reviews.blockquote9')}></blockquote>
+      <figcaption data-e="home:reviews.figcaption9" set:html={t('reviews.figcaption9')}></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="extra container" id="verzekeringen">
+  <div class="banner-track">
+    <article class="banner" {...bg('verzekeringen.foto1', '--foto', '--pos: 0% center')}>
+      <div class="banner-tekst">
+      <span class="eyebrow" data-e="home:banner.span1" set:html={t('banner.span1')}></span>
+      <h2 data-e="home:banner.h21" set:html={t('banner.h21')}></h2>
+      <p data-e="home:banner.p1" set:html={t('banner.p1')}></p>
+      <a href="/verzekeringen" class="btn btn-light" data-e="home:banner.a1" set:html={t('banner.a1')}></a>
+      </div>
+  </article>
+    <article class="banner" id="kosten" {...bg('verzekeringen.foto2', '--foto', '--pos: 75% center')}>
+      <div class="banner-tekst">
+      <span class="eyebrow" data-e="home:kosten.span1" set:html={t('kosten.span1')}></span>
+      <h2 data-e="home:kosten.h21" set:html={t('kosten.h21')}></h2>
+      <p data-e="home:kosten.p1" set:html={t('kosten.p1')}></p>
+      <a href="/werkwijze#kosten" class="btn btn-light" data-e="home:kosten.a1" set:html={t('kosten.a1')}></a>
+      </div>
+  </article>
+  </div>
+</section>
+
+<section class="sabrina" id="sabrina">
+  <div class="sabrina-tekst">
+    <span class="eyebrow" data-e="home:sabrina.span1" set:html={t('sabrina.span1')}></span>
+    <h2 data-e="home:sabrina.h21" set:html={t('sabrina.h21')}></h2>
+    <p class="sabrina-lead" data-e="home:sabrina.p1" set:html={t('sabrina.p1')}></p>
+    <p data-e="home:sabrina.p2" set:html={t('sabrina.p2')}></p>
+    <a href="/over-sabrina" class="btn btn-dark" data-e="home:sabrina.a1" set:html={t('sabrina.a1')}></a>
+  </div>
+  <Img data={img('sabrina.img1')} class="sabrina-foto" />
+</section>
+
+<section class="faq container" id="faq">
+  <div class="faq-side">
+    <span class="eyebrow" data-e="home:faq.span1" set:html={t('faq.span1')}></span>
+    <h2 data-e="home:faq.h21" set:html={t('faq.h21')}></h2>
+    <p data-e="home:faq.p1" set:html={t('faq.p1')}></p>
+    <a href="/contact#formulier" class="btn btn-dark" data-e="home:faq.a1" set:html={t('faq.a1')}></a>
+  </div>
+  <div class="faq-list">
+    <details open><summary data-e="home:faq.summary1" set:html={t('faq.summary1')}></summary><p data-e="home:faq.p2" set:html={t('faq.p2')}></p></details>
+    <details><summary data-e="home:faq.summary2" set:html={t('faq.summary2')}></summary><p data-e="home:faq.p3" set:html={t('faq.p3')}></p></details>
+    <details><summary data-e="home:faq.summary3" set:html={t('faq.summary3')}></summary><p data-e="home:faq.p4" set:html={t('faq.p4')}></p></details>
+    <details><summary data-e="home:faq.summary4" set:html={t('faq.summary4')}></summary><p data-e="home:faq.p5" set:html={t('faq.p5')}></p></details>
+    <details><summary data-e="home:faq.summary5" set:html={t('faq.summary5')}></summary><p data-e="home:faq.p6" set:html={t('faq.p6')}></p></details>
+    <details><summary data-e="home:faq.summary6" set:html={t('faq.summary6')}></summary><p data-e="home:faq.p7" set:html={t('faq.p7')}></p></details>
+  </div>
+</section>
+
+<Footer />
+
+<div class="hulp-cursor" aria-hidden="true"><span class="hulp-cursor-bol">Lees meer</span></div>
+</Base>

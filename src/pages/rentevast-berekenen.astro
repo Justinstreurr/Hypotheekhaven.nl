@@ -1,0 +1,219 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import HeroReviews from '../components/HeroReviews.astro';
+import Footer from '../components/Footer.astro';
+import { laadPagina } from '../lib/content';
+import '../styles/pagina.css';
+import '../styles/rekentool.css';
+
+const { t, bg, meta, achtergronden } = await laadPagina('rentevast');
+---
+<Base pagina="rentevast" meta={meta} preload={achtergronden['hero.foto1']}>
+<header class="hero hero--pagina hero--rekentool">
+  <div class="hero-slides">
+    <div class="hero-slide hero-slide--rekentool is-active" {...bg('hero.foto1', 'background-image', '')}></div>
+  </div>
+  <div class="hero-overlay"></div>
+
+  
+
+  <Header />
+
+  <div class="hero-content">
+    <nav class="kruimelpad" aria-label="Kruimelpad"><a href="/" data-e="rentevast:hero.a1" set:html={t('hero.a1')}></a><span aria-hidden="true">/</span><span data-e="rentevast:hero.span1" set:html={t('hero.span1')}></span><span aria-hidden="true">/</span><span data-e="rentevast:hero.span2" set:html={t('hero.span2')}></span></nav>
+    <h1 data-e="rentevast:hero.h11" set:html={t('hero.h11')}></h1>
+    <p data-e="rentevast:hero.p1" set:html={t('hero.p1')}></p>
+  </div>
+  <HeroReviews />
+</header>
+
+<main>
+
+<section class="rekentool container" id="berekenen" aria-label="Rekentool rentevaste periode">
+  <h2 class="sr-only">Rekentool rentevaste periode</h2>
+  <noscript><p class="rt-noscript" data-e="rentevast:berekenen.p1" set:html={t('berekenen.p1')}></p></noscript>
+
+  <div class="rt">
+    <div class="rt-hoofd">
+    <ol class="rt-stappen">
+      <li class="rt-blok" data-blok="situatie" data-direct>
+        <div class="rt-blok-kop">
+          <span class="rt-blok-nr" aria-hidden="true">1</span>
+          <div class="rt-blok-titel"><h3 data-e="rentevast:berekenen.h31" set:html={t('berekenen.h31')}></h3><p class="rt-blok-samenvatting" data-samenvatting></p></div>
+          <button type="button" class="rt-wijzig" data-wijzig data-e="rentevast:berekenen.button1" set:html={t('berekenen.button1')}></button>
+        </div>
+        <div class="rt-blok-inhoud">
+          <p class="rt-label" id="lbl-situatie" data-e="rentevast:berekenen.p2" set:html={t('berekenen.p2')}></p>
+          <div class="rt-keuzes rt-keuzes--groot" role="radiogroup" aria-labelledby="lbl-situatie">
+            <button type="button" class="rt-keuze" role="radio" aria-checked="false" data-kies="situatie" data-waarde="aflopen">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="8" y="11" width="32" height="29" rx="1"></rect><path d="M8 19h32M16 7v8M32 7v8"></path><path d="m19 30 4 4 7-8"></path></svg>
+              <span data-e="rentevast:berekenen.span1" set:html={t('berekenen.span1')}></span>
+            </button>
+            <button type="button" class="rt-keuze" role="radio" aria-checked="false" data-kies="situatie" data-waarde="tussentijds">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="25" r="15"></circle><path d="M24 16v9l6 4"></path><path d="M19 6h10"></path></svg>
+              <span data-e="rentevast:berekenen.span2" set:html={t('berekenen.span2')}></span>
+            </button>
+          </div>
+        </div>
+      </li>
+
+      <li class="rt-blok" data-blok="hypotheek">
+        <div class="rt-blok-kop">
+          <span class="rt-blok-nr" aria-hidden="true">2</span>
+          <div class="rt-blok-titel"><h3 data-e="rentevast:berekenen.h32" set:html={t('berekenen.h32')}></h3><p class="rt-blok-samenvatting" data-samenvatting></p></div>
+          <button type="button" class="rt-wijzig" data-wijzig data-e="rentevast:berekenen.button2" set:html={t('berekenen.button2')}></button>
+        </div>
+        <div class="rt-blok-inhoud">
+          <div class="rt-velden">
+            <div class="rt-veld">
+              <label for="rv-schuld" data-e="rentevast:berekenen.label1" set:html={t('berekenen.label1')}></label>
+              <div class="rt-invoer"><span aria-hidden="true">€</span><input id="rv-schuld" type="text" inputmode="numeric" autocomplete="off" data-veld="schuld" data-soort="euro" data-min="10000" data-max="10000000"></div>
+              <p class="rt-hint" data-e="rentevast:berekenen.p3" set:html={t('berekenen.p3')}></p>
+            </div>
+            <div class="rt-veld">
+              <label for="rv-rente" data-e="rentevast:berekenen.label2" set:html={t('berekenen.label2')}></label>
+              <div class="rt-invoer"><input id="rv-rente" type="text" inputmode="decimal" autocomplete="off" data-veld="rente" data-soort="pct" data-min="0" data-max="15"><span aria-hidden="true">%</span></div>
+            </div>
+            <div class="rt-veld">
+              <label for="rv-looptijd" data-e="rentevast:berekenen.label3" set:html={t('berekenen.label3')}></label>
+              <div class="rt-invoer"><input id="rv-looptijd" type="text" inputmode="numeric" autocomplete="off" data-veld="looptijd" data-soort="getal" data-min="1" data-max="30"><span aria-hidden="true">jaar</span></div>
+              <p class="rt-hint" data-e="rentevast:berekenen.p4" set:html={t('berekenen.p4')}></p>
+            </div>
+            <div class="rt-veld" data-voor="tussentijds">
+              <label for="rv-rest" data-e="rentevast:berekenen.label4" set:html={t('berekenen.label4')}></label>
+              <div class="rt-invoer"><input id="rv-rest" type="text" inputmode="decimal" autocomplete="off" data-veld="rentevastRest" data-soort="pct" data-min="0.1" data-max="30"><span aria-hidden="true">jaar</span></div>
+              <p class="rt-hint" data-e="rentevast:berekenen.p5" set:html={t('berekenen.p5')}></p>
+            </div>
+            <div class="rt-veld" data-voor="tussentijds">
+              <label for="rv-oorspr" data-e="rentevast:berekenen.label5" set:html={t('berekenen.label5')}></label>
+              <div class="rt-invoer"><span aria-hidden="true">€</span><input id="rv-oorspr" type="text" inputmode="numeric" autocomplete="off" data-veld="oorspronkelijk" data-soort="euro" data-min="10000" data-max="10000000" data-optioneel placeholder="Weet ik niet"></div>
+              <p class="rt-hint" data-e="rentevast:berekenen.p6" set:html={t('berekenen.p6')}></p>
+            </div>
+          </div>
+          <div class="rt-veld">
+            <p class="rt-label" id="lbl-vorm" data-e="rentevast:berekenen.p7" set:html={t('berekenen.p7')}></p>
+            <div class="rt-keuzes" role="radiogroup" aria-labelledby="lbl-vorm">
+              <button type="button" class="rt-keuze" role="radio" data-kies="vorm" data-waarde="annuitair" data-e="rentevast:berekenen.button3" set:html={t('berekenen.button3')}></button>
+              <button type="button" class="rt-keuze" role="radio" data-kies="vorm" data-waarde="lineair" data-e="rentevast:berekenen.button4" set:html={t('berekenen.button4')}></button>
+            </div>
+          </div>
+          <button type="button" class="btn btn-dark rt-verder" data-verder data-e="rentevast:berekenen.button5" set:html={t('berekenen.button5')}></button>
+        </div>
+      </li>
+
+      <li class="rt-blok" data-blok="nieuw">
+        <div class="rt-blok-kop">
+          <span class="rt-blok-nr" aria-hidden="true">3</span>
+          <div class="rt-blok-titel"><h3 data-e="rentevast:berekenen.h33" set:html={t('berekenen.h33')}></h3><p class="rt-blok-samenvatting" data-samenvatting></p></div>
+          <button type="button" class="rt-wijzig" data-wijzig data-e="rentevast:berekenen.button6" set:html={t('berekenen.button6')}></button>
+        </div>
+        <div class="rt-blok-inhoud">
+          <div class="rt-velden">
+            <div class="rt-veld" data-voor="aflopen">
+              <label for="rv-bank" data-e="rentevast:berekenen.label6" set:html={t('berekenen.label6')}></label>
+              <div class="rt-invoer"><input id="rv-bank" type="text" inputmode="decimal" autocomplete="off" data-veld="renteBank" data-soort="pct" data-min="0" data-max="15"><span aria-hidden="true">%</span></div>
+              <p class="rt-hint" data-e="rentevast:berekenen.p8" set:html={t('berekenen.p8')}></p>
+            </div>
+            <div class="rt-veld">
+              <label for="rv-nieuw" data-e="rentevast:berekenen.label7" set:html={t('berekenen.label7')}></label>
+              <div class="rt-invoer"><input id="rv-nieuw" type="text" inputmode="decimal" autocomplete="off" data-veld="renteNieuw" data-soort="pct" data-min="0" data-max="15"><span aria-hidden="true">%</span></div>
+              <p class="rt-hint" data-e="rentevast:berekenen.p9" set:html={t('berekenen.p9')}></p>
+            </div>
+            <div class="rt-veld" data-voor="tussentijds">
+              <label for="rv-vgl" data-e="rentevast:berekenen.label8" set:html={t('berekenen.label8')}></label>
+              <div class="rt-invoer"><input id="rv-vgl" type="text" inputmode="decimal" autocomplete="off" data-veld="renteVgl" data-soort="pct" data-min="0" data-max="15" data-optioneel placeholder="Gelijk aan hierboven"><span aria-hidden="true">%</span></div>
+              <p class="rt-hint" data-e="rentevast:berekenen.p10" set:html={t('berekenen.p10')}></p>
+            </div>
+          </div>
+          <div class="rt-veld" data-voor="aflopen">
+            <p class="rt-label" id="lbl-periode" data-e="rentevast:berekenen.p11" set:html={t('berekenen.p11')}></p>
+            <div class="rt-keuzes" role="radiogroup" aria-labelledby="lbl-periode">
+              <button type="button" class="rt-keuze" role="radio" data-kies="periode" data-getal data-waarde="5" data-e="rentevast:berekenen.button7" set:html={t('berekenen.button7')}></button>
+              <button type="button" class="rt-keuze" role="radio" data-kies="periode" data-getal data-waarde="10" data-e="rentevast:berekenen.button8" set:html={t('berekenen.button8')}></button>
+              <button type="button" class="rt-keuze" role="radio" data-kies="periode" data-getal data-waarde="15" data-e="rentevast:berekenen.button9" set:html={t('berekenen.button9')}></button>
+              <button type="button" class="rt-keuze" role="radio" data-kies="periode" data-getal data-waarde="20" data-e="rentevast:berekenen.button10" set:html={t('berekenen.button10')}></button>
+            </div>
+          </div>
+          <details class="rt-uitklap"><summary data-e="rentevast:berekenen.summary1" set:html={t('berekenen.summary1')}></summary><p data-e="rentevast:berekenen.p12" set:html={t('berekenen.p12')}></p></details>
+          <button type="button" class="btn btn-dark rt-verder" data-verder data-e="rentevast:berekenen.button11" set:html={t('berekenen.button11')}></button>
+        </div>
+      </li>
+
+      <li class="rt-blok" data-blok="kosten">
+        <div class="rt-blok-kop">
+          <span class="rt-blok-nr" aria-hidden="true">4</span>
+          <div class="rt-blok-titel"><h3 data-e="rentevast:berekenen.h34" set:html={t('berekenen.h34')}></h3><p class="rt-blok-samenvatting" data-samenvatting></p></div>
+          <button type="button" class="rt-wijzig" data-wijzig data-e="rentevast:berekenen.button12" set:html={t('berekenen.button12')}></button>
+        </div>
+        <div class="rt-blok-inhoud">
+          <div class="rt-veld rt-veld--smal">
+            <label for="rv-kosten" data-e="rentevast:berekenen.label9" set:html={t('berekenen.label9')}></label>
+            <div class="rt-invoer"><span aria-hidden="true">€</span><input id="rv-kosten" type="text" inputmode="numeric" autocomplete="off" data-veld="kosten" data-soort="euro" data-min="0" data-max="50000"></div>
+          </div>
+          <p class="rt-hint" data-e="rentevast:berekenen.p13" set:html={t('berekenen.p13')}></p>
+          <button type="button" class="btn btn-dark rt-verder" data-verder data-e="rentevast:berekenen.button13" set:html={t('berekenen.button13')}></button>
+        </div>
+      </li>
+    </ol>
+
+    
+    <div class="rt-kaart rt-verloop" data-verloop hidden>
+      <div class="rt-verloop-kop"><h3 data-uit="balkenTitel" data-e="rentevast:berekenen.h35" set:html={t('berekenen.h35')}></h3></div>
+      <div class="rt-balken" data-balken></div>
+      <p class="rt-verloop-tekst" data-uit="balkenTekst"></p>
+    </div>
+    </div>
+
+    <aside class="rt-zij" aria-label="Jouw vergelijking">
+      <div class="rt-kaart rt-berekening" aria-live="polite">
+        <h3 data-e="rentevast:rt-zij.h31" set:html={t('rt-zij.h31')}></h3>
+        <div class="rt-leeg" data-leeg><p data-e="rentevast:rt-zij.p1" set:html={t('rt-zij.p1')}></p></div>
+        <div class="rt-cijfers" data-cijfers hidden>
+          <p class="rt-netto-label" data-uit="hoofdLabel" data-e="rentevast:rt-zij.p2" set:html={t('rt-zij.p2')}></p>
+          <p class="rt-netto" data-e="rentevast:rt-zij.p3" set:html={t('rt-zij.p3')}></p>
+          <p class="rt-oordeel" data-uit="oordeel"></p>
+          <dl class="rt-opbouw" data-rijen></dl>
+        </div>
+        <p class="rt-disclaimer" data-e="rentevast:rt-zij.p4" set:html={t('rt-zij.p4')}></p>
+      </div>
+
+      <div class="rt-kaart rt-kennismaking">
+        <h3 data-e="rentevast:rt-zij.h32" set:html={t('rt-zij.h32')}></h3>
+        <ul class="rt-vinkjes">
+          <li data-e="rentevast:rt-zij.li1" set:html={t('rt-zij.li1')}></li>
+          <li data-e="rentevast:rt-zij.li2" set:html={t('rt-zij.li2')}></li>
+          <li data-e="rentevast:rt-zij.li3" set:html={t('rt-zij.li3')}></li>
+        </ul>
+        <a href="/contact#formulier" class="btn btn-dark rt-bespreek" data-e="rentevast:rt-zij.a1" set:html={t('rt-zij.a1')}></a>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="faq rt-uitleg container" id="uitleg">
+  <div class="faq-side">
+    <span class="eyebrow" data-e="rentevast:uitleg.span1" set:html={t('uitleg.span1')}></span>
+    <h2 data-e="rentevast:uitleg.h21" set:html={t('uitleg.h21')}></h2>
+    <p data-e="rentevast:uitleg.p1" set:html={t('uitleg.p1')}></p>
+    <a href="/contact#formulier" class="btn btn-dark" data-e="rentevast:uitleg.a1" set:html={t('uitleg.a1')}></a>
+  </div>
+  <div class="faq-list">
+    <details open><summary data-e="rentevast:uitleg.summary1" set:html={t('uitleg.summary1')}></summary><p data-e="rentevast:uitleg.p2" set:html={t('uitleg.p2')}></p></details>
+    <details><summary data-e="rentevast:uitleg.summary2" set:html={t('uitleg.summary2')}></summary><p data-e="rentevast:uitleg.p3" set:html={t('uitleg.p3')}></p></details>
+    <details><summary data-e="rentevast:uitleg.summary3" set:html={t('uitleg.summary3')}></summary><p data-e="rentevast:uitleg.p4" set:html={t('uitleg.p4')}></p></details>
+    <details><summary data-e="rentevast:uitleg.summary4" set:html={t('uitleg.summary4')}></summary><p data-e="rentevast:uitleg.p5" set:html={t('uitleg.p5')}></p></details>
+    <details><summary data-e="rentevast:uitleg.summary5" set:html={t('uitleg.summary5')}></summary><p data-e="rentevast:uitleg.p6" set:html={t('uitleg.p6')}></p></details>
+    <details><summary data-e="rentevast:uitleg.summary6" set:html={t('uitleg.summary6')}></summary><p data-e="rentevast:uitleg.p7" set:html={t('uitleg.p7')}></p></details>
+  </div>
+</section>
+
+</main>
+
+<Footer />
+<script>
+  import '../scripts/normen.js';
+  import '../scripts/rekentool-stappen.js';
+  import '../scripts/rentevast.js';
+</script>
+</Base>

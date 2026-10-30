@@ -1,0 +1,97 @@
+/* KREDIETEN (laad na styles.css, pagina.css en verzekeringen.css)
+   Hergebruikt .samen en de FAQ-maat van verzekeringen. Volgorde: kopfoto, waarschuwing,
+   eerst kijken wat past (zand), waarvoor als slider (beige), lening of hypotheek (zand),
+   hoe het werkt (tijdlijn), FAQ, footer. */
+
+/* Kopfoto: woonkamer, tekst links; geen banklogo-balk (dat zijn hypotheekverstrekkers), dus minder ruimte onderin */
+.hero-slide--kredieten { background-position: center 60%; }
+.hero--pagina .hero-content { padding-bottom: 96px; }
+.hero--pagina .hero-review:nth-child(1), .hero--pagina .hero-review:nth-child(2) { bottom: 96px; }
+.hero--pagina .hero-content .btn-row { margin-top: 34px; }
+@media (max-width: 767px) {
+  .hero--pagina .hero-content { padding-bottom: 64px; }
+}
+
+/* Kredietwaarschuwing bovenaan: smalle witte strook over de volle breedte met de officiële AFM-balk.
+   Het zwevende menu staat eronder zolang je bovenaan bent; na scrollen schuift het terug naar boven (html.voorbij-balk, script.js). */
+:root { --waarschuwing: 52px; }
+.krediet-waarschuwing {
+  height: var(--waarschuwing); display: flex; align-items: center; justify-content: center;
+  background: var(--white); border-bottom: 1px solid rgba(8, 21, 52, .15); padding: 0 16px;
+}
+.krediet-waarschuwing picture { display: block; height: 100%; padding: 9px 0; }
+.krediet-waarschuwing img { display: block; height: 100%; width: auto; max-width: 100%; }
+.nav { top: calc(var(--waarschuwing) + 24px); transition: top .25s ease, box-shadow .4s ease; }
+.voorbij-balk .nav { top: 24px; }
+@media (max-width: 1024px) {
+  .menu-knop { top: calc(36px + var(--waarschuwing) + 20px) !important; }
+  .voorbij-balk .menu-knop { top: 20px !important; }
+}
+.krediet-waarschuwing-voet { margin: -20px 0 36px; font-size: 17px; color: var(--white); }
+.krediet-waarschuwing-voet strong { font-weight: 500; }
+
+
+/* Kopmaat voor Lening of hypotheek */
+.keuze h2 { font-size: var(--h2); font-weight: 400; line-height: 1.1; letter-spacing: -1px; }
+.keuze h2 b { font-family: "Libre Caslon Text", Georgia, serif; font-weight: 400; letter-spacing: -.04em; }
+
+/* ===== WAARVOOR: slider uit styles.css (.diensten), alleen de achtergrond is anders ===== */
+.diensten--kredieten { background: var(--beige); }
+
+
+/* ===== LENING OF HYPOTHEEK: twee kolommen, de hypotheekroute op inkt ===== */
+.keuze { padding-top: var(--sectie); padding-bottom: var(--sectie); }
+.keuze-kop { text-align: center; max-width: 760px; margin: 0 auto 64px; }
+.keuze-kop h2 { margin-bottom: 20px; }
+.keuze-kop p { font-size: var(--intro); line-height: 1.5; color: rgba(8, 21, 52, .75); }
+.keuze-kolommen { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 1160px; margin: 0 auto; }
+.keuze-kolom { background: var(--linnen); padding: 52px 48px 48px; }
+.keuze-label { display: block; font-size: 11px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--rozenhout); margin-bottom: 14px; }
+.keuze-kolom h3 { font-size: 32px; font-weight: 400; letter-spacing: -.5px; margin-bottom: 28px; }
+.keuze-kolom ul { list-style: none; }
+.keuze-kolom li {
+  position: relative; padding: 14px 0 14px 28px;
+  border-top: 1px solid rgba(8, 21, 52, .15);
+  font-size: 16px; line-height: 1.5;
+}
+.keuze-kolom li::before { content: ""; position: absolute; left: 2px; top: 23px; width: 8px; height: 8px; border-radius: 50%; background: var(--rozenhout); }
+.keuze-kolom--donker { background: var(--inkt); color: var(--white); }
+.keuze-kolom--donker .keuze-label, .keuze-kolom--donker h3 { color: var(--kameel); }
+.keuze-kolom--donker li { border-top-color: rgba(255, 255, 255, .18); color: rgba(255, 255, 255, .85); }
+.keuze-kolom--donker li::before { background: var(--kameel); }
+.keuze-link { display: inline-flex; align-items: center; gap: 10px; margin-top: 28px; font-size: 16px; font-weight: 500; color: var(--white); border-bottom: 1px solid rgba(255, 255, 255, .5); padding-bottom: 4px; }
+.keuze-link:hover { border-bottom-color: var(--white); }
+
+/* ===== AANBIEDERS: zes logo's in witte vakken ===== */
+.aanbieders { background: var(--beige); padding-top: var(--sectie); padding-bottom: var(--sectie); }
+.aanbieders h2 { font-size: var(--h2); font-weight: 400; line-height: 1.1; letter-spacing: -1px; margin-bottom: 20px; }
+.aanbieders h2 b { font-family: "Libre Caslon Text", Georgia, serif; font-weight: 400; letter-spacing: -.04em; }
+.aanbieders-kop { text-align: center; max-width: 760px; margin: 0 auto 64px; }
+.aanbieders-kop p { font-size: var(--intro); line-height: 1.5; color: rgba(8, 21, 52, .75); }
+.aanbieders-lijst { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; max-width: 1160px; margin: 0 auto; }
+.aanbieders-lijst li { background: var(--white); height: 150px; display: grid; place-items: center; padding: 28px 40px; }
+.aanbieders-lijst img { max-width: 100%; max-height: 64px; object-fit: contain; }
+@media (max-width: 767px) {
+  .aanbieders-kop { margin-bottom: 40px; }
+  .aanbieders-lijst { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .aanbieders-lijst li { height: 104px; padding: 20px; }
+  .aanbieders-lijst img { max-height: 40px !important; }
+}
+
+/* ===== FAQ ===== */
+.faq--kredieten { padding-top: var(--sectie); padding-bottom: var(--sectie); }
+.faq--kredieten h2 { font-size: var(--h2); }
+.faq--kredieten .faq-side p { margin-bottom: 0; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .keuze-kolommen { grid-template-columns: 1fr; }
+}
+@media (max-width: 767px) {
+  :root { --waarschuwing: 56px; }
+  .keuze-kolom { padding: 36px 22px 32px; }
+  .keuze-kolom h3 { font-size: 26px; margin-bottom: 20px; }
+}
+
+/* Lenen met advies: zelfde beige als Waarvoor eronder */
+.samen { background: var(--beige); }

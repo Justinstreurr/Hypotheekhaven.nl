@@ -1,0 +1,190 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import HeroReviews from '../components/HeroReviews.astro';
+import Footer from '../components/Footer.astro';
+import { laadPagina } from '../lib/content';
+import '../styles/pagina.css';
+import '../styles/rekentool.css';
+
+const { t, bg, meta, achtergronden } = await laadPagina('checklist');
+---
+<Base pagina="checklist" meta={meta} preload={achtergronden['hero.foto1']}>
+<header class="hero hero--pagina hero--rekentool">
+  <div class="hero-slides">
+    <div class="hero-slide hero-slide--rekentool is-active" {...bg('hero.foto1', 'background-image', '')}></div>
+  </div>
+  <div class="hero-overlay"></div>
+
+  
+
+  <Header />
+
+  <div class="hero-content">
+    <nav class="kruimelpad" aria-label="Kruimelpad"><a href="/" data-e="checklist:hero.a1" set:html={t('hero.a1')}></a><span aria-hidden="true">/</span><span data-e="checklist:hero.span1" set:html={t('hero.span1')}></span><span aria-hidden="true">/</span><span data-e="checklist:hero.span2" set:html={t('hero.span2')}></span></nav>
+    <h1 data-e="checklist:hero.h11" set:html={t('hero.h11')}></h1>
+    <p data-e="checklist:hero.p1" set:html={t('hero.p1')}></p>
+  </div>
+  <HeroReviews />
+</header>
+
+<main>
+
+<section class="rekentool container" id="checklist" aria-label="Documentenchecklist">
+  <h2 class="sr-only">Documentenchecklist</h2>
+  <noscript><p class="rt-noscript" data-e="checklist:checklist.p1" set:html={t('checklist.p1')}></p></noscript>
+
+  <div class="rt">
+    <div class="rt-hoofd">
+    <ol class="rt-stappen">
+      <li class="rt-blok" data-blok="situatie" data-direct>
+        <div class="rt-blok-kop">
+          <span class="rt-blok-nr" aria-hidden="true">1</span>
+          <div class="rt-blok-titel"><h3 data-e="checklist:checklist.h31" set:html={t('checklist.h31')}></h3><p class="rt-blok-samenvatting" data-samenvatting></p></div>
+          <button type="button" class="rt-wijzig" data-wijzig data-e="checklist:checklist.button1" set:html={t('checklist.button1')}></button>
+        </div>
+        <div class="rt-blok-inhoud">
+          <p class="rt-label" id="lbl-situatie" data-e="checklist:checklist.p2" set:html={t('checklist.p2')}></p>
+          <div class="rt-keuzes rt-keuzes--groot" role="radiogroup" aria-labelledby="lbl-situatie">
+            <button type="button" class="rt-keuze" role="radio" aria-checked="false" data-kies="situatie" data-waarde="eerste">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 22 24 9l16 13"></path><path d="M12 19v20h24V19"></path><path d="M21 39v-9h6v9"></path><path d="M37 7v8M33 11h8"></path></svg>
+              <span data-e="checklist:checklist.span1" set:html={t('checklist.span1')}></span>
+            </button>
+            <button type="button" class="rt-keuze" role="radio" aria-checked="false" data-kies="situatie" data-waarde="volgend">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M4 26 16 16l12 10"></path><path d="M7 24v14h18V24"></path><path d="M24 18 34 10l10 8"></path><path d="M27 16v-1M41 16v22H31"></path></svg>
+              <span data-e="checklist:checklist.span2" set:html={t('checklist.span2')}></span>
+            </button>
+            <button type="button" class="rt-keuze" role="radio" aria-checked="false" data-kies="situatie" data-waarde="oversluiten">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 18h26l-6-6M38 30H12l6 6"></path></svg>
+              <span data-e="checklist:checklist.span3" set:html={t('checklist.span3')}></span>
+            </button>
+            <button type="button" class="rt-keuze" role="radio" aria-checked="false" data-kies="situatie" data-waarde="scheiden">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 22 24 9l16 13"></path><path d="M12 19v20h24V19"></path><path d="M24 19v20" stroke-dasharray="3 3"></path></svg>
+              <span data-e="checklist:checklist.span4" set:html={t('checklist.span4')}></span>
+            </button>
+          </div>
+        </div>
+      </li>
+
+      <li class="rt-blok" data-blok="inkomen">
+        <div class="rt-blok-kop">
+          <span class="rt-blok-nr" aria-hidden="true">2</span>
+          <div class="rt-blok-titel"><h3 data-e="checklist:checklist.h32" set:html={t('checklist.h32')}></h3><p class="rt-blok-samenvatting" data-samenvatting></p></div>
+          <button type="button" class="rt-wijzig" data-wijzig data-e="checklist:checklist.button2" set:html={t('checklist.button2')}></button>
+        </div>
+        <div class="rt-blok-inhoud">
+          <div class="rt-veld">
+            <p class="rt-label" id="lbl-samen" data-e="checklist:checklist.p3" set:html={t('checklist.p3')}></p>
+            <div class="rt-keuzes" role="radiogroup" aria-labelledby="lbl-samen">
+              <button type="button" class="rt-keuze" role="radio" data-kies="samen" data-waarde="alleen" data-e="checklist:checklist.button3" set:html={t('checklist.button3')}></button>
+              <button type="button" class="rt-keuze" role="radio" data-kies="samen" data-waarde="samen" data-e="checklist:checklist.button4" set:html={t('checklist.button4')}></button>
+            </div>
+          </div>
+          <div class="rt-veld">
+            <p class="rt-label" id="lbl-inkomen" data-e="checklist:checklist.p4" set:html={t('checklist.p4')}></p>
+            <div class="rt-keuzes rt-keuzes--wrap" role="group" aria-labelledby="lbl-inkomen">
+              <button type="button" class="rt-keuze" role="checkbox" data-meer="inkomen" data-waarde="vast" data-e="checklist:checklist.button5" set:html={t('checklist.button5')}></button>
+              <button type="button" class="rt-keuze" role="checkbox" data-meer="inkomen" data-waarde="tijdelijk" data-e="checklist:checklist.button6" set:html={t('checklist.button6')}></button>
+              <button type="button" class="rt-keuze" role="checkbox" data-meer="inkomen" data-waarde="flex" data-e="checklist:checklist.button7" set:html={t('checklist.button7')}></button>
+              <button type="button" class="rt-keuze" role="checkbox" data-meer="inkomen" data-waarde="ondernemer" data-e="checklist:checklist.button8" set:html={t('checklist.button8')}></button>
+              <button type="button" class="rt-keuze" role="checkbox" data-meer="inkomen" data-waarde="dga" data-e="checklist:checklist.button9" set:html={t('checklist.button9')}></button>
+              <button type="button" class="rt-keuze" role="checkbox" data-meer="inkomen" data-waarde="pensioen" data-e="checklist:checklist.button10" set:html={t('checklist.button10')}></button>
+              <button type="button" class="rt-keuze" role="checkbox" data-meer="inkomen" data-waarde="uitkering" data-e="checklist:checklist.button11" set:html={t('checklist.button11')}></button>
+            </div>
+            <p class="rt-fout" data-fout hidden data-e="checklist:checklist.p5" set:html={t('checklist.p5')}></p>
+          </div>
+          <button type="button" class="btn btn-dark rt-verder" data-verder data-e="checklist:checklist.button12" set:html={t('checklist.button12')}></button>
+        </div>
+      </li>
+
+      <li class="rt-blok" data-blok="extra">
+        <div class="rt-blok-kop">
+          <span class="rt-blok-nr" aria-hidden="true">3</span>
+          <div class="rt-blok-titel"><h3 data-e="checklist:checklist.h33" set:html={t('checklist.h33')}></h3><p class="rt-blok-samenvatting" data-samenvatting></p></div>
+          <button type="button" class="rt-wijzig" data-wijzig data-e="checklist:checklist.button13" set:html={t('checklist.button13')}></button>
+        </div>
+        <div class="rt-blok-inhoud">
+          <p class="rt-label" id="lbl-extra" data-e="checklist:checklist.p6" set:html={t('checklist.p6')}></p>
+          <div class="rt-keuzes rt-keuzes--wrap" role="group" aria-labelledby="lbl-extra">
+            <button type="button" class="rt-keuze" role="checkbox" data-meer="extra" data-waarde="nieuwbouw" data-voor="eerste volgend" data-e="checklist:checklist.button14" set:html={t('checklist.button14')}></button>
+            <button type="button" class="rt-keuze" role="checkbox" data-meer="extra" data-waarde="verbouwen" data-e="checklist:checklist.button15" set:html={t('checklist.button15')}></button>
+            <button type="button" class="rt-keuze" role="checkbox" data-meer="extra" data-waarde="verkopen" data-voor="volgend" data-e="checklist:checklist.button16" set:html={t('checklist.button16')}></button>
+            <button type="button" class="rt-keuze" role="checkbox" data-meer="extra" data-waarde="eigengeld" data-voor="eerste volgend scheiden" data-e="checklist:checklist.button17" set:html={t('checklist.button17')}></button>
+            <button type="button" class="rt-keuze" role="checkbox" data-meer="extra" data-waarde="schenking" data-voor="eerste volgend scheiden" data-e="checklist:checklist.button18" set:html={t('checklist.button18')}></button>
+            <button type="button" class="rt-keuze" role="checkbox" data-meer="extra" data-waarde="studieschuld" data-e="checklist:checklist.button19" set:html={t('checklist.button19')}></button>
+            <button type="button" class="rt-keuze" role="checkbox" data-meer="extra" data-waarde="leningen" data-e="checklist:checklist.button20" set:html={t('checklist.button20')}></button>
+            <button type="button" class="rt-keuze" role="checkbox" data-meer="extra" data-waarde="alimentatie" data-e="checklist:checklist.button21" set:html={t('checklist.button21')}></button>
+            <button type="button" class="rt-keuze" role="checkbox" data-meer="extra" data-waarde="erfpacht" data-e="checklist:checklist.button22" set:html={t('checklist.button22')}></button>
+            <button type="button" class="rt-keuze" role="checkbox" data-meer="extra" data-waarde="geen" data-e="checklist:checklist.button23" set:html={t('checklist.button23')}></button>
+          </div>
+          <button type="button" class="btn btn-dark rt-verder" data-verder data-e="checklist:checklist.button24" set:html={t('checklist.button24')}></button>
+        </div>
+      </li>
+    </ol>
+
+    
+    <div class="rt-kaart rt-lijst" data-lijst hidden>
+      <div class="rt-lijst-kop">
+        <h3 data-e="checklist:checklist.h34" set:html={t('checklist.h34')}></h3>
+        <p data-uit="lijstIntro"></p>
+      </div>
+      <div data-groepen></div>
+    </div>
+    </div>
+
+    <aside class="rt-zij" aria-label="Jouw voortgang">
+      <div class="rt-kaart rt-berekening" aria-live="polite">
+        <h3 data-e="checklist:rt-zij.h31" set:html={t('rt-zij.h31')}></h3>
+        <div class="rt-leeg" data-leeg><p data-e="checklist:rt-zij.p1" set:html={t('rt-zij.p1')}></p></div>
+        <div class="rt-cijfers" data-cijfers hidden>
+          <p class="rt-netto-label" data-e="checklist:rt-zij.p2" set:html={t('rt-zij.p2')}></p>
+          <p class="rt-netto rt-netto--teller" data-e="checklist:rt-zij.p3" set:html={t('rt-zij.p3')}></p>
+          <div class="rt-voortgang" aria-hidden="true"><span data-voortgang></span></div>
+          <p class="rt-oordeel" data-uit="voortgangTekst"></p>
+          <button type="button" class="btn btn-light rt-print" data-print data-e="checklist:rt-zij.button1" set:html={t('rt-zij.button1')}></button>
+        </div>
+        <p class="rt-disclaimer" data-e="checklist:rt-zij.p4" set:html={t('rt-zij.p4')}></p>
+      </div>
+
+      <div class="rt-kaart rt-tip">
+        <h3 data-e="checklist:rt-zij.h32" set:html={t('rt-zij.h32')}></h3>
+        <p data-e="checklist:rt-zij.p5" set:html={t('rt-zij.p5')}></p>
+      </div>
+
+      <div class="rt-kaart rt-kennismaking">
+        <h3 data-e="checklist:rt-zij.h33" set:html={t('rt-zij.h33')}></h3>
+        <ul class="rt-vinkjes">
+          <li data-e="checklist:rt-zij.li1" set:html={t('rt-zij.li1')}></li>
+          <li data-e="checklist:rt-zij.li2" set:html={t('rt-zij.li2')}></li>
+          <li data-e="checklist:rt-zij.li3" set:html={t('rt-zij.li3')}></li>
+        </ul>
+        <a href="/contact#formulier" class="btn btn-dark rt-bespreek" data-e="checklist:rt-zij.a1" set:html={t('rt-zij.a1')}></a>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="faq rt-uitleg container" id="uitleg">
+  <div class="faq-side">
+    <span class="eyebrow" data-e="checklist:uitleg.span1" set:html={t('uitleg.span1')}></span>
+    <h2 data-e="checklist:uitleg.h21" set:html={t('uitleg.h21')}></h2>
+    <p data-e="checklist:uitleg.p1" set:html={t('uitleg.p1')}></p>
+    <a href="/contact#formulier" class="btn btn-dark" data-e="checklist:uitleg.a1" set:html={t('uitleg.a1')}></a>
+  </div>
+  <div class="faq-list">
+    <details open><summary data-e="checklist:uitleg.summary1" set:html={t('uitleg.summary1')}></summary><p data-e="checklist:uitleg.p2" set:html={t('uitleg.p2')}></p></details>
+    <details><summary data-e="checklist:uitleg.summary2" set:html={t('uitleg.summary2')}></summary><p data-e="checklist:uitleg.p3" set:html={t('uitleg.p3')}></p></details>
+    <details><summary data-e="checklist:uitleg.summary3" set:html={t('uitleg.summary3')}></summary><p data-e="checklist:uitleg.p4" set:html={t('uitleg.p4')}></p></details>
+    <details><summary data-e="checklist:uitleg.summary4" set:html={t('uitleg.summary4')}></summary><p data-e="checklist:uitleg.p5" set:html={t('uitleg.p5')}></p></details>
+    <details><summary data-e="checklist:uitleg.summary5" set:html={t('uitleg.summary5')}></summary><p data-e="checklist:uitleg.p6" set:html={t('uitleg.p6')}></p></details>
+  </div>
+</section>
+
+</main>
+
+<Footer />
+<script>
+  import '../scripts/rekentool-stappen.js';
+  import '../scripts/checklist.js';
+</script>
+</Base>

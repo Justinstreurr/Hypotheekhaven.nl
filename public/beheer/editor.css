@@ -1,0 +1,76 @@
+/* Bewerkmodus: alleen geladen voor wie is ingelogd */
+.hh-bewerk { --hh-accent: #8E4F4B; --hh-groen: #2f7a3d; --hh-inkt: #081534; }
+.hh-bewerk body { padding-bottom: 72px; }
+
+.hh-bewerk:not(.hh-bekijk) [data-e],
+.hh-bewerk:not(.hh-bekijk) [data-ei],
+.hh-bewerk:not(.hh-bekijk) [data-ea] { cursor: pointer; }
+.hh-bewerk:not(.hh-bekijk) [data-e]:hover,
+.hh-bewerk:not(.hh-bekijk) [data-ei]:hover,
+.hh-bewerk:not(.hh-bekijk) [data-ea]:hover { outline: 2px dashed var(--hh-accent); outline-offset: 3px; }
+.hh-bewerk [data-e].hh-actief { outline: 2px solid var(--hh-accent) !important; outline-offset: 4px; cursor: text; background-color: rgba(255, 255, 255, .08); }
+.hh-bewerk .hh-gewijzigd { outline: 2px solid var(--hh-groen) !important; outline-offset: 3px; }
+.hh-bewerk [data-e].hh-actief [contenteditable="false"] { pointer-events: none; }
+
+.hh-balk {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 2147483000;
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  padding: 12px 18px; background: var(--hh-inkt); color: #fff;
+  font: 500 14px/1.2 system-ui, -apple-system, "Segoe UI", sans-serif; box-shadow: 0 -8px 30px rgba(0, 0, 0, .25);
+}
+.hh-label { font-weight: 700; letter-spacing: .02em; margin-right: 6px; }
+.hh-ruimte { flex: 1; }
+.hh-teller { opacity: .85; }
+.hh-knop {
+  height: 38px; padding: 0 16px; border: 1px solid rgba(255, 255, 255, .35); background: transparent; color: inherit;
+  font: inherit; cursor: pointer; border-radius: 2px;
+}
+.hh-knop:hover { background: rgba(255, 255, 255, .1); }
+.hh-knop--hoofd { background: var(--hh-accent); border-color: var(--hh-accent); color: #fff; }
+.hh-knop--hoofd:hover { background: #763F3C; }
+.hh-knop:disabled { opacity: .45; cursor: default; }
+.hh-knop--stil { border-color: transparent; text-decoration: underline; }
+.hh-schakel { display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 12px; border: 0; background: rgba(255, 255, 255, .08); color: inherit; font: inherit; cursor: pointer; border-radius: 2px; }
+.hh-schakel-bol { width: 30px; height: 18px; border-radius: 9px; background: rgba(255, 255, 255, .3); position: relative; transition: background .2s; }
+.hh-schakel-bol::after { content: ""; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: #fff; transition: transform .2s; }
+.hh-schakel.is-aan .hh-schakel-bol { background: var(--hh-groen); }
+.hh-schakel.is-aan .hh-schakel-bol::after { transform: translateX(12px); }
+
+.hh-mini {
+  position: absolute; z-index: 2147483001; display: flex; gap: 2px; padding: 4px; background: var(--hh-inkt);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .25); border-radius: 3px;
+}
+.hh-mini-knop { min-width: 34px; height: 32px; padding: 0 10px; border: 0; background: transparent; color: #fff; font: 500 13px system-ui, sans-serif; cursor: pointer; border-radius: 2px; }
+.hh-mini-knop:hover { background: rgba(255, 255, 255, .15); }
+
+.hh-paneel { position: fixed; inset: 0; z-index: 2147483002; display: grid; place-items: center; padding: 20px; background: rgba(8, 21, 52, .55); }
+.hh-paneel-doos {
+  width: 100%; max-width: 520px; max-height: calc(100vh - 40px); overflow: auto; padding: 28px; background: #fff; color: var(--hh-inkt);
+  font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; text-align: left;
+}
+.hh-paneel-doos h2 { font: 600 20px/1.2 system-ui, sans-serif; margin: 0 0 12px; }
+.hh-paneel-doos .hh-knop { border-color: #cfc6bb; color: var(--hh-inkt); }
+.hh-paneel-doos .hh-knop--hoofd { color: #fff; border-color: var(--hh-accent); }
+.hh-paneel-knoppen { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
+.hh-uitleg { margin: 0 0 14px; color: rgba(8, 21, 52, .7); }
+.hh-veldlabel { display: block; margin: 16px 0 6px; font-weight: 600; }
+.hh-veld { display: block; width: 100%; padding: 10px 12px; border: 1px solid #cfc6bb; font: inherit; color: inherit; background: #fff; resize: vertical; }
+.hh-tel { display: block; margin-top: 4px; font-size: 13px; color: rgba(8, 21, 52, .6); }
+.hh-tel.is-lang { color: #a12a2a; }
+.hh-voorbeeld { height: 240px; margin-bottom: 12px; background: #eee center / contain no-repeat; }
+.hh-verborgen { display: none; }
+.hh-fotolijst { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+.hh-foto { aspect-ratio: 4 / 3; border: 2px solid transparent; background: #eee center / cover; cursor: pointer; }
+.hh-foto:hover { border-color: var(--hh-accent); }
+
+.hh-melding {
+  position: fixed; left: 50%; bottom: 84px; z-index: 2147483003; transform: translateX(-50%); max-width: calc(100vw - 32px);
+  padding: 14px 20px; background: var(--hh-groen); color: #fff; font: 500 15px/1.4 system-ui, sans-serif; box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+}
+.hh-melding--fout { background: #a12a2a; }
+
+@media (max-width: 767px) {
+  .hh-balk { gap: 6px; padding: 8px 10px; font-size: 13px; }
+  .hh-label, .hh-ruimte { display: none; }
+  .hh-knop { height: 34px; padding: 0 10px; }
+}

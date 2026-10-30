@@ -1,0 +1,219 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import HeroReviews from '../components/HeroReviews.astro';
+import Footer from '../components/Footer.astro';
+import { laadPagina } from '../lib/content';
+import '../styles/pagina.css';
+import '../styles/rekentool.css';
+
+const { t, bg, meta, achtergronden } = await laadPagina('maandlasten');
+---
+<Base pagina="maandlasten" meta={meta} preload={achtergronden['hero.foto1']}>
+<header class="hero hero--pagina hero--rekentool">
+  <div class="hero-slides">
+    <div class="hero-slide hero-slide--rekentool is-active" {...bg('hero.foto1', 'background-image', '')}></div>
+  </div>
+  <div class="hero-overlay"></div>
+
+  
+
+  <Header />
+
+  <div class="hero-content">
+    <nav class="kruimelpad" aria-label="Kruimelpad"><a href="/" data-e="maandlasten:hero.a1" set:html={t('hero.a1')}></a><span aria-hidden="true">/</span><span data-e="maandlasten:hero.span1" set:html={t('hero.span1')}></span><span aria-hidden="true">/</span><span data-e="maandlasten:hero.span2" set:html={t('hero.span2')}></span></nav>
+    <h1 data-e="maandlasten:hero.h11" set:html={t('hero.h11')}></h1>
+    <p data-e="maandlasten:hero.p1" set:html={t('hero.p1')}></p>
+  </div>
+  <HeroReviews />
+</header>
+
+<main>
+
+<section class="rekentool container" id="berekenen" aria-label="Rekentool maandlasten">
+  <h2 class="sr-only">Rekentool maandlasten</h2>
+  <noscript><p class="rt-noscript" data-e="maandlasten:berekenen.p1" set:html={t('berekenen.p1')}></p></noscript>
+
+  <div class="rt">
+    
+    <div class="rt-hoofd">
+    <ol class="rt-stappen">
+      <li class="rt-blok" data-blok="situatie">
+        <div class="rt-blok-kop">
+          <span class="rt-blok-nr" aria-hidden="true">1</span>
+          <div class="rt-blok-titel"><h3 data-e="maandlasten:berekenen.h31" set:html={t('berekenen.h31')}></h3><p class="rt-blok-samenvatting" data-samenvatting></p></div>
+          <button type="button" class="rt-wijzig" data-wijzig data-e="maandlasten:berekenen.button1" set:html={t('berekenen.button1')}></button>
+        </div>
+        <div class="rt-blok-inhoud">
+          <p class="rt-label" id="lbl-situatie" data-e="maandlasten:berekenen.p2" set:html={t('berekenen.p2')}></p>
+          <div class="rt-keuzes rt-keuzes--groot" role="radiogroup" aria-labelledby="lbl-situatie">
+            <button type="button" class="rt-keuze" role="radio" aria-checked="false" data-kies="situatie" data-waarde="kopen">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 22 24 9l16 13"></path><path d="M12 19v20h24V19"></path><path d="M21 39v-9h6v9"></path><path d="M37 7v8M33 11h8"></path></svg>
+              <span data-e="maandlasten:berekenen.span1" set:html={t('berekenen.span1')}></span>
+            </button>
+            <button type="button" class="rt-keuze" role="radio" aria-checked="false" data-kies="situatie" data-waarde="huidig">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 22 24 9l16 13"></path><path d="M12 19v20h24V19"></path><path d="m19 29 4 4 7-8"></path></svg>
+              <span data-e="maandlasten:berekenen.span2" set:html={t('berekenen.span2')}></span>
+            </button>
+          </div>
+        </div>
+      </li>
+
+      <li class="rt-blok" data-blok="bedragen">
+        <div class="rt-blok-kop">
+          <span class="rt-blok-nr" aria-hidden="true">2</span>
+          <div class="rt-blok-titel"><h3 data-titel-kopen="Het huis" data-titel-huidig="Je huis en hypotheek" data-e="maandlasten:berekenen.h32" set:html={t('berekenen.h32')}></h3><p class="rt-blok-samenvatting" data-samenvatting></p></div>
+          <button type="button" class="rt-wijzig" data-wijzig data-e="maandlasten:berekenen.button2" set:html={t('berekenen.button2')}></button>
+        </div>
+        <div class="rt-blok-inhoud">
+          <div class="rt-velden" data-voor="kopen">
+            <div class="rt-veld">
+              <label for="rt-koopsom" data-e="maandlasten:berekenen.label1" set:html={t('berekenen.label1')}></label>
+              <div class="rt-invoer"><span aria-hidden="true">€</span><input id="rt-koopsom" type="text" inputmode="numeric" autocomplete="off" data-veld="koopsom"></div>
+              <p class="rt-hint" data-e="maandlasten:berekenen.p3" set:html={t('berekenen.p3')}></p>
+            </div>
+            <div class="rt-veld">
+              <label for="rt-inleg" data-e="maandlasten:berekenen.label2" set:html={t('berekenen.label2')}></label>
+              <div class="rt-invoer"><span aria-hidden="true">€</span><input id="rt-inleg" type="text" inputmode="numeric" autocomplete="off" data-veld="inleg"></div>
+              <p class="rt-hint" data-e="maandlasten:berekenen.p4" set:html={t('berekenen.p4')}></p>
+              <p class="rt-fout" data-fout="inleg" hidden data-e="maandlasten:berekenen.p5" set:html={t('berekenen.p5')}></p>
+            </div>
+          </div>
+          <div class="rt-velden" data-voor="huidig">
+            <div class="rt-veld">
+              <label for="rt-schuld" data-e="maandlasten:berekenen.label3" set:html={t('berekenen.label3')}></label>
+              <div class="rt-invoer"><span aria-hidden="true">€</span><input id="rt-schuld" type="text" inputmode="numeric" autocomplete="off" data-veld="schuld"></div>
+              <p class="rt-hint" data-e="maandlasten:berekenen.p6" set:html={t('berekenen.p6')}></p>
+            </div>
+            <div class="rt-veld">
+              <label for="rt-woz" data-e="maandlasten:berekenen.label4" set:html={t('berekenen.label4')}></label>
+              <div class="rt-invoer"><span aria-hidden="true">€</span><input id="rt-woz" type="text" inputmode="numeric" autocomplete="off" data-veld="woz"></div>
+              <p class="rt-hint" data-e="maandlasten:berekenen.p7" set:html={t('berekenen.p7')}></p>
+            </div>
+          </div>
+          <details class="rt-uitklap" data-voor="kopen"><summary data-e="maandlasten:berekenen.summary1" set:html={t('berekenen.summary1')}></summary><p data-e="maandlasten:berekenen.p8" set:html={t('berekenen.p8')}></p></details>
+          <button type="button" class="btn btn-dark rt-verder" data-verder data-e="maandlasten:berekenen.button3" set:html={t('berekenen.button3')}></button>
+        </div>
+      </li>
+
+      <li class="rt-blok" data-blok="hypotheek">
+        <div class="rt-blok-kop">
+          <span class="rt-blok-nr" aria-hidden="true">3</span>
+          <div class="rt-blok-titel"><h3 data-e="maandlasten:berekenen.h33" set:html={t('berekenen.h33')}></h3><p class="rt-blok-samenvatting" data-samenvatting></p></div>
+          <button type="button" class="rt-wijzig" data-wijzig data-e="maandlasten:berekenen.button4" set:html={t('berekenen.button4')}></button>
+        </div>
+        <div class="rt-blok-inhoud">
+          <div class="rt-veld rt-veld--smal">
+            <label for="rt-rente" data-e="maandlasten:berekenen.label5" set:html={t('berekenen.label5')}></label>
+            <div class="rt-invoer"><input id="rt-rente" type="text" inputmode="decimal" autocomplete="off" data-veld="rente"><span aria-hidden="true">%</span></div>
+            <p class="rt-hint" data-e="maandlasten:berekenen.p9" set:html={t('berekenen.p9')}></p>
+          </div>
+          <div class="rt-veld">
+            <p class="rt-label" id="lbl-looptijd" data-label-kopen="Looptijd" data-label-huidig="Hoeveel jaar loopt je hypotheek nog?" data-e="maandlasten:berekenen.p10" set:html={t('berekenen.p10')}></p>
+            <div class="rt-keuzes" role="radiogroup" aria-labelledby="lbl-looptijd">
+              <button type="button" class="rt-keuze" role="radio" data-kies="looptijd" data-waarde="30" data-e="maandlasten:berekenen.button5" set:html={t('berekenen.button5')}></button>
+              <button type="button" class="rt-keuze" role="radio" data-kies="looptijd" data-waarde="25" data-e="maandlasten:berekenen.button6" set:html={t('berekenen.button6')}></button>
+              <button type="button" class="rt-keuze" role="radio" data-kies="looptijd" data-waarde="20" data-e="maandlasten:berekenen.button7" set:html={t('berekenen.button7')}></button>
+              <button type="button" class="rt-keuze" role="radio" data-kies="looptijd" data-waarde="15" data-e="maandlasten:berekenen.button8" set:html={t('berekenen.button8')}></button>
+              <button type="button" class="rt-keuze" role="radio" data-kies="looptijd" data-waarde="10" data-e="maandlasten:berekenen.button9" set:html={t('berekenen.button9')}></button>
+            </div>
+          </div>
+          <div class="rt-veld">
+            <p class="rt-label" id="lbl-vorm" data-e="maandlasten:berekenen.p11" set:html={t('berekenen.p11')}></p>
+            <div class="rt-keuzes" role="radiogroup" aria-labelledby="lbl-vorm">
+              <button type="button" class="rt-keuze" role="radio" data-kies="vorm" data-waarde="annuitair" data-e="maandlasten:berekenen.button10" set:html={t('berekenen.button10')}></button>
+              <button type="button" class="rt-keuze" role="radio" data-kies="vorm" data-waarde="lineair" data-e="maandlasten:berekenen.button11" set:html={t('berekenen.button11')}></button>
+            </div>
+            <p class="rt-hint" data-vorm-uitleg></p>
+          </div>
+          <button type="button" class="btn btn-dark rt-verder" data-verder data-e="maandlasten:berekenen.button12" set:html={t('berekenen.button12')}></button>
+        </div>
+      </li>
+
+      <li class="rt-blok" data-blok="inkomen">
+        <div class="rt-blok-kop">
+          <span class="rt-blok-nr" aria-hidden="true">4</span>
+          <div class="rt-blok-titel"><h3 data-e="maandlasten:berekenen.h34" set:html={t('berekenen.h34')}></h3><p class="rt-blok-samenvatting" data-samenvatting></p></div>
+          <button type="button" class="rt-wijzig" data-wijzig data-e="maandlasten:berekenen.button13" set:html={t('berekenen.button13')}></button>
+        </div>
+        <div class="rt-blok-inhoud">
+          <div class="rt-veld">
+            <label for="rt-inkomen" data-e="maandlasten:berekenen.label6" set:html={t('berekenen.label6')}></label>
+            <div class="rt-invoer"><span aria-hidden="true">€</span><input id="rt-inkomen" type="text" inputmode="numeric" autocomplete="off" placeholder="Bijvoorbeeld 55.000" data-veld="inkomen"></div>
+            <p class="rt-hint" data-e="maandlasten:berekenen.p12" set:html={t('berekenen.p12')}></p>
+          </div>
+          <button type="button" class="btn btn-dark rt-verder" data-verder data-e="maandlasten:berekenen.button14" set:html={t('berekenen.button14')}></button>
+        </div>
+      </li>
+    </ol>
+
+    <div class="rt-kaart rt-verloop" data-verloop hidden>
+        <div class="rt-verloop-kop">
+          <h3 data-e="maandlasten:berekenen.h35" set:html={t('berekenen.h35')}></h3>
+          <ul class="rt-legenda" aria-hidden="true"><li class="is-netto">Netto</li><li class="is-bruto">Bruto</li></ul>
+        </div>
+        <div class="rt-grafiek" data-grafiek></div>
+        <p class="rt-verloop-tekst" data-uit="verloop"></p>
+        <p class="rt-totaal" data-e="maandlasten:berekenen.p13" set:html={t('berekenen.p13')}></p>
+      </div>
+
+    </div>
+
+    
+    <aside class="rt-zij" aria-label="Jouw berekening">
+      <div class="rt-kaart rt-berekening" aria-live="polite">
+        <h3 data-e="maandlasten:rt-zij.h31" set:html={t('rt-zij.h31')}></h3>
+        <div class="rt-leeg" data-leeg><p data-e="maandlasten:rt-zij.p1" set:html={t('rt-zij.p1')}></p></div>
+        <div class="rt-cijfers" data-cijfers hidden>
+          <p class="rt-netto-label" data-e="maandlasten:rt-zij.p2" set:html={t('rt-zij.p2')}></p>
+          <p class="rt-netto" data-e="maandlasten:rt-zij.p3" set:html={t('rt-zij.p3')}></p>
+          <dl class="rt-opbouw">
+            <div><dt data-e="maandlasten:rt-zij.dt1" set:html={t('rt-zij.dt1')}></dt><dd data-e="maandlasten:rt-zij.dd1" set:html={t('rt-zij.dd1')}></dd></div>
+            <div><dt data-e="maandlasten:rt-zij.dt2" set:html={t('rt-zij.dt2')}></dt><dd data-e="maandlasten:rt-zij.dd2" set:html={t('rt-zij.dd2')}></dd></div>
+            <div><dt data-e="maandlasten:rt-zij.dt3" set:html={t('rt-zij.dt3')}></dt><dd data-e="maandlasten:rt-zij.dd3" set:html={t('rt-zij.dd3')}></dd></div>
+            <div class="rt-voordeel"><dt><span data-uit="voordeelLabel" data-e="maandlasten:rt-zij.span1" set:html={t('rt-zij.span1')}></span> <button type="button" class="rt-info" aria-label="Wat is het belastingvoordeel?" aria-expanded="false" aria-controls="rt-info-voordeel" data-e="maandlasten:rt-zij.button1" set:html={t('rt-zij.button1')}></button></dt><dd data-e="maandlasten:rt-zij.dd4" set:html={t('rt-zij.dd4')}></dd></div>
+            <div><dt data-e="maandlasten:rt-zij.dt4" set:html={t('rt-zij.dt4')}></dt><dd data-e="maandlasten:rt-zij.dd5" set:html={t('rt-zij.dd5')}></dd></div>
+          </dl>
+          <p class="rt-info-tekst" id="rt-info-voordeel" hidden data-e="maandlasten:rt-zij.p4" set:html={t('rt-zij.p4')}></p>
+        </div>
+        <p class="rt-disclaimer" data-e="maandlasten:rt-zij.p5" set:html={t('rt-zij.p5')}></p>
+      </div>
+
+      <div class="rt-kaart rt-kennismaking">
+        <h3 data-e="maandlasten:rt-zij.h32" set:html={t('rt-zij.h32')}></h3>
+        <ul class="rt-vinkjes">
+          <li data-e="maandlasten:rt-zij.li1" set:html={t('rt-zij.li1')}></li>
+          <li data-e="maandlasten:rt-zij.li2" set:html={t('rt-zij.li2')}></li>
+          <li data-e="maandlasten:rt-zij.li3" set:html={t('rt-zij.li3')}></li>
+        </ul>
+        <a href="/contact#formulier" class="btn btn-dark rt-bespreek" data-e="maandlasten:rt-zij.a1" set:html={t('rt-zij.a1')}></a>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="faq rt-uitleg container" id="uitleg">
+  <div class="faq-side">
+    <span class="eyebrow" data-e="maandlasten:uitleg.span1" set:html={t('uitleg.span1')}></span>
+    <h2 data-e="maandlasten:uitleg.h21" set:html={t('uitleg.h21')}></h2>
+    <p data-e="maandlasten:uitleg.p1" set:html={t('uitleg.p1')}></p>
+    <a href="/contact#formulier" class="btn btn-dark" data-e="maandlasten:uitleg.a1" set:html={t('uitleg.a1')}></a>
+  </div>
+  <div class="faq-list">
+    <details open><summary data-e="maandlasten:uitleg.summary1" set:html={t('uitleg.summary1')}></summary><p data-e="maandlasten:uitleg.p2" set:html={t('uitleg.p2')}></p></details>
+    <details><summary data-e="maandlasten:uitleg.summary2" set:html={t('uitleg.summary2')}></summary><p data-e="maandlasten:uitleg.p3" set:html={t('uitleg.p3')}></p></details>
+    <details><summary data-e="maandlasten:uitleg.summary3" set:html={t('uitleg.summary3')}></summary><p data-e="maandlasten:uitleg.p4" set:html={t('uitleg.p4')}></p></details>
+    <details><summary data-e="maandlasten:uitleg.summary4" set:html={t('uitleg.summary4')}></summary><p data-e="maandlasten:uitleg.p5" set:html={t('uitleg.p5')}></p></details>
+    <details><summary data-e="maandlasten:uitleg.summary5" set:html={t('uitleg.summary5')}></summary><p data-e="maandlasten:uitleg.p6" set:html={t('uitleg.p6')}></p></details>
+    <details><summary data-e="maandlasten:uitleg.summary6" set:html={t('uitleg.summary6')}></summary><p data-e="maandlasten:uitleg.p7" set:html={t('uitleg.p7')}></p></details>
+  </div>
+</section>
+
+</main>
+
+<Footer />
+<script>
+  import '../scripts/normen.js';
+  import '../scripts/maandlasten.js';
+</script>
+</Base>

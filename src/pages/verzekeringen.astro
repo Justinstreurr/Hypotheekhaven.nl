@@ -1,0 +1,157 @@
+---
+import Base from '../layouts/Base.astro';
+import Img from '../components/Img.astro';
+import Header from '../components/Header.astro';
+import HeroReviews from '../components/HeroReviews.astro';
+import HeroBanks from '../components/HeroBanks.astro';
+import Footer from '../components/Footer.astro';
+import { laadPagina } from '../lib/content';
+import '../styles/pagina.css';
+import '../styles/verzekeringen.css';
+
+const { t, img, bg, meta, achtergronden } = await laadPagina('verzekeringen');
+---
+<Base pagina="verzekeringen" meta={meta} preload={achtergronden['hero.foto1']}>
+<header class="hero hero--pagina">
+  <div class="hero-slides">
+    <div class="hero-slide hero-slide--verzekeringen is-active" {...bg('hero.foto1', 'background-image', '')}></div>
+  </div>
+  <div class="hero-overlay"></div>
+
+  
+
+  <Header />
+
+  <div class="hero-content">
+    <nav class="kruimelpad" aria-label="Kruimelpad"><a href="/" data-e="verzekeringen:hero.a1" set:html={t('hero.a1')}></a><span aria-hidden="true">/</span><span data-e="verzekeringen:hero.span1" set:html={t('hero.span1')}></span></nav>
+    <h1 data-e="verzekeringen:hero.h11" set:html={t('hero.h11')}></h1>
+    <p data-e="verzekeringen:hero.p1" set:html={t('hero.p1')}></p>
+  </div>
+  <HeroReviews />
+  <HeroBanks />
+</header>
+
+<main>
+
+<section class="samen container">
+  <div class="samen-kop">
+    <span class="eyebrow" data-e="verzekeringen:samen.span1" set:html={t('samen.span1')}></span>
+    <h2 data-e="verzekeringen:samen.h21" set:html={t('samen.h21')}></h2>
+  </div>
+  <div class="samen-tekst">
+    <p class="samen-lead" data-e="verzekeringen:samen.p1" set:html={t('samen.p1')}></p>
+    <p data-e="verzekeringen:samen.p2" set:html={t('samen.p2')}></p>
+  </div>
+</section>
+
+<section class="soorten container" id="soorten">
+  <div class="soorten-kop">
+    <span class="eyebrow" data-e="verzekeringen:soorten.span1" set:html={t('soorten.span1')}></span>
+    <h2 data-e="verzekeringen:soorten.h21" set:html={t('soorten.h21')}></h2>
+    <p data-e="verzekeringen:soorten.p1" set:html={t('soorten.p1')}></p>
+  </div>
+
+  
+  
+  <ul class="soorten-lijst">
+    <li class="soort" tabindex="0">
+      <div class="soort-foto"><Img data={img('soorten.img1')} style="object-position: center 55%" loading="lazy" /></div>
+      <div class="soort-tekst">
+        <span class="soort-label" data-e="verzekeringen:soorten.span2" set:html={t('soorten.span2')}></span>
+        <h3 data-e="verzekeringen:soorten.h31" set:html={t('soorten.h31')}></h3>
+        <p data-e="verzekeringen:soorten.p2" set:html={t('soorten.p2')}></p>
+      </div>
+    </li>
+    <li class="soort is-actief soort--donker" tabindex="0">
+      <div class="soort-foto"><Img data={img('soorten.img2')} style="object-position: center 45%" loading="lazy" /></div>
+      <div class="soort-tekst">
+        <span class="soort-label" data-e="verzekeringen:soorten.span3" set:html={t('soorten.span3')}></span>
+        <h3 data-e="verzekeringen:soorten.h32" set:html={t('soorten.h32')}></h3>
+        <p data-e="verzekeringen:soorten.p3" set:html={t('soorten.p3')}></p>
+      </div>
+    </li>
+    <li class="soort soort--licht" tabindex="0">
+      <div class="soort-foto"><Img data={img('soorten.img3')} style="object-position: 75% center" loading="lazy" /></div>
+      <div class="soort-tekst">
+        <span class="soort-label" data-e="verzekeringen:soorten.span4" set:html={t('soorten.span4')}></span>
+        <h3 data-e="verzekeringen:soorten.h33" set:html={t('soorten.h33')}></h3>
+        <p data-e="verzekeringen:soorten.p4" set:html={t('soorten.p4')}></p>
+      </div>
+    </li>
+  </ul>
+
+  
+  <div class="soorten-overig">
+    <h3 data-e="verzekeringen:soorten.h34" set:html={t('soorten.h34')}></h3>
+    <p data-e="verzekeringen:soorten.p5" set:html={t('soorten.p5')}></p>
+    <ul>
+      <li data-e="verzekeringen:soorten.li1" set:html={t('soorten.li1')}></li>
+      <li data-e="verzekeringen:soorten.li2" set:html={t('soorten.li2')}></li>
+      <li data-e="verzekeringen:soorten.li3" set:html={t('soorten.li3')}></li>
+      <li data-e="verzekeringen:soorten.li4" set:html={t('soorten.li4')}></li>
+      <li data-e="verzekeringen:soorten.li5" set:html={t('soorten.li5')}></li>
+      <li data-e="verzekeringen:soorten.li6" set:html={t('soorten.li6')}></li>
+      <li data-e="verzekeringen:soorten.li7" set:html={t('soorten.li7')}></li>
+    </ul>
+  </div>
+</section>
+
+<section class="werkwijze container" id="hoe-het-werkt">
+  <div class="werkwijze-kop">
+    <span class="eyebrow" data-e="verzekeringen:hoe-het-werkt.span1" set:html={t('hoe-het-werkt.span1')}></span>
+    <h2 data-e="verzekeringen:hoe-het-werkt.h21" set:html={t('hoe-het-werkt.h21')}></h2>
+    <a href="/contact#formulier" class="btn btn-dark" data-e="verzekeringen:hoe-het-werkt.a1" set:html={t('hoe-het-werkt.a1')}></a>
+  </div>
+
+  <div class="tijdlijn">
+    <div class="tijdlijn-lijn" aria-hidden="true"><div class="tijdlijn-vulling"></div></div>
+    <ol class="tijdlijn-stappen">
+      <li class="tijdlijn-stap">
+        <div class="tijdlijn-tekst">
+          <span class="tijdlijn-nr" data-e="verzekeringen:hoe-het-werkt.span2" set:html={t('hoe-het-werkt.span2')}></span>
+          <h3 data-e="verzekeringen:hoe-het-werkt.h31" set:html={t('hoe-het-werkt.h31')}></h3>
+          <p data-e="verzekeringen:hoe-het-werkt.p1" set:html={t('hoe-het-werkt.p1')}></p>
+        </div>
+        <Img data={img('hoe-het-werkt.img1')} class="tijdlijn-foto" style="object-position: 70% center" />
+      </li>
+      <li class="tijdlijn-stap is-links">
+        <div class="tijdlijn-tekst">
+          <span class="tijdlijn-nr" data-e="verzekeringen:hoe-het-werkt.span3" set:html={t('hoe-het-werkt.span3')}></span>
+          <h3 data-e="verzekeringen:hoe-het-werkt.h32" set:html={t('hoe-het-werkt.h32')}></h3>
+          <p data-e="verzekeringen:hoe-het-werkt.p2" set:html={t('hoe-het-werkt.p2')}></p>
+        </div>
+        <Img data={img('hoe-het-werkt.img2')} class="tijdlijn-foto" style="object-position: center 30%" />
+      </li>
+      <li class="tijdlijn-stap">
+        <div class="tijdlijn-tekst">
+          <span class="tijdlijn-nr" data-e="verzekeringen:hoe-het-werkt.span4" set:html={t('hoe-het-werkt.span4')}></span>
+          <h3 data-e="verzekeringen:hoe-het-werkt.h33" set:html={t('hoe-het-werkt.h33')}></h3>
+          <p data-e="verzekeringen:hoe-het-werkt.p3" set:html={t('hoe-het-werkt.p3')}></p>
+        </div>
+        <Img data={img('hoe-het-werkt.img3')} class="tijdlijn-foto" style="object-position: center 35%" />
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="faq faq--verzekeringen container">
+  <div class="faq-side">
+    <span class="eyebrow" data-e="verzekeringen:faq.span1" set:html={t('faq.span1')}></span>
+    <h2 data-e="verzekeringen:faq.h21" set:html={t('faq.h21')}></h2>
+    <p data-e="verzekeringen:faq.p1" set:html={t('faq.p1')}></p>
+  </div>
+  <div class="faq-list">
+    <details open><summary data-e="verzekeringen:faq.summary1" set:html={t('faq.summary1')}></summary><p data-e="verzekeringen:faq.p2" set:html={t('faq.p2')}></p></details>
+    <details><summary data-e="verzekeringen:faq.summary2" set:html={t('faq.summary2')}></summary><p data-e="verzekeringen:faq.p3" set:html={t('faq.p3')}></p></details>
+    <details><summary data-e="verzekeringen:faq.summary3" set:html={t('faq.summary3')}></summary><p data-e="verzekeringen:faq.p4" set:html={t('faq.p4')}></p></details>
+    <details><summary data-e="verzekeringen:faq.summary4" set:html={t('faq.summary4')}></summary><p data-e="verzekeringen:faq.p5" set:html={t('faq.p5')}></p></details>
+  </div>
+</section>
+
+</main>
+
+<Footer />
+<script>
+  import '../scripts/verzekeringen.js';
+</script>
+</Base>

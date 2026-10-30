@@ -1,0 +1,112 @@
+---
+import Img from './Img.astro';
+import Logo from './Logo.astro';
+import { laad } from '../lib/content';
+
+interface Props {
+  kort?: boolean;
+}
+const { kort = false } = Astro.props;
+const { t, img, bg } = await laad('site');
+---
+<footer class:list={['footer', { 'footer--kort': kort }]} {...bg('footer.foto', '--foto')}>
+  <slot name="kop">
+<div class="footer-kop contact container" id="contact">
+  <span class="eyebrow" data-e="site:contact.span1" set:html={t('contact.span1')}></span>
+  <h2 data-e="site:contact.h21" set:html={t('contact.h21')}></h2>
+
+  <div class="contact-punten">
+    <div class="contact-punt">
+      <strong data-e="site:contact.strong1" set:html={t('contact.strong1')}></strong>
+      <p data-e="site:contact.p1" set:html={t('contact.p1')}></p>
+    </div>
+    <div class="contact-punt">
+      <strong data-e="site:contact.strong2" set:html={t('contact.strong2')}></strong>
+      <p data-e="site:contact.p2" set:html={t('contact.p2')}></p>
+    </div>
+    <div class="contact-punt">
+      <strong data-e="site:contact.strong3" set:html={t('contact.strong3')}></strong>
+      <p data-e="site:contact.p3" set:html={t('contact.p3')}></p>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a href="tel:+31655767819" class="btn btn-dark" data-e="site:contact.a1" set:html={t('contact.a1')}></a>
+    <a href="https://wa.me/31655767819" target="_blank" rel="noopener" class="btn btn-light" data-e="site:contact.a2" set:html={t('contact.a2')}></a>
+  </div>
+  </div>
+  </slot>
+
+  <div class="footer-links container">
+    <div class="footer-groep">
+      <h3 data-e="site:footer.h31" set:html={t('footer.h31')}></h3>
+      <div class="footer-kolommen">
+        <div class="footer-kolom">
+          <h4 data-e="site:footer.h41" set:html={t('footer.h41')}></h4>
+          <a href="/diensten#kan-ik-kopen" data-e="site:footer.a1" set:html={t('footer.a1')}></a>
+          <a href="/diensten#eerste-huis" data-e="site:footer.a2" set:html={t('footer.a2')}></a>
+          <a href="/diensten#verhuizen" data-e="site:footer.a3" set:html={t('footer.a3')}></a>
+          <a href="/diensten#verbouwen-of-verhuizen" data-e="site:footer.a4" set:html={t('footer.a4')}></a>
+          <a href="/diensten#ondernemer" data-e="site:footer.a5" set:html={t('footer.a5')}></a>
+        </div>
+        <div class="footer-kolom">
+          <h4 data-e="site:footer.h42" set:html={t('footer.h42')}></h4>
+          <a href="/diensten#rentevast" data-e="site:footer.a6" set:html={t('footer.a6')}></a>
+          <a href="/diensten#oversluiten" data-e="site:footer.a7" set:html={t('footer.a7')}></a>
+          <a href="/diensten#overwaarde" data-e="site:footer.a8" set:html={t('footer.a8')}></a>
+          <a href="/diensten#verduurzamen" data-e="site:footer.a9" set:html={t('footer.a9')}></a>
+          <a href="/diensten#scheiden" data-e="site:footer.a10" set:html={t('footer.a10')}></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-groep">
+      <h3 data-e="site:footer.h32" set:html={t('footer.h32')}></h3>
+      <div class="footer-kolommen">
+        <div class="footer-kolom">
+          <h4 data-e="site:footer.h43" set:html={t('footer.h43')}></h4>
+          <a href="/#waarom" data-e="site:footer.a11" set:html={t('footer.a11')}></a>
+          <a href="/werkwijze" data-e="site:footer.a12" set:html={t('footer.a12')}></a>
+          <a href="/over-sabrina" data-e="site:footer.a13" set:html={t('footer.a13')}></a>
+          <a href="/#reviews" data-e="site:footer.a14" set:html={t('footer.a14')}></a>
+          <a href="/verzekeringen" data-e="site:footer.a15" set:html={t('footer.a15')}></a>
+          <a href="/kredieten" data-e="site:footer.a16" set:html={t('footer.a16')}></a>
+          <a href="/contact" data-e="site:footer.a17" set:html={t('footer.a17')}></a>
+          <a href="/blog" data-e="site:footer.a18" set:html={t('footer.a18')}></a>
+          <a href="/maandlasten-berekenen" data-e="site:footer.a19" set:html={t('footer.a19')}></a>
+          <a href="/rentevast-berekenen" data-e="site:footer.a20" set:html={t('footer.a20')}></a>
+          <a href="/documentenchecklist" data-e="site:footer.a21" set:html={t('footer.a21')}></a>
+          <a href="/#faq" data-e="site:footer.a22" set:html={t('footer.a22')}></a>
+        </div>
+        <div class="footer-kolom">
+          <h4 data-e="site:footer.h44" set:html={t('footer.h44')}></h4>
+          <a href="tel:+31655767819" data-e="site:footer.a23" set:html={t('footer.a23')}></a>
+          <a href="tel:+31858001977" data-e="site:footer.a24" set:html={t('footer.a24')}></a>
+          <a href="mailto:info@hypotheekhaven.nl" data-e="site:footer.a25" set:html={t('footer.a25')}></a>
+          <a href="https://wa.me/31655767819" target="_blank" rel="noopener" data-e="site:footer.a26" set:html={t('footer.a26')}></a>
+          <a href="https://www.linkedin.com/in/sabrina-reiz-coenraad-a4a829135/" target="_blank" rel="noopener" data-e="site:footer.a27" set:html={t('footer.a27')}></a>
+          <a href="https://trustoo.nl/noord-holland/enkhuizen/hypotheekadviseur/hypotheekhaven/" target="_blank" rel="noopener" data-e="site:footer.a28" set:html={t('footer.a28')}></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-wettelijk container">
+    <Logo class="footer-logo" href="/" />
+    <div class="footer-keurmerken">
+      <Img data={img('footer.img1')} sizes="160px" />
+      <Img data={img('footer.img2')} sizes="160px" />
+    </div>
+    <p data-e="site:footer.p1" set:html={t('footer.p1')}></p>
+  </div>
+
+  <div class="footer-onder container">
+    <span data-e="site:footer.span2" set:html={t('footer.span2')}></span>
+    <nav aria-label="Juridisch">
+      <a href="https://nbg.nl/wp-content/uploads/documents/Dienstenwijzer-Hypotheekhaven.pdf" target="_blank" rel="noopener" data-e="site:footer.a29" set:html={t('footer.a29')}></a>
+      <a href="/werkwijze#documenten" data-e="site:footer.a30" set:html={t('footer.a30')}></a>
+      <a href="/juridisch#privacy" data-e="site:footer.a31" set:html={t('footer.a31')}></a>
+      <a href="/juridisch#cookies" data-e="site:footer.a32" set:html={t('footer.a32')}></a>
+      <a href="/juridisch#klachten" data-e="site:footer.a33" set:html={t('footer.a33')}></a>
+    </nav>
+  </div>
+</footer>

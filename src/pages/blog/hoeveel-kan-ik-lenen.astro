@@ -1,0 +1,266 @@
+---
+import Base from '../../layouts/Base.astro';
+import Img from '../../components/Img.astro';
+import Header from '../../components/Header.astro';
+import HeroReviews from '../../components/HeroReviews.astro';
+import HeroBanks from '../../components/HeroBanks.astro';
+import Footer from '../../components/Footer.astro';
+import { laadPagina } from '../../lib/content';
+import '../../styles/pagina.css';
+import '../../styles/blog.css';
+
+const { t, img, bg, meta, achtergronden } = await laadPagina('blog-hoeveel-kan-ik-lenen');
+---
+<Base pagina="blog-hoeveel-kan-ik-lenen" meta={meta} preload={achtergronden['hero.foto1']}>
+<header class="hero hero--pagina hero--artikel">
+  <div class="hero-slides">
+    <div class="hero-slide hero-slide--artikel is-active" {...bg('hero.foto1', 'background-image', '')}></div>
+  </div>
+  <div class="hero-overlay"></div>
+
+  
+
+  <Header />
+
+  <div class="hero-content">
+    <nav class="kruimelpad" aria-label="Kruimelpad"><a href="/" data-e="blog-hoeveel-kan-ik-lenen:hero.a1" set:html={t('hero.a1')}></a><span aria-hidden="true">/</span><a href="/blog" data-e="blog-hoeveel-kan-ik-lenen:hero.a2" set:html={t('hero.a2')}></a><span aria-hidden="true">/</span><span aria-current="page" data-e="blog-hoeveel-kan-ik-lenen:hero.span1" set:html={t('hero.span1')}></span></nav>
+    <h1 id="artikel-titel" data-e="blog-hoeveel-kan-ik-lenen:hero.h11" set:html={t('hero.h11')}></h1>
+    <p class="artikel-kopmeta">
+      <span class="blog-label" data-e="blog-hoeveel-kan-ik-lenen:hero.span2" set:html={t('hero.span2')}></span>
+      <span class="artikel-auteur-klein"><Img data={img('hero.img1')} width="600" height="592" /><span data-e="blog-hoeveel-kan-ik-lenen:hero.span3" set:html={t('hero.span3')}></span></span>
+      
+      <span data-e="blog-hoeveel-kan-ik-lenen:hero.span4" set:html={t('hero.span4')}></span>
+      <span data-e="blog-hoeveel-kan-ik-lenen:hero.span5" set:html={t('hero.span5')}></span>
+      <span data-e="blog-hoeveel-kan-ik-lenen:hero.span6" set:html={t('hero.span6')}></span>
+    </p>
+  </div>
+  <HeroReviews />
+  <HeroBanks />
+</header>
+
+<main>
+
+<article class="artikel container" aria-labelledby="artikel-titel">
+  <div class="artikel-raster">
+
+    
+    <header class="artikel-samenvatting">
+      <div class="kort-antwoord" id="kort-antwoord">
+        <span class="eyebrow" data-e="blog-hoeveel-kan-ik-lenen:kort-antwoord.span1" set:html={t('kort-antwoord.span1')}></span>
+        <p data-e="blog-hoeveel-kan-ik-lenen:kort-antwoord.p1" set:html={t('kort-antwoord.p1')}></p>
+      </div>
+      <section class="in-het-kort" aria-labelledby="in-het-kort-titel">
+        <h2 id="in-het-kort-titel" data-e="blog-hoeveel-kan-ik-lenen:in-het-kort.h21" set:html={t('in-het-kort.h21')}></h2>
+        <ul class="vinkjes">
+          <li data-e="blog-hoeveel-kan-ik-lenen:in-het-kort.li1" set:html={t('in-het-kort.li1')}></li>
+          <li data-e="blog-hoeveel-kan-ik-lenen:in-het-kort.li2" set:html={t('in-het-kort.li2')}></li>
+          <li data-e="blog-hoeveel-kan-ik-lenen:in-het-kort.li3" set:html={t('in-het-kort.li3')}></li>
+          <li data-e="blog-hoeveel-kan-ik-lenen:in-het-kort.li4" set:html={t('in-het-kort.li4')}></li>
+          <li data-e="blog-hoeveel-kan-ik-lenen:in-het-kort.li5" set:html={t('in-het-kort.li5')}></li>
+        </ul>
+      </section>
+    </header>
+
+    
+    <aside class="artikel-zij">
+      <div class="artikel-zij-plak">
+        <nav class="artikel-toc" aria-label="Inhoudsopgave">
+          <span class="eyebrow" data-e="blog-hoeveel-kan-ik-lenen:artikel-zij.span1" set:html={t('artikel-zij.span1')}></span>
+          <ol>
+            <li data-e="blog-hoeveel-kan-ik-lenen:artikel-zij.li1" set:html={t('artikel-zij.li1')}></li>
+            <li data-e="blog-hoeveel-kan-ik-lenen:artikel-zij.li2" set:html={t('artikel-zij.li2')}></li>
+            <li data-e="blog-hoeveel-kan-ik-lenen:artikel-zij.li3" set:html={t('artikel-zij.li3')}></li>
+            <li data-e="blog-hoeveel-kan-ik-lenen:artikel-zij.li4" set:html={t('artikel-zij.li4')}></li>
+            <li data-e="blog-hoeveel-kan-ik-lenen:artikel-zij.li5" set:html={t('artikel-zij.li5')}></li>
+            <li data-e="blog-hoeveel-kan-ik-lenen:artikel-zij.li6" set:html={t('artikel-zij.li6')}></li>
+            <li data-e="blog-hoeveel-kan-ik-lenen:artikel-zij.li7" set:html={t('artikel-zij.li7')}></li>
+            <li data-e="blog-hoeveel-kan-ik-lenen:artikel-zij.li8" set:html={t('artikel-zij.li8')}></li>
+            <li data-e="blog-hoeveel-kan-ik-lenen:artikel-zij.li9" set:html={t('artikel-zij.li9')}></li>
+          </ol>
+        </nav>
+        <a href="/contact#formulier" class="waarom-link" data-e="blog-hoeveel-kan-ik-lenen:artikel-zij.a1" set:html={t('artikel-zij.a1')}></a>
+      </div>
+    </aside>
+
+    
+    <div class="artikel-inhoud">
+      <p class="artikel-inleiding" data-e="blog-hoeveel-kan-ik-lenen:artikel.p1" set:html={t('artikel.p1')}></p>
+
+      <section id="hoe-berekend" aria-labelledby="hoe-berekend-titel">
+        <h2 id="hoe-berekend-titel" data-e="blog-hoeveel-kan-ik-lenen:hoe-berekend.h21" set:html={t('hoe-berekend.h21')}></h2>
+        <p data-e="blog-hoeveel-kan-ik-lenen:hoe-berekend.p1" set:html={t('hoe-berekend.p1')}></p>
+        <p data-e="blog-hoeveel-kan-ik-lenen:hoe-berekend.p2" set:html={t('hoe-berekend.p2')}></p>
+
+        <h3 id="inkomen" data-e="blog-hoeveel-kan-ik-lenen:hoe-berekend.h31" set:html={t('hoe-berekend.h31')}></h3>
+        <p data-e="blog-hoeveel-kan-ik-lenen:hoe-berekend.p3" set:html={t('hoe-berekend.p3')}></p>
+        <p data-e="blog-hoeveel-kan-ik-lenen:hoe-berekend.p4" set:html={t('hoe-berekend.p4')}></p>
+
+        <figure class="artikel-foto artikel-foto--breed">
+          <Img data={img('hoe-berekend.img1')} width="1672" height="941" loading="lazy" />
+          <figcaption data-e="blog-hoeveel-kan-ik-lenen:hoe-berekend.figcaption1" set:html={t('hoe-berekend.figcaption1')}></figcaption>
+        </figure>
+
+        <h3 id="samen" data-e="blog-hoeveel-kan-ik-lenen:hoe-berekend.h32" set:html={t('hoe-berekend.h32')}></h3>
+        <p data-e="blog-hoeveel-kan-ik-lenen:hoe-berekend.p5" set:html={t('hoe-berekend.p5')}></p>
+      </section>
+
+      <section id="schulden" aria-labelledby="schulden-titel">
+        <h2 id="schulden-titel" data-e="blog-hoeveel-kan-ik-lenen:schulden.h21" set:html={t('schulden.h21')}></h2>
+        <p data-e="blog-hoeveel-kan-ik-lenen:schulden.p1" set:html={t('schulden.p1')}></p>
+        <p class="artikel-tip" data-e="blog-hoeveel-kan-ik-lenen:schulden.p2" set:html={t('schulden.p2')}></p>
+
+        <h3 id="studieschuld" data-e="blog-hoeveel-kan-ik-lenen:schulden.h31" set:html={t('schulden.h31')}></h3>
+        <p data-e="blog-hoeveel-kan-ik-lenen:schulden.p3" set:html={t('schulden.p3')}></p>
+      </section>
+
+      <section id="rente" aria-labelledby="rente-titel">
+        <h2 id="rente-titel" data-e="blog-hoeveel-kan-ik-lenen:rente.h21" set:html={t('rente.h21')}></h2>
+        <p data-e="blog-hoeveel-kan-ik-lenen:rente.p1" set:html={t('rente.p1')}></p>
+        <p data-e="blog-hoeveel-kan-ik-lenen:rente.p2" set:html={t('rente.p2')}></p>
+      </section>
+
+      <section id="woningwaarde" aria-labelledby="woningwaarde-titel">
+        <h2 id="woningwaarde-titel" data-e="blog-hoeveel-kan-ik-lenen:woningwaarde.h21" set:html={t('woningwaarde.h21')}></h2>
+        <p data-e="blog-hoeveel-kan-ik-lenen:woningwaarde.p1" set:html={t('woningwaarde.p1')}></p>
+
+        <figure class="artikel-foto">
+          <Img data={img('woningwaarde.img1')} width="736" height="920" loading="lazy" />
+          <figcaption data-e="blog-hoeveel-kan-ik-lenen:woningwaarde.figcaption1" set:html={t('woningwaarde.figcaption1')}></figcaption>
+        </figure>
+
+        <h3 id="energielabel" data-e="blog-hoeveel-kan-ik-lenen:woningwaarde.h31" set:html={t('woningwaarde.h31')}></h3>
+        <p data-e="blog-hoeveel-kan-ik-lenen:woningwaarde.p2" set:html={t('woningwaarde.p2')}></p>
+      </section>
+
+      <section id="eigen-geld" aria-labelledby="eigen-geld-titel">
+        <h2 id="eigen-geld-titel" data-e="blog-hoeveel-kan-ik-lenen:eigen-geld.h21" set:html={t('eigen-geld.h21')}></h2>
+        <p data-e="blog-hoeveel-kan-ik-lenen:eigen-geld.p1" set:html={t('eigen-geld.p1')}></p>
+      </section>
+
+      <section id="nhg" aria-labelledby="nhg-titel">
+        <h2 id="nhg-titel" data-e="blog-hoeveel-kan-ik-lenen:nhg.h21" set:html={t('nhg.h21')}></h2>
+        <p data-e="blog-hoeveel-kan-ik-lenen:nhg.p1" set:html={t('nhg.p1')}></p>
+      </section>
+
+      <section id="comfortabel" aria-labelledby="comfortabel-titel">
+        <h2 id="comfortabel-titel" data-e="blog-hoeveel-kan-ik-lenen:comfortabel.h21" set:html={t('comfortabel.h21')}></h2>
+        <p data-e="blog-hoeveel-kan-ik-lenen:comfortabel.p1" set:html={t('comfortabel.p1')}></p>
+
+        <figure class="artikel-quote">
+          <blockquote>
+            <p data-e="blog-hoeveel-kan-ik-lenen:comfortabel.p2" set:html={t('comfortabel.p2')}></p>
+          </blockquote>
+          <figcaption><Img data={img('comfortabel.img1')} width="600" height="592" loading="lazy" /><span data-e="blog-hoeveel-kan-ik-lenen:comfortabel.span1" set:html={t('comfortabel.span1')}></span></figcaption>
+        </figure>
+
+        <p data-e="blog-hoeveel-kan-ik-lenen:comfortabel.p3" set:html={t('comfortabel.p3')}></p>
+        <p data-e="blog-hoeveel-kan-ik-lenen:comfortabel.p4" set:html={t('comfortabel.p4')}></p>
+      </section>
+
+      <section id="berekenen" aria-labelledby="berekenen-titel">
+        <h2 id="berekenen-titel" data-e="blog-hoeveel-kan-ik-lenen:berekenen.h21" set:html={t('berekenen.h21')}></h2>
+        <p data-e="blog-hoeveel-kan-ik-lenen:berekenen.p1" set:html={t('berekenen.p1')}></p>
+
+        <figure class="artikel-foto artikel-foto--breed">
+          <Img data={img('berekenen.img1')} width="1600" height="1067" loading="lazy" />
+          <figcaption data-e="blog-hoeveel-kan-ik-lenen:berekenen.figcaption1" set:html={t('berekenen.figcaption1')}></figcaption>
+        </figure>
+        <p data-e="blog-hoeveel-kan-ik-lenen:berekenen.p2" set:html={t('berekenen.p2')}></p>
+        <a href="/contact#formulier" class="btn btn-dark artikel-knop" data-e="blog-hoeveel-kan-ik-lenen:berekenen.a1" set:html={t('berekenen.a1')}></a>
+      </section>
+
+      
+      <section id="veelgestelde-vragen" class="faq artikel-faq" aria-labelledby="faq-titel">
+        <h2 id="faq-titel" data-e="blog-hoeveel-kan-ik-lenen:veelgestelde-vragen.h21" set:html={t('veelgestelde-vragen.h21')}></h2>
+        <details open><summary data-e="blog-hoeveel-kan-ik-lenen:veelgestelde-vragen.summary1" set:html={t('veelgestelde-vragen.summary1')}></summary><p data-e="blog-hoeveel-kan-ik-lenen:veelgestelde-vragen.p1" set:html={t('veelgestelde-vragen.p1')}></p></details>
+        <details><summary data-e="blog-hoeveel-kan-ik-lenen:veelgestelde-vragen.summary2" set:html={t('veelgestelde-vragen.summary2')}></summary><p data-e="blog-hoeveel-kan-ik-lenen:veelgestelde-vragen.p2" set:html={t('veelgestelde-vragen.p2')}></p></details>
+        <details><summary data-e="blog-hoeveel-kan-ik-lenen:veelgestelde-vragen.summary3" set:html={t('veelgestelde-vragen.summary3')}></summary><p data-e="blog-hoeveel-kan-ik-lenen:veelgestelde-vragen.p3" set:html={t('veelgestelde-vragen.p3')}></p></details>
+        <details><summary data-e="blog-hoeveel-kan-ik-lenen:veelgestelde-vragen.summary4" set:html={t('veelgestelde-vragen.summary4')}></summary><p data-e="blog-hoeveel-kan-ik-lenen:veelgestelde-vragen.p4" set:html={t('veelgestelde-vragen.p4')}></p></details>
+        <details><summary data-e="blog-hoeveel-kan-ik-lenen:veelgestelde-vragen.summary5" set:html={t('veelgestelde-vragen.summary5')}></summary><p data-e="blog-hoeveel-kan-ik-lenen:veelgestelde-vragen.p5" set:html={t('veelgestelde-vragen.p5')}></p></details>
+      </section>
+
+      
+      <section class="artikel-auteur" aria-labelledby="auteur-titel">
+        <Img data={img('artikel-auteur.img1')} width="600" height="592" loading="lazy" />
+        <div>
+          <span class="eyebrow" data-e="blog-hoeveel-kan-ik-lenen:artikel-auteur.span1" set:html={t('artikel-auteur.span1')}></span>
+          <h2 id="auteur-titel" data-e="blog-hoeveel-kan-ik-lenen:artikel-auteur.h21" set:html={t('artikel-auteur.h21')}></h2>
+          <p class="artikel-auteur-rol" data-e="blog-hoeveel-kan-ik-lenen:artikel-auteur.p1" set:html={t('artikel-auteur.p1')}></p>
+          <ul class="artikel-auteur-feiten">
+            <li data-e="blog-hoeveel-kan-ik-lenen:artikel-auteur.li1" set:html={t('artikel-auteur.li1')}></li>
+            <li data-e="blog-hoeveel-kan-ik-lenen:artikel-auteur.li2" set:html={t('artikel-auteur.li2')}></li>
+          </ul>
+          <p class="artikel-auteur-tekst" data-e="blog-hoeveel-kan-ik-lenen:artikel-auteur.p2" set:html={t('artikel-auteur.p2')}></p>
+          <a href="/over-sabrina" class="waarom-link" rel="author" data-e="blog-hoeveel-kan-ik-lenen:artikel-auteur.a1" set:html={t('artikel-auteur.a1')}></a>
+        </div>
+      </section>
+
+      
+      <div class="artikel-delen">
+        <span class="artikel-delen-titel" data-e="blog-hoeveel-kan-ik-lenen:artikel.span1" set:html={t('artikel.span1')}></span>
+        <a class="blog-deel-knop" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.hypotheekhaven.nl%2Fblog%2Fhoeveel-kan-ik-lenen.html" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18"></rect><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"></path></svg><span data-e="blog-hoeveel-kan-ik-lenen:artikel.span2" set:html={t('artikel.span2')}></span></a>
+        <a class="blog-deel-knop" href="https://wa.me/?text=Hoeveel%20kan%20ik%20lenen%20voor%20een%20huis%3F%20https%3A%2F%2Fwww.hypotheekhaven.nl%2Fblog%2Fhoeveel-kan-ik-lenen.html" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"></path><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 .8a4 4 0 0 1-2-2l.8-1-1-2z"></path></svg><span data-e="blog-hoeveel-kan-ik-lenen:artikel.span3" set:html={t('artikel.span3')}></span></a>
+        <a class="blog-deel-knop" href="mailto:?subject=Hoeveel%20kan%20ik%20lenen%20voor%20een%20huis%3F&body=Interessant%20artikel%20van%20Hypotheekhaven%3A%20https%3A%2F%2Fwww.hypotheekhaven.nl%2Fblog%2Fhoeveel-kan-ik-lenen.html"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14"></rect><path d="M3 6l9 7 9-7"></path></svg><span data-e="blog-hoeveel-kan-ik-lenen:artikel.span4" set:html={t('artikel.span4')}></span></a>
+        <button type="button" class="blog-deel-knop" data-kopieer><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"></path><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"></path></svg><span data-e="blog-hoeveel-kan-ik-lenen:artikel.span5" set:html={t('artikel.span5')}></span></button>
+      </div>
+
+      <p class="artikel-disclaimer" data-e="blog-hoeveel-kan-ik-lenen:artikel.p2" set:html={t('artikel.p2')}></p>
+    </div>
+  </div>
+</article>
+
+<section class="artikel-gerelateerd container" aria-labelledby="gerelateerd-titel">
+  <div class="blog-sectie-kop">
+    <div>
+      <span class="eyebrow" data-e="blog-hoeveel-kan-ik-lenen:artikel-gerelateerd.span1" set:html={t('artikel-gerelateerd.span1')}></span>
+      <h2 id="gerelateerd-titel" data-e="blog-hoeveel-kan-ik-lenen:artikel-gerelateerd.h21" set:html={t('artikel-gerelateerd.h21')}></h2>
+    </div>
+    <a href="/blog" class="waarom-link" data-e="blog-hoeveel-kan-ik-lenen:artikel-gerelateerd.a1" set:html={t('artikel-gerelateerd.a1')}></a>
+  </div>
+  <div class="blog-raster">
+    
+    
+    <article class="blog-kaart blog-kaart--binnenkort" data-categorie="huidige-hypotheek">
+      <div class="blog-kaart-beeld"><span class="blog-binnenkort" data-e="blog-hoeveel-kan-ik-lenen:blog-kaart.span1" set:html={t('blog-kaart.span1')}></span><Img data={img('blog-kaart.img1')} width="736" height="1104" loading="lazy" style="object-position: center 30%" /></div>
+      <span class="blog-label" data-e="blog-hoeveel-kan-ik-lenen:blog-kaart.span2" set:html={t('blog-kaart.span2')}></span>
+      <h3 data-e="blog-hoeveel-kan-ik-lenen:blog-kaart.h31" set:html={t('blog-kaart.h31')}></h3>
+      <p data-e="blog-hoeveel-kan-ik-lenen:blog-kaart.p1" set:html={t('blog-kaart.p1')}></p>
+      <div class="blog-meta"><span data-e="blog-hoeveel-kan-ik-lenen:blog-kaart.span3" set:html={t('blog-kaart.span3')}></span></div>
+    </article>
+    
+    
+    <article class="blog-kaart blog-kaart--binnenkort" data-categorie="verzekeringen">
+      <div class="blog-kaart-beeld"><span class="blog-binnenkort" data-e="blog-hoeveel-kan-ik-lenen:blog-kaart.span4" set:html={t('blog-kaart.span4')}></span><Img data={img('blog-kaart.img2')} width="1774" height="887" loading="lazy" /></div>
+      <span class="blog-label" data-e="blog-hoeveel-kan-ik-lenen:blog-kaart.span5" set:html={t('blog-kaart.span5')}></span>
+      <h3 data-e="blog-hoeveel-kan-ik-lenen:blog-kaart.h32" set:html={t('blog-kaart.h32')}></h3>
+      <p data-e="blog-hoeveel-kan-ik-lenen:blog-kaart.p2" set:html={t('blog-kaart.p2')}></p>
+      <div class="blog-meta"><span data-e="blog-hoeveel-kan-ik-lenen:blog-kaart.span6" set:html={t('blog-kaart.span6')}></span></div>
+    </article>
+    
+    
+    <article class="blog-kaart blog-kaart--binnenkort" data-categorie="ondernemers">
+      <div class="blog-kaart-beeld"><span class="blog-binnenkort" data-e="blog-hoeveel-kan-ik-lenen:blog-kaart.span7" set:html={t('blog-kaart.span7')}></span><Img data={img('blog-kaart.img3')} width="1672" height="941" loading="lazy" style="object-position: 75% center" /></div>
+      <span class="blog-label" data-e="blog-hoeveel-kan-ik-lenen:blog-kaart.span8" set:html={t('blog-kaart.span8')}></span>
+      <h3 data-e="blog-hoeveel-kan-ik-lenen:blog-kaart.h33" set:html={t('blog-kaart.h33')}></h3>
+      <p data-e="blog-hoeveel-kan-ik-lenen:blog-kaart.p3" set:html={t('blog-kaart.p3')}></p>
+      <div class="blog-meta"><span data-e="blog-hoeveel-kan-ik-lenen:blog-kaart.span9" set:html={t('blog-kaart.span9')}></span></div>
+    </article>
+  </div>
+</section>
+
+<section class="blog-cta container" aria-labelledby="cta-titel">
+  <span class="eyebrow" data-e="blog-hoeveel-kan-ik-lenen:blog-cta.span1" set:html={t('blog-cta.span1')}></span>
+  <h2 id="cta-titel" data-e="blog-hoeveel-kan-ik-lenen:blog-cta.h21" set:html={t('blog-cta.h21')}></h2>
+  <p data-e="blog-hoeveel-kan-ik-lenen:blog-cta.p1" set:html={t('blog-cta.p1')}></p>
+  <div class="btn-row">
+    <a href="/contact#formulier" class="btn btn-dark" data-e="blog-hoeveel-kan-ik-lenen:blog-cta.a1" set:html={t('blog-cta.a1')}></a>
+  </div>
+</section>
+
+</main>
+
+<Footer />
+<script>
+  import '../../scripts/blog.js';
+</script>
+</Base>

@@ -1,0 +1,75 @@
+---
+import '@fontsource/libre-caslon-text/400.css';
+import '@fontsource/libre-caslon-text/400-italic.css';
+import '@fontsource/libre-caslon-text/700.css';
+import '../styles/basis.css';
+import '../styles/styles.css';
+import satoshi from '../assets/fonts/Satoshi-Variable.woff2?url';
+import caslon from '@fontsource/libre-caslon-text/files/libre-caslon-text-latin-400-normal.woff2?url';
+import { getImage } from 'astro:assets';
+import { laad, beeldBestand } from '../lib/content';
+import { jsonLd, paginas } from '../lib/seo';
+import { absoluut, bedrijf, isProductie } from '../lib/site';
+
+interface Props {
+  pagina: string;
+  meta?: { title: string; description: string; ogImage?: string };
+  preload?: { breed: string; smal: string };
+}
+
+const { pagina, meta = { title: bedrijf.naam, description: '' }, preload } = Astro.props;
+const { t } = await laad('site');
+const seo = paginas[pagina];
+const canonical = absoluut(seo?.pad ?? Astro.url.pathname);
+
+// Social-afbeelding: 1200x630, uit de content van de pagina of de standaardfoto
+const og = await getImage({ src: beeldBestand(meta.ogImage ?? seo?.artikel?.beeld ?? 'hh-hero-kaartje.jpg'), width: 1200, height: 630, fit: 'cover', format: 'jpg', quality: 80 });
+const ogUrl = absoluut(og.src);
+const indexeren = isProductie && seo?.index !== false;
+const graph = seo && seo.index !== false ? jsonLd(pagina, meta, ogUrl) : null;
+---
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{meta.title}</title>
+<meta name="description" content={meta.description}>
+{seo?.index !== false && <link rel="canonical" href={canonical}>}
+{indexeren ? <meta name="robots" content="index, follow, max-image-preview:large"> : <meta name="robots" content="noindex, nofollow">}
+<meta name="author" content={bedrijf.eigenaar}>
+<meta name="theme-color" content="#081534">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="preload" href={satoshi} as="font" type="font/woff2" crossorigin>
+<link rel="preload" href={caslon} as="font" type="font/woff2" crossorigin>
+{preload && <link rel="preload" as="image" href={preload.smal} media="(max-width: 767px)" fetchpriority="high">}
+{preload && <link rel="preload" as="image" href={preload.breed} media="(min-width: 768px)" fetchpriority="high">}
+<meta property="og:type" content={seo?.artikel ? 'article' : 'website'}>
+<meta property="og:locale" content="nl_NL">
+<meta property="og:site_name" content={bedrijf.naam}>
+<meta property="og:title" content={meta.title}>
+<meta property="og:description" content={meta.description}>
+<meta property="og:url" content={canonical}>
+<meta property="og:image" content={ogUrl}>
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content={meta.title}>
+<meta name="twitter:description" content={meta.description}>
+<meta name="twitter:image" content={ogUrl}>
+<style is:inline set:html={`@font-face{font-family:"Satoshi";src:url("${satoshi}") format("woff2");font-weight:300 900;font-display:swap}`}></style>
+{graph && <script type="application/ld+json" set:html={JSON.stringify(graph)} />}
+<script is:inline>if (/(^|; )hh_edit=1/.test(document.cookie)) { var s = document.createElement('script'); s.src = '/beheer/editor.js'; s.defer = true; document.head.appendChild(s); }</script>
+</head>
+<body data-pagina={pagina}>
+<div class="review-balk"><span class="review-balk-item" data-e="site:balk.google" set:html={t('balk.google')} /><span class="scheiding" aria-hidden="true"></span><a href={bedrijf.trustoo} target="_blank" rel="noopener" data-e="site:balk.trustoo" set:html={t('balk.trustoo')} /></div>
+<slot />
+<template id="menu-voet-tekst" set:html={t('menu.bel')} />
+<script>
+  import '../scripts/script.js';
+</script>
+</body>
+</html>

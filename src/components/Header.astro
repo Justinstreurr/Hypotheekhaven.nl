@@ -1,0 +1,35 @@
+---
+import Logo from './Logo.astro';
+import { laad } from '../lib/content';
+
+const { t } = await laad('site');
+const pad = Astro.url.pathname.replace(/\/$/, '') || '/';
+const sectie = pad.startsWith('/blog/') ? '/blog' : pad;
+const huidig = (href: string) => (href === sectie ? { 'aria-current': 'page' as const } : {});
+const tools = ['/maandlasten-berekenen', '/rentevast-berekenen', '/documentenchecklist'];
+
+const links = [
+  { href: '/diensten', k: 'nav.a1' },
+  { href: '/werkwijze', k: 'nav.a2' },
+  { href: '/verzekeringen', k: 'nav.a3' },
+  { href: '/kredieten', k: 'nav.a4' },
+];
+const linksNa = [
+  { href: '/blog', k: 'nav.a5' },
+  { href: '/contact', k: 'nav.a6' },
+  { href: '/over-sabrina', k: 'nav.a7', class: 'nav-sabrina' },
+];
+---
+<Logo class="logo" href={pad === '/' ? '#' : '/'} />
+
+<nav class="nav">
+  {links.map(l => <a href={l.href} {...huidig(l.href)} data-e={`site:${l.k}`} set:html={t(l.k)} />)}
+  <div class:list={['nav-tools', { 'is-huidig': tools.includes(pad) }]}>
+    <button type="button" class="nav-tools-knop" aria-expanded="false" aria-controls="nav-tools-menu" data-e="site:nav.button1" set:html={t('nav.button1')} />
+    <div class="nav-tools-menu" id="nav-tools-menu">
+      {tools.map((href, n) => <a href={href} class="nav-tool" {...huidig(href)} data-e={`site:nav-tools-menu.a${n + 1}`} set:html={t(`nav-tools-menu.a${n + 1}`)} />)}
+    </div>
+  </div>
+  {linksNa.map(l => <a href={l.href} class={l.class} {...huidig(l.href)} data-e={`site:${l.k}`} set:html={t(l.k)} />)}
+  <a href="/contact#formulier" class="nav-cta" data-e="site:nav.a8" set:html={t('nav.a8')} />
+</nav>

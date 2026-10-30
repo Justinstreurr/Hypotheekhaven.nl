@@ -1,0 +1,79 @@
+/* DIENSTEN: alle tien situaties op één pagina */
+
+/* Overzicht-slider (homepage-sectie) direct gevolgd door de uitklaplijst: geen dubbele witruimte */
+
+
+
+
+/* SITUATIES: twee tabbladen, per tab vijf fotokaarten; de actieve kaart wordt breed en toont de uitleg */
+.tabs { padding-top: var(--sectie); padding-bottom: var(--sectie); scroll-margin-top: 80px; }
+.tabs-kop { text-align: center; margin-bottom: 36px; }
+.tabs-kop h2 { font-size: var(--h2); font-weight: 400; line-height: 1.1; letter-spacing: -1px; }
+.tabs-kop h2 b { font-family: "Libre Caslon Text", Georgia, serif; font-weight: 400; letter-spacing: -.04em; }
+.tabs-knoppen { display: flex; justify-content: center; gap: 0; margin-bottom: 48px; }
+.tabs-knop {
+  height: 54px; padding: 0 32px;
+  border: 1px solid var(--inkt); background: transparent; color: var(--inkt);
+  font: inherit; font-size: 16px; font-weight: 500; cursor: pointer;
+  transition: background .3s, color .3s;
+}
+.tabs-knop + .tabs-knop { border-left: 0; }
+.tabs-knop:hover { background: rgba(8, 21, 52, .06); }
+.tabs-knop.is-actief { background: var(--inkt); color: var(--white); }
+
+.tab-paneel { list-style: none; display: none; gap: 14px; height: 600px; }
+.tab-paneel.is-actief { display: flex; animation: tab-in .5s cubic-bezier(.22, 1, .36, 1); }
+@keyframes tab-in { from { opacity: 0; transform: translateY(8px); } }
+.tab-kaart {
+  flex: 1 1 0; min-width: 0;
+  display: flex; flex-direction: column;
+  background: var(--linnen); cursor: pointer; outline: none; scroll-margin-top: 120px;
+  transition: flex-grow .9s cubic-bezier(.65, 0, .25, 1), background .6s ease;
+  will-change: flex-grow;
+}
+.tab-kaart.is-actief { flex-grow: 3.2; background: var(--inkt); color: var(--white); cursor: default; }
+.tab-foto { flex: 1; min-height: 0; overflow: hidden; }
+.tab-foto img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.22, 1, .36, 1); }
+.tab-kaart:hover .tab-foto img { transform: scale(1.03); }
+.tab-tekst { padding: 30px 28px 30px; }
+.tab-nr { display: block; font-size: 12px; letter-spacing: .08em; color: var(--rozenhout); margin-bottom: 10px; }
+.tab-kaart.is-actief .tab-nr { color: var(--kameel); }
+.tab-kaart h3 { font-size: 20px; font-weight: 400; letter-spacing: -.2px; line-height: 1.2; }
+.tab-kaart h3 { transform-origin: left bottom; transition: transform .9s cubic-bezier(.65, 0, .25, 1), color .6s ease; }
+.tab-kaart.is-actief h3 { transform: scale(1.25); color: var(--kameel); } /* groeit vloeiend in plaats van te verspringen */
+.tab-kaart.is-actief .tab-nr { margin-bottom: 16px; }
+.tab-meer { max-height: 0; opacity: 0; overflow: hidden; min-width: 420px; transform: translateY(8px); transition: max-height .7s cubic-bezier(.65, 0, .25, 1), opacity .35s ease, transform .5s ease; }
+.tab-kaart.is-actief .tab-meer { max-height: 320px; opacity: 1; transform: none; transition: max-height .8s cubic-bezier(.65, 0, .25, 1) .1s, opacity .5s ease .45s, transform .6s ease .45s; }
+.tab-meer > p { font-size: 17px; line-height: 1.45; margin: 12px 0 16px; max-width: 560px; }
+.tab-punten { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+.tab-punten li { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; line-height: 1.4; color: rgba(255, 255, 255, .82); }
+.tab-punten li::before {
+  content: ""; flex: none; width: 14px; height: 14px; margin-top: 3px; background: var(--kameel);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2.5 8.5l3.5 3.5 7.5-8' fill='none' stroke='black' stroke-width='1.6'/%3E%3C/svg%3E") center/contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2.5 8.5l3.5 3.5 7.5-8' fill='none' stroke='black' stroke-width='1.6'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+.tab-kaart .waarom-link { color: var(--white); font-size: 15px; }
+.tab-kaart:focus-visible { box-shadow: 0 0 0 2px var(--rozenhout); }
+@media (prefers-reduced-motion: reduce) { .tab-kaart, .tab-meer { transition: none; } .tab-paneel.is-actief { animation: none; } }
+
+@media (max-width: 1024px) {
+  .tab-paneel.is-actief { flex-direction: column; height: auto; }
+  .tab-kaart, .tab-kaart.is-actief { flex: none; background: var(--inkt); color: var(--white); cursor: default; }
+  .tab-kaart h3, .tab-kaart.is-actief h3 { font-size: 22px; color: var(--kameel); transform: none; }
+  .tab-meer { min-width: 0; transform: none; }
+  .tab-kaart .tab-nr { color: var(--kameel); }
+  .tab-foto { flex: none; aspect-ratio: 16 / 9; }
+  .tab-meer { max-height: none; opacity: 1; }
+  /* Om en om: eerste kaart blauw, tweede beige, enzovoort */
+  .tab-kaart:nth-child(even), .tab-kaart.is-actief:nth-child(even) { background: var(--beige); color: var(--inkt); }
+  .tab-kaart:nth-child(even) h3 { color: var(--inkt); }
+  .tab-kaart:nth-child(even) .tab-nr { color: var(--rozenhout); }
+  .tab-kaart:nth-child(even) .tab-punten li { color: rgba(8, 21, 52, .78); }
+  .tab-kaart:nth-child(even) .tab-punten li::before { background: var(--rozenhout); }
+  .tab-kaart:nth-child(even) .waarom-link { color: var(--inkt); }
+}
+@media (max-width: 767px) {
+  .tabs-knoppen { flex-direction: column; }
+  .tabs-knop + .tabs-knop { border-left: 1px solid var(--inkt); border-top: 0; }
+  .tabs-kop { text-align: center; }
+}

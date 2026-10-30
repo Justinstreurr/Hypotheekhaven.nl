@@ -1,0 +1,9 @@
+---
+import { laad } from '../lib/content';
+
+const { t } = await laad('site');
+---
+<div class="hero-banks">
+  <span class="hero-banks-label" data-e="site:banks.span1" set:html={t('banks.span1')} />
+  <div class="hero-banks-slots" aria-label="Geldverstrekkers"></div>
+</div>

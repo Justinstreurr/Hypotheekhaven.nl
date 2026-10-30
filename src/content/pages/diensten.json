@@ -1,0 +1,224 @@
+{
+  "meta": {
+    "title": "Diensten | Hypotheekadvies voor elke situatie | Hypotheekhaven",
+    "description": "Een huis kopen, verhuizen, oversluiten, overwaarde opnemen, scheiden of ondernemer: onafhankelijk en persoonlijk hypotheekadvies voor jouw situatie, in heel Noord-Holland."
+  },
+  "t": {
+    "hero.a1": "Home",
+    "hero.span1": "Diensten",
+    "hero.h11": "Waar kan ik je <b>mee helpen?</b>",
+    "hero.p1": "Ik help je om overzicht te krijgen en begeleid je stap voor stap, zodat je weet waar je aan toe bent.",
+    "tabs.span1": "Onze diensten",
+    "tabs.h21": "Kies jouw <b>situatie</b>",
+    "tabs.button1": "Ik wil een huis kopen",
+    "tabs.button2": "Ik heb al een hypotheek",
+    "kan-ik-kopen.span1": "01",
+    "kan-ik-kopen.h31": "Kan ik een huis kopen?",
+    "kan-ik-kopen.p1": "Weten wat er mogelijk is, voordat je gaat zoeken.",
+    "kan-ik-kopen.li1": "Je leencapaciteit op basis van je inkomen en vaste lasten",
+    "kan-ik-kopen.li2": "Maandlasten die passen bij hoe je wilt leven",
+    "kan-ik-kopen.li3": "Een helder budget voordat je gaat bieden",
+    "kan-ik-kopen.a1": "Plan een gratis kennismaking <i class=\"arrow\"></i>",
+    "eerste-huis.span1": "02",
+    "eerste-huis.h31": "Je eerste huis kopen",
+    "eerste-huis.p1": "Alles is nieuw. Ik leg elke stap uit.",
+    "eerste-huis.li1": "NHG, een starterslening of hulp van je ouders: wat kan bij jou",
+    "eerste-huis.li2": "Hulp bij het begrijpen van het koopcontract en de voorwaarden",
+    "eerste-huis.li3": "De aanvraag geregeld, tot aan de notaris",
+    "eerste-huis.a1": "Plan een gratis kennismaking <i class=\"arrow\"></i>",
+    "verhuizen.span1": "03",
+    "verhuizen.h31": "Verhuizen naar een ander huis",
+    "verhuizen.p1": "Je huidige huis verkopen en een nieuw huis kopen.",
+    "verhuizen.li1": "Je overwaarde en wat je ermee kunt",
+    "verhuizen.li2": "Je huidige hypotheek meenemen of juist niet",
+    "verhuizen.li3": "Een eventuele overbruggingslening doorgerekend",
+    "verhuizen.a1": "Plan een gratis kennismaking <i class=\"arrow\"></i>",
+    "verbouwen-of-verhuizen.span1": "04",
+    "verbouwen-of-verhuizen.h31": "Verbouwen of verhuizen?",
+    "verbouwen-of-verhuizen.p1": "Je huis past niet meer helemaal bij je. Ga je verbouwen, of twijfel je nog tussen verbouwen en verhuizen?",
+    "verbouwen-of-verhuizen.li1": "Hoe je een verbouwing slim financiert",
+    "verbouwen-of-verhuizen.li2": "Verbouwen en verhuizen financieel naast elkaar",
+    "verbouwen-of-verhuizen.li3": "Een duidelijk beeld van je maandlasten in beide gevallen",
+    "verbouwen-of-verhuizen.a1": "Plan een gratis kennismaking <i class=\"arrow\"></i>",
+    "ondernemer.span1": "05",
+    "ondernemer.h31": "Ondernemer en een hypotheek",
+    "ondernemer.p1": "Je inkomen is anders opgebouwd. Daar weet ik de weg in.",
+    "ondernemer.li1": "Je inkomen beoordeeld op basis van je jaarcijfers",
+    "ondernemer.li2": "Geldverstrekkers die passen bij jouw situatie",
+    "ondernemer.li3": "Een aanvraag die meteen compleet is",
+    "ondernemer.a1": "Plan een gratis kennismaking <i class=\"arrow\"></i>",
+    "rentevast.span1": "06",
+    "rentevast.h31": "Je rentevaste periode loopt af",
+    "rentevast.p1": "Je rente verandert binnenkort. Wat nu?",
+    "rentevast.li1": "Het rentevoorstel van je geldverstrekker beoordeeld",
+    "rentevast.li2": "Verlengen, oversluiten of extra aflossen vergeleken",
+    "rentevast.li3": "Een keuze die past bij je plannen",
+    "rentevast.a1": "Plan een gratis kennismaking <i class=\"arrow\"></i>",
+    "oversluiten.span1": "07",
+    "oversluiten.h31": "Hypotheek oversluiten",
+    "oversluiten.p1": "Misschien kan het goedkoper of beter passend.",
+    "oversluiten.li1": "Boeterente en kosten berekend",
+    "oversluiten.li2": "Besparing over de resterende looptijd",
+    "oversluiten.li3": "Een eerlijk advies, ook als het niet loont",
+    "oversluiten.a1": "Plan een gratis kennismaking <i class=\"arrow\"></i>",
+    "overwaarde.span1": "08",
+    "overwaarde.h31": "Overwaarde opnemen",
+    "overwaarde.p1": "Je huis is meer waard geworden.",
+    "overwaarde.li1": "Wat je kunt opnemen, op basis van je inkomen en de waarde van je huis",
+    "overwaarde.li2": "De gevolgen voor je maandlasten",
+    "overwaarde.li3": "Of het verstandig is in jouw situatie",
+    "overwaarde.a1": "Plan een gratis kennismaking <i class=\"arrow\"></i>",
+    "verduurzamen.span1": "09",
+    "verduurzamen.h31": "Je huis verduurzamen",
+    "verduurzamen.p1": "Zonnepanelen, isolatie of een warmtepomp.",
+    "verduurzamen.li1": "Financiering via je bestaande of een nieuwe hypotheek",
+    "verduurzamen.li2": "Extra leenruimte voor energiebesparende maatregelen",
+    "verduurzamen.li3": "Maandlasten die betaalbaar blijven",
+    "verduurzamen.a1": "Plan een gratis kennismaking <i class=\"arrow\"></i>",
+    "scheiden.span1": "10",
+    "scheiden.h31": "Scheiden en je hypotheek",
+    "scheiden.p1": "Een ingrijpende periode, met veel vragen over het huis.",
+    "scheiden.li1": "Of je de hypotheek alleen kunt dragen",
+    "scheiden.li2": "De mogelijkheden om je ex-partner uit te kopen",
+    "scheiden.li3": "Begeleiding bij het aanpassen van de hypotheek",
+    "scheiden.a1": "Plan een gratis kennismaking <i class=\"arrow\"></i>",
+    "reviews.span1": "Ervaringen",
+    "reviews.h21": "Wat klanten <b>zeggen</b>",
+    "reviews.p1": "<strong>5,0</strong> op Google <span class=\"reviews-sep\" aria-hidden=\"true\"></span> <strong>9,8</strong> op Trustoo",
+    "reviews.blockquote1": "“Super tevreden over Sabrina. Wat erg fijn is, is dat ze ruim de tijd voor je neemt om een zo goed mogelijk beeld te krijgen van je wensen. En als er wat is, staat ze altijd klaar!”",
+    "reviews.figcaption1": "<span class=\"review-avatar\" aria-hidden=\"true\">GB</span>Glenn Brondgeest",
+    "reviews.span2": "★★★★★",
+    "reviews.blockquote2": "“Sabrina heeft mij uitstekend geholpen met mijn hypotheek. Ze is deskundig, betrokken en neemt de tijd om alles duidelijk uit te leggen. Dankzij haar persoonlijke aanpak verliep het hele proces soepel en met vertrouwen.”",
+    "reviews.figcaption2": "<span class=\"review-avatar\" aria-hidden=\"true\">KE</span>Karim Elhadidy",
+    "reviews.blockquote3": "“Juist vanwege mijn ingewikkelde situatie met een niet-meewerkende ex was het echt nodig om zo’n doortastend persoon aan mijn zijde te hebben. Dank je wel Sabrina!”",
+    "reviews.figcaption3": "<span class=\"review-avatar\" aria-hidden=\"true\">SF</span>Sandra Fossen",
+    "reviews.blockquote4": "“Wij zijn Sabrina erg dankbaar voor haar advies en fijne begeleiding. Ze is altijd bereikbaar voor elke vraag die wij hadden. Ze is duidelijk en geen vraag is haar te veel.”",
+    "reviews.figcaption4": "<span class=\"review-avatar\" aria-hidden=\"true\">MB</span>Marielle Beemster",
+    "reviews.blockquote5": "“Ik kan niet genoeg benadrukken hoe goed ik ben geholpen. Had het proces van een eerste hypotheek aanvragen met niemand anders willen doen.”",
+    "reviews.figcaption5": "<span class=\"review-avatar\" aria-hidden=\"true\">IZ</span>Imaan van der Zwan",
+    "reviews.span3": "★★★★★",
+    "reviews.blockquote6": "“Dank voor alle uitleg, soms wel 2x, en vooral het contact. Het voelt heel bereikbaar en dat is zo fijn.”",
+    "reviews.figcaption6": "<span class=\"review-avatar\" aria-hidden=\"true\">JB</span>Joke Briek",
+    "reviews.blockquote7": "“Wij hadden wat tegenvallers, maar Sabrina dacht mee in oplossingen en bleef rustig. Ze is vriendelijk, luistert en denkt mee.”",
+    "reviews.figcaption7": "<span class=\"review-avatar\" aria-hidden=\"true\">SW</span>Saskia Westerhuis",
+    "reviews.blockquote8": "“Voor mij is hypotheekkeuze en het regelen ervan een ‘ver van mijn bed show’. Fijn ontzorgd te worden met klare, heldere uitleg.”",
+    "reviews.figcaption8": "<span class=\"review-avatar\" aria-hidden=\"true\">TV</span>Ton Van Bedaf",
+    "reviews.blockquote9": "“Sabrina heeft ons geweldig geholpen bij onze hypotheekaanvraag. Ze is geduldig, duidelijk en neemt alle tijd voor je. Ik kan haar iedereen aanbevelen!”",
+    "reviews.figcaption9": "<span class=\"review-avatar\" aria-hidden=\"true\">JW</span>Judith Wals",
+    "werkwijze.span1": "Zo werkt het",
+    "werkwijze.h21": "Stap voor stap <b>geregeld.</b><span class=\"kleur-zin\"><span>Van</span> <span>eerste</span> <span>gesprek</span> <span>tot</span> <span>aan</span> <span>de</span> <span>notaris.</span></span>",
+    "werkwijze.a1": "Plan een gratis kennismaking <i class=\"arrow\"></i>",
+    "werkwijze.span2": "Stap 01",
+    "werkwijze.h31": "Gratis kennismaking",
+    "werkwijze.p1": "We bespreken je situatie, je wensen en je mogelijkheden. Vrijblijvend, online of bij je thuis.",
+    "werkwijze.span3": "Stap 02",
+    "werkwijze.h32": "Mogelijkheden in kaart",
+    "werkwijze.p2": "Ik kijk wat haalbaar is en wat past bij jouw situatie en maandlasten.",
+    "werkwijze.span4": "Stap 03",
+    "werkwijze.h33": "Advies en aanvraag",
+    "werkwijze.p3": "We kiezen samen een passende oplossing en ik begeleid de hypotheekaanvraag.",
+    "werkwijze.span5": "Stap 04",
+    "werkwijze.h34": "Begeleiding tot aan de notaris",
+    "werkwijze.p4": "Ik houd het proces in de gaten en zorg dat alles goed verloopt, tot je de sleutel hebt.",
+    "werkwijze.h35": "Je vaste aanspreekpunt",
+    "werkwijze.p5": "Ook na het afsluiten van je hypotheek blijf ik je vaste aanspreekpunt. Verandert er iets, of heb je een vraag? Bel me gewoon."
+  },
+  "i": {
+    "hero.foto1": {
+      "src": "hh-hero-kaartje.jpg",
+      "alt": ""
+    },
+    "kan-ik-kopen.img1": {
+      "src": "hh-stel-tablet.jpg",
+      "alt": "Stel op de bank kijkt samen op een tablet"
+    },
+    "eerste-huis.img1": {
+      "src": "hh-sleutel.jpg",
+      "alt": ""
+    },
+    "verhuizen.img1": {
+      "src": "hh-woonkamer-breed.jpg",
+      "alt": ""
+    },
+    "verbouwen-of-verhuizen.img1": {
+      "src": "hh-verhuisdozen.jpg",
+      "alt": ""
+    },
+    "ondernemer.img1": {
+      "src": "hh-sabrina-bankje.jpg",
+      "alt": ""
+    },
+    "rentevast.img1": {
+      "src": "hh-sabrina-bankje-uitsnede.jpg",
+      "alt": ""
+    },
+    "oversluiten.img1": {
+      "src": "hh-laptop-studio.jpg",
+      "alt": ""
+    },
+    "overwaarde.img1": {
+      "src": "hh-hero-fauteuil.jpg",
+      "alt": ""
+    },
+    "verduurzamen.img1": {
+      "src": "hh-verbouwen.jpg",
+      "alt": ""
+    },
+    "scheiden.img1": {
+      "src": "hh-hand-tas.jpg",
+      "alt": ""
+    },
+    "reviews.img1": {
+      "src": "logo-google-reviews.png",
+      "alt": "Google, 5 sterren"
+    },
+    "reviews.img2": {
+      "src": "logo-trustoo.png",
+      "alt": "Trustoo"
+    },
+    "reviews.img3": {
+      "src": "logo-google-reviews.png",
+      "alt": "Google, 5 sterren"
+    },
+    "reviews.img4": {
+      "src": "logo-google-reviews.png",
+      "alt": "Google, 5 sterren"
+    },
+    "reviews.img5": {
+      "src": "logo-google-reviews.png",
+      "alt": "Google, 5 sterren"
+    },
+    "reviews.img6": {
+      "src": "logo-trustoo.png",
+      "alt": "Trustoo"
+    },
+    "reviews.img7": {
+      "src": "logo-google-reviews.png",
+      "alt": "Google, 5 sterren"
+    },
+    "reviews.img8": {
+      "src": "logo-google-reviews.png",
+      "alt": "Google, 5 sterren"
+    },
+    "reviews.img9": {
+      "src": "logo-google-reviews.png",
+      "alt": "Google, 5 sterren"
+    },
+    "werkwijze.img1": {
+      "src": "hh-hero-kaartje.jpg",
+      "alt": ""
+    },
+    "werkwijze.img2": {
+      "src": "hh-laptop-hakken.jpg",
+      "alt": ""
+    },
+    "werkwijze.img3": {
+      "src": "hh-sabrina-bankje.jpg",
+      "alt": ""
+    },
+    "werkwijze.img4": {
+      "src": "hh-champagne.jpg",
+      "alt": ""
+    }
+  }
+}

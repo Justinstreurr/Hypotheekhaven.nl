@@ -1,0 +1,25 @@
+{
+  "name": "hypotheekhaven",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "@astrojs/vercel": "^11.0.17",
+    "@fontsource/libre-caslon-text": "^5.3.0",
+    "astro": "^7.4.4",
+    "node-html-parser": "^9.0.5",
+    "sharp": "^0.35.5"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "typescript": "^6.0.3",
+    "wawoff2": "^2.0.1"
+  }
+}

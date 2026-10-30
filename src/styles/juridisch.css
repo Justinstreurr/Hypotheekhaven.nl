@@ -1,0 +1,184 @@
+/* JURIDISCH: privacyverklaring, cookies, klachtenprocedure en bedrijfsgegevens op één pagina.
+   Laad na styles.css en pagina.css. Links een inhoudsopgave die meeloopt (actieve sectie gemarkeerd
+   met een rozenhout lijntje), rechts de tekst in een leesbare kolom. */
+
+.juridisch {
+  display: grid;
+  grid-template-columns: minmax(200px, 260px) minmax(0, 1000px); /* tekst dichter bij de inhoudsopgave en breder */
+  justify-content: start;
+  gap: clamp(40px, 5vw, 80px);
+  padding-top: var(--sectie);
+  padding-bottom: var(--sectie);
+  background: var(--zand);
+}
+
+/* Inhoudsopgave */
+.toc {
+  position: sticky;
+  top: 108px; /* onder de zwevende menubalk (24px + 52px) */
+  align-self: start;
+}
+.toc ol {
+  list-style: none;
+  border-left: 1px solid rgba(8, 21, 52, .15);
+  margin-bottom: 40px;
+}
+.toc li { position: relative; }
+.toc ol a {
+  display: flex;
+  gap: 14px;
+  padding: 11px 0 11px 22px;
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(8, 21, 52, .6);
+  transition: color .3s;
+}
+.toc ol a span { font-size: 11px; letter-spacing: .16em; padding-top: 3px; color: rgba(8, 21, 52, .45); transition: color .3s; }
+.toc ol a::before {
+  content: "";
+  position: absolute;
+  left: -1px; top: 8px; bottom: 8px;
+  width: 2px;
+  background: var(--rozenhout);
+  transform: scaleY(0);
+  transition: transform .5s cubic-bezier(.22, 1, .36, 1);
+}
+.toc ol a:hover { color: var(--inkt); }
+.toc ol a.is-actief { color: var(--inkt); }
+.toc ol a.is-actief span { color: var(--rozenhout); }
+.toc ol a.is-actief::before { transform: scaleY(1); }
+
+.toc-vraag {
+  border-top: 1px solid rgba(8, 21, 52, .15);
+  padding-top: 24px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: rgba(8, 21, 52, .75);
+}
+.toc-vraag strong { display: block; font-weight: 500; color: var(--inkt); margin-bottom: 6px; }
+.toc-vraag a { color: var(--rozenhout); border-bottom: 1px solid currentColor; }
+.toc-vraag a:hover { color: var(--rozenhout-donker); }
+
+/* Leeskolom */
+.juridisch-tekst { font-size: 17px; line-height: 1.6; }
+.bijgewerkt {
+  font-size: 13px;
+  color: rgba(8, 21, 52, .6);
+  margin-bottom: 20px;
+}
+.juridisch-intro {
+  font-size: var(--intro);
+  line-height: 1.5;
+  color: rgba(8, 21, 52, .75);
+  padding-bottom: 56px;
+}
+
+.juridisch-sectie {
+  scroll-margin-top: 108px;
+  border-top: 1px solid rgba(8, 21, 52, .2);
+  padding-top: 56px;
+  padding-bottom: 72px;
+}
+.juridisch-sectie:last-child { padding-bottom: 0; }
+.juridisch-sectie h2 {
+  font-size: var(--h2);
+  letter-spacing: -1px;
+  margin-bottom: 28px;
+}
+.juridisch-sectie h2 b,
+.juridisch-sectie h3 b {
+  font-family: "Libre Caslon Text", Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -.04em;
+}
+.juridisch-sectie h3 {
+  font-size: 22px;
+  letter-spacing: -.2px;
+  line-height: 1.25;
+  margin: 40px 0 12px;
+}
+.juridisch-sectie p { margin-bottom: 16px; }
+.juridisch-sectie p,
+.juridisch-sectie li { color: rgba(8, 21, 52, .8); }
+.juridisch-sectie .lead { font-size: var(--intro); line-height: 1.5; color: rgba(8, 21, 52, .75); }
+.juridisch-sectie ul { margin: 0 0 20px; }
+.juridisch-sectie ul li {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 8px;
+}
+.juridisch-sectie ul li::before {
+  content: "";
+  position: absolute;
+  left: 2px; top: .8em;
+  width: 8px; height: 1px;
+  background: var(--rozenhout);
+}
+.juridisch-sectie p a,
+.juridisch-sectie li a,
+.juridisch-sectie dd a {
+  color: var(--rozenhout);
+  border-bottom: 1px solid rgba(142, 79, 75, .4);
+  transition: color .3s, border-color .3s;
+}
+.juridisch-sectie p a:hover,
+.juridisch-sectie li a:hover,
+.juridisch-sectie dd a:hover { color: var(--rozenhout-donker); border-color: currentColor; }
+
+/* Klachtenprocedure: drie stappen met nummer */
+.stappen { list-style: none; margin: 32px 0 24px; counter-reset: stap; }
+.stappen > li {
+  counter-increment: stap;
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  padding: 28px 0;
+  border-top: 1px solid rgba(8, 21, 52, .15);
+}
+.stappen > li:last-child { border-bottom: 1px solid rgba(8, 21, 52, .15); }
+.stappen > li::before {
+  content: "0" counter(stap);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .16em;
+  color: var(--rozenhout);
+  padding-top: 8px;
+}
+.stappen h3 { margin: 0 0 8px; }
+.stappen p:last-child { margin-bottom: 0; }
+
+/* Gegevensblokken (adressen, bedrijfsgegevens) */
+.gegevens {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  margin: 8px 0 24px;
+  background: var(--beige);
+  padding: 28px 32px;
+  row-gap: 10px;
+  column-gap: 24px;
+}
+.gegevens dt { font-size: 15px; font-weight: 500; color: var(--inkt); }
+.gegevens dd { color: rgba(8, 21, 52, .8); }
+.placeholder {
+  background: rgba(142, 79, 75, .14);
+  color: var(--rozenhout-donker);
+  padding: 0 6px;
+  font-weight: 500;
+}
+
+@media (max-width: 1024px) {
+  .juridisch { grid-template-columns: minmax(180px, 240px) minmax(0, 1fr); gap: 48px; }
+}
+@media (max-width: 767px) {
+  .juridisch { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .toc { position: static; }
+  .toc ol { margin-bottom: 0; }
+  .toc-vraag { display: none; }
+  .juridisch-tekst { font-size: 16px; }
+  .juridisch-sectie { scroll-margin-top: 24px; padding-top: 40px; padding-bottom: 48px; }
+  .juridisch-intro { padding-bottom: 40px; }
+  .juridisch-sectie h3 { font-size: 20px; }
+  .gegevens { grid-template-columns: minmax(0, 1fr); padding: 22px 20px; row-gap: 2px; }
+  .gegevens dd { margin-bottom: 10px; }
+  .gegevens dd:last-child { margin-bottom: 0; }
+  .stappen > li { grid-template-columns: 40px minmax(0, 1fr); }
+}

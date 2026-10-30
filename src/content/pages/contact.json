@@ -1,0 +1,93 @@
+{
+  "meta": {
+    "title": "Contact | Hypotheekhaven, hypotheekadviseur in Noord-Holland",
+    "description": "Neem contact op met Hypotheekhaven, onafhankelijk hypotheek- en verzekeringsadviseur in Noord-Holland. Bel, app of mail Sabrina voor een gratis en vrijblijvende kennismaking, online of bij je thuis."
+  },
+  "t": {
+    "hero.a1": "Home",
+    "hero.span1": "Contact",
+    "hero.h11": "Neem gerust <b>contact op</b>",
+    "hero.p1": "Bel, app of mail me, of laat hieronder een bericht achter. Het eerste gesprek is altijd gratis en vrijblijvend, online of gewoon bij je thuis.",
+    "direct.span1": "Direct contact",
+    "direct.h21": "Bel, app of <b>mail me</b>",
+    "direct.p1": "Wat voor jou het makkelijkst is. Je hebt altijd direct contact met mij, je vaste adviseur.",
+    "direct.span2": "Mobiel",
+    "direct.a1": "06 55 76 78 19",
+    "direct.p2": "Bel me gerust, ook voor een korte vraag.",
+    "direct.a2": "Bel nu <i class=\"arrow\"></i>",
+    "direct.span3": "Kantoor",
+    "direct.a3": "085 800 19 77",
+    "direct.p3": "Mijn vaste nummer voor afspraken en vragen.",
+    "direct.a4": "Bel nu <i class=\"arrow\"></i>",
+    "direct.span4": "WhatsApp",
+    "direct.a5": "Stuur een appje",
+    "direct.p4": "Handig voor een snelle vraag of om een moment af te spreken.",
+    "direct.a6": "Open WhatsApp <i class=\"arrow\"></i>",
+    "direct.span5": "E-mail",
+    "direct.a7": "info@<wbr>hypotheekhaven.nl",
+    "direct.p5": "Voor een uitgebreidere vraag of als je iets wilt toesturen.",
+    "direct.a8": "Stuur een e-mail <i class=\"arrow\"></i>",
+    "formulier.span1": "Contactformulier",
+    "formulier.h21": "Stuur me een <b>bericht</b>",
+    "formulier.p1": "Vertel kort waar je mee bezig bent. Dan neem ik contact met je op om een gratis kennismaking te plannen.",
+    "formulier.li1": "Gratis en vrijblijvend eerste gesprek",
+    "formulier.li2": "Online of bij je thuis aan de keukentafel, overal in Noord-Holland",
+    "formulier.li3": "Je vaste adviseur, ook na de notaris",
+    "formulier.figcaption1": "<strong>Sabrina Reiz-Coenraad</strong><span>Hypotheek- en verzekeringsadviseur</span>",
+    "contactformulier.label1": "Naam",
+    "contactformulier.label2": "E-mailadres",
+    "contactformulier.label3": "Telefoonnummer <span class=\"veld-optioneel\">(optioneel)</span>",
+    "contactformulier.label4": "Waar gaat het over?",
+    "contactformulier.legend1": "Waar wil je het gesprek het liefst voeren?",
+    "contactformulier.span1": "Online",
+    "contactformulier.span2": "Bij mij thuis",
+    "contactformulier.span3": "Maakt niet uit",
+    "contactformulier.label5": "Je bericht",
+    "contactformulier.p1": "Bijvoorbeeld: je plannen, je situatie en wanneer je het liefst gebeld wordt.",
+    "contactformulier.span4": "Ik ga akkoord met de <a href=\"/juridisch#privacy\">privacyverklaring</a>",
+    "contactformulier.button1": "Verstuur je bericht <i class=\"arrow\"></i>",
+    "contactformulier.p2": "Je gegevens gebruik ik alleen om contact met je op te nemen.",
+    "formulier.span2": "Bijna verstuurd",
+    "formulier.h31": "Dank je wel, <span class=\"bevestiging-naam\">je bericht staat klaar</span>",
+    "formulier.p2": "Je e-mailprogramma is geopend met je bericht erin. Klik daar nog op verzenden, dan komt het bij mij binnen. Ik neem meestal binnen een werkdag contact met je op.",
+    "formulier.p3": "Opende er niets? Mail dan naar <a href=\"mailto:info@hypotheekhaven.nl\">info@hypotheekhaven.nl</a> of bel <a href=\"tel:+31655767819\">06 55 76 78 19</a>.",
+    "formulier.button1": "Nog een bericht sturen <i class=\"arrow\"></i>",
+    "daarna.span1": "Hoe het verder gaat",
+    "daarna.h21": "Wat gebeurt er na <b>je bericht?</b>",
+    "daarna.span2": "01",
+    "daarna.h31": "Ik neem contact met je op",
+    "daarna.p1": "Meestal binnen een werkdag bel of mail ik je terug. Zo hoor je snel van me.",
+    "daarna.span3": "02",
+    "daarna.h32": "We plannen een gratis kennismaking",
+    "daarna.p2": "Op een moment dat jou uitkomt. Gratis en vrijblijvend, ook als je daarna niet verdergaat.",
+    "daarna.span4": "03",
+    "daarna.h33": "Online of bij je thuis",
+    "daarna.p3": "Via een videocall of gewoon bij je aan de keukentafel, overal in Noord-Holland.",
+    "pagina.span1": "Gratis en vrijblijvend",
+    "pagina.h21": "Liever meteen <b>even bellen?</b>",
+    "pagina.a1": "Bel 06 55 76 78 19 <i class=\"arrow\"></i>",
+    "pagina.a2": "Stuur een WhatsApp <i class=\"arrow\"></i>"
+  },
+  "i": {
+    "hero.foto1": {
+      "src": "hh-sabrina-bankje-breed.jpg",
+      "alt": ""
+    },
+    "formulier.img1": {
+      "src": "hh-sabrina-portret.jpg",
+      "alt": "Portret van Sabrina Reiz-Coenraad"
+    },
+    "daarna.img1": {
+      "src": "hh-sabrina-bankje.jpg",
+      "alt": ""
+    },
+    "daarna.img2": {
+      "src": "hh-hero-kaartje.jpg",
+      "alt": ""
+    },
+    "daarna.img3": {
+      "src": "hh-enkhuizen-lucht.jpg",
+      "alt": "Enkhuizen van bovenaf, met de haven en de Zuiderkerk"
+    }
+  }
+}

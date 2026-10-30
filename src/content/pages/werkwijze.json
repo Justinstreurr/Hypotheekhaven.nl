@@ -1,0 +1,101 @@
+{
+  "meta": {
+    "title": "Werkwijze en kosten hypotheekadvies | Hypotheekhaven",
+    "description": "Zo werkt hypotheekadvies bij Hypotheekhaven: van een gratis kennismaking tot aan de notaris, en ook daarna. Vooraf duidelijkheid over de kosten, plus de Dienstenwijzer en vergelijkingskaarten."
+  },
+  "t": {
+    "hero.a1": "Home",
+    "hero.span1": "Werkwijze &amp; kosten",
+    "hero.h11": "Zo werk ik, <b>dit kost het</b>",
+    "hero.p1": "Stap voor stap van het eerste gesprek tot aan de notaris, met één vast aanspreekpunt. En vooraf duidelijkheid over de kosten.",
+    "stappen.span1": "Mijn werkwijze",
+    "stappen.h21": "Stap voor stap <b>geregeld.</b><span class=\"kleur-zin\"><span>Van</span> <span>eerste</span> <span>gesprek</span> <span>tot</span> <span>aan</span> <span>de</span> <span>notaris.</span></span>",
+    "stappen.p1": "Een hypotheek afsluiten doe je niet elke dag. Daarom neem ik je mee door elke stap, leg ik uit wat er gebeurt en houd ik het overzicht. Jij weet steeds waar je staat.",
+    "stappen.span2": "Stap 01",
+    "stappen.h31": "Gratis kennismaking",
+    "stappen.p2": "We bespreken je situatie, wensen en mogelijkheden.",
+    "stappen.p3": "Telefonisch, online of bij je thuis, wanneer het jou uitkomt. In ongeveer een uur vertel je wat je van plan bent en stel ik de vragen die ertoe doen. Je zit nergens aan vast: het gesprek is gratis en vrijblijvend.",
+    "stappen.span3": "Stap 02",
+    "stappen.h32": "Mogelijkheden in kaart",
+    "stappen.p4": "Ik kijk wat haalbaar is en wat bij je situatie en maandlasten past.",
+    "stappen.p5": "Ik breng je inkomen, vaste lasten en plannen samen in één overzicht. Niet alleen wat je maximaal kunt lenen, maar vooral wat je per maand comfortabel kunt betalen, nu en later.",
+    "stappen.span4": "Stap 03",
+    "stappen.h33": "Advies en aanvraag",
+    "stappen.p6": "We kiezen samen een passende oplossing en ik begeleid de hypotheekaanvraag.",
+    "stappen.p7": "Ik leg uit waarom ik iets adviseer, zodat je weet waar je voor kiest. Je documenten, zoals een loonstrook, een werkgeversverklaring en een geldig identiteitsbewijs, upload je in je eigen beveiligde omgeving. Ik vertel je precies wat er nodig is. Na het adviesgesprek krijg je alles op een rij in een samenvatting per mail.",
+    "stappen.span5": "Stap 04",
+    "stappen.h34": "Begeleiding tot aan de notaris",
+    "stappen.p8": "Ik houd het proces in de gaten en zorg dat alles goed verloopt.",
+    "stappen.p9": "Ik heb contact met de geldverstrekker en de notaris en let op de afspraken uit je koopovereenkomst. Zo weet je dat alles op tijd klaarstaat voor het moment dat je bij de notaris tekent.",
+    "stappen.h35": "Je vaste <b>aanspreekpunt</b>",
+    "stappen.p10": "Ook na het afsluiten van je hypotheek blijf ik je vaste aanspreekpunt. Verandert er iets in je leven, of heb je een vraag over je hypotheek? Dan weet je mij te vinden.",
+    "kosten.span1": "Kosten",
+    "kosten.h21": "Duidelijkheid over <b>de kosten</b>",
+    "kosten.p1": "Vooraf weet je wat mijn dienstverlening kost. Geen verrassingen achteraf.",
+    "kosten.span2": "Eerste gesprek",
+    "kosten.h31": "Altijd gratis en vrijblijvend",
+    "kosten.p2": "We leren elkaar kennen en bespreken je situatie en plannen. Ga je daarna niet verder, dan betaal je niets.",
+    "kosten.span3": "Vooraf duidelijk",
+    "kosten.h32": "Je weet wat het kost",
+    "kosten.p3": "Voordat ik voor je aan de slag ga, bespreken we wat mijn dienstverlening kost. Zo weet je waar je aan toe bent.",
+    "kosten.span4": "Onafhankelijk",
+    "kosten.h33": "Je betaalt mij, niet de bank",
+    "kosten.p4": "Voor je hypotheekadvies ontvang ik geen provisie van banken. Je betaalt mij rechtstreeks, zodat mijn advies onafhankelijk blijft.",
+    "kosten.span5": "Alles op papier",
+    "kosten.h34": "Indicatie van mijn tarieven",
+    "kosten.p5": "Op de vergelijkingskaart hypotheek zie je wat advies en aanvraag gemiddeld kosten. Wat het voor jou precies kost, hoor je vooraf van mij.",
+    "kosten.a1": "Plan een gratis kennismaking <i class=\"arrow\"></i>",
+    "kosten.a2": "Bekijk de tarieven <i class=\"arrow\"></i>",
+    "banner.span1": "Documenten",
+    "banner.h21": "Mijn <b>Dienstenwijzer</b>",
+    "banner.p1": "Wie ik ben, wat ik voor je doe en hoe mijn dienstverlening is geregeld. Wettelijk verplichte informatie, zodat je vooraf weet wat je van mij kunt verwachten.",
+    "banner.a1": "Bekijk de Dienstenwijzer <i class=\"arrow\"></i>",
+    "banner.span2": "Documenten",
+    "banner.h22": "De <b>vergelijkingskaarten</b>",
+    "banner.p2": "Mijn dienstverlening op een vaste manier beschreven, zodat je die makkelijk kunt vergelijken met andere adviseurs.",
+    "banner.li1": "<a href=\"https://nbg.nl/wp-content/uploads/documents/Vergelijkingskaart-hypotheek-Hypotheekhaven.pdf\" target=\"_blank\" rel=\"noopener\">Hypotheek <i class=\"arrow\"></i></a>",
+    "banner.li2": "<a href=\"https://nbg.nl/wp-content/uploads/documents/Vergelijkingskaart-risicos-afdekken-Hypotheekhaven.pdf\" target=\"_blank\" rel=\"noopener\">Risico’s afdekken <i class=\"arrow\"></i></a>",
+    "banner.li3": "<a href=\"https://nbg.nl/wp-content/uploads/documents/Vergelijkingskaart-vermogen-opbouwen-Hypotheekhaven.pdf\" target=\"_blank\" rel=\"noopener\">Vermogen opbouwen <i class=\"arrow\"></i></a>",
+    "faq.span1": "Goed om te weten",
+    "faq.h21": "Vragen over <b>werkwijze en kosten</b>",
+    "faq.p1": "Staat je vraag er niet tussen? Stel hem gerust in het gratis kennismakingsgesprek.",
+    "faq.summary1": "Wat kost het eerste gesprek?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
+    "faq.p2": "Niets. De kennismaking is gratis en vrijblijvend. We bespreken je situatie en wensen, en daarna beslis jij of je verder wilt.",
+    "faq.summary2": "Wanneer weet ik wat je advies kost?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
+    "faq.p3": "Vooraf. Voordat ik voor je aan de slag ga, weet je wat mijn dienstverlening kost. Zo kom je achteraf niet voor verrassingen te staan.",
+    "faq.summary3": "Welke documenten heb ik nodig?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
+    "faq.p4": "Dat hangt af van je situatie. Vaak gaat het om een geldig identiteitsbewijs, een recente loonstrook en een werkgeversverklaring, en bij een aankoop de koopovereenkomst. Ik geef je een overzicht van wat er voor jou nodig is.",
+    "faq.summary4": "Moet ik al een huis op het oog hebben?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
+    "faq.p5": "Nee. Het is juist prettig om vooraf te weten wat er mogelijk is. Dan kun je gerichter zoeken en weet je waar je staat als je een huis vindt dat je bevalt."
+  },
+  "i": {
+    "hero.foto1": {
+      "src": "hh-laptop-studio.jpg",
+      "alt": ""
+    },
+    "stappen.img1": {
+      "src": "hh-hero-kaartje.jpg",
+      "alt": ""
+    },
+    "stappen.img2": {
+      "src": "hh-laptop-hakken.jpg",
+      "alt": ""
+    },
+    "stappen.img3": {
+      "src": "hh-hand-tas.jpg",
+      "alt": ""
+    },
+    "stappen.img4": {
+      "src": "hh-champagne.jpg",
+      "alt": ""
+    },
+    "documenten.foto1": {
+      "src": "hh-hero-fauteuil.jpg",
+      "alt": ""
+    },
+    "documenten.foto2": {
+      "src": "hh-laptop-studio.jpg",
+      "alt": ""
+    }
+  }
+}

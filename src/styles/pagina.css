@@ -1,0 +1,97 @@
+/* GEDEELD VOOR SUBPAGINA'S (contact, juridisch, later over-sabrina, ...)
+   Laad na styles.css: <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="pagina.css">
+   Kopfoto: dezelfde hero als de homepage, maar lager (geen banklogo-balk, geen reviews). */
+.hero.hero--pagina { min-height: 64vh; }
+.hero--pagina .hero-content { padding-top: 132px; padding-bottom: 96px; max-width: calc(760px + var(--pad)); } /* bovenin altijd ruimte voor logo en menu */
+.hero--pagina h1 { font-size: 56px; letter-spacing: -1px; margin-bottom: 20px; }
+.hero--pagina .hero-content p { font-size: 19px; line-height: 1.4; max-width: 600px; }
+
+/* Actieve pagina in de menubalk: dunne rozenhout lijn onder het woord (aria-current="page") */
+.nav a[aria-current="page"] { position: relative; }
+.nav a[aria-current="page"]::after {
+  content: ""; position: absolute; left: 24px; right: 24px; bottom: 13px;
+  height: 1px; background: var(--rozenhout);
+}
+/* Kruimelpad boven de kop: klein, wit, zoals de eyebrow */
+.kruimelpad { display: flex; gap: 10px; margin-bottom: 22px; font-size: 11px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: rgba(255, 255, 255, .8); }
+.kruimelpad a:hover { color: var(--white); }
+
+@media (max-width: 1024px) {
+  .hero--pagina h1 { font-size: 44px; }
+}
+@media (max-width: 767px) {
+  .hero.hero--pagina { min-height: 480px; }
+  .hero--pagina .hero-content { padding-top: 104px; } /* ruimte voor logo en menuknop */
+  .hero--pagina h1 { font-size: 34px; }
+}
+
+/* Google- en Trustoo-scores rechtsonder in de kopfoto, zoals op de homepage (lagere hero, dus iets anders gepositioneerd) */
+.hero--pagina .hero-review:nth-child(1) { left: auto; right: calc(var(--pad) + 190px); top: auto; bottom: 96px; height: 120px; }
+.hero--pagina .hero-review:nth-child(2) { left: auto; right: var(--pad); top: auto; bottom: 96px; height: 120px; width: 160px; }
+@media (max-width: 1024px) {
+  .hero--pagina .hero-reviews { display: none; }
+}
+
+/* STAPPEN (werkwijze en diensten): tijdlijn met meer tekst per stap */
+.ww-stappen .werkwijze-kop h2 { margin-bottom: 28px; }
+.ww-intro {
+  font-size: var(--intro); line-height: 1.5; color: rgba(8, 21, 52, .75);
+  max-width: 620px; margin: 0 auto;
+}
+.ww-stappen .tijdlijn-tekst { max-width: 440px; }
+.ww-stappen .tijdlijn-stap p + p { margin-top: 12px; }
+.ww-stappen .tijdlijn-stap p.ww-kern { font-size: 18px; line-height: 1.45; color: var(--inkt); }
+.ww-stappen .tijdlijn-stap--na .tijdlijn-tekst { max-width: 520px; }
+
+/* STAPPEN (werkwijze en diensten): kop links (blijft staan), stappen rechts onder elkaar langs één lijn ===== */
+.ww-stappen {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+  gap: clamp(48px, 6vw, 110px);
+  align-items: start;
+}
+.ww-stappen .werkwijze-kop { position: sticky; top: 140px; text-align: left; margin-bottom: 0; }
+.ww-stappen .werkwijze-kop h2 .kleur-zin { display: block; }
+.ww-stappen .ww-intro { margin: 0; max-width: 440px; }
+.ww-stappen .tijdlijn-lijn { left: 4px; }
+.ww-stappen .tijdlijn-stap,
+.ww-stappen .tijdlijn-stap.is-links {
+  grid-template-columns: minmax(0, 1fr) 220px;
+  column-gap: 40px;
+  align-items: start;
+  padding: 40px 0 40px 44px;
+}
+.ww-stappen .tijdlijn-stap::before { left: 4px; top: 54px; }
+.ww-stappen .tijdlijn-tekst,
+.ww-stappen .tijdlijn-stap.is-links .tijdlijn-tekst { grid-column: 1; grid-row: 1; justify-self: start; text-align: left; max-width: 460px; }
+.ww-stappen .tijdlijn-foto,
+.ww-stappen .tijdlijn-stap.is-links .tijdlijn-foto { grid-column: 2; grid-row: 1; justify-self: end; max-width: none; aspect-ratio: 4 / 5; }
+.ww-stappen .tijdlijn-stap--na { padding-top: 24px; }
+.ww-stappen .tijdlijn-label { justify-content: flex-start; padding-left: 0; }
+
+@media (max-width: 1024px) {
+  .ww-stappen { grid-template-columns: 1fr; }
+  .ww-stappen .werkwijze-kop { position: static; text-align: center; }
+  .ww-stappen .ww-intro { margin: 0 auto; }
+}
+@media (max-width: 767px) {
+  .ww-stappen .tijdlijn-stap p.ww-kern { font-size: 17px; }
+  .ww-stappen .tijdlijn-stap, .ww-stappen .tijdlijn-stap.is-links { grid-template-columns: 1fr; row-gap: 20px; padding: 28px 0 28px 32px; }
+  .ww-stappen .tijdlijn-foto, .ww-stappen .tijdlijn-stap.is-links .tijdlijn-foto { grid-column: 1; grid-row: 2; justify-self: start; aspect-ratio: 16 / 10; }
+}
+
+
+/* Banklogo-balk onderin de kopfoto, zoals op de homepage: tekst en scores schuiven erboven */
+.hero--pagina .hero-content { padding-bottom: 176px; }
+.hero--pagina .hero-review:nth-child(1), .hero--pagina .hero-review:nth-child(2) { bottom: 176px; }
+@media (max-width: 767px) {
+  .hero--pagina .hero-content { padding-bottom: 190px; }
+}
+
+/* Banklogo's op de subpagina's meteen in kleur (op de homepage pas vanaf Onze diensten) */
+.hero--pagina .hero-banks-slot img { filter: none; opacity: 1; }
+
+/* Kopfoto op mobiel: iets donkerder, zodat de tekst op drukke foto's (stad, gevels) rustig leest */
+@media (max-width: 767px) {
+  .hero--pagina .hero-overlay { background: linear-gradient(to bottom, rgba(0, 0, 0, .45) 0%, rgba(0, 0, 0, .5) 60%, rgba(0, 0, 0, .35) 100%) !important; }
+}

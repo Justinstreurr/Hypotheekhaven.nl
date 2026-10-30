@@ -1,0 +1,97 @@
+/* VERZEKERINGEN (laad na styles.css en pagina.css)
+   Compact en rustig, bewust minder prominent dan de hypotheekpagina's:
+   waarom samen (zand), drie verzekeringen in een raster met dunne lijnen (beige),
+   hoe het werkt in drie stappen (zand), korte FAQ (zand), footer. */
+
+/* Kopfoto: planner met ijskoffie op de gele bank */
+.hero-slide--verzekeringen { background-position: 60% center; } /* planner en koffie rechts van de tekst */
+
+/* Gedeelde kopmaat voor de secties op deze pagina */
+.samen h2, .soorten h2 { font-size: var(--h2); font-weight: 400; line-height: 1.1; letter-spacing: -1px; }
+.samen h2 b, .soorten h2 b { font-family: "Libre Caslon Text", Georgia, serif; font-weight: 400; letter-spacing: -.04em; }
+
+/* ===== WAAROM SAMEN ===== */
+.samen {
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(48px, 7vw, 120px);
+  padding-top: var(--sectie); padding-bottom: var(--sectie);
+}
+.samen-tekst { padding-top: 34px; max-width: 680px; }
+.samen-lead { font-size: 22px; line-height: 1.45; letter-spacing: -.2px; margin-bottom: 20px; }
+.samen-tekst p:not(.samen-lead) { font-size: var(--intro); line-height: 1.5; color: rgba(8, 21, 52, .75); }
+
+
+
+
+/* Overige verzekeringen: rustige regel met woorden, gescheiden door puntjes */
+.soorten-overig { max-width: 760px; margin: 72px auto 0; text-align: center; }
+.soorten-overig h3 { font-size: 26px; font-weight: 400; letter-spacing: -.3px; margin-bottom: 12px; }
+.soorten-overig p { font-size: var(--intro); line-height: 1.5; color: rgba(8, 21, 52, .75); margin-bottom: 22px; }
+.soorten-overig ul { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 0; }
+.soorten-overig li { font-size: 16px; }
+.soorten-overig li + li::before { content: "·"; margin: 0 14px; color: var(--rozenhout); }
+
+/* Lijn-icoon in de stijl van de wiel-iconen op de homepage */
+
+/* ===== HOE HET WERKT ===== */
+
+/* ===== FAQ: hergebruikt .faq van de homepage, alleen de ruimte is kleiner ===== */
+.faq--verzekeringen { padding-top: var(--sectie); padding-bottom: var(--sectie); }
+.faq--verzekeringen h2 { font-size: var(--h2); }
+.faq--verzekeringen .faq-side p { margin-bottom: 0; }
+
+/* ===== AFSLUITER ===== */
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .samen { grid-template-columns: 1fr; gap: 28px; }
+  .samen-tekst { padding-top: 0; margin: 0 auto; }
+  .samen { text-align: center; } /* onder elkaar: kop en uitleg in het midden */
+        }
+@media (max-width: 767px) {
+  .samen-lead { font-size: 19px; }
+      }
+
+/* ===== VERZEKERINGEN: drie fotokaarten, de actieve wordt breder en toont de uitleg ===== */
+.soorten { background: var(--beige); padding-top: var(--sectie); padding-bottom: var(--sectie); }
+.soorten-kop { text-align: center; max-width: 760px; margin: 0 auto 64px; }
+.soorten-kop h2 { margin-bottom: 20px; }
+.soorten-kop p { font-size: var(--intro); line-height: 1.5; color: rgba(8, 21, 52, .75); }
+.soorten-lijst { list-style: none; display: flex; gap: 16px; height: 620px; }
+.soort {
+  flex: 1 1 0; min-width: 0;
+  display: flex; flex-direction: column;
+  background: var(--linnen); cursor: pointer; outline: none;
+  transition: flex-grow .7s cubic-bezier(.22, 1, .36, 1);
+}
+.soort.is-actief { flex-grow: 1.9; cursor: default; }
+.soort-foto { flex: 1; min-height: 0; overflow: hidden; }
+.soort-foto img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s cubic-bezier(.22, 1, .36, 1); }
+.soort:hover .soort-foto img { transform: scale(1.03); }
+.soort-tekst { padding: 44px 36px 38px; } /* meer lucht tussen foto en label */
+.soort-label { display: block; font-size: 11px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--rozenhout); margin-bottom: 14px; }
+.soort h3 { font-size: 26px; font-weight: 400; letter-spacing: -.3px; line-height: 1.15; -webkit-hyphens: manual; hyphens: manual; }
+.soort p {
+  font-size: 16px; line-height: 1.55; color: rgba(8, 21, 52, .75); max-width: 520px;
+  max-height: 0; opacity: 0; overflow: hidden;
+  transition: max-height .6s cubic-bezier(.22, 1, .36, 1), opacity .4s ease, margin .6s;
+}
+.soort.is-actief p { max-height: 200px; opacity: 1; margin-top: 14px; transition-delay: .15s; }
+.soort--donker { background: var(--inkt); color: var(--white); }
+.soort--licht { background: var(--zand); } /* zelfde lichte kleur als de achtergrond van Onze diensten */
+.soort--donker .soort-label { color: var(--kameel); }
+.soort--donker h3 { color: var(--kameel); }
+.soort--donker p { color: rgba(255, 255, 255, .8); }
+.soort:focus-visible { box-shadow: 0 0 0 2px var(--rozenhout); }
+
+@media (max-width: 1024px) {
+  .soorten-lijst { flex-direction: column; height: auto; }
+  .soort, .soort.is-actief { flex: none; cursor: default; }
+  .soort-foto { aspect-ratio: 16 / 9; flex: none; }
+  .soort p { max-height: none; opacity: 1; margin-top: 14px; }
+}
+@media (max-width: 767px) {
+  .soorten-kop { text-align: center; margin-bottom: 40px; }
+  .soort-tekst { padding: 32px 22px 28px; }
+  .soort h3 { font-size: 22px; }
+}

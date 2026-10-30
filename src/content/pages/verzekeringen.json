@@ -1,0 +1,90 @@
+{
+  "meta": {
+    "title": "Verzekeringen bij je hypotheek | Hypotheekhaven",
+    "description": "Onafhankelijk verzekeringsadvies bij je hypotheek in Noord-Holland. Sabrina Reiz-Coenraad kijkt naar de risico's die bij jouw situatie horen, zodat hypotheek en verzekeringen goed op elkaar aansluiten."
+  },
+  "t": {
+    "hero.a1": "Home",
+    "hero.span1": "Verzekeringen",
+    "hero.h11": "Ook je verzekeringen <b>goed geregeld</b>",
+    "hero.p1": "Naast je hypotheek kijk ik ook naar de risico’s die bij jouw situatie horen, zodat hypotheek en verzekeringen goed op elkaar aansluiten.",
+    "samen.span1": "Hypotheek en verzekeringen",
+    "samen.h21": "Waarom ik ze <b>samen bekijk</b>",
+    "samen.p1": "Een hypotheek loopt vaak tientallen jaren. In die tijd kan je inkomen veranderen, bijvoorbeeld door ziekte, werkloosheid of het overlijden van je partner.",
+    "samen.p2": "Daarom kijk ik bij je hypotheekadvies ook naar wat er dan met je maandlasten gebeurt. Zo zie je welke risico’s er zijn en kun je zelf kiezen of en hoe je die wilt afdekken.",
+    "soorten.span1": "Verzekeringen bij je hypotheek",
+    "soorten.h21": "Waar ik met je <b>naar kijk</b>",
+    "soorten.p1": "Of een verzekering bij jou past, hangt af van je situatie. Dat bespreken we samen.",
+    "soorten.span2": "Bij overlijden",
+    "soorten.h31": "Overlijdens&shy;risico&shy;verzekering",
+    "soorten.p2": "Keert een bedrag uit als jij of je partner overlijdt tijdens de looptijd van de verzekering. Daarmee kan degene die achterblijft bijvoorbeeld een deel van de hypotheek aflossen, zodat de woonlasten betaalbaar blijven.",
+    "soorten.span3": "Bij ziekte of werkloosheid",
+    "soorten.h32": "Woonlasten&shy;verzekering",
+    "soorten.p3": "Vult je inkomen aan als je door arbeidsongeschiktheid en/of werkloosheid minder verdient. Zo kun je je hypotheek en andere woonlasten blijven betalen. Ook wel betalingsbeschermer genoemd.",
+    "soorten.span4": "Voor ondernemers",
+    "soorten.h33": "Arbeids&shy;ongeschiktheids&shy;verzekering",
+    "soorten.p4": "Als ondernemer of zzp’er heb je geen werkgever die je inkomen doorbetaalt als je ziek wordt. Deze verzekering geeft je een uitkering als je door ziekte of een ongeval niet of minder kunt werken.",
+    "soorten.h34": "Ook je andere verzekeringen",
+    "soorten.p5": "Een woonhuisverzekering is bij een hypotheek verplicht. Die regel ik graag voor je, net als je andere verzekeringen.",
+    "soorten.li1": "Woonhuis (opstal)",
+    "soorten.li2": "Inboedel",
+    "soorten.li3": "Aansprakelijkheid",
+    "soorten.li4": "Rechtsbijstand",
+    "soorten.li5": "Uitvaart",
+    "soorten.li6": "Auto",
+    "soorten.li7": "Reis",
+    "hoe-het-werkt.span1": "Hoe het werkt",
+    "hoe-het-werkt.h21": "Verzekeringen, <b>goed geregeld.</b><span class=\"kleur-zin\"><span>Advies</span> <span>dat</span> <span>past</span> <span>bij</span> <span>je</span> <span>hypotheek.</span></span>",
+    "hoe-het-werkt.a1": "Plan een gratis kennismaking <i class=\"arrow\"></i>",
+    "hoe-het-werkt.span2": "Stap 01",
+    "hoe-het-werkt.h31": "Samen met je hypotheek",
+    "hoe-het-werkt.p1": "Verzekeringsadvies is een vast onderdeel van het gesprek over je hypotheek. Zo sluiten de twee goed op elkaar aan.",
+    "hoe-het-werkt.span3": "Stap 02",
+    "hoe-het-werkt.h32": "Of los aan te vragen",
+    "hoe-het-werkt.p2": "Heb je je hypotheek al, maar wil je weten of je verzekeringen nog passen? Dan kun je verzekeringsadvies ook los bij me aanvragen.",
+    "hoe-het-werkt.span4": "Stap 03",
+    "hoe-het-werkt.h33": "Start met een kennismaking",
+    "hoe-het-werkt.p3": "In een gratis en vrijblijvend gesprek vertel je over je situatie. Telefonisch, online of bij je thuis, wanneer het jou uitkomt.",
+    "faq.span1": "Wat je moet weten",
+    "faq.h21": "Vragen over <b>verzekeringen</b>",
+    "faq.p1": "Staat je vraag er niet tussen? Stel hem gerust in het gratis kennismakingsgesprek.",
+    "faq.summary1": "Moet ik een verzekering afsluiten bij mijn hypotheek?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
+    "faq.p2": "Dat hangt af van je situatie, en soms van de voorwaarden van de geldverstrekker. In het gesprek kijken we samen welke risico’s er voor jou zijn en of een verzekering daarbij past. Jij beslist.",
+    "faq.summary2": "Kan ik ook alleen voor verzekeringsadvies bij je terecht?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
+    "faq.p3": "Ja. Verzekeringsadvies hoort bij het gesprek over je hypotheek, maar je kunt het ook los bij me aanvragen. Bijvoorbeeld als je wilt weten of je huidige verzekeringen nog bij je situatie passen.",
+    "faq.summary3": "Wat kost verzekeringsadvies?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
+    "faq.p4": "Dat hoor je vooraf van mij, voordat ik voor je aan de slag ga. Op mijn <a href=\"https://nbg.nl/wp-content/uploads/documents/Vergelijkingskaart-risicos-afdekken-Hypotheekhaven.pdf\" target=\"_blank\" rel=\"noopener\">vergelijkingskaart risico’s afdekken</a> (pdf) zie je wat verzekeringsadvies gemiddeld kost.",
+    "faq.summary4": "Wat bespreken we in het eerste gesprek?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
+    "faq.p5": "Je vertelt over je situatie en je plannen, en ik laat zien waar je op moet letten. Het gesprek is gratis en vrijblijvend, ook als je daarna niet verdergaat."
+  },
+  "i": {
+    "hero.foto1": {
+      "src": "hh-planner-bank-groot.jpg",
+      "alt": ""
+    },
+    "soorten.img1": {
+      "src": "hh-interieur-woonkamer.jpg",
+      "alt": ""
+    },
+    "soorten.img2": {
+      "src": "hh-hand-tas.jpg",
+      "alt": ""
+    },
+    "soorten.img3": {
+      "src": "hh-laptop-studio.jpg",
+      "alt": ""
+    },
+    "hoe-het-werkt.img1": {
+      "src": "hh-planner-bank.jpg",
+      "alt": ""
+    },
+    "hoe-het-werkt.img2": {
+      "src": "hh-laptop-hakken.jpg",
+      "alt": ""
+    },
+    "hoe-het-werkt.img3": {
+      "src": "hh-sabrina-bankje.jpg",
+      "alt": ""
+    }
+  }
+}

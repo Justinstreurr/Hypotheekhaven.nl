@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import HeroReviews from '../components/HeroReviews.astro';
+import Footer from '../components/Footer.astro';
+import { laadPagina } from '../lib/content';
+import '../styles/pagina.css';
+
+const { t, bg, meta, achtergronden } = await laadPagina('niet-gevonden');
+---
+<Base pagina="niet-gevonden" meta={meta} preload={achtergronden['hero.foto1']}>
+<header class="hero hero--pagina">
+  <div class="hero-slides">
+    <div class="hero-slide is-active" {...bg('hero.foto1', 'background-image')}></div>
+  </div>
+  <div class="hero-overlay"></div>
+
+  <Header />
+
+  <div class="hero-content">
+    <nav class="kruimelpad" aria-label="Kruimelpad"><a href="/" data-e="niet-gevonden:hero.a1" set:html={t('hero.a1')}></a><span aria-hidden="true">/</span><span aria-current="page" data-e="niet-gevonden:hero.span1" set:html={t('hero.span1')}></span></nav>
+    <h1 data-e="niet-gevonden:hero.h11" set:html={t('hero.h11')}></h1>
+    <p data-e="niet-gevonden:hero.p1" set:html={t('hero.p1')}></p>
+    <div class="btn-row">
+      <a href="/" class="btn btn-dark" data-e="niet-gevonden:hero.a2" set:html={t('hero.a2')}></a>
+      <a href="/contact#formulier" class="btn btn-light" data-e="niet-gevonden:hero.a3" set:html={t('hero.a3')}></a>
+    </div>
+  </div>
+  <HeroReviews />
+</header>
+
+<Footer />
+</Base>

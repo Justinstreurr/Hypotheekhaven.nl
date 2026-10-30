@@ -1,0 +1,175 @@
+---
+import Base from '../layouts/Base.astro';
+import Img from '../components/Img.astro';
+import Header from '../components/Header.astro';
+import HeroReviews from '../components/HeroReviews.astro';
+import HeroBanks from '../components/HeroBanks.astro';
+import Footer from '../components/Footer.astro';
+import { laadPagina } from '../lib/content';
+import '../styles/pagina.css';
+import '../styles/werkwijze.css';
+
+const { t, img, bg, meta, achtergronden } = await laadPagina('werkwijze');
+---
+<Base pagina="werkwijze" meta={meta} preload={achtergronden['hero.foto1']}>
+<header class="hero hero--pagina hero--werkwijze">
+  <div class="hero-slides">
+    <div class="hero-slide hero-slide--werkwijze is-active" {...bg('hero.foto1', 'background-image', '')}></div>
+  </div>
+  <div class="hero-overlay"></div>
+
+  
+
+  <Header />
+
+  <div class="hero-content">
+    <nav class="kruimelpad" aria-label="Kruimelpad"><a href="/" data-e="werkwijze:hero.a1" set:html={t('hero.a1')}></a><span aria-hidden="true">/</span><span data-e="werkwijze:hero.span1" set:html={t('hero.span1')}></span></nav>
+    <h1 data-e="werkwijze:hero.h11" set:html={t('hero.h11')}></h1>
+    <p data-e="werkwijze:hero.p1" set:html={t('hero.p1')}></p>
+  </div>
+  <HeroReviews />
+  <HeroBanks />
+</header>
+
+<main>
+
+<section class="werkwijze ww-stappen container" id="stappen">
+  <div class="werkwijze-kop">
+    <span class="eyebrow" data-e="werkwijze:stappen.span1" set:html={t('stappen.span1')}></span>
+    <h2 data-e="werkwijze:stappen.h21" set:html={t('stappen.h21')}></h2>
+    <p class="ww-intro" data-e="werkwijze:stappen.p1" set:html={t('stappen.p1')}></p>
+  </div>
+
+  <div class="tijdlijn">
+    <div class="tijdlijn-lijn" aria-hidden="true"><div class="tijdlijn-vulling"></div></div>
+    <ol class="tijdlijn-stappen">
+      <li class="tijdlijn-stap">
+        <div class="tijdlijn-tekst">
+          <span class="tijdlijn-nr" data-e="werkwijze:stappen.span2" set:html={t('stappen.span2')}></span>
+          <h3 data-e="werkwijze:stappen.h31" set:html={t('stappen.h31')}></h3>
+          <p class="ww-kern" data-e="werkwijze:stappen.p2" set:html={t('stappen.p2')}></p>
+          <p data-e="werkwijze:stappen.p3" set:html={t('stappen.p3')}></p>
+        </div>
+        <Img data={img('stappen.img1')} class="tijdlijn-foto" style="object-position: 62% center" />
+      </li>
+      <li class="tijdlijn-stap is-links">
+        <div class="tijdlijn-tekst">
+          <span class="tijdlijn-nr" data-e="werkwijze:stappen.span3" set:html={t('stappen.span3')}></span>
+          <h3 data-e="werkwijze:stappen.h32" set:html={t('stappen.h32')}></h3>
+          <p class="ww-kern" data-e="werkwijze:stappen.p4" set:html={t('stappen.p4')}></p>
+          <p data-e="werkwijze:stappen.p5" set:html={t('stappen.p5')}></p>
+        </div>
+        <Img data={img('stappen.img2')} class="tijdlijn-foto" style="object-position: center 30%" />
+      </li>
+      <li class="tijdlijn-stap">
+        <div class="tijdlijn-tekst">
+          <span class="tijdlijn-nr" data-e="werkwijze:stappen.span4" set:html={t('stappen.span4')}></span>
+          <h3 data-e="werkwijze:stappen.h33" set:html={t('stappen.h33')}></h3>
+          <p class="ww-kern" data-e="werkwijze:stappen.p6" set:html={t('stappen.p6')}></p>
+          <p data-e="werkwijze:stappen.p7" set:html={t('stappen.p7')}></p>
+        </div>
+        <Img data={img('stappen.img3')} class="tijdlijn-foto" style="object-position: center 55%" />
+      </li>
+      <li class="tijdlijn-stap is-links">
+        <div class="tijdlijn-tekst">
+          <span class="tijdlijn-nr" data-e="werkwijze:stappen.span5" set:html={t('stappen.span5')}></span>
+          <h3 data-e="werkwijze:stappen.h34" set:html={t('stappen.h34')}></h3>
+          <p class="ww-kern" data-e="werkwijze:stappen.p8" set:html={t('stappen.p8')}></p>
+          <p data-e="werkwijze:stappen.p9" set:html={t('stappen.p9')}></p>
+        </div>
+        <Img data={img('stappen.img4')} class="tijdlijn-foto" style="object-position: center 45%" />
+      </li>
+      <li class="tijdlijn-label" aria-hidden="true"><span>Na de notaris</span></li>
+      <li class="tijdlijn-stap tijdlijn-stap--na">
+        <div class="tijdlijn-tekst">
+          <h3 data-e="werkwijze:stappen.h35" set:html={t('stappen.h35')}></h3>
+          <p data-e="werkwijze:stappen.p10" set:html={t('stappen.p10')}></p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="ww-kosten container" id="kosten">
+  <div class="ww-kosten-kop">
+    <span class="eyebrow" data-e="werkwijze:kosten.span1" set:html={t('kosten.span1')}></span>
+    <h2 data-e="werkwijze:kosten.h21" set:html={t('kosten.h21')}></h2>
+    <p data-e="werkwijze:kosten.p1" set:html={t('kosten.p1')}></p>
+    
+  </div>
+  <ul class="ww-kosten-punten">
+    <li>
+      <span class="ww-kosten-icoon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h12v8H9l-4 3v-3H4z"></path><path d="M16 9h4v8h-1v3l-4-3h-5v-2"></path></svg></span>
+      <span class="ww-kosten-label" data-e="werkwijze:kosten.span2" set:html={t('kosten.span2')}></span>
+      <h3 data-e="werkwijze:kosten.h31" set:html={t('kosten.h31')}></h3>
+      <p data-e="werkwijze:kosten.p2" set:html={t('kosten.p2')}></p>
+    </li>
+    <li>
+      <span class="ww-kosten-icoon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"></path><path d="M14 3v4h4"></path><path d="M9 12h6M9 15h4"></path></svg></span>
+      <span class="ww-kosten-label" data-e="werkwijze:kosten.span3" set:html={t('kosten.span3')}></span>
+      <h3 data-e="werkwijze:kosten.h32" set:html={t('kosten.h32')}></h3>
+      <p data-e="werkwijze:kosten.p3" set:html={t('kosten.p3')}></p>
+    </li>
+    <li>
+      <span class="ww-kosten-icoon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg></span>
+      <span class="ww-kosten-label" data-e="werkwijze:kosten.span4" set:html={t('kosten.span4')}></span>
+      <h3 data-e="werkwijze:kosten.h33" set:html={t('kosten.h33')}></h3>
+      <p data-e="werkwijze:kosten.p4" set:html={t('kosten.p4')}></p>
+    </li>
+    <li>
+      <span class="ww-kosten-icoon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 5c3-1 6-1 9 1v14c-3-2-6-2-9-1z"></path><path d="M21 5c-3-1-6-1-9 1v14c3-2 6-2 9-1z"></path></svg></span>
+      <span class="ww-kosten-label" data-e="werkwijze:kosten.span5" set:html={t('kosten.span5')}></span>
+      <h3 data-e="werkwijze:kosten.h34" set:html={t('kosten.h34')}></h3>
+      <p data-e="werkwijze:kosten.p5" set:html={t('kosten.p5')}></p>
+    </li>
+  </ul>
+  <div class="ww-kosten-knoppen">
+    <a href="/contact#formulier" class="btn btn-dark" data-e="werkwijze:kosten.a1" set:html={t('kosten.a1')}></a>
+    <a href="https://nbg.nl/wp-content/uploads/documents/Vergelijkingskaart-hypotheek-Hypotheekhaven.pdf" target="_blank" rel="noopener" class="waarom-link" data-e="werkwijze:kosten.a2" set:html={t('kosten.a2')}></a>
+  </div>
+</section>
+
+<section class="extra ww-documenten container" id="documenten">
+  <div class="banner-track">
+    <article class="banner" {...bg('documenten.foto1', '--foto', '--pos: 70% center')}>
+      <div class="banner-tekst">
+      <span class="eyebrow" data-e="werkwijze:banner.span1" set:html={t('banner.span1')}></span>
+      <h2 data-e="werkwijze:banner.h21" set:html={t('banner.h21')}></h2>
+      <p data-e="werkwijze:banner.p1" set:html={t('banner.p1')}></p>
+      <a href="https://nbg.nl/wp-content/uploads/documents/Dienstenwijzer-Hypotheekhaven.pdf" target="_blank" rel="noopener" class="btn btn-light" data-e="werkwijze:banner.a1" set:html={t('banner.a1')}></a>
+      </div>
+    </article>
+    <article class="banner" {...bg('documenten.foto2', '--foto', '--pos: 75% center')}>
+      <div class="banner-tekst">
+      <span class="eyebrow" data-e="werkwijze:banner.span2" set:html={t('banner.span2')}></span>
+      <h2 data-e="werkwijze:banner.h22" set:html={t('banner.h22')}></h2>
+      <p data-e="werkwijze:banner.p2" set:html={t('banner.p2')}></p>
+      
+      <ul class="banner-links">
+        <li data-e="werkwijze:banner.li1" set:html={t('banner.li1')}></li>
+        <li data-e="werkwijze:banner.li2" set:html={t('banner.li2')}></li>
+        <li data-e="werkwijze:banner.li3" set:html={t('banner.li3')}></li>
+      </ul>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="faq ww-faq container" id="faq">
+  <div class="faq-side">
+    <span class="eyebrow" data-e="werkwijze:faq.span1" set:html={t('faq.span1')}></span>
+    <h2 data-e="werkwijze:faq.h21" set:html={t('faq.h21')}></h2>
+    <p data-e="werkwijze:faq.p1" set:html={t('faq.p1')}></p>
+  </div>
+  <div class="faq-list">
+    <details open><summary data-e="werkwijze:faq.summary1" set:html={t('faq.summary1')}></summary><p data-e="werkwijze:faq.p2" set:html={t('faq.p2')}></p></details>
+    <details><summary data-e="werkwijze:faq.summary2" set:html={t('faq.summary2')}></summary><p data-e="werkwijze:faq.p3" set:html={t('faq.p3')}></p></details>
+    <details><summary data-e="werkwijze:faq.summary3" set:html={t('faq.summary3')}></summary><p data-e="werkwijze:faq.p4" set:html={t('faq.p4')}></p></details>
+    <details><summary data-e="werkwijze:faq.summary4" set:html={t('faq.summary4')}></summary><p data-e="werkwijze:faq.p5" set:html={t('faq.p5')}></p></details>
+  </div>
+</section>
+
+</main>
+
+<Footer />
+</Base>

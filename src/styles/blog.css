@@ -1,0 +1,278 @@
+/* BLOG: overzichtspagina (blog.html) en artikelen (blog/*.html)
+   Laad na styles.css en pagina.css. Huisstijl: zand/beige, merkblauw, rozenhout, geen afgeronde hoeken. */
+
+/* Kopfoto's */
+.hero-slide--blog { background-position: 62% center; }
+.hero-slide--artikel { background-position: center 60%; }
+
+/* Gedeeld: categorie-label en metaregel */
+.blog-label {
+  display: inline-block;
+  font-size: 11px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--rozenhout);
+}
+.blog-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font-size: 13px; color: rgba(8, 21, 52, .65); }
+.blog-meta span[aria-hidden] { opacity: .5; }
+
+/* ===== OVERZICHT: uitgelicht artikel ===== */
+.blog-uitgelicht { padding-top: var(--sectie); padding-bottom: var(--sectie); }
+.blog-uitgelicht-kaart {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(40px, 6vw, 100px);
+  align-items: center;
+}
+.blog-uitgelicht-beeld { overflow: hidden; }
+.blog-uitgelicht-beeld img {
+  width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: center 40%;
+  transition: transform 1s cubic-bezier(.22, 1, .36, 1);
+}
+.blog-uitgelicht-kaart:hover .blog-uitgelicht-beeld img { transform: scale(1.04); }
+.blog-uitgelicht-tekst .eyebrow { margin-bottom: 14px; }
+.blog-uitgelicht-tekst h2 { font-size: var(--h2); letter-spacing: -1px; margin: 14px 0 22px; }
+.blog-uitgelicht-tekst h2 b, .blog-sectie-kop h2 b, .blog-cta h2 b, .artikel-gerelateerd h2 b {
+  font-family: "Libre Caslon Text", Georgia, serif; font-weight: 400; letter-spacing: -.04em;
+}
+.blog-uitgelicht-tekst p { font-size: var(--intro); line-height: 1.5; color: rgba(8, 21, 52, .75); margin-bottom: 22px; max-width: 520px; }
+.blog-uitgelicht-tekst .blog-meta { margin-bottom: 34px; }
+.blog-uitgelicht-tekst h2 a::after { content: ""; position: absolute; inset: 0; } /* hele kaart klikbaar */
+.blog-uitgelicht-kaart { position: relative; }
+.blog-uitgelicht-tekst .waarom-link { position: relative; z-index: 1; }
+
+/* ===== OVERZICHT: filter en raster ===== */
+.blog-overzicht { background: var(--beige); padding-top: var(--sectie); padding-bottom: var(--sectie); }
+.blog-sectie-kop { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; margin-bottom: 48px; }
+.blog-sectie-kop h2 { font-size: var(--h2); letter-spacing: -1px; }
+.blog-filter { display: flex; flex-wrap: wrap; gap: 8px; }
+.blog-chip {
+  height: 40px; padding: 0 18px;
+  border: 1px solid rgba(8, 21, 52, .25); background: transparent;
+  font: inherit; font-size: 14px; font-weight: 500; color: var(--inkt);
+  cursor: pointer; transition: background .3s, color .3s, border-color .3s;
+}
+.blog-chip:hover { border-color: var(--inkt); }
+.blog-chip[aria-pressed="true"] { background: var(--inkt); border-color: var(--inkt); color: var(--white); }
+.blog-chip:focus-visible, .blog-deel-knop:focus-visible, .artikel-inhoud a:focus-visible { outline: 2px solid var(--rozenhout); outline-offset: 2px; }
+
+.blog-raster { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 56px 30px; }
+.blog-raster[data-leeg]::after { content: attr(data-leeg); font-size: 16px; color: rgba(8, 21, 52, .7); }
+.blog-kaart { position: relative; display: flex; flex-direction: column; }
+.blog-kaart[hidden] { display: none; }
+.blog-kaart-beeld { position: relative; overflow: hidden; margin-bottom: 24px; background: var(--linnen); }
+.blog-kaart-beeld img {
+  width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover;
+  transition: transform 1s cubic-bezier(.22, 1, .36, 1);
+}
+.blog-kaart h3 { font-size: 24px; letter-spacing: -0.3px; line-height: 1.2; margin: 12px 0 10px; }
+.blog-kaart h3 a::after { content: ""; position: absolute; inset: 0; } /* hele kaart klikbaar */
+.blog-kaart p { font-size: 15px; line-height: 1.5; color: rgba(8, 21, 52, .75); margin-bottom: 16px; }
+.blog-kaart .blog-meta { margin-top: auto; }
+@media (hover: hover) and (pointer: fine) {
+  .blog-kaart:not(.blog-kaart--binnenkort):hover .blog-kaart-beeld img { transform: scale(1.04); }
+  .blog-kaart:not(.blog-kaart--binnenkort):hover h3 { color: var(--rozenhout); }
+}
+.blog-kaart h3 { transition: color .3s; }
+
+/* Nog niet geschreven: rustiger beeld, label "Binnenkort", niet klikbaar */
+.blog-kaart--binnenkort .blog-kaart-beeld img { opacity: .6; filter: saturate(.6); }
+.blog-kaart--binnenkort h3 a { cursor: default; }
+.blog-binnenkort {
+  position: absolute; left: 16px; top: 16px; z-index: 1;
+  padding: 7px 12px;
+  font-size: 11px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase;
+  background: var(--zand); color: var(--inkt);
+}
+
+/* ===== CTA: Staat je vraag er niet tussen? ===== */
+.blog-cta { padding-top: var(--sectie); padding-bottom: var(--sectie); text-align: center; }
+.blog-cta h2 { font-size: var(--h2); letter-spacing: -1px; margin-bottom: 22px; }
+.blog-cta p { font-size: var(--intro); line-height: 1.5; color: rgba(8, 21, 52, .75); max-width: 560px; margin: 0 auto 36px; }
+.blog-cta .btn-row { justify-content: center; }
+
+/* ===== ARTIKEL: kop ===== */
+.hero--artikel h1 { max-width: 760px; }
+.artikel-kopmeta {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px;
+  font-size: 14px; color: rgba(255, 255, 255, .88);
+}
+.artikel-kopmeta .blog-label { color: var(--white); padding: 6px 10px; background: var(--rozenhout); }
+.artikel-auteur-klein { display: inline-flex; align-items: center; gap: 10px; }
+.artikel-auteur-klein img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+.artikel-auteur-klein strong { font-weight: 500; color: var(--white); }
+.artikel-kopmeta time { white-space: nowrap; }
+.hero--artikel .hero-content p.artikel-kopmeta { font-size: 14px; margin-bottom: 0; }
+
+/* ===== ARTIKEL: raster met inhoudsopgave links, tekst rechts ===== */
+.artikel { padding-top: 96px; padding-bottom: var(--sectie); }
+.artikel-raster {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 720px);
+  justify-content: space-between;
+  column-gap: clamp(40px, 6vw, 120px);
+  max-width: 1200px;
+}
+.artikel-zij { grid-column: 1; grid-row: 1 / span 2; }
+.artikel-zij-plak { position: sticky; top: 110px; }
+.artikel-samenvatting, .artikel-inhoud { grid-column: 2; min-width: 0; }
+
+/* Inhoudsopgave */
+.artikel-toc .eyebrow { margin-bottom: 16px; }
+.artikel-toc ol { list-style: none; border-left: 1px solid rgba(8, 21, 52, .15); }
+.artikel-toc a {
+  position: relative; display: block;
+  padding: 8px 0 8px 18px;
+  font-size: 15px; line-height: 1.35; color: rgba(8, 21, 52, .6);
+  transition: color .3s;
+}
+.artikel-toc a::before {
+  content: ""; position: absolute; left: -1px; top: 0; bottom: 0; width: 2px;
+  background: var(--rozenhout); transform: scaleY(0); transition: transform .3s cubic-bezier(.22, 1, .36, 1);
+}
+.artikel-toc a:hover { color: var(--inkt); }
+.artikel-toc a.is-actief { color: var(--inkt); }
+.artikel-toc a.is-actief::before { transform: scaleY(1); }
+.artikel-zij .waarom-link { margin-top: 36px; font-size: 15px; }
+
+/* Kort antwoord en In het kort (GEO: direct citeerbaar) */
+.artikel-samenvatting { margin-bottom: 56px; }
+.kort-antwoord { padding: 36px 40px; background: var(--beige); border-left: 2px solid var(--rozenhout); }
+.kort-antwoord .eyebrow { margin-bottom: 12px; }
+.kort-antwoord p { font-size: 20px; line-height: 1.5; color: var(--inkt); }
+.in-het-kort { margin-top: 36px; }
+.in-het-kort h2 { font-size: 22px; letter-spacing: -0.2px; margin-bottom: 16px; }
+.vinkjes li {
+  position: relative; padding: 10px 0 10px 30px;
+  font-size: 17px; line-height: 1.5;
+  border-bottom: 1px solid rgba(8, 21, 52, .12);
+}
+.vinkjes li::before {
+  content: ""; position: absolute; left: 0; top: 15px; width: 16px; height: 16px;
+  background: var(--rozenhout);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2.5 8.5l3.5 3.5 7.5-8' fill='none' stroke='black' stroke-width='1.6'/%3E%3C/svg%3E") center/contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2.5 8.5l3.5 3.5 7.5-8' fill='none' stroke='black' stroke-width='1.6'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+
+/* Lopende tekst: leesbare kolom */
+.artikel-inhoud { font-size: 18px; line-height: 1.6; color: rgba(8, 21, 52, .85); }
+.artikel-inhoud > section { scroll-margin-top: 100px; }
+.artikel-inhoud h2 {
+  font-size: 34px; letter-spacing: -0.6px; line-height: 1.15; color: var(--inkt);
+  margin: 72px 0 20px;
+}
+.artikel-inhoud > section:first-child h2 { margin-top: 0; }
+.artikel-inhoud h3 { font-size: 23px; letter-spacing: -0.2px; line-height: 1.25; color: var(--inkt); margin: 40px 0 12px; scroll-margin-top: 100px; }
+.artikel-inhoud p + p { margin-top: 18px; }
+.artikel-inhoud p a, .artikel-inhoud li a {
+  color: var(--rozenhout);
+  text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px;
+  transition: color .3s;
+}
+.artikel-inhoud p a:hover { color: var(--rozenhout-donker); }
+.artikel-inleiding { font-size: 20px; line-height: 1.55; color: var(--inkt); margin-bottom: 56px; }
+.artikel-tip { margin-top: 24px; padding: 22px 26px; border: 1px solid rgba(8, 21, 52, .18); font-size: 16px; line-height: 1.55; }
+.artikel-tip strong { font-weight: 500; color: var(--inkt); }
+
+/* Foto in de tekst */
+.artikel-foto { margin: 48px 0; }
+.artikel-foto img { width: 100%; height: auto; aspect-ratio: 16 / 11; object-fit: cover; object-position: center 45%; }
+.artikel-foto figcaption { margin-top: 12px; font-size: 14px; line-height: 1.45; color: rgba(8, 21, 52, .6); }
+
+/* Quote van Sabrina */
+.artikel-quote { margin: 48px 0; padding: 8px 0 8px 32px; border-left: 2px solid var(--rozenhout); }
+.artikel-quote blockquote p { font-size: 28px; line-height: 1.3; letter-spacing: -0.4px; color: var(--inkt); }
+.artikel-quote blockquote p::before { content: "\201C"; font-family: "Libre Caslon Text", Georgia, serif; color: var(--rozenhout); margin-right: 2px; }
+.artikel-quote blockquote p::after { content: "\201D"; font-family: "Libre Caslon Text", Georgia, serif; color: var(--rozenhout); margin-left: 2px; }
+.artikel-quote figcaption { display: flex; align-items: center; gap: 12px; margin-top: 22px; font-size: 15px; color: rgba(8, 21, 52, .7); }
+.artikel-quote figcaption img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+.artikel-quote figcaption strong { display: block; font-weight: 500; color: var(--inkt); }
+
+.artikel-knop { margin-top: 32px; }
+
+/* FAQ in het artikel: zelfde stijl als .faq, maar zonder het tweekoloms raster */
+.artikel-inhoud .faq.artikel-faq { display: block; padding: 0; background: none; }
+.artikel-faq details:first-of-type { border-top: 1px solid rgba(8, 21, 52, .2); }
+.artikel-faq summary { font-size: 20px; padding: 24px 0; color: var(--inkt); }
+.artikel-faq details p { font-size: 17px; }
+
+/* Auteursblok (E-E-A-T) */
+.artikel-auteur {
+  display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 32px; align-items: start;
+  margin-top: 80px; padding: 40px; background: var(--beige);
+}
+.artikel-auteur img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; }
+.artikel-auteur .eyebrow { margin-bottom: 10px; }
+.artikel-auteur h2 { font-size: 26px; letter-spacing: -0.3px; margin: 0 0 4px; }
+.artikel-auteur-rol { font-size: 15px; color: rgba(8, 21, 52, .7); margin-bottom: 16px; }
+.artikel-auteur-tekst { font-size: 16px; line-height: 1.55; color: rgba(8, 21, 52, .8); margin-bottom: 18px; }
+.artikel-auteur-feiten { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+.artikel-auteur-feiten li {
+  padding: 7px 12px; font-size: 13px; font-weight: 500; color: var(--inkt);
+  background: var(--zand);
+}
+
+/* Delen */
+.artikel-delen { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 48px; }
+.artikel-delen-titel { font-size: 11px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--rozenhout); margin-right: 8px; }
+.blog-deel-knop {
+  display: inline-flex; align-items: center; gap: 8px;
+  height: 40px; padding: 0 14px;
+  border: 1px solid rgba(8, 21, 52, .25); background: transparent;
+  font: inherit; font-size: 14px; font-weight: 500; color: var(--inkt);
+  cursor: pointer; transition: background .3s, color .3s, border-color .3s;
+}
+.blog-deel-knop svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.blog-deel-knop:hover { background: var(--inkt); border-color: var(--inkt); color: var(--white); }
+.blog-deel-knop.is-gekopieerd { background: var(--rozenhout); border-color: var(--rozenhout); color: var(--white); }
+
+.artikel-disclaimer {
+  margin-top: 40px; padding-top: 20px;
+  border-top: 1px solid rgba(8, 21, 52, .15);
+  font-size: 13px; line-height: 1.55; color: rgba(8, 21, 52, .6);
+}
+
+/* Gerelateerde artikelen */
+.artikel-gerelateerd { background: var(--beige); padding-top: var(--sectie); padding-bottom: var(--sectie); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .blog-uitgelicht-kaart { grid-template-columns: 1fr; gap: 36px; }
+  .blog-sectie-kop { flex-direction: column; align-items: flex-start; }
+  .blog-raster { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .artikel { padding-top: 64px; }
+  .artikel-raster { grid-template-columns: minmax(0, 1fr); max-width: 720px; }
+  .artikel-zij, .artikel-samenvatting, .artikel-inhoud { grid-column: 1; grid-row: auto; }
+  .artikel-zij { order: 2; margin-bottom: 56px; }
+  .artikel-samenvatting { order: 1; }
+  .artikel-inhoud { order: 3; }
+  .artikel-zij-plak { position: static; }
+  .artikel-zij .waarom-link { display: none; }
+}
+@media (max-width: 767px) {
+  .blog-raster { grid-template-columns: 1fr; gap: 44px; }
+  .blog-kaart h3 { font-size: 22px; }
+  .blog-filter { flex-wrap: nowrap; overflow-x: auto; width: calc(100% + var(--pad)); padding-right: var(--pad); scrollbar-width: none; }
+  .blog-filter::-webkit-scrollbar { display: none; }
+  .blog-chip { flex: none; }
+  .artikel-kopmeta { gap: 10px 16px; font-size: 13px; }
+  .kort-antwoord { padding: 26px 22px; }
+  .kort-antwoord p { font-size: 18px; }
+  .artikel-inhoud { font-size: 17px; }
+  .artikel-inleiding { font-size: 18px; }
+  .artikel-inhoud h2 { font-size: 27px; margin-top: 56px; }
+  .artikel-inhoud h3 { font-size: 21px; }
+  .artikel-quote { padding-left: 20px; }
+  .artikel-quote blockquote p { font-size: 22px; }
+  .artikel-auteur { grid-template-columns: 1fr; gap: 20px; padding: 28px 22px; }
+  .artikel-auteur img { width: 88px; height: 88px; }
+  .artikel-faq summary { font-size: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blog-kaart-beeld img, .blog-uitgelicht-beeld img, .artikel-toc a::before { transition: none; }
+}
+
+/* Alleen voor schermlezers */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* Brede foto in het artikel (liggend formaat) */
+.artikel-foto--breed img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }

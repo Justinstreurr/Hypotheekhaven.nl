@@ -1,0 +1,65 @@
+/* WERKWIJZE & KOSTEN (laad na styles.css en pagina.css)
+   Opbouw: kopfoto, tijdlijn met uitgebreide stappen (zand), kosten (beige), documenten (zand),
+   FAQ (beige), afsluitende foto met uitnodiging, footer. Hergebruikt .werkwijze/.tijdlijn en .faq uit styles.css. */
+
+/* Kopfoto: lichte studiofoto, dus iets donkerder verloop links zodat de witte tekst leesbaar blijft */
+.hero-slide--werkwijze { background-position: 70% 40%; }
+.hero--werkwijze .hero-overlay {
+  background:
+    linear-gradient(to right, rgba(0, 0, 0, .6) 0%, rgba(0, 0, 0, .35) 45%, rgba(0, 0, 0, .08) 80%),
+    linear-gradient(to top, rgba(0, 0, 0, .35) 0%, rgba(0, 0, 0, 0) 55%);
+}
+
+/* Gedeelde kopmaat voor de eigen secties */
+.ww-kosten h2 { font-size: var(--h2); font-weight: 400; line-height: 1.1; letter-spacing: -1px; }
+.ww-kosten h2 b { font-family: "Libre Caslon Text", Georgia, serif; font-weight: 400; letter-spacing: -.04em; }
+
+/* ===== KOSTEN ===== */
+/* Gecentreerde kop, vier punten naast elkaar met een klein vierkant icoon-vak */
+.ww-kosten { background: var(--beige); padding-top: var(--sectie); padding-bottom: var(--sectie); }
+.ww-kosten-kop { text-align: center; max-width: 760px; margin: 0 auto 72px; }
+.ww-kosten-kop h2 { margin-bottom: 20px; }
+.ww-kosten-kop p { font-size: var(--intro); line-height: 1.5; color: rgba(8, 21, 52, .75); }
+.ww-kosten-punten { list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(32px, 4vw, 64px); }
+.ww-kosten-icoon { display: grid; place-items: center; width: 56px; height: 56px; background: var(--zand); margin-bottom: 28px; }
+.ww-kosten-icoon svg { width: 26px; height: 26px; fill: none; stroke: var(--inkt); stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+.ww-kosten-label { display: block; font-size: 11px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--rozenhout); margin-bottom: 10px; }
+.ww-kosten-punten h3 { font-size: 22px; font-weight: 400; letter-spacing: -0.2px; line-height: 1.25; margin-bottom: 10px; }
+.ww-kosten-punten p { font-size: 16px; line-height: 1.55; color: rgba(8, 21, 52, .75); }
+.ww-kosten-knoppen { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 20px 32px; margin-top: 72px; }
+
+/* ===== DOCUMENTEN ===== */
+
+/* ===== FAQ (beige, voor afwisseling met de documenten) ===== */
+.faq.ww-faq { background: var(--beige); padding-bottom: var(--sectie); }
+.ww-faq .faq-side p { margin-bottom: 0; }
+
+/* ===== AFSLUITER: gecentreerde uitnodiging op zand (de footer eronder is al een foto) ===== */
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .ww-kosten-punten { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 767px) {
+  /* Kosten op mobiel: vier witte kaartjes, gecentreerd, icoon bovenaan */
+  .ww-kosten-punten { grid-template-columns: 1fr; gap: 12px; }
+  .ww-kosten-punten li { background: var(--white); padding: 30px 24px 28px; text-align: center; }
+  .ww-kosten-icoon { margin: 0 auto 18px; }
+  .ww-kosten-punten h3 { font-size: 20px; }
+  .ww-kosten-punten p { font-size: 15px; }
+  .ww-kosten-kop { margin-bottom: 36px; }
+  .ww-kosten-knoppen { flex-direction: column; margin-top: 36px; }
+}
+
+/* Documenten: zelfde fotokaarten als Verzekeringen en kosten op de homepage; Kosten erboven is ook Beige */
+.ww-documenten.extra.container { padding-top: 0; padding-bottom: var(--sectie); }
+
+/* Vergelijkingskaarten: drie pdf-links onder elkaar in de fotokaart */
+.banner-links { border-top: 1px solid rgba(255, 255, 255, .3); }
+.banner-links a {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 0; border-bottom: 1px solid rgba(255, 255, 255, .3);
+  font-size: 16px; font-weight: 500; color: var(--white);
+  transition: padding .3s;
+}
+.banner-links a:hover { padding-left: 8px; }

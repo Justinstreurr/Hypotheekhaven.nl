@@ -1,0 +1,288 @@
+{
+  "meta": {
+    "title": "Hypotheekhaven | Persoonlijk hypotheekadvies in Noord-Holland",
+    "description": "Onafhankelijk hypotheek- en verzekeringsadvies in Noord-Holland. Van de eerste berekening tot de notaris én daarna, online of bij je thuis."
+  },
+  "t": {
+    "hero.h11": "Persoonlijk hypotheekadvies<br><b>&amp; zorgeloos geregeld</b>",
+    "hero.p1": "Onafhankelijk hypotheek- en verzekeringsadvies in Noord-Holland. <br>Persoonlijke begeleiding van de eerste berekening tot aan de notaris én daarna. <br><span class=\"hero-extra\">Gemakkelijk online of gewoon bij je thuis.</span>",
+    "hero.a1": "Plan een gratis kennismaking <i class=\"arrow\"></i>",
+    "hero.a2": "Onze diensten <i class=\"arrow arrow--down\"></i>",
+    "herkenning.p1": "Je wilt weten wat je kunt lenen, je rentevaste periode loopt af, of je leven verandert en je huis moet mee veranderen. <span class=\"kleur-zin\" data-woorden>Achter elke hypotheek zit <b>een eigen verhaal,</b> met eigen vragen. Daar begin ik mee.</span>",
+    "diensten.span1": "Onze diensten",
+    "diensten.h21": "Waar kan ik je<br><b>mee helpen?</b>",
+    "diensten.p1": "Ik help je om overzicht te krijgen en begeleid je stap voor stap, zodat je weet waar je aan toe bent.",
+    "diensten.a1": "Plan een gratis kennismaking <i class=\"arrow\"></i>",
+    "diensten.small1": "Swipe voor meer",
+    "diensten.h31": "Kan ik een huis kopen?",
+    "diensten.p2": "Je wilt weten wat er mogelijk is voordat je gaat zoeken. Ik reken het samen met je door: hoeveel je kunt lenen én welke maandlasten prettig voelen.",
+    "diensten.h32": "Je eerste huis kopen",
+    "diensten.p3": "Alles is nieuw: bieden, voorwaarden, de notaris. Ik leg elke stap uit en regel de hypotheek, zodat jij je kunt richten op je nieuwe thuis.",
+    "diensten.h33": "Verhuizen naar een ander huis",
+    "diensten.p4": "Je huidige huis verkopen en een nieuw huis kopen. We kijken naar je overwaarde, een eventuele overbrugging en wat je meeneemt van je huidige hypotheek.",
+    "diensten.h34": "Scheiden en je hypotheek",
+    "diensten.p5": "Een ingrijpende periode, met veel vragen over het huis. Ik zoek met je uit of je in het huis kunt blijven en wat er nodig is om de hypotheek goed te regelen.",
+    "diensten.h35": "Overwaarde opnemen",
+    "diensten.p6": "Je huis is meer waard geworden. Ik laat zien wat je met die overwaarde kunt doen en wat dat betekent voor je maandlasten.",
+    "diensten.h36": "Je huis verduurzamen",
+    "diensten.p7": "Zonnepanelen, isolatie of een warmtepomp. Ik laat zien hoe je dat financiert, ook met de extra leenruimte die er voor verduurzamen is.",
+    "diensten.h37": "Verbouwen of verhuizen?",
+    "diensten.p8": "Je huis past niet meer helemaal bij je. Ga je verbouwen, dan kijken we hoe je dat slim financiert. Twijfel je nog, dan zet ik verbouwen en verhuizen naast elkaar, met wat het betekent voor je maandlasten.",
+    "diensten.h38": "Je rentevaste periode loopt af",
+    "diensten.p9": "Je rente verandert binnenkort. We vergelijken verlengen, oversluiten en extra aflossen, zodat je kiest wat het beste bij je past.",
+    "diensten.h39": "Hypotheek oversluiten",
+    "diensten.p10": "Misschien kan het goedkoper of beter passend. Ik zet de boeterente en de kosten af tegen wat je bespaart, en vertel je eerlijk of oversluiten de moeite waard is.",
+    "diensten.h310": "Ondernemer en een hypotheek",
+    "diensten.p11": "Als ondernemer is je inkomen anders opgebouwd. Ik weet welke geldverstrekkers goed naar jouw cijfers kijken, zodat je niet onnodig wordt afgewezen.",
+    "waarom.span1": "Daarom Hypotheekhaven",
+    "waarom.h21": "Waarom klanten voor <b>Hypotheekhaven</b> kiezen",
+    "waarom.tekst1": "Mijn contact met je stopt niet als de hypotheek rond is. Verandert er iets, of heb je een vraag? Bel me gewoon, ook jaren later.",
+    "waarom.span2": "Je vaste adviseur",
+    "waarom.tekst2": "Het eerste gesprek is altijd gratis en vrijblijvend. Je vertelt over je plannen, ik laat zien wat er mogelijk is.",
+    "waarom.span3": "Gratis kennismaking",
+    "waarom.tekst3": "Deskundig advies, met tijd voor jouw situatie, wensen en plannen. Duidelijke uitleg en korte lijnen.",
+    "waarom.span4": "Persoonlijk advies",
+    "waarom.tekst4": "Ik vergelijk voor je bij veel verschillende geldverstrekkers, zonder voorkeur voor een bank.",
+    "waarom.span5": "Onafhankelijk",
+    "waarom.tekst5": "Wat jij prettig vindt: via een videocall, of gewoon bij je aan de keukentafel in Noord-Holland.",
+    "waarom.span6": "Online of thuis",
+    "waarom.tekst6": "Kennis van de markt en van de regels, zodat je niet voor verrassingen komt te staan.",
+    "waarom.span7": "25+ jaar ervaring",
+    "waarom.li1": "Eerste gesprek altijd gratis en vrijblijvend",
+    "waarom.li2": "Je vaste adviseur, nu én in de jaren daarna",
+    "waarom.li3": "Online of bij je aan de keukentafel",
+    "waarom.li4": "100% onafhankelijk",
+    "waarom.li5": "Meer dan 25 jaar ervaring",
+    "waarom.li6": "Deskundig en persoonlijk advies",
+    "waarom.a1": "Plan een gratis kennismaking <i class=\"arrow\"></i>",
+    "advies.span1": "Mijn manier van adviseren",
+    "advies.h21": "Een hypotheek die past bij <b>jouw situatie</b>",
+    "advies.p1": "Iedere situatie vraagt om een andere hypotheek. Of je nu je eerste huis koopt, gaat verhuizen, je maandlasten wilt verlagen, overwaarde wilt opnemen, gaat scheiden of ondernemer bent: we kijken samen naar wat bij jouw situatie past.",
+    "advies.strong1": "Maandlasten",
+    "advies.span2": "Waar jij je goed bij voelt",
+    "advies.blockquote1": "Een hypotheek draait niet alleen om wat je maximaal kunt lenen. We kijken samen naar maandlasten waar je je comfortabel bij voelt, en naar wat past bij je plannen voor nu en later.",
+    "advies.span3": "Mijn manier van adviseren",
+    "advies.h22": "Past bij jouw leven, <b>nu én later</b>",
+    "advies.p2": "Een hypotheek regelen brengt veel keuzes met zich mee. Daarom neem ik de tijd om jouw situatie, wensen en plannen goed te leren kennen.",
+    "advies.p3": "Ik laat zien wat financieel mogelijk is, vergelijk hypotheken van verschillende aanbieders en bespreek met je welke keuzes daarbij passen. Zo komen we samen tot een hypotheek die past bij jouw leven, nu én later.",
+    "advies.strong2": "Eerlijk vergelijken",
+    "advies.span4": "Verschillende aanbieders",
+    "advies.strong3": "Ook na de notaris",
+    "advies.span5": "Je vaste aanspreekpunt",
+    "werkwijze.span1": "Zo werkt het",
+    "werkwijze.h21": "Stap voor stap <b>geregeld.</b><span class=\"kleur-zin\"><span>Van</span> <span>eerste</span> <span>gesprek</span> <span>tot</span> <span>aan</span> <span>de</span> <span>notaris.</span></span>",
+    "werkwijze.a1": "Plan een gratis kennismaking <i class=\"arrow\"></i>",
+    "werkwijze.span2": "Stap 01",
+    "werkwijze.h31": "Gratis kennismaking",
+    "werkwijze.p1": "We bespreken je situatie, je wensen en je mogelijkheden. Vrijblijvend, online of bij je thuis.",
+    "werkwijze.span3": "Stap 02",
+    "werkwijze.h32": "Mogelijkheden in kaart",
+    "werkwijze.p2": "Ik kijk wat haalbaar is en wat past bij jouw situatie en maandlasten.",
+    "werkwijze.span4": "Stap 03",
+    "werkwijze.h33": "Advies en aanvraag",
+    "werkwijze.p3": "We kiezen samen een passende oplossing en ik begeleid de hypotheekaanvraag.",
+    "werkwijze.span5": "Stap 04",
+    "werkwijze.h34": "Begeleiding tot aan de notaris",
+    "werkwijze.p4": "Ik houd het proces in de gaten en zorg dat alles goed verloopt, tot je de sleutel hebt.",
+    "werkwijze.h35": "Je vaste aanspreekpunt",
+    "werkwijze.p5": "Ook na het afsluiten van je hypotheek blijf ik je vaste aanspreekpunt. Verandert er iets, of heb je een vraag? Bel me gewoon.",
+    "reviews.span1": "Ervaringen",
+    "reviews.h21": "Wat klanten <b>zeggen</b>",
+    "reviews.p1": "<strong>5,0</strong> op Google <span class=\"reviews-sep\" aria-hidden=\"true\"></span> <strong>9,8</strong> op Trustoo",
+    "reviews.blockquote1": "“Super tevreden over Sabrina. Wat erg fijn is, is dat ze ruim de tijd voor je neemt om een zo goed mogelijk beeld te krijgen van je wensen. En als er wat is, staat ze altijd klaar!”",
+    "reviews.figcaption1": "<span class=\"review-avatar\" aria-hidden=\"true\">GB</span>Glenn Brondgeest",
+    "reviews.span2": "★★★★★",
+    "reviews.blockquote2": "“Sabrina heeft mij uitstekend geholpen met mijn hypotheek. Ze is deskundig, betrokken en neemt de tijd om alles duidelijk uit te leggen. Dankzij haar persoonlijke aanpak verliep het hele proces soepel en met vertrouwen.”",
+    "reviews.figcaption2": "<span class=\"review-avatar\" aria-hidden=\"true\">KE</span>Karim Elhadidy",
+    "reviews.blockquote3": "“Juist vanwege mijn ingewikkelde situatie met een niet-meewerkende ex was het echt nodig om zo’n doortastend persoon aan mijn zijde te hebben. Dank je wel Sabrina!”",
+    "reviews.figcaption3": "<span class=\"review-avatar\" aria-hidden=\"true\">SF</span>Sandra Fossen",
+    "reviews.blockquote4": "“Wij zijn Sabrina erg dankbaar voor haar advies en fijne begeleiding. Ze is altijd bereikbaar voor elke vraag die wij hadden. Ze is duidelijk en geen vraag is haar te veel.”",
+    "reviews.figcaption4": "<span class=\"review-avatar\" aria-hidden=\"true\">MB</span>Marielle Beemster",
+    "reviews.blockquote5": "“Ik kan niet genoeg benadrukken hoe goed ik ben geholpen. Had het proces van een eerste hypotheek aanvragen met niemand anders willen doen.”",
+    "reviews.figcaption5": "<span class=\"review-avatar\" aria-hidden=\"true\">IZ</span>Imaan van der Zwan",
+    "reviews.span3": "★★★★★",
+    "reviews.blockquote6": "“Dank voor alle uitleg, soms wel 2x, en vooral het contact. Het voelt heel bereikbaar en dat is zo fijn.”",
+    "reviews.figcaption6": "<span class=\"review-avatar\" aria-hidden=\"true\">JB</span>Joke Briek",
+    "reviews.blockquote7": "“Wij hadden wat tegenvallers, maar Sabrina dacht mee in oplossingen en bleef rustig. Ze is vriendelijk, luistert en denkt mee.”",
+    "reviews.figcaption7": "<span class=\"review-avatar\" aria-hidden=\"true\">SW</span>Saskia Westerhuis",
+    "reviews.blockquote8": "“Voor mij is hypotheekkeuze en het regelen ervan een ‘ver van mijn bed show’. Fijn ontzorgd te worden met klare, heldere uitleg.”",
+    "reviews.figcaption8": "<span class=\"review-avatar\" aria-hidden=\"true\">TV</span>Ton Van Bedaf",
+    "reviews.blockquote9": "“Sabrina heeft ons geweldig geholpen bij onze hypotheekaanvraag. Ze is geduldig, duidelijk en neemt alle tijd voor je. Ik kan haar iedereen aanbevelen!”",
+    "reviews.figcaption9": "<span class=\"review-avatar\" aria-hidden=\"true\">JW</span>Judith Wals",
+    "banner.span1": "Verzekeringen",
+    "banner.h21": "Ook je verzekeringen <b>goed geregeld</b>",
+    "banner.p1": "Naast je hypotheek kijk ik ook naar de risico’s die bij jouw situatie horen, zodat hypotheek en verzekeringen goed op elkaar aansluiten.",
+    "banner.a1": "Bekijk verzekeringen <i class=\"arrow\"></i>",
+    "kosten.span1": "Kosten",
+    "kosten.h21": "Duidelijkheid over <b>de kosten</b>",
+    "kosten.p1": "Vooraf weet je wat mijn dienstverlening kost. Geen verrassingen achteraf. Hier vind je ook mijn dienstverleningsdocumenten.",
+    "kosten.a1": "Bekijk de kosten <i class=\"arrow\"></i>",
+    "sabrina.span1": "Over Sabrina",
+    "sabrina.h21": "Persoonlijk advies van <b>Sabrina Reiz&#8209;Coenraad</b>",
+    "sabrina.p1": "Duidelijke uitleg, korte lijnen en één vast aanspreekpunt. Van de eerste berekening tot aan de notaris, en ook daarna.",
+    "sabrina.p2": "Online of gewoon bij je thuis aan de keukentafel, overal in Noord-Holland.",
+    "sabrina.a1": "Meer over Sabrina <i class=\"arrow\"></i>",
+    "faq.span1": "Wat je moet weten",
+    "faq.h21": "Veelgestelde<br><b>vragen</b>",
+    "faq.p1": "Staat je vraag er niet tussen? Stel hem gerust in het gratis kennismakingsgesprek.",
+    "faq.a1": "Plan een gratis kennismaking <i class=\"arrow\"></i>",
+    "faq.summary1": "Hoeveel kan ik lenen?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
+    "faq.p2": "Dat hangt af van je inkomen, je vaste lasten en de rente van dat moment. In het eerste gesprek reken ik het voor je uit, maar belangrijker: we kijken samen wat jij per maand comfortabel kunt én wilt betalen. Het maximale is niet altijd het verstandigste.",
+    "faq.summary2": "Wat kost hypotheekadvies bij Hypotheekhaven?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
+    "faq.p3": "Je betaalt één vast bedrag voor advies en bemiddeling. Dat bedrag hoor je in het eerste gesprek, zodat je nooit voor verrassingen komt te staan. Het kennismakingsgesprek zelf is gratis en vrijblijvend, ook als je daarna niet verdergaat.",
+    "faq.summary3": "Hoe lang duurt het regelen van een hypotheek?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
+    "faq.p4": "Van getekend koopcontract tot goedkeuring van de bank duurt het meestal drie tot zes weken. Hoe sneller jij je documenten aanlevert, hoe sneller het gaat. Ik bewaak de termijnen uit het koopcontract, zodat je de ontbindende voorwaarden nooit hoeft te missen.",
+    "faq.summary4": "Kan ik ook terecht als ondernemer of zzp’er?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
+    "faq.p5": "Zeker. Steeds meer geldverstrekkers kijken al na één jaar ondernemen naar je inkomen. Omdat ik met ruim 37 geldverstrekkers werk, weet ik welke bank goed past bij jouw cijfers en branche. Neem je jaarcijfers mee naar het eerste gesprek, dan weet je snel waar je staat.",
+    "faq.summary5": "Is oversluiten nu de moeite waard?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
+    "faq.p6": "Dat rekenen we gewoon uit. Ik zet de boeterente en de kosten af tegen wat je per maand bespaart over de resterende looptijd. Soms is oversluiten slim, soms is rentemiddeling of gewoon afwachten beter. Je krijgt een eerlijk antwoord, ook als dat “niet doen” is.",
+    "faq.summary6": "Moet ik naar Purmerend komen?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
+    "faq.p7": "Nee, dat hoeft niet. Het eerste gesprek doen we online of bij jou thuis, wanneer het jou uitkomt. Ook op zaterdag, en via WhatsApp. Alles daarna, van documenten tot handtekening, kan digitaal. Kom je liever langs, dan is de koffie klaar."
+  },
+  "i": {
+    "hero.foto1": {
+      "src": "hh-hero-sabrina-straat.jpg",
+      "alt": ""
+    },
+    "hero.foto2": {
+      "src": "hh-hero-fauteuil.jpg",
+      "alt": ""
+    },
+    "diensten.img1": {
+      "src": "hh-stel-tablet.jpg",
+      "alt": "Stel op de bank kijkt samen op een tablet"
+    },
+    "diensten.img2": {
+      "src": "hh-sleutel.jpg",
+      "alt": "Sleutel van een nieuw huis in de hand"
+    },
+    "diensten.img3": {
+      "src": "hh-woonkamer-breed.jpg",
+      "alt": ""
+    },
+    "diensten.img4": {
+      "src": "hh-hand-tas.jpg",
+      "alt": ""
+    },
+    "diensten.img5": {
+      "src": "hh-hero-fauteuil.jpg",
+      "alt": ""
+    },
+    "diensten.img6": {
+      "src": "hh-verbouwen.jpg",
+      "alt": "Iemand verft een kamer met een verfroller"
+    },
+    "diensten.img7": {
+      "src": "hh-verhuisdozen.jpg",
+      "alt": "Verhuisdozen met een pizza en twee glazen bubbels"
+    },
+    "diensten.img8": {
+      "src": "hh-hero-kaartje.jpg",
+      "alt": ""
+    },
+    "diensten.img9": {
+      "src": "hh-laptop-studio.jpg",
+      "alt": ""
+    },
+    "diensten.img10": {
+      "src": "hh-sabrina-bankje.jpg",
+      "alt": ""
+    },
+    "waarom.img1": {
+      "src": "hh-hero-kaartje.jpg",
+      "alt": ""
+    },
+    "waarom.img2": {
+      "src": "hh-laptop-zwart.jpg",
+      "alt": ""
+    },
+    "waarom.img3": {
+      "src": "icoon-kennismaking.png",
+      "alt": ""
+    },
+    "waarom.img4": {
+      "src": "icoon-persoonlijk.png",
+      "alt": ""
+    },
+    "waarom.img5": {
+      "src": "hh-sabrina-bankje.jpg",
+      "alt": ""
+    },
+    "waarom.img6": {
+      "src": "hh-gracht.jpg",
+      "alt": ""
+    },
+    "advies.foto1": {
+      "src": "hh-sabrina-bankje-breed.jpg",
+      "alt": ""
+    },
+    "advies.foto2": {
+      "src": "hh-hero-fauteuil.jpg",
+      "alt": ""
+    },
+    "werkwijze.img1": {
+      "src": "hh-hero-kaartje.jpg",
+      "alt": ""
+    },
+    "werkwijze.img2": {
+      "src": "hh-laptop-hakken.jpg",
+      "alt": ""
+    },
+    "werkwijze.img3": {
+      "src": "hh-sabrina-bankje.jpg",
+      "alt": ""
+    },
+    "werkwijze.img4": {
+      "src": "hh-champagne.jpg",
+      "alt": ""
+    },
+    "reviews.img1": {
+      "src": "logo-google-reviews.png",
+      "alt": "Google, 5 sterren"
+    },
+    "reviews.img2": {
+      "src": "logo-trustoo.png",
+      "alt": "Trustoo"
+    },
+    "reviews.img3": {
+      "src": "logo-google-reviews.png",
+      "alt": "Google, 5 sterren"
+    },
+    "reviews.img4": {
+      "src": "logo-google-reviews.png",
+      "alt": "Google, 5 sterren"
+    },
+    "reviews.img5": {
+      "src": "logo-google-reviews.png",
+      "alt": "Google, 5 sterren"
+    },
+    "reviews.img6": {
+      "src": "logo-trustoo.png",
+      "alt": "Trustoo"
+    },
+    "reviews.img7": {
+      "src": "logo-google-reviews.png",
+      "alt": "Google, 5 sterren"
+    },
+    "reviews.img8": {
+      "src": "logo-google-reviews.png",
+      "alt": "Google, 5 sterren"
+    },
+    "reviews.img9": {
+      "src": "logo-google-reviews.png",
+      "alt": "Google, 5 sterren"
+    },
+    "verzekeringen.foto1": {
+      "src": "hh-planner-bank.jpg",
+      "alt": ""
+    },
+    "verzekeringen.foto2": {
+      "src": "hh-laptop-studio.jpg",
+      "alt": ""
+    },
+    "sabrina.img1": {
+      "src": "hh-sabrina-bankje-uitsnede.jpg",
+      "alt": "Sabrina Reiz-Coenraad op een bankje in een binnentuin"
+    }
+  }
+}

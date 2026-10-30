@@ -1,0 +1,146 @@
+---
+import Base from '../layouts/Base.astro';
+import Img from '../components/Img.astro';
+import Header from '../components/Header.astro';
+import HeroReviews from '../components/HeroReviews.astro';
+import HeroBanks from '../components/HeroBanks.astro';
+import Footer from '../components/Footer.astro';
+import { laadPagina } from '../lib/content';
+import '../styles/pagina.css';
+import '../styles/blog.css';
+
+const { t, img, bg, meta, achtergronden } = await laadPagina('blog');
+---
+<Base pagina="blog" meta={meta} preload={achtergronden['hero.foto1']}>
+<header class="hero hero--pagina hero--blog">
+  <div class="hero-slides">
+    <div class="hero-slide hero-slide--blog is-active" {...bg('hero.foto1', 'background-image', '')}></div>
+  </div>
+  <div class="hero-overlay"></div>
+
+  
+
+  <Header />
+
+  <div class="hero-content">
+    <nav class="kruimelpad" aria-label="Kruimelpad"><a href="/" data-e="blog:hero.a1" set:html={t('hero.a1')}></a><span aria-hidden="true">/</span><span aria-current="page" data-e="blog:hero.span1" set:html={t('hero.span1')}></span></nav>
+    <h1 data-e="blog:hero.h11" set:html={t('hero.h11')}></h1>
+    <p data-e="blog:hero.p1" set:html={t('hero.p1')}></p>
+  </div>
+  <HeroReviews />
+  <HeroBanks />
+</header>
+
+<main>
+
+<section class="blog-uitgelicht container" aria-labelledby="uitgelicht-titel">
+  <article class="blog-uitgelicht-kaart">
+    <div class="blog-uitgelicht-beeld">
+      <Img data={img('blog-uitgelicht-kaart.img1')} width="736" height="920" loading="lazy" />
+    </div>
+    <div class="blog-uitgelicht-tekst">
+      <span class="eyebrow" data-e="blog:blog-uitgelicht-kaart.span1" set:html={t('blog-uitgelicht-kaart.span1')}></span>
+      <span class="blog-label" data-e="blog:blog-uitgelicht-kaart.span2" set:html={t('blog-uitgelicht-kaart.span2')}></span>
+      <h2 id="uitgelicht-titel" data-e="blog:blog-uitgelicht-kaart.h21" set:html={t('blog-uitgelicht-kaart.h21')}></h2>
+      <p data-e="blog:blog-uitgelicht-kaart.p1" set:html={t('blog-uitgelicht-kaart.p1')}></p>
+      <div class="blog-meta">
+        <time datetime="2026-10-11" data-e="blog:blog-uitgelicht-kaart.time1" set:html={t('blog-uitgelicht-kaart.time1')}></time><span aria-hidden="true">·</span><span data-e="blog:blog-uitgelicht-kaart.span3" set:html={t('blog-uitgelicht-kaart.span3')}></span>
+      </div>
+      <a href="/blog/hoeveel-kan-ik-lenen" class="waarom-link" aria-label="Lees het artikel: Hoeveel kan ik lenen voor een huis?" data-e="blog:blog-uitgelicht-kaart.a1" set:html={t('blog-uitgelicht-kaart.a1')}></a>
+    </div>
+  </article>
+</section>
+
+<section class="blog-overzicht container" id="artikelen" aria-labelledby="artikelen-titel">
+  <div class="blog-sectie-kop">
+    <div>
+      <span class="eyebrow" data-e="blog:artikelen.span1" set:html={t('artikelen.span1')}></span>
+      <h2 id="artikelen-titel" data-e="blog:artikelen.h21" set:html={t('artikelen.h21')}></h2>
+    </div>
+    <div class="blog-filter" role="group" aria-label="Filter artikelen op onderwerp">
+      <button type="button" class="blog-chip" data-filter="alle" aria-pressed="true" data-e="blog:artikelen.button1" set:html={t('artikelen.button1')}></button>
+      <button type="button" class="blog-chip" data-filter="huis-kopen" aria-pressed="false" data-e="blog:artikelen.button2" set:html={t('artikelen.button2')}></button>
+      <button type="button" class="blog-chip" data-filter="huidige-hypotheek" aria-pressed="false" data-e="blog:artikelen.button3" set:html={t('artikelen.button3')}></button>
+      <button type="button" class="blog-chip" data-filter="verzekeringen" aria-pressed="false" data-e="blog:artikelen.button4" set:html={t('artikelen.button4')}></button>
+      <button type="button" class="blog-chip" data-filter="ondernemers" aria-pressed="false" data-e="blog:artikelen.button5" set:html={t('artikelen.button5')}></button>
+    </div>
+  </div>
+  <p class="blog-filter-status sr-only" aria-live="polite"></p>
+
+  <div class="blog-raster">
+    <article class="blog-kaart" data-categorie="huis-kopen">
+      <div class="blog-kaart-beeld"><Img data={img('blog-kaart.img1')} width="1200" height="1800" loading="lazy" style="object-position: center 60%" /></div>
+      <span class="blog-label" data-e="blog:blog-kaart.span1" set:html={t('blog-kaart.span1')}></span>
+      <h3 data-e="blog:blog-kaart.h31" set:html={t('blog-kaart.h31')}></h3>
+      <p data-e="blog:blog-kaart.p1" set:html={t('blog-kaart.p1')}></p>
+      <div class="blog-meta"><time datetime="2026-10-11" data-e="blog:blog-kaart.time1" set:html={t('blog-kaart.time1')}></time><span aria-hidden="true">·</span><span data-e="blog:blog-kaart.span2" set:html={t('blog-kaart.span2')}></span></div>
+    </article>
+
+    
+    
+    <article class="blog-kaart blog-kaart--binnenkort" data-categorie="huidige-hypotheek">
+      <div class="blog-kaart-beeld"><span class="blog-binnenkort" data-e="blog:blog-kaart.span3" set:html={t('blog-kaart.span3')}></span><Img data={img('blog-kaart.img2')} width="736" height="1104" loading="lazy" style="object-position: center 30%" /></div>
+      <span class="blog-label" data-e="blog:blog-kaart.span4" set:html={t('blog-kaart.span4')}></span>
+      <h3 data-e="blog:blog-kaart.h32" set:html={t('blog-kaart.h32')}></h3>
+      <p data-e="blog:blog-kaart.p2" set:html={t('blog-kaart.p2')}></p>
+      <div class="blog-meta"><span data-e="blog:blog-kaart.span5" set:html={t('blog-kaart.span5')}></span></div>
+    </article>
+
+    
+    
+    <article class="blog-kaart blog-kaart--binnenkort" data-categorie="huidige-hypotheek">
+      <div class="blog-kaart-beeld"><span class="blog-binnenkort" data-e="blog:blog-kaart.span6" set:html={t('blog-kaart.span6')}></span><Img data={img('blog-kaart.img3')} width="736" height="981" loading="lazy" style="object-position: center 45%" /></div>
+      <span class="blog-label" data-e="blog:blog-kaart.span7" set:html={t('blog-kaart.span7')}></span>
+      <h3 data-e="blog:blog-kaart.h33" set:html={t('blog-kaart.h33')}></h3>
+      <p data-e="blog:blog-kaart.p3" set:html={t('blog-kaart.p3')}></p>
+      <div class="blog-meta"><span data-e="blog:blog-kaart.span8" set:html={t('blog-kaart.span8')}></span></div>
+    </article>
+
+    
+    
+    <article class="blog-kaart blog-kaart--binnenkort" data-categorie="ondernemers">
+      <div class="blog-kaart-beeld"><span class="blog-binnenkort" data-e="blog:blog-kaart.span9" set:html={t('blog-kaart.span9')}></span><Img data={img('blog-kaart.img4')} width="1672" height="941" loading="lazy" style="object-position: 75% center" /></div>
+      <span class="blog-label" data-e="blog:blog-kaart.span10" set:html={t('blog-kaart.span10')}></span>
+      <h3 data-e="blog:blog-kaart.h34" set:html={t('blog-kaart.h34')}></h3>
+      <p data-e="blog:blog-kaart.p4" set:html={t('blog-kaart.p4')}></p>
+      <div class="blog-meta"><span data-e="blog:blog-kaart.span11" set:html={t('blog-kaart.span11')}></span></div>
+    </article>
+
+    
+    
+    <article class="blog-kaart blog-kaart--binnenkort" data-categorie="huidige-hypotheek">
+      <div class="blog-kaart-beeld"><span class="blog-binnenkort" data-e="blog:blog-kaart.span12" set:html={t('blog-kaart.span12')}></span><Img data={img('blog-kaart.img5')} width="638" height="850" loading="lazy" style="object-position: center 55%" /></div>
+      <span class="blog-label" data-e="blog:blog-kaart.span13" set:html={t('blog-kaart.span13')}></span>
+      <h3 data-e="blog:blog-kaart.h35" set:html={t('blog-kaart.h35')}></h3>
+      <p data-e="blog:blog-kaart.p5" set:html={t('blog-kaart.p5')}></p>
+      <div class="blog-meta"><span data-e="blog:blog-kaart.span14" set:html={t('blog-kaart.span14')}></span></div>
+    </article>
+
+    
+    
+    <article class="blog-kaart blog-kaart--binnenkort" data-categorie="verzekeringen">
+      <div class="blog-kaart-beeld"><span class="blog-binnenkort" data-e="blog:blog-kaart.span15" set:html={t('blog-kaart.span15')}></span><Img data={img('blog-kaart.img6')} width="1774" height="887" loading="lazy" /></div>
+      <span class="blog-label" data-e="blog:blog-kaart.span16" set:html={t('blog-kaart.span16')}></span>
+      <h3 data-e="blog:blog-kaart.h36" set:html={t('blog-kaart.h36')}></h3>
+      <p data-e="blog:blog-kaart.p6" set:html={t('blog-kaart.p6')}></p>
+      <div class="blog-meta"><span data-e="blog:blog-kaart.span17" set:html={t('blog-kaart.span17')}></span></div>
+    </article>
+  </div>
+</section>
+
+<section class="blog-cta container" aria-labelledby="cta-titel">
+  <span class="eyebrow" data-e="blog:blog-cta.span1" set:html={t('blog-cta.span1')}></span>
+  <h2 id="cta-titel" data-e="blog:blog-cta.h21" set:html={t('blog-cta.h21')}></h2>
+  <p data-e="blog:blog-cta.p1" set:html={t('blog-cta.p1')}></p>
+  <div class="btn-row">
+    <a href="/contact#formulier" class="btn btn-dark" data-e="blog:blog-cta.a1" set:html={t('blog-cta.a1')}></a>
+  </div>
+</section>
+
+</main>
+
+<Footer />
+<script>
+  import '../scripts/blog.js';
+</script>
+</Base>
