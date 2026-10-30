@@ -58,15 +58,7 @@
     "banner.li3": "<a href=\"https://nbg.nl/wp-content/uploads/documents/Vergelijkingskaart-vermogen-opbouwen-Hypotheekhaven.pdf\" target=\"_blank\" rel=\"noopener\">Vermogen opbouwen <i class=\"arrow\"></i></a>",
     "faq.span1": "Goed om te weten",
     "faq.h21": "Vragen over <b>werkwijze en kosten</b>",
-    "faq.p1": "Staat je vraag er niet tussen? Stel hem gerust in het gratis kennismakingsgesprek.",
-    "faq.summary1": "Wat kost het eerste gesprek?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "faq.p2": "Niets. De kennismaking is gratis en vrijblijvend. We bespreken je situatie en wensen, en daarna beslis jij of je verder wilt.",
-    "faq.summary2": "Wanneer weet ik wat je advies kost?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "faq.p3": "Vooraf. Voordat ik voor je aan de slag ga, weet je wat mijn dienstverlening kost. Zo kom je achteraf niet voor verrassingen te staan.",
-    "faq.summary3": "Welke documenten heb ik nodig?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "faq.p4": "Dat hangt af van je situatie. Vaak gaat het om een geldig identiteitsbewijs, een recente loonstrook en een werkgeversverklaring, en bij een aankoop de koopovereenkomst. Ik geef je een overzicht van wat er voor jou nodig is.",
-    "faq.summary4": "Moet ik al een huis op het oog hebben?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "faq.p5": "Nee. Het is juist prettig om vooraf te weten wat er mogelijk is. Dan kun je gerichter zoeken en weet je waar je staat als je een huis vindt dat je bevalt."
+    "faq.p1": "Staat je vraag er niet tussen? Stel hem gerust in het gratis kennismakingsgesprek."
   },
   "i": {
     "hero.foto1": {
@@ -97,5 +89,25 @@
       "src": "hh-laptop-studio.jpg",
       "alt": ""
     }
+  },
+  "l": {
+    "faq": [
+      {
+        "vraag": "Wat kost het eerste gesprek?",
+        "antwoord": "Niets. De kennismaking is gratis en vrijblijvend. We bespreken je situatie en wensen, en daarna beslis jij of je verder wilt."
+      },
+      {
+        "vraag": "Wanneer weet ik wat je advies kost?",
+        "antwoord": "Vooraf. Voordat ik voor je aan de slag ga, weet je wat mijn dienstverlening kost. Zo kom je achteraf niet voor verrassingen te staan."
+      },
+      {
+        "vraag": "Welke documenten heb ik nodig?",
+        "antwoord": "Dat hangt af van je situatie. Vaak gaat het om een geldig identiteitsbewijs, een recente loonstrook en een werkgeversverklaring, en bij een aankoop de koopovereenkomst. Ik geef je een overzicht van wat er voor jou nodig is."
+      },
+      {
+        "vraag": "Moet ik al een huis op het oog hebben?",
+        "antwoord": "Nee. Het is juist prettig om vooraf te weten wat er mogelijk is. Dan kun je gerichter zoeken en weet je waar je staat als je een huis vindt dat je bevalt."
+      }
+    ]
   }
 }

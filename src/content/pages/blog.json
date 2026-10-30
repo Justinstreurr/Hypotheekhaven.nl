@@ -8,13 +8,6 @@
     "hero.span1": "Blog",
     "hero.h11": "Kennis over je <b>hypotheek</b>",
     "hero.p1": "Heldere uitleg over een huis kopen, je huidige hypotheek en de verzekeringen die erbij horen. Zonder vakjargon, zodat je goed voorbereid je keuzes maakt.",
-    "blog-uitgelicht-kaart.span1": "Uitgelicht",
-    "blog-uitgelicht-kaart.span2": "Een huis kopen",
-    "blog-uitgelicht-kaart.h21": "<a href=\"/blog/hoeveel-kan-ik-lenen\">Hoeveel kan ik lenen voor <b>een huis?</b></a>",
-    "blog-uitgelicht-kaart.p1": "Je inkomen, je vaste lasten, de rente en de woning zelf bepalen hoeveel je kunt lenen. Ik leg uit hoe dat werkt, en waarom het maximum niet altijd het juiste bedrag is.",
-    "blog-uitgelicht-kaart.time1": "11 oktober 2026",
-    "blog-uitgelicht-kaart.span3": "7 minuten lezen",
-    "blog-uitgelicht-kaart.a1": "Lees het artikel <i class=\"arrow\"></i>",
     "artikelen.span1": "Alle artikelen",
     "artikelen.h21": "Lees verder <b>per onderwerp</b>",
     "artikelen.button1": "Alle",
@@ -22,73 +15,19 @@
     "artikelen.button3": "Je huidige hypotheek",
     "artikelen.button4": "Verzekeringen",
     "artikelen.button5": "Ondernemers",
-    "blog-kaart.span1": "Een huis kopen",
-    "blog-kaart.h31": "<a href=\"/blog/hoeveel-kan-ik-lenen\">Hoeveel kan ik lenen voor een huis?</a>",
-    "blog-kaart.p1": "Welke factoren bepalen je leenruimte, en hoe vind je een bedrag dat ook over tien jaar nog goed voelt?",
-    "blog-kaart.time1": "11 oktober 2026",
-    "blog-kaart.span2": "7 minuten lezen",
-    "blog-kaart.span3": "Binnenkort",
-    "blog-kaart.span4": "Je huidige hypotheek",
-    "blog-kaart.h32": "<a href=\"/\" aria-disabled=\"true\" tabindex=\"-1\">Wat is een rentevaste periode?</a>",
-    "blog-kaart.p2": "Hoe lang staat je rente vast, en wat betekent dat voor je maandlasten en je zekerheid? Zo kies je een periode die bij je plannen past.",
-    "blog-kaart.span5": "Binnenkort",
-    "blog-kaart.span6": "Binnenkort",
-    "blog-kaart.span7": "Je huidige hypotheek",
-    "blog-kaart.h33": "<a href=\"/\" aria-disabled=\"true\" tabindex=\"-1\">Overwaarde opnemen: zo werkt het</a>",
-    "blog-kaart.p3": "Is je huis meer waard geworden? Lees wanneer je overwaarde kunt gebruiken, bijvoorbeeld voor een verbouwing, en waar je op let.",
-    "blog-kaart.span8": "Binnenkort",
-    "blog-kaart.span9": "Binnenkort",
-    "blog-kaart.span10": "Ondernemers",
-    "blog-kaart.h34": "<a href=\"/\" aria-disabled=\"true\" tabindex=\"-1\">Hypotheek als ondernemer</a>",
-    "blog-kaart.p4": "Als zzp'er of ondernemer kijkt een geldverstrekker anders naar je inkomen. Welke stukken je nodig hebt en hoe je je goed voorbereidt.",
-    "blog-kaart.span11": "Binnenkort",
-    "blog-kaart.span12": "Binnenkort",
-    "blog-kaart.span13": "Je huidige hypotheek",
-    "blog-kaart.h35": "<a href=\"/\" aria-disabled=\"true\" tabindex=\"-1\">Scheiden en je hypotheek</a>",
-    "blog-kaart.p5": "Wat gebeurt er met het huis en de hypotheek als je uit elkaar gaat? De keuzes op een rij, rustig uitgelegd.",
-    "blog-kaart.span14": "Binnenkort",
-    "blog-kaart.span15": "Binnenkort",
-    "blog-kaart.span16": "Verzekeringen",
-    "blog-kaart.h36": "<a href=\"/\" aria-disabled=\"true\" tabindex=\"-1\">Welke verzekeringen horen bij je hypotheek?</a>",
-    "blog-kaart.p6": "Van overlijdensrisicoverzekering tot woonlastenverzekering: welke risico's je afdekt en wat bij jouw situatie past.",
-    "blog-kaart.span17": "Binnenkort",
     "blog-cta.span1": "Persoonlijk advies",
     "blog-cta.h21": "Staat je vraag <b>er niet tussen?</b>",
     "blog-cta.p1": "Elke situatie is anders. In een gratis kennismaking bespreken we jouw vraag en kijk ik wat er voor jou mogelijk is.",
-    "blog-cta.a1": "Plan een gratis kennismaking <i class=\"arrow\"></i>"
+    "blog-cta.a1": "Plan een gratis kennismaking <i class=\"arrow\"></i>",
+    "uitgelicht.eyebrow": "Uitgelicht",
+    "uitgelicht.link": "Lees het artikel <i class=\"arrow\"></i>",
+    "kaart.binnenkort": "Binnenkort",
+    "kaart.binnenkort-meta": "Binnenkort"
   },
   "i": {
     "hero.foto1": {
       "src": "hh-hero-kaartje.jpg",
       "alt": ""
-    },
-    "blog-uitgelicht-kaart.img1": {
-      "src": "hh-sleutel.jpg",
-      "alt": "Hand met een huissleutel in een lege, lichte woonkamer met visgraatvloer"
-    },
-    "blog-kaart.img1": {
-      "src": "hh-interieur-woonkamer.jpg",
-      "alt": "Lichte woonkamer met grote ramen en een witte bank"
-    },
-    "blog-kaart.img2": {
-      "src": "hh-laptop-hakken.jpg",
-      "alt": "Vrouw met een laptop op schoot, aan het werk in een lichte kamer"
-    },
-    "blog-kaart.img3": {
-      "src": "hh-verbouwen.jpg",
-      "alt": "Vrouw op een trapje die een kamer schildert, de vloer afgedekt met folie"
-    },
-    "blog-kaart.img4": {
-      "src": "hh-laptop-studio.jpg",
-      "alt": "Laptop en notitieboek op een bureau in een lichte werkruimte"
-    },
-    "blog-kaart.img5": {
-      "src": "hh-hand-tas.jpg",
-      "alt": "Hand met een gevlochten tas, in warm zonlicht"
-    },
-    "blog-kaart.img6": {
-      "src": "hh-woonkamer-breed.jpg",
-      "alt": "Ruime, lichte woonkamer met bank en grote ramen"
     }
   }
 }

@@ -63,22 +63,36 @@
     "uitleg.span1": "Goed om te weten",
     "uitleg.h21": "Vragen over <br><b>je documenten</b>",
     "uitleg.p1": "Twijfel je of iets nodig is? Neem het gerust mee naar het gesprek, of vraag het me even.",
-    "uitleg.a1": "Plan een gratis kennismaking <i class=\"arrow\"></i>",
-    "uitleg.summary1": "Moet ik alles al hebben voor het eerste gesprek?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "uitleg.p2": "Nee. Voor de gratis kennismaking hoef je niets te verzamelen. Deze lijst helpt je om alvast te zien wat er straks nodig is, zodat je niet voor verrassingen staat als je een huis hebt gevonden.",
-    "uitleg.summary2": "Hoe oud mogen documenten zijn?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "uitleg.p3": "Een werkgeversverklaring en een uittreksel van de Kamer van Koophandel mogen meestal niet ouder zijn dan drie tot zes maanden. Je loonstrook is je meest recente. Ik zeg je precies wanneer je wat moet opvragen, zodat niets verloopt.",
-    "uitleg.summary3": "Wat is een werkgeversverklaring?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "uitleg.p4": "Een standaardformulier dat je werkgever invult en ondertekent, met je inkomen en het soort contract. Je kunt vaak ook een UWV-verzekeringsbericht gebruiken; dat download je zelf via mijn.uwv.nl.",
-    "uitleg.summary4": "Ik ben ondernemer, wat is een inkomensverklaring?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "uitleg.p5": "Een onafhankelijke rekenexpert bepaalt op basis van je jaarcijfers en aangiften wat je inkomen is voor de hypotheek. Dat regel ik samen met je, met de juiste stukken erbij.",
-    "uitleg.summary5": "Is mijn informatie veilig?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "uitleg.p6": "Deze checklist verstuurt niets: wat je aanklikt, blijft in je eigen browser. Je echte documenten lever je later aan in een beveiligde omgeving, niet per gewone e-mail."
+    "uitleg.a1": "Plan een gratis kennismaking <i class=\"arrow\"></i>"
   },
   "i": {
     "hero.foto1": {
       "src": "hh-woonkamer-breed.jpg",
       "alt": ""
     }
+  },
+  "l": {
+    "faq": [
+      {
+        "vraag": "Moet ik alles al hebben voor het eerste gesprek?",
+        "antwoord": "Nee. Voor de gratis kennismaking hoef je niets te verzamelen. Deze lijst helpt je om alvast te zien wat er straks nodig is, zodat je niet voor verrassingen staat als je een huis hebt gevonden."
+      },
+      {
+        "vraag": "Hoe oud mogen documenten zijn?",
+        "antwoord": "Een werkgeversverklaring en een uittreksel van de Kamer van Koophandel mogen meestal niet ouder zijn dan drie tot zes maanden. Je loonstrook is je meest recente. Ik zeg je precies wanneer je wat moet opvragen, zodat niets verloopt."
+      },
+      {
+        "vraag": "Wat is een werkgeversverklaring?",
+        "antwoord": "Een standaardformulier dat je werkgever invult en ondertekent, met je inkomen en het soort contract. Je kunt vaak ook een UWV-verzekeringsbericht gebruiken; dat download je zelf via mijn.uwv.nl."
+      },
+      {
+        "vraag": "Ik ben ondernemer, wat is een inkomensverklaring?",
+        "antwoord": "Een onafhankelijke rekenexpert bepaalt op basis van je jaarcijfers en aangiften wat je inkomen is voor de hypotheek. Dat regel ik samen met je, met de juiste stukken erbij."
+      },
+      {
+        "vraag": "Is mijn informatie veilig?",
+        "antwoord": "Deze checklist verstuurt niets: wat je aanklikt, blijft in je eigen browser. Je echte documenten lever je later aan in een beveiligde omgeving, niet per gewone e-mail."
+      }
+    ]
   }
 }

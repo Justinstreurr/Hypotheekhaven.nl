@@ -1,0 +1,42 @@
+{
+  "artikel": {
+    "status": "gepubliceerd",
+    "categorie": "huis-kopen",
+    "datum": "2026-10-11",
+    "eigenPagina": true,
+    "gerelateerd": [
+      "wat-is-een-rentevaste-periode",
+      "welke-verzekeringen-horen-bij-je-hypotheek",
+      "hypotheek-als-ondernemer"
+    ]
+  },
+  "meta": {
+    "title": "Hoeveel kan ik lenen voor een huis? | Hypotheekhaven",
+    "description": "Hoeveel hypotheek kun je krijgen? Sabrina Reiz-Coenraad legt uit welke factoren meetellen en waarom comfortabel lenen belangrijker is dan maximaal."
+  },
+  "t": {
+    "titel": "Hoeveel kan ik lenen voor een huis?",
+    "titel-uitgelicht": "Hoeveel kan ik lenen voor <b>een huis?</b>",
+    "samenvatting": "Welke factoren bepalen je leenruimte, en hoe vind je een bedrag dat ook over tien jaar nog goed voelt?",
+    "samenvatting-uitgelicht": "Je inkomen, je vaste lasten, de rente en de woning zelf bepalen hoeveel je kunt lenen. Ik leg uit hoe dat werkt, en waarom het maximum niet altijd het juiste bedrag is.",
+    "leestijd": "7 minuten lezen"
+  },
+  "i": {
+    "kaart": {
+      "src": "hh-interieur-woonkamer.jpg",
+      "alt": "Lichte woonkamer met grote ramen en een witte bank",
+      "positie": "center 60%"
+    },
+    "uitgelicht": {
+      "src": "hh-sleutel.jpg",
+      "alt": "Hand met een huissleutel in een lege, lichte woonkamer met visgraatvloer"
+    },
+    "hero.foto1": {
+      "src": "hh-interieur-woonkamer.jpg",
+      "alt": ""
+    }
+  },
+  "l": {
+    "faq": []
+  }
+}

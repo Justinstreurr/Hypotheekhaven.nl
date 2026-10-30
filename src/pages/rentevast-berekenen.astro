@@ -7,7 +7,7 @@ import { laadPagina } from '../lib/content';
 import '../styles/pagina.css';
 import '../styles/rekentool.css';
 
-const { t, bg, meta, achtergronden } = await laadPagina('rentevast');
+const { t, bg, meta, achtergronden, lijst } = await laadPagina('rentevast');
 ---
 <Base pagina="rentevast" meta={meta} preload={achtergronden['hero.foto1']}>
 <header class="hero hero--pagina hero--rekentool">
@@ -198,13 +198,10 @@ const { t, bg, meta, achtergronden } = await laadPagina('rentevast');
     <p data-e="rentevast:uitleg.p1" set:html={t('uitleg.p1')}></p>
     <a href="/contact#formulier" class="btn btn-dark" data-e="rentevast:uitleg.a1" set:html={t('uitleg.a1')}></a>
   </div>
-  <div class="faq-list">
-    <details open><summary data-e="rentevast:uitleg.summary1" set:html={t('uitleg.summary1')}></summary><p data-e="rentevast:uitleg.p2" set:html={t('uitleg.p2')}></p></details>
-    <details><summary data-e="rentevast:uitleg.summary2" set:html={t('uitleg.summary2')}></summary><p data-e="rentevast:uitleg.p3" set:html={t('uitleg.p3')}></p></details>
-    <details><summary data-e="rentevast:uitleg.summary3" set:html={t('uitleg.summary3')}></summary><p data-e="rentevast:uitleg.p4" set:html={t('uitleg.p4')}></p></details>
-    <details><summary data-e="rentevast:uitleg.summary4" set:html={t('uitleg.summary4')}></summary><p data-e="rentevast:uitleg.p5" set:html={t('uitleg.p5')}></p></details>
-    <details><summary data-e="rentevast:uitleg.summary5" set:html={t('uitleg.summary5')}></summary><p data-e="rentevast:uitleg.p6" set:html={t('uitleg.p6')}></p></details>
-    <details><summary data-e="rentevast:uitleg.summary6" set:html={t('uitleg.summary6')}></summary><p data-e="rentevast:uitleg.p7" set:html={t('uitleg.p7')}></p></details>
+  <div class="faq-list" data-el="rentevast:faq">
+    {lijst('faq').map((v, n) => (
+      <details open={n === 0} data-item><summary><span data-e={`rentevast:faq.${n}.vraag`} set:html={v.vraag} /><i class="faq-plus" aria-hidden="true"></i></summary><p data-e={`rentevast:faq.${n}.antwoord`} set:html={v.antwoord} /></details>
+    ))}
   </div>
 </section>
 

@@ -47,15 +47,7 @@
     "hoe-het-werkt.p3": "In een gratis en vrijblijvend gesprek vertel je over je situatie. Telefonisch, online of bij je thuis, wanneer het jou uitkomt.",
     "faq.span1": "Wat je moet weten",
     "faq.h21": "Vragen over <b>verzekeringen</b>",
-    "faq.p1": "Staat je vraag er niet tussen? Stel hem gerust in het gratis kennismakingsgesprek.",
-    "faq.summary1": "Moet ik een verzekering afsluiten bij mijn hypotheek?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "faq.p2": "Dat hangt af van je situatie, en soms van de voorwaarden van de geldverstrekker. In het gesprek kijken we samen welke risico’s er voor jou zijn en of een verzekering daarbij past. Jij beslist.",
-    "faq.summary2": "Kan ik ook alleen voor verzekeringsadvies bij je terecht?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "faq.p3": "Ja. Verzekeringsadvies hoort bij het gesprek over je hypotheek, maar je kunt het ook los bij me aanvragen. Bijvoorbeeld als je wilt weten of je huidige verzekeringen nog bij je situatie passen.",
-    "faq.summary3": "Wat kost verzekeringsadvies?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "faq.p4": "Dat hoor je vooraf van mij, voordat ik voor je aan de slag ga. Op mijn <a href=\"https://nbg.nl/wp-content/uploads/documents/Vergelijkingskaart-risicos-afdekken-Hypotheekhaven.pdf\" target=\"_blank\" rel=\"noopener\">vergelijkingskaart risico’s afdekken</a> (pdf) zie je wat verzekeringsadvies gemiddeld kost.",
-    "faq.summary4": "Wat bespreken we in het eerste gesprek?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "faq.p5": "Je vertelt over je situatie en je plannen, en ik laat zien waar je op moet letten. Het gesprek is gratis en vrijblijvend, ook als je daarna niet verdergaat."
+    "faq.p1": "Staat je vraag er niet tussen? Stel hem gerust in het gratis kennismakingsgesprek."
   },
   "i": {
     "hero.foto1": {
@@ -86,5 +78,25 @@
       "src": "hh-sabrina-bankje.jpg",
       "alt": ""
     }
+  },
+  "l": {
+    "faq": [
+      {
+        "vraag": "Moet ik een verzekering afsluiten bij mijn hypotheek?",
+        "antwoord": "Dat hangt af van je situatie, en soms van de voorwaarden van de geldverstrekker. In het gesprek kijken we samen welke risico’s er voor jou zijn en of een verzekering daarbij past. Jij beslist."
+      },
+      {
+        "vraag": "Kan ik ook alleen voor verzekeringsadvies bij je terecht?",
+        "antwoord": "Ja. Verzekeringsadvies hoort bij het gesprek over je hypotheek, maar je kunt het ook los bij me aanvragen. Bijvoorbeeld als je wilt weten of je huidige verzekeringen nog bij je situatie passen."
+      },
+      {
+        "vraag": "Wat kost verzekeringsadvies?",
+        "antwoord": "Dat hoor je vooraf van mij, voordat ik voor je aan de slag ga. Op mijn <a href=\"https://nbg.nl/wp-content/uploads/documents/Vergelijkingskaart-risicos-afdekken-Hypotheekhaven.pdf\" target=\"_blank\" rel=\"noopener\">vergelijkingskaart risico’s afdekken</a> (pdf) zie je wat verzekeringsadvies gemiddeld kost."
+      },
+      {
+        "vraag": "Wat bespreken we in het eerste gesprek?",
+        "antwoord": "Je vertelt over je situatie en je plannen, en ik laat zien waar je op moet letten. Het gesprek is gratis en vrijblijvend, ook als je daarna niet verdergaat."
+      }
+    ]
   }
 }

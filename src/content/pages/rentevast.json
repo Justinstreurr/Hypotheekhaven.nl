@@ -65,24 +65,40 @@
     "uitleg.span1": "Goed om te weten",
     "uitleg.h21": "Je rente loopt af, <br><b>wat nu?</b>",
     "uitleg.p1": "Verlengen, oversluiten of extra aflossen: welke keuze bij jou past, zoeken we samen uit in het gratis kennismakingsgesprek.",
-    "uitleg.a1": "Plan een gratis kennismaking <i class=\"arrow\"></i>",
-    "uitleg.summary1": "Wat gebeurt er als ik niets doe?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "uitleg.p2": "Je bank stuurt je meestal zo'n drie maanden voor het einde van je rentevaste periode een rentevoorstel. Reageer je niet, dan verlengt de bank vaak automatisch met dezelfde rentevaste periode, tegen de rente van dat moment. Dat is niet altijd de voordeligste keuze.",
-    "uitleg.summary2": "Wanneer loont oversluiten naar een andere bank?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "uitleg.p3": "Als het verschil in maandlast groot genoeg is om de kosten van advies, notaris en taxatie terug te verdienen binnen je nieuwe rentevaste periode. Loopt je rente af, dan betaal je geen boeterente, en dat maakt oversluiten op dat moment vaak het interessantst.",
-    "uitleg.summary3": "Hoe wordt boeterente berekend?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "uitleg.p4": "Je bank mag niet meer rekenen dan het financiële nadeel dat ze heeft. Dat is het verschil tussen jouw rente en de actuele rente voor je resterende rentevaste periode, over het deel van je hypotheek boven het boetevrije bedrag, rekening houdend met je aflossingen en contant gemaakt naar nu. Zo schrijft de AFM het voor.",
-    "uitleg.summary4": "Waarom loont tussentijds oversluiten vaak niet?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "uitleg.p5": "De boeterente is ongeveer gelijk aan wat je tot het einde van je rentevaste periode bespaart. Daar komen de kosten van oversluiten nog bij. Het kan wel lonen als je bij een andere bank een lagere renteopslag krijgt, of omdat je de boeterente mag aftrekken van je inkomen.",
-    "uitleg.summary5": "Mag ik boeterente aftrekken?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "uitleg.p6": "Betaal je boeterente omdat je je hypotheek voor je eigen huis oversluit, dan mag je die in het jaar van betalen meestal aftrekken, tegen maximaal <span data-norm=\"maxAftrekTarief\"></span> (<span data-norm=\"jaar\"></span>). Financier je de boete mee in je nieuwe hypotheek, dan is de rente over dat deel niet aftrekbaar.",
-    "uitleg.summary6": "Wat zit er níet in deze berekening?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "uitleg.p7": "Belastingvoordeel op je maandlasten, een eventuele renteopslag of -korting, NHG-kosten, extra aflossingen die je dit jaar al hebt gedaan en bijzondere voorwaarden van je bank. Precies dat zoek ik voor je uit."
+    "uitleg.a1": "Plan een gratis kennismaking <i class=\"arrow\"></i>"
   },
   "i": {
     "hero.foto1": {
       "src": "hh-hero-fauteuil.jpg",
       "alt": ""
     }
+  },
+  "l": {
+    "faq": [
+      {
+        "vraag": "Wat gebeurt er als ik niets doe?",
+        "antwoord": "Je bank stuurt je meestal zo'n drie maanden voor het einde van je rentevaste periode een rentevoorstel. Reageer je niet, dan verlengt de bank vaak automatisch met dezelfde rentevaste periode, tegen de rente van dat moment. Dat is niet altijd de voordeligste keuze."
+      },
+      {
+        "vraag": "Wanneer loont oversluiten naar een andere bank?",
+        "antwoord": "Als het verschil in maandlast groot genoeg is om de kosten van advies, notaris en taxatie terug te verdienen binnen je nieuwe rentevaste periode. Loopt je rente af, dan betaal je geen boeterente, en dat maakt oversluiten op dat moment vaak het interessantst."
+      },
+      {
+        "vraag": "Hoe wordt boeterente berekend?",
+        "antwoord": "Je bank mag niet meer rekenen dan het financiële nadeel dat ze heeft. Dat is het verschil tussen jouw rente en de actuele rente voor je resterende rentevaste periode, over het deel van je hypotheek boven het boetevrije bedrag, rekening houdend met je aflossingen en contant gemaakt naar nu. Zo schrijft de AFM het voor."
+      },
+      {
+        "vraag": "Waarom loont tussentijds oversluiten vaak niet?",
+        "antwoord": "De boeterente is ongeveer gelijk aan wat je tot het einde van je rentevaste periode bespaart. Daar komen de kosten van oversluiten nog bij. Het kan wel lonen als je bij een andere bank een lagere renteopslag krijgt, of omdat je de boeterente mag aftrekken van je inkomen."
+      },
+      {
+        "vraag": "Mag ik boeterente aftrekken?",
+        "antwoord": "Betaal je boeterente omdat je je hypotheek voor je eigen huis oversluit, dan mag je die in het jaar van betalen meestal aftrekken, tegen maximaal <span data-norm=\"maxAftrekTarief\"></span> (<span data-norm=\"jaar\"></span>). Financier je de boete mee in je nieuwe hypotheek, dan is de rente over dat deel niet aftrekbaar."
+      },
+      {
+        "vraag": "Wat zit er níet in deze berekening?",
+        "antwoord": "Belastingvoordeel op je maandlasten, een eventuele renteopslag of -korting, NHG-kosten, extra aflossingen die je dit jaar al hebt gedaan en bijzondere voorwaarden van je bank. Precies dat zoek ik voor je uit."
+      }
+    ]
   }
 }

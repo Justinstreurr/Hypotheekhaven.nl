@@ -2,22 +2,50 @@ import type { ImageMetadata } from 'astro';
 import { getImage } from 'astro:assets';
 import site from '../content/site.json';
 
-// Alle teksten en foto's staan in src/content/*.json. De bewerkmodus (/beheer) past deze
-// bestanden aan; elk element met data-e="<bestand>:<sleutel>" is op de site te bewerken.
+// Alle teksten en foto's staan in src/content/. De bewerkmodus (/beheer) past deze bestanden aan.
+// Op de site heeft elk bewerkbaar element een verwijzing "<bestand>:<sleutel>":
+//   data-e    tekst          data-ei   foto (<img>)        data-lijst  lijst met items (FAQ, reviews)
+//   data-ea   tekst in een attribuut     data-eb / data-ef  achtergrondfoto
+// <bestand> is "site", de naam van een pagina in content/pages, of "blog/<slug>" voor een artikel.
+
+export type LijstItem = Record<string, string>;
 
 export interface Inhoud {
   meta?: { title: string; description: string; ogImage?: string };
   t: Record<string, string>;
-  i: Record<string, { src: string; alt: string }>;
+  i: Record<string, { src: string; alt: string; positie?: string }>;
+  l?: Record<string, LijstItem[]>;
+}
+
+export type ArtikelStatus = 'gepubliceerd' | 'concept' | 'binnenkort';
+
+export interface Artikel extends Inhoud {
+  meta: { title: string; description: string };
+  artikel: {
+    status: ArtikelStatus;
+    categorie: string;
+    datum: string;          // JJJJ-MM-DD
+    eigenPagina?: boolean;  // heeft een eigen .astro-bestand in plaats van het standaardsjabloon
+    gerelateerd?: string[]; // slugs voor "Lees ook"; anders de nieuwste andere artikelen
+  };
 }
 
 export interface Beeld {
   key: string;
   src: ImageMetadata;
   alt: string;
+  positie?: string;
 }
 
+export const CATEGORIEEN: Record<string, string> = {
+  'huis-kopen': 'Een huis kopen',
+  'huidige-hypotheek': 'Je huidige hypotheek',
+  verzekeringen: 'Verzekeringen',
+  ondernemers: 'Ondernemers',
+};
+
 const paginas = import.meta.glob<Inhoud>('../content/pages/*.json', { eager: true, import: 'default' });
+const artikelBestanden = import.meta.glob<Artikel>('../content/blog/*.json', { eager: true, import: 'default' });
 const beelden = import.meta.glob<ImageMetadata>('../assets/img/**/*.{jpg,jpeg,png,webp,svg}', { eager: true, import: 'default' });
 
 export function beeldBestand(src: string): ImageMetadata {
@@ -26,10 +54,19 @@ export function beeldBestand(src: string): ImageMetadata {
   return meta;
 }
 
+/** Alle artikelen, nieuwste eerst */
+export function artikelen() {
+  return Object.entries(artikelBestanden)
+    .map(([pad, inhoud]) => ({ slug: pad.replace(/^.*\/(.+)\.json$/, '$1'), ...inhoud }))
+    .sort((a, b) => b.artikel.datum.localeCompare(a.artikel.datum));
+}
+
 export function inhoudVan(naam: string): Inhoud {
   if (naam === 'site') return site as Inhoud;
-  const inhoud = paginas[`../content/pages/${naam}.json`];
-  if (!inhoud) throw new Error(`Content ontbreekt: src/content/pages/${naam}.json`);
+  const inhoud = naam.startsWith('blog/')
+    ? artikelBestanden[`../content/${naam}.json`]
+    : paginas[`../content/pages/${naam}.json`];
+  if (!inhoud) throw new Error(`Content ontbreekt: ${naam}`);
   return inhoud;
 }
 
@@ -44,9 +81,9 @@ async function achtergrond(meta: ImageMetadata, breedte: number) {
 
 export async function laad(naam: string) {
   const inhoud = inhoudVan(naam);
-  // Achtergrondfoto's vooraf optimaliseren: groot voor desktop, smal voor telefoon
+  // Achtergrondfoto's (sleutels met "foto") vooraf optimaliseren: groot voor desktop, smal voor telefoon
   const achtergronden: Record<string, { breed: string; smal: string }> = {};
-  await Promise.all(Object.entries(inhoud.i).map(async ([k, v]) => {
+  await Promise.all(Object.entries(inhoud.i).filter(([k]) => /(^|\.)foto\d*$/.test(k)).map(async ([k, v]) => {
     const meta = beeldBestand(v.src);
     achtergronden[k] = { breed: await achtergrond(meta, BREED), smal: await achtergrond(meta, SMAL) };
   }));
@@ -59,7 +96,12 @@ export async function laad(naam: string) {
   const img = (k: string): Beeld => {
     const v = inhoud.i[k];
     if (!v) throw new Error(`Afbeelding ontbreekt: ${naam}:${k}`);
-    return { key: `${naam}:${k}`, src: beeldBestand(v.src), alt: v.alt };
+    return { key: `${naam}:${k}`, src: beeldBestand(v.src), alt: v.alt, positie: v.positie };
+  };
+  const lijst = (k: string): LijstItem[] => {
+    const v = inhoud.l?.[k];
+    if (!v) throw new Error(`Lijst ontbreekt: ${naam}:${k}`);
+    return v;
   };
   // Achtergrond als inline style. background-image leest --bg, dat per schermbreedte
   // in basis.css wordt gekozen uit --bg-l en --bg-m. --foto wordt door de CSS zelf gebruikt.
@@ -79,9 +121,20 @@ export async function laad(naam: string) {
       ? { style: `--bg-l: url('${a.breed}'); --bg-m: url('${a.smal}'); background-image: var(--bg); ${extra}`.trim(), 'data-eb': `${naam}:${k}` }
       : { style: `--bg-l: none; --bg-m: none; background-image: var(--bg); ${extra}`.trim(), 'data-eb': `${naam}:${k}`, 'data-foto': a.breed, 'data-foto-m': a.smal };
   };
-  return { t, img, bg, meta: inhoud.meta, achtergronden };
+  return { t, img, bg, lijst, meta: inhoud.meta, achtergronden };
 }
 
 export async function laadPagina(naam: string) {
   return laad(naam);
 }
+
+/** Voorletters voor de avatar bij een review: eerste letter + de volgende hoofdletter ("Ton Van Bedaf" → TV) */
+export function initialen(html: string) {
+  const woorden = html.replace(/<[^>]+>/g, '').trim().split(/\s+/);
+  const tweede = woorden.slice(1).find(w => /^\p{Lu}/u.test(w));
+  return ((woorden[0]?.[0] ?? '') + (tweede?.[0] ?? '')).toUpperCase();
+}
+
+/** Datum als "11 oktober 2026" */
+export const datumTekst = (iso: string) =>
+  new Date(iso + 'T12:00:00').toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });

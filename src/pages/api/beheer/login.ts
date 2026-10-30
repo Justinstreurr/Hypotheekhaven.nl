@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { teVeelPogingen, wachtwoordKlopt, wisSessie, zelfdeHerkomst, zetSessie } from '../../../lib/beheer';
+import { geblokkeerd, gelukt, mislukt, wachtwoordKlopt, wisSessie, zelfdeHerkomst, zetSessie } from '../../../lib/beheer';
 
 export const prerender = false;
 
@@ -7,13 +7,15 @@ const json = (data: unknown, status = 200) => new Response(JSON.stringify(data),
 
 export const POST: APIRoute = async ({ request, cookies, clientAddress, url }) => {
   if (!zelfdeHerkomst(request)) return json({ ok: false, fout: 'Niet toegestaan' }, 403);
-  if (teVeelPogingen(clientAddress)) return json({ ok: false, fout: 'Te veel pogingen. Probeer het over een kwartier opnieuw.' }, 429);
+  if (geblokkeerd(clientAddress)) return json({ ok: false, fout: 'Te veel pogingen. Probeer het over een kwartier opnieuw.' }, 429);
   const { wachtwoord } = await request.json().catch(() => ({ wachtwoord: '' }));
   try {
     if (typeof wachtwoord !== 'string' || !wachtwoordKlopt(wachtwoord)) {
+      mislukt(clientAddress);
       await new Promise(r => setTimeout(r, 600));
       return json({ ok: false, fout: 'Dit wachtwoord klopt niet.' }, 401);
     }
+    gelukt(clientAddress);
     zetSessie(cookies, url.protocol === 'https:');
     return json({ ok: true });
   } catch (e) {

@@ -5,9 +5,9 @@ import Header from '../components/Header.astro';
 import HeroReviews from '../components/HeroReviews.astro';
 import HeroBanks from '../components/HeroBanks.astro';
 import Footer from '../components/Footer.astro';
-import { laadPagina } from '../lib/content';
+import { laadPagina, initialen } from '../lib/content';
 
-const { t, img, bg, meta, achtergronden } = await laadPagina('home');
+const { t, img, bg, meta, achtergronden, lijst } = await laadPagina('home');
 ---
 <Base pagina="home" meta={meta} preload={achtergronden['hero.foto1']}>
 <header class="hero">
@@ -309,52 +309,16 @@ const { t, img, bg, meta, achtergronden } = await laadPagina('home');
     </div>
   </div>
 
-  <div class="reviews-track">
-    <figure class="review">
-      <span class="review-bron"><Img data={img('reviews.img1')} /></span>
-      <blockquote data-e="home:reviews.blockquote1" set:html={t('reviews.blockquote1')}></blockquote>
-      <figcaption data-e="home:reviews.figcaption1" set:html={t('reviews.figcaption1')}></figcaption>
-    </figure>
-    <figure class="review">
-      <span class="review-bron"><Img data={img('reviews.img2')} /><span aria-label="5 sterren" data-e="home:reviews.span2" set:html={t('reviews.span2')}></span></span>
-      <blockquote data-e="home:reviews.blockquote2" set:html={t('reviews.blockquote2')}></blockquote>
-      <figcaption data-e="home:reviews.figcaption2" set:html={t('reviews.figcaption2')}></figcaption>
-    </figure>
-    <figure class="review">
-      <span class="review-bron"><Img data={img('reviews.img3')} /></span>
-      <blockquote data-e="home:reviews.blockquote3" set:html={t('reviews.blockquote3')}></blockquote>
-      <figcaption data-e="home:reviews.figcaption3" set:html={t('reviews.figcaption3')}></figcaption>
-    </figure>
-    <figure class="review">
-      <span class="review-bron"><Img data={img('reviews.img4')} /></span>
-      <blockquote data-e="home:reviews.blockquote4" set:html={t('reviews.blockquote4')}></blockquote>
-      <figcaption data-e="home:reviews.figcaption4" set:html={t('reviews.figcaption4')}></figcaption>
-    </figure>
-    <figure class="review">
-      <span class="review-bron"><Img data={img('reviews.img5')} /></span>
-      <blockquote data-e="home:reviews.blockquote5" set:html={t('reviews.blockquote5')}></blockquote>
-      <figcaption data-e="home:reviews.figcaption5" set:html={t('reviews.figcaption5')}></figcaption>
-    </figure>
-    <figure class="review">
-      <span class="review-bron"><Img data={img('reviews.img6')} /><span aria-label="5 sterren" data-e="home:reviews.span3" set:html={t('reviews.span3')}></span></span>
-      <blockquote data-e="home:reviews.blockquote6" set:html={t('reviews.blockquote6')}></blockquote>
-      <figcaption data-e="home:reviews.figcaption6" set:html={t('reviews.figcaption6')}></figcaption>
-    </figure>
-    <figure class="review">
-      <span class="review-bron"><Img data={img('reviews.img7')} /></span>
-      <blockquote data-e="home:reviews.blockquote7" set:html={t('reviews.blockquote7')}></blockquote>
-      <figcaption data-e="home:reviews.figcaption7" set:html={t('reviews.figcaption7')}></figcaption>
-    </figure>
-    <figure class="review">
-      <span class="review-bron"><Img data={img('reviews.img8')} /></span>
-      <blockquote data-e="home:reviews.blockquote8" set:html={t('reviews.blockquote8')}></blockquote>
-      <figcaption data-e="home:reviews.figcaption8" set:html={t('reviews.figcaption8')}></figcaption>
-    </figure>
-    <figure class="review">
-      <span class="review-bron"><Img data={img('reviews.img9')} /></span>
-      <blockquote data-e="home:reviews.blockquote9" set:html={t('reviews.blockquote9')}></blockquote>
-      <figcaption data-e="home:reviews.figcaption9" set:html={t('reviews.figcaption9')}></figcaption>
-    </figure>
+  <div class="reviews-track" data-el="home:reviews" data-keuzes='{"bron":["google","trustoo"]}'>
+    {lijst('reviews').map((r, n) => (
+      <figure class="review" data-item>
+        <span class="review-bron">{r.bron === 'trustoo'
+          ? <><Img data={img('reviews.trustoo')} /><span aria-label="5 sterren">★★★★★</span></>
+          : <Img data={img('reviews.google')} />}</span>
+        <blockquote data-e={`home:reviews.${n}.tekst`} set:html={r.tekst} />
+        <figcaption><span class="review-avatar" aria-hidden="true">{initialen(r.naam)}</span><span data-e={`home:reviews.${n}.naam`} set:html={r.naam} /></figcaption>
+      </figure>
+    ))}
   </div>
 </section>
 
@@ -397,13 +361,10 @@ const { t, img, bg, meta, achtergronden } = await laadPagina('home');
     <p data-e="home:faq.p1" set:html={t('faq.p1')}></p>
     <a href="/contact#formulier" class="btn btn-dark" data-e="home:faq.a1" set:html={t('faq.a1')}></a>
   </div>
-  <div class="faq-list">
-    <details open><summary data-e="home:faq.summary1" set:html={t('faq.summary1')}></summary><p data-e="home:faq.p2" set:html={t('faq.p2')}></p></details>
-    <details><summary data-e="home:faq.summary2" set:html={t('faq.summary2')}></summary><p data-e="home:faq.p3" set:html={t('faq.p3')}></p></details>
-    <details><summary data-e="home:faq.summary3" set:html={t('faq.summary3')}></summary><p data-e="home:faq.p4" set:html={t('faq.p4')}></p></details>
-    <details><summary data-e="home:faq.summary4" set:html={t('faq.summary4')}></summary><p data-e="home:faq.p5" set:html={t('faq.p5')}></p></details>
-    <details><summary data-e="home:faq.summary5" set:html={t('faq.summary5')}></summary><p data-e="home:faq.p6" set:html={t('faq.p6')}></p></details>
-    <details><summary data-e="home:faq.summary6" set:html={t('faq.summary6')}></summary><p data-e="home:faq.p7" set:html={t('faq.p7')}></p></details>
+  <div class="faq-list" data-el="home:faq">
+    {lijst('faq').map((v, n) => (
+      <details open={n === 0} data-item><summary><span data-e={`home:faq.${n}.vraag`} set:html={v.vraag} /><i class="faq-plus" aria-hidden="true"></i></summary><p data-e={`home:faq.${n}.antwoord`} set:html={v.antwoord} /></details>
+    ))}
   </div>
 </section>
 

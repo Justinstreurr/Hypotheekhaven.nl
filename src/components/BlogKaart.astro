@@ -1,0 +1,25 @@
+---
+import Img from './Img.astro';
+import { beeldBestand, CATEGORIEEN, datumTekst, inhoudVan, type Artikel } from '../lib/content';
+
+interface Props {
+  artikel: Artikel & { slug: string };
+}
+
+const { artikel: a } = Astro.props;
+const blog = inhoudVan('blog').t;
+const ref = `blog/${a.slug}`;
+const binnenkort = a.artikel.status === 'binnenkort';
+const foto = a.i.kaart;
+---
+<article class:list={['blog-kaart', { 'blog-kaart--binnenkort': binnenkort }]} data-categorie={a.artikel.categorie} data-artikel={ref}>
+  <div class="blog-kaart-beeld">{binnenkort && <span class="blog-binnenkort" data-e="blog:kaart.binnenkort" set:html={blog['kaart.binnenkort']} />}<Img data={{ key: `${ref}:kaart`, src: beeldBestand(foto.src), alt: foto.alt }} loading="lazy" sizes="(max-width: 767px) 100vw, (max-width: 1024px) 55vw, (max-width: 1600px) 35vw, 600px" style={foto.positie ? `object-position: ${foto.positie}` : undefined} /></div>
+  <span class="blog-label">{CATEGORIEEN[a.artikel.categorie]}</span>
+  <h3>{binnenkort
+    ? <a href="/" aria-disabled="true" tabindex="-1" data-e={`${ref}:titel`} set:html={a.t.titel} />
+    : <a href={`/blog/${a.slug}`} data-e={`${ref}:titel`} set:html={a.t.titel} />}</h3>
+  <p data-e={`${ref}:samenvatting`} set:html={a.t.samenvatting} />
+  <div class="blog-meta">{binnenkort
+    ? <span data-e="blog:kaart.binnenkort-meta" set:html={blog['kaart.binnenkort-meta']} />
+    : <><time datetime={a.artikel.datum}>{datumTekst(a.artikel.datum)}</time><span aria-hidden="true">·</span><span data-e={`${ref}:leestijd`} set:html={a.t.leestijd} /></>}</div>
+</article>

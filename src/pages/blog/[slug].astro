@@ -1,0 +1,153 @@
+---
+// Standaardsjabloon voor blogartikelen uit src/content/blog/. Nieuwe artikelen maak je in de
+// bewerkmodus op /blog; artikelen met "eigenPagina" hebben een eigen bestand in deze map.
+import Base from '../../layouts/Base.astro';
+import Img from '../../components/Img.astro';
+import Header from '../../components/Header.astro';
+import HeroReviews from '../../components/HeroReviews.astro';
+import HeroBanks from '../../components/HeroBanks.astro';
+import Footer from '../../components/Footer.astro';
+import BlogKaart from '../../components/BlogKaart.astro';
+import { artikelen, CATEGORIEEN, datumTekst, laad } from '../../lib/content';
+import { verdeel } from '../../lib/artikel';
+import { absoluut } from '../../lib/site';
+import '../../styles/pagina.css';
+import '../../styles/blog.css';
+
+export function getStaticPaths() {
+  return artikelen()
+    .filter(a => !a.artikel.eigenPagina && a.artikel.status !== 'binnenkort')
+    .map(a => ({ params: { slug: a.slug } }));
+}
+
+const { slug } = Astro.params;
+const ref = `blog/${slug}`;
+const alle = artikelen();
+const artikel = alle.find(a => a.slug === slug)!;
+const { t, bg, lijst, meta, achtergronden } = await laad(ref);
+const vast = await laad('blog-artikel');
+const secties = verdeel(t('inhoud'));
+const faq = lijst('faq');
+const gerelateerd = (artikel.artikel.gerelateerd?.length
+  ? artikel.artikel.gerelateerd.map(s => alle.find(a => a.slug === s)).filter(a => a !== undefined)
+  : alle.filter(a => a.slug !== slug && a.artikel.status !== 'concept')).slice(0, 3);
+const url = absoluut(`/blog/${slug}`);
+const titelKaal = t('titel').replace(/<[^>]+>/g, '');
+const deel = encodeURIComponent;
+---
+<Base pagina={ref} meta={meta} preload={achtergronden['hero.foto1']}>
+<header class="hero hero--pagina hero--artikel">
+  <div class="hero-slides">
+    <div class="hero-slide hero-slide--artikel is-active" {...bg('hero.foto1', 'background-image')}></div>
+  </div>
+  <div class="hero-overlay"></div>
+
+  <Header />
+
+  <div class="hero-content">
+    <nav class="kruimelpad" aria-label="Kruimelpad"><a href="/" data-e="blog-artikel:kruimel.home" set:html={vast.t('kruimel.home')}></a><span aria-hidden="true">/</span><a href="/blog" data-e="blog-artikel:kruimel.blog" set:html={vast.t('kruimel.blog')}></a><span aria-hidden="true">/</span><span aria-current="page">{titelKaal}</span></nav>
+    <h1 id="artikel-titel" data-e={`${ref}:titel`} set:html={t('titel')}></h1>
+    <p class="artikel-kopmeta">
+      <span class="blog-label">{CATEGORIEEN[artikel.artikel.categorie]}</span>
+      <span class="artikel-auteur-klein"><Img data={vast.img('kop.portret')} /><span data-e="blog-artikel:kop.auteur" set:html={vast.t('kop.auteur')}></span></span>
+      <span>Gepubliceerd <time datetime={artikel.artikel.datum}>{datumTekst(artikel.artikel.datum)}</time></span>
+      <span data-e={`${ref}:leestijd`} set:html={t('leestijd')}></span>
+    </p>
+  </div>
+  <HeroReviews />
+  <HeroBanks />
+</header>
+
+<main>
+
+<article class="artikel container" aria-labelledby="artikel-titel">
+  <div class="artikel-raster">
+    <aside class="artikel-zij">
+      <div class="artikel-zij-plak">
+        <nav class="artikel-toc" aria-label="Inhoudsopgave">
+          <span class="eyebrow" data-e="blog-artikel:toc.titel" set:html={vast.t('toc.titel')}></span>
+          <ol>
+            {secties.filter(s => s.id).map(s => <li><a href={`#${s.id}`}>{s.titel}</a></li>)}
+            {faq.length > 0 && <li><a href="#veelgestelde-vragen" set:html={vast.t('faq.titel')} /></li>}
+          </ol>
+        </nav>
+        <a href="/contact#formulier" class="waarom-link" data-e="blog-artikel:toc.link" set:html={vast.t('toc.link')}></a>
+      </div>
+    </aside>
+
+    <div class="artikel-inhoud">
+      <p class="artikel-inleiding" data-e={`${ref}:inleiding`} set:html={t('inleiding')}></p>
+
+      <div class="artikel-tekst" data-e={`${ref}:inhoud`} data-rijk>
+        {secties.map(s => s.id
+          ? <section id={s.id} aria-labelledby={`${s.id}-titel`} set:html={s.html} />
+          : <Fragment set:html={s.html} />)}
+      </div>
+
+      <section id="veelgestelde-vragen" class="faq artikel-faq" aria-labelledby="faq-titel" data-el={`${ref}:faq`} hidden={faq.length === 0}>
+        <h2 id="faq-titel" data-e="blog-artikel:faq.titel" set:html={vast.t('faq.titel')}></h2>
+        {faq.map((v, n) => (
+          <details open={n === 0} data-item><summary><span data-e={`${ref}:faq.${n}.vraag`} set:html={v.vraag} /><i class="faq-plus" aria-hidden="true"></i></summary><p data-e={`${ref}:faq.${n}.antwoord`} set:html={v.antwoord} /></details>
+        ))}
+        <template data-sjabloon><details data-item><summary><span data-e={`${ref}:faq.0.vraag`}>Nieuwe vraag</span><i class="faq-plus" aria-hidden="true"></i></summary><p data-e={`${ref}:faq.0.antwoord`}>Het antwoord op de vraag.</p></details></template>
+      </section>
+
+      <section class="artikel-auteur" aria-labelledby="auteur-titel">
+        <Img data={vast.img('auteur.portret')} loading="lazy" />
+        <div>
+          <span class="eyebrow" data-e="blog-artikel:auteur.eyebrow" set:html={vast.t('auteur.eyebrow')}></span>
+          <h2 id="auteur-titel" data-e="blog-artikel:auteur.naam" set:html={vast.t('auteur.naam')}></h2>
+          <p class="artikel-auteur-rol" data-e="blog-artikel:auteur.rol" set:html={vast.t('auteur.rol')}></p>
+          <ul class="artikel-auteur-feiten">
+            <li data-e="blog-artikel:auteur.feit1" set:html={vast.t('auteur.feit1')}></li>
+            <li data-e="blog-artikel:auteur.feit2" set:html={vast.t('auteur.feit2')}></li>
+          </ul>
+          <p class="artikel-auteur-tekst" data-e="blog-artikel:auteur.tekst" set:html={vast.t('auteur.tekst')}></p>
+          <a href="/over-sabrina" class="waarom-link" rel="author" data-e="blog-artikel:auteur.link" set:html={vast.t('auteur.link')}></a>
+        </div>
+      </section>
+
+      <div class="artikel-delen">
+        <span class="artikel-delen-titel" data-e="blog-artikel:delen.titel" set:html={vast.t('delen.titel')}></span>
+        <a class="blog-deel-knop" href={`https://www.linkedin.com/sharing/share-offsite/?url=${deel(url)}`} target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18"></rect><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"></path></svg><span data-e="blog-artikel:delen.linkedin" set:html={vast.t('delen.linkedin')}></span></a>
+        <a class="blog-deel-knop" href={`https://wa.me/?text=${deel(`${titelKaal} ${url}`)}`} target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"></path><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 .8a4 4 0 0 1-2-2l.8-1-1-2z"></path></svg><span data-e="blog-artikel:delen.whatsapp" set:html={vast.t('delen.whatsapp')}></span></a>
+        <a class="blog-deel-knop" href={`mailto:?subject=${deel(titelKaal)}&body=${deel(`Interessant artikel van Hypotheekhaven: ${url}`)}`}><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14"></rect><path d="M3 6l9 7 9-7"></path></svg><span data-e="blog-artikel:delen.email" set:html={vast.t('delen.email')}></span></a>
+        <button type="button" class="blog-deel-knop" data-kopieer><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"></path><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"></path></svg><span data-e="blog-artikel:delen.kopieer" set:html={vast.t('delen.kopieer')}></span></button>
+      </div>
+
+      <p class="artikel-disclaimer" data-e="blog-artikel:disclaimer" set:html={vast.t('disclaimer')}></p>
+    </div>
+  </div>
+</article>
+
+{gerelateerd.length > 0 && (
+<section class="artikel-gerelateerd container" aria-labelledby="gerelateerd-titel">
+  <div class="blog-sectie-kop">
+    <div>
+      <span class="eyebrow" data-e="blog-artikel:gerelateerd.eyebrow" set:html={vast.t('gerelateerd.eyebrow')}></span>
+      <h2 id="gerelateerd-titel" data-e="blog-artikel:gerelateerd.titel" set:html={vast.t('gerelateerd.titel')}></h2>
+    </div>
+    <a href="/blog" class="waarom-link" data-e="blog-artikel:gerelateerd.link" set:html={vast.t('gerelateerd.link')}></a>
+  </div>
+  <div class="blog-raster">
+    {gerelateerd.map(a => <BlogKaart artikel={a} />)}
+  </div>
+</section>
+)}
+
+<section class="blog-cta container" aria-labelledby="cta-titel">
+  <span class="eyebrow" data-e="blog-artikel:cta.eyebrow" set:html={vast.t('cta.eyebrow')}></span>
+  <h2 id="cta-titel" data-e="blog-artikel:cta.titel" set:html={vast.t('cta.titel')}></h2>
+  <p data-e="blog-artikel:cta.tekst" set:html={vast.t('cta.tekst')}></p>
+  <div class="btn-row">
+    <a href="/contact#formulier" class="btn btn-dark" data-e="blog-artikel:cta.knop" set:html={vast.t('cta.knop')}></a>
+  </div>
+</section>
+
+</main>
+
+<Footer />
+<script>
+  import '../../scripts/blog.js';
+</script>
+</Base>

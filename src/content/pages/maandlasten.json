@@ -75,24 +75,40 @@
     "uitleg.span1": "Zo rekenen we",
     "uitleg.h21": "Uitleg bij <br><b>je uitkomst</b>",
     "uitleg.p1": "Liever alles samen doorlopen, voor jouw situatie? Dat doen we in het gratis kennismakingsgesprek.",
-    "uitleg.a1": "Plan een gratis kennismaking <i class=\"arrow\"></i>",
-    "uitleg.summary1": "Wat is het verschil tussen bruto en netto?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "uitleg.p2": "Bruto is wat je elke maand aan de bank betaalt: rente plus aflossing. Netto is wat je er zelf écht aan kwijt bent, omdat je via de belasting een deel van de rente terugkrijgt.",
-    "uitleg.summary2": "Waarom stijgt mijn netto maandlast?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "uitleg.p3": "Bij een annuïteitenhypotheek betaal je elke maand hetzelfde bruto bedrag. In het begin is dat vooral rente, later vooral aflossing. Omdat je alleen rente mag aftrekken, wordt je belastingvoordeel elk jaar kleiner en stijgt je netto maandlast. Daarom kijk ik altijd ook naar later, niet alleen naar de eerste maand.",
-    "uitleg.summary3": "Annuïtair of lineair, wat is het verschil?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "uitleg.p4": "Bij annuïtair is je bruto maandlast elke maand gelijk. Bij lineair los je elke maand hetzelfde bedrag af en betaal je rente over wat er nog openstaat. Lineair begint dus hoger, maar daalt elke maand en je betaalt in totaal minder rente. Welke vorm bij jou past, hangt af van je inkomen en plannen.",
-    "uitleg.summary4": "Wat is het eigenwoningforfait?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "uitleg.p5": "Een klein percentage van de WOZ-waarde van je huis dat bij je inkomen wordt opgeteld, omdat je in je eigen huis woont. Voor de meeste woningen is dat <span data-norm=\"ewfPct\"></span> per jaar. Het verlaagt je belastingvoordeel een beetje.",
-    "uitleg.summary5": "Met welk belastingtarief rekenen jullie?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "uitleg.p6": "Je trekt hypotheekrente af tegen maximaal <span data-norm=\"maxAftrekTarief\"></span> (<span data-norm=\"jaar\"></span>). Verdien je minder dan € <span data-norm=\"grensSchijf1\"></span> per jaar, dan is dat <span data-norm=\"tariefSchijf1\"></span>. Vul je je inkomen in, dan kiezen we het juiste tarief voor je.",
-    "uitleg.summary6": "Wat zit er níet in deze berekening?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "uitleg.p7": "Verzekeringen, de kosten van je woning zelf (zoals energie en onderhoud), een aflossingsvrij deel, de bijleenregeling en het verdelen van de renteaftrek tussen partners. Ook rekenen we met één rente voor de hele looptijd, terwijl die na je rentevaste periode kan veranderen. Dat is allemaal maatwerk, en precies waar ik je in het gesprek mee help."
+    "uitleg.a1": "Plan een gratis kennismaking <i class=\"arrow\"></i>"
   },
   "i": {
     "hero.foto1": {
       "src": "hh-hero-kaartje.jpg",
       "alt": ""
     }
+  },
+  "l": {
+    "faq": [
+      {
+        "vraag": "Wat is het verschil tussen bruto en netto?",
+        "antwoord": "Bruto is wat je elke maand aan de bank betaalt: rente plus aflossing. Netto is wat je er zelf écht aan kwijt bent, omdat je via de belasting een deel van de rente terugkrijgt."
+      },
+      {
+        "vraag": "Waarom stijgt mijn netto maandlast?",
+        "antwoord": "Bij een annuïteitenhypotheek betaal je elke maand hetzelfde bruto bedrag. In het begin is dat vooral rente, later vooral aflossing. Omdat je alleen rente mag aftrekken, wordt je belastingvoordeel elk jaar kleiner en stijgt je netto maandlast. Daarom kijk ik altijd ook naar later, niet alleen naar de eerste maand."
+      },
+      {
+        "vraag": "Annuïtair of lineair, wat is het verschil?",
+        "antwoord": "Bij annuïtair is je bruto maandlast elke maand gelijk. Bij lineair los je elke maand hetzelfde bedrag af en betaal je rente over wat er nog openstaat. Lineair begint dus hoger, maar daalt elke maand en je betaalt in totaal minder rente. Welke vorm bij jou past, hangt af van je inkomen en plannen."
+      },
+      {
+        "vraag": "Wat is het eigenwoningforfait?",
+        "antwoord": "Een klein percentage van de WOZ-waarde van je huis dat bij je inkomen wordt opgeteld, omdat je in je eigen huis woont. Voor de meeste woningen is dat <span data-norm=\"ewfPct\"></span> per jaar. Het verlaagt je belastingvoordeel een beetje."
+      },
+      {
+        "vraag": "Met welk belastingtarief rekenen jullie?",
+        "antwoord": "Je trekt hypotheekrente af tegen maximaal <span data-norm=\"maxAftrekTarief\"></span> (<span data-norm=\"jaar\"></span>). Verdien je minder dan € <span data-norm=\"grensSchijf1\"></span> per jaar, dan is dat <span data-norm=\"tariefSchijf1\"></span>. Vul je je inkomen in, dan kiezen we het juiste tarief voor je."
+      },
+      {
+        "vraag": "Wat zit er níet in deze berekening?",
+        "antwoord": "Verzekeringen, de kosten van je woning zelf (zoals energie en onderhoud), een aflossingsvrij deel, de bijleenregeling en het verdelen van de renteaftrek tussen partners. Ook rekenen we met één rente voor de hele looptijd, terwijl die na je rentevaste periode kan veranderen. Dat is allemaal maatwerk, en precies waar ik je in het gesprek mee help."
+      }
+    ]
   }
 }

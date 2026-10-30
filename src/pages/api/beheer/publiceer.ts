@@ -1,21 +1,51 @@
 import type { APIRoute } from 'astro';
-import { bestandPad, ingelogd, leesBestand, schoneHtml, schoneTekst, schrijfBestanden, zelfdeHerkomst } from '../../../lib/beheer';
-import type { Inhoud } from '../../../lib/content';
+import { bestandPad, ingelogd, leesBestand, schoneHtml, schoneTekst, schrijfBestanden, zelfdeHerkomst, type Bestand } from '../../../lib/beheer';
+import { CATEGORIEEN, type Artikel, type Inhoud } from '../../../lib/content';
 
 export const prerender = false;
 
 const json = (data: unknown, status = 200) => new Response(JSON.stringify(data), { status, headers: { 'content-type': 'application/json' } });
 
+type Waarde = string | { upload?: string; alt?: string } | Record<string, string>[];
 interface Wijziging {
   bestand: string;
-  soort: 'tekst' | 'attr' | 'beeld' | 'meta';
+  soort: 'tekst' | 'attr' | 'beeld' | 'meta' | 'lijst' | 'artikel';
   sleutel: string;
-  waarde: string | { upload?: string; alt?: string };
+  waarde: Waarde;
 }
 interface Upload { id: string; naam: string; data: string }
 
 const SOORTEN: Record<string, string> = { '/9j/': 'jpg', iVBORw0KGgo: 'png', UklGR: 'webp' };
 const MAX_BEELD = 3 * 1024 * 1024;
+const KEUZES: Record<string, string[]> = { bron: ['google', 'trustoo'] };
+const STATUSSEN = ['gepubliceerd', 'concept', 'binnenkort'];
+
+class Fout extends Error {}
+
+function schoneLijst(huidig: Record<string, string>[] | undefined, waarde: Waarde) {
+  if (!Array.isArray(waarde) || waarde.length > 100) throw new Fout('Ongeldige lijst');
+  const velden = huidig?.[0] ? Object.keys(huidig[0]) : null;
+  return waarde.map(item => {
+    if (typeof item !== 'object' || item === null) throw new Fout('Ongeldige lijst');
+    const schoon: Record<string, string> = {};
+    for (const [veld, v] of Object.entries(item)) {
+      if (velden && !velden.includes(veld)) continue;
+      if (KEUZES[veld]) { if (!KEUZES[veld].includes(String(v))) throw new Fout(`Ongeldige keuze voor ${veld}`); schoon[veld] = String(v); }
+      else schoon[veld] = schoneHtml(String(v));
+    }
+    return schoon;
+  });
+}
+
+function beschrijving(wijzigingen: Wijziging[], uploads: number) {
+  const tel = (soorten: string[]) => wijzigingen.filter(w => soorten.includes(w.soort)).length;
+  const delen = [
+    [tel(['tekst', 'attr']), 'tekst', 'teksten'], [uploads, 'nieuwe foto', 'nieuwe foto\'s'],
+    [tel(['lijst']), 'lijst', 'lijsten'], [tel(['meta']), 'Google-tekst', 'Google-teksten'], [tel(['artikel']), 'artikelinstelling', 'artikelinstellingen'],
+  ].filter(([n]) => n).map(([n, een, meer]) => `${n} ${n === 1 ? een : meer}`);
+  const plekken = [...new Set(wijzigingen.map(w => w.bestand))].join(', ');
+  return `Website bijgewerkt: ${delen.join(', ') || 'wijzigingen'} (${plekken})`;
+}
 
 export const POST: APIRoute = async ({ request, cookies }) => {
   if (!zelfdeHerkomst(request)) return json({ ok: false, fout: 'Niet toegestaan' }, 403);
@@ -46,33 +76,45 @@ export const POST: APIRoute = async ({ request, cookies }) => {
       if (!bestanden.has(w.bestand)) bestanden.set(w.bestand, JSON.parse(await leesBestand(bestandPad(w.bestand))));
       const inhoud = bestanden.get(w.bestand)!;
       if (w.soort === 'tekst' || w.soort === 'attr') {
-        if (!(w.sleutel in inhoud.t)) throw new Error(`Onbekende tekst ${w.bestand}:${w.sleutel}`);
-        inhoud.t[w.sleutel] = w.soort === 'tekst' ? schoneHtml(String(w.waarde)) : schoneTekst(String(w.waarde));
+        if (!(w.sleutel in inhoud.t)) throw new Fout(`Onbekende tekst ${w.bestand}:${w.sleutel}`);
+        const rijk = w.bestand.startsWith('blog/') && w.sleutel === 'inhoud';
+        inhoud.t[w.sleutel] = w.soort === 'tekst' ? schoneHtml(String(w.waarde), rijk) : schoneTekst(String(w.waarde));
       } else if (w.soort === 'beeld') {
         const huidig = inhoud.i[w.sleutel];
-        if (!huidig) throw new Error(`Onbekende foto ${w.bestand}:${w.sleutel}`);
+        if (!huidig) throw new Fout(`Onbekende foto ${w.bestand}:${w.sleutel}`);
         const v = w.waarde as { upload?: string; alt?: string };
         if (v.upload) {
           const u = uploads.get(v.upload);
-          if (!u) throw new Error('Foto ontbreekt in het verzoek');
+          if (!u) throw new Fout('Foto ontbreekt in het verzoek');
           huidig.src = u.src;
         }
         if (typeof v.alt === 'string') huidig.alt = schoneTekst(v.alt);
       } else if (w.soort === 'meta') {
-        if (!inhoud.meta || !['title', 'description'].includes(w.sleutel)) throw new Error('Onbekend pagina-veld');
+        if (!inhoud.meta || !['title', 'description'].includes(w.sleutel)) throw new Fout('Onbekend pagina-veld');
         inhoud.meta[w.sleutel as 'title' | 'description'] = schoneTekst(String(w.waarde));
-      }
+      } else if (w.soort === 'lijst') {
+        if (!inhoud.l || !(w.sleutel in inhoud.l)) throw new Fout(`Onbekende lijst ${w.bestand}:${w.sleutel}`);
+        inhoud.l[w.sleutel] = schoneLijst(inhoud.l[w.sleutel], w.waarde);
+      } else if (w.soort === 'artikel') {
+        const a = (inhoud as Artikel).artikel;
+        const v = String(w.waarde);
+        if (!a) throw new Fout('Dit is geen artikel');
+        if (w.sleutel === 'status' && STATUSSEN.includes(v)) a.status = v as Artikel['artikel']['status'];
+        else if (w.sleutel === 'categorie' && v in CATEGORIEEN) a.categorie = v;
+        else if (w.sleutel === 'datum' && /^\d{4}-\d{2}-\d{2}$/.test(v)) a.datum = v;
+        else throw new Fout('Ongeldige artikelinstelling');
+        if (a.eigenPagina && w.sleutel === 'status' && v !== 'gepubliceerd') throw new Fout('Dit artikel heeft een eigen pagina en blijft gepubliceerd');
+      } else throw new Fout('Onbekende wijziging');
     }
 
-    const teSchrijven = [
+    const teSchrijven: Bestand[] = [
       ...[...uploads.values()].map(u => ({ pad: u.pad, inhoud: u.data })),
       ...[...bestanden.entries()].map(([naam, inhoud]) => ({ pad: bestandPad(naam), inhoud: JSON.stringify(inhoud, null, 2) + '\n' })),
     ];
-    const paginas = [...bestanden.keys()].join(', ');
-    const res = await schrijfBestanden(teSchrijven, `Inhoud bijgewerkt via de website (${paginas})`);
+    const res = await schrijfBestanden(teSchrijven, beschrijving(wijzigingen, uploads.size));
     return json({ ok: true, commit: res.commit });
   } catch (e) {
     console.error(e);
-    return json({ ok: false, fout: e instanceof Error && e.message.startsWith('Onbekend') ? e.message : 'Publiceren is mislukt. Probeer het opnieuw.' }, 500);
+    return json({ ok: false, fout: e instanceof Fout ? e.message : 'Publiceren is mislukt. Probeer het opnieuw.' }, e instanceof Fout ? 400 : 500);
   }
 };

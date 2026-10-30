@@ -1,11 +1,11 @@
 import type { APIRoute } from 'astro';
 import { inhoudVan } from '../lib/content';
-import { paginas } from '../lib/seo';
+import { alleSeo } from '../lib/seo';
 import { absoluut, bedrijf } from '../lib/site';
 
 // llms.txt: een korte, leesbare samenvatting van de site voor AI-assistenten (GEO)
 export const GET: APIRoute = () => {
-  const regels = Object.entries(paginas).filter(([, seo]) => seo.index !== false).map(([naam, seo]) => {
+  const regels = Object.entries(alleSeo()).filter(([, seo]) => seo.index !== false).map(([naam, seo]) => {
     const meta = inhoudVan(naam).meta;
     return `- [${meta?.title.replace(/\s*\|.*$/, '') ?? naam}](${absoluut(seo.pad)}): ${meta?.description ?? ''}`;
   });

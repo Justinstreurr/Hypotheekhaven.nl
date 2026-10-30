@@ -1,0 +1,32 @@
+{
+  "artikel": {
+    "status": "binnenkort",
+    "categorie": "huidige-hypotheek",
+    "datum": "2026-10-31"
+  },
+  "meta": {
+    "title": "Overwaarde opnemen: zo werkt het | Hypotheekhaven",
+    "description": "Is je huis meer waard geworden? Lees wanneer je overwaarde kunt gebruiken, bijvoorbeeld voor een verbouwing, en waar je op let."
+  },
+  "t": {
+    "titel": "Overwaarde opnemen: zo werkt het",
+    "samenvatting": "Is je huis meer waard geworden? Lees wanneer je overwaarde kunt gebruiken, bijvoorbeeld voor een verbouwing, en waar je op let.",
+    "leestijd": "5 minuten lezen",
+    "inleiding": "Schrijf hier een korte inleiding van twee of drie zinnen.",
+    "inhoud": "<h2>Eerste tussenkop</h2><p>Schrijf hier de tekst van je artikel.</p>"
+  },
+  "i": {
+    "kaart": {
+      "src": "hh-verbouwen.jpg",
+      "alt": "Vrouw op een trapje die een kamer schildert, de vloer afgedekt met folie",
+      "positie": "center 45%"
+    },
+    "hero.foto1": {
+      "src": "hh-verbouwen.jpg",
+      "alt": ""
+    }
+  },
+  "l": {
+    "faq": []
+  }
+}

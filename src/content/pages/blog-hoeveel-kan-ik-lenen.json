@@ -71,16 +71,6 @@
     "berekenen.p2": "Wil je eerst weten <a href=\"/diensten#kan-ik-kopen\">of je een huis kunt kopen</a>, of ga je <a href=\"/diensten#eerste-huis\">je eerste huis kopen</a>? Lees dan ook mijn uitleg daarover. Op de pagina <a href=\"/werkwijze\">werkwijze en kosten</a> zie je hoe ik je stap voor stap begeleid, van het eerste gesprek tot aan de notaris.",
     "berekenen.a1": "Plan een gratis kennismaking <i class=\"arrow\"></i>",
     "veelgestelde-vragen.h21": "Veelgestelde vragen over lenen",
-    "veelgestelde-vragen.summary1": "Kan ik met een tijdelijk contract een hypotheek krijgen?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "veelgestelde-vragen.p1": "Vaak wel. Met een intentieverklaring of perspectiefverklaring van je werkgever kan je inkomen toch meetellen, en er zijn ook andere manieren om je inkomen vast te stellen. Ik kijk graag met je welke route in jouw situatie past.",
-    "veelgestelde-vragen.summary2": "Telt het inkomen van mijn partner mee?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "veelgestelde-vragen.p2": "Ja, als jullie samen een hypotheek afsluiten, wordt in de regel met beide inkomens gerekend. Bespreek wel wat er gebeurt als een van jullie minder gaat werken of wegvalt, zodat de maandlasten ook dan passen.",
-    "veelgestelde-vragen.summary3": "Kan ik de kosten koper meefinancieren?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "veelgestelde-vragen.p3": "Nee, in de regel niet. De kosten koper, zoals overdrachtsbelasting, notaris en taxatie, betaal je met eigen geld. Starters kunnen onder voorwaarden vrijstelling van overdrachtsbelasting krijgen.",
-    "veelgestelde-vragen.summary4": "Hoe nauwkeurig is een online rekentool?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "veelgestelde-vragen.p4": "Een rekentool geeft een eerste indicatie, maar houdt geen rekening met details zoals je studieschuld, kredietlimieten, het energielabel of je plannen voor de toekomst. Voor een betrouwbaar bedrag heb je een persoonlijke berekening nodig.",
-    "veelgestelde-vragen.summary5": "Moet ik het maximale bedrag lenen?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "veelgestelde-vragen.p5": "Nee. Het maximum is een grens, geen advies. Ik kijk samen met je naar maandlasten waar je je comfortabel bij voelt, nu en later.",
     "artikel-auteur.span1": "Over de schrijver",
     "artikel-auteur.h21": "Sabrina Reiz-Coenraad",
     "artikel-auteur.p1": "Onafhankelijk hypotheek- en verzekeringsadviseur in Noord-Holland",
@@ -97,21 +87,6 @@
     "artikel-gerelateerd.span1": "Lees ook",
     "artikel-gerelateerd.h21": "Gerelateerde <b>artikelen</b>",
     "artikel-gerelateerd.a1": "Alle artikelen <i class=\"arrow\"></i>",
-    "blog-kaart.span1": "Binnenkort",
-    "blog-kaart.span2": "Je huidige hypotheek",
-    "blog-kaart.h31": "<a href=\"/\" aria-disabled=\"true\" tabindex=\"-1\">Wat is een rentevaste periode?</a>",
-    "blog-kaart.p1": "Hoe lang staat je rente vast, en wat betekent dat voor je maandlasten en je zekerheid? Zo kies je een periode die bij je plannen past.",
-    "blog-kaart.span3": "Binnenkort",
-    "blog-kaart.span4": "Binnenkort",
-    "blog-kaart.span5": "Verzekeringen",
-    "blog-kaart.h32": "<a href=\"/\" aria-disabled=\"true\" tabindex=\"-1\">Welke verzekeringen horen bij je hypotheek?</a>",
-    "blog-kaart.p2": "Van overlijdensrisicoverzekering tot woonlastenverzekering: welke risico's je afdekt en wat bij jouw situatie past.",
-    "blog-kaart.span6": "Binnenkort",
-    "blog-kaart.span7": "Binnenkort",
-    "blog-kaart.span8": "Ondernemers",
-    "blog-kaart.h33": "<a href=\"/\" aria-disabled=\"true\" tabindex=\"-1\">Hypotheek als ondernemer</a>",
-    "blog-kaart.p3": "Als zzp'er of ondernemer kijkt een geldverstrekker anders naar je inkomen. Welke stukken je nodig hebt en hoe je je goed voorbereidt.",
-    "blog-kaart.span9": "Binnenkort",
     "blog-cta.span1": "Gratis en vrijblijvend",
     "blog-cta.h21": "Weten wat <b>jij kunt lenen?</b>",
     "blog-cta.p1": "In een gratis kennismaking reken ik het voor je door, met je echte inkomen en je eigen plannen. Online of bij je thuis.",
@@ -145,18 +120,30 @@
     "artikel-auteur.img1": {
       "src": "hh-sabrina-portret.jpg",
       "alt": "Portret van Sabrina Reiz-Coenraad, hypotheekadviseur bij Hypotheekhaven"
-    },
-    "blog-kaart.img1": {
-      "src": "hh-laptop-hakken.jpg",
-      "alt": "Vrouw met een laptop op schoot, aan het werk in een lichte kamer"
-    },
-    "blog-kaart.img2": {
-      "src": "hh-woonkamer-breed.jpg",
-      "alt": "Ruime, lichte woonkamer met bank en grote ramen"
-    },
-    "blog-kaart.img3": {
-      "src": "hh-laptop-studio.jpg",
-      "alt": "Laptop en notitieboek op een bureau in een lichte werkruimte"
     }
+  },
+  "l": {
+    "faq": [
+      {
+        "vraag": "Kan ik met een tijdelijk contract een hypotheek krijgen?",
+        "antwoord": "Vaak wel. Met een intentieverklaring of perspectiefverklaring van je werkgever kan je inkomen toch meetellen, en er zijn ook andere manieren om je inkomen vast te stellen. Ik kijk graag met je welke route in jouw situatie past."
+      },
+      {
+        "vraag": "Telt het inkomen van mijn partner mee?",
+        "antwoord": "Ja, als jullie samen een hypotheek afsluiten, wordt in de regel met beide inkomens gerekend. Bespreek wel wat er gebeurt als een van jullie minder gaat werken of wegvalt, zodat de maandlasten ook dan passen."
+      },
+      {
+        "vraag": "Kan ik de kosten koper meefinancieren?",
+        "antwoord": "Nee, in de regel niet. De kosten koper, zoals overdrachtsbelasting, notaris en taxatie, betaal je met eigen geld. Starters kunnen onder voorwaarden vrijstelling van overdrachtsbelasting krijgen."
+      },
+      {
+        "vraag": "Hoe nauwkeurig is een online rekentool?",
+        "antwoord": "Een rekentool geeft een eerste indicatie, maar houdt geen rekening met details zoals je studieschuld, kredietlimieten, het energielabel of je plannen voor de toekomst. Voor een betrouwbaar bedrag heb je een persoonlijke berekening nodig."
+      },
+      {
+        "vraag": "Moet ik het maximale bedrag lenen?",
+        "antwoord": "Nee. Het maximum is een grens, geen advies. Ik kijk samen met je naar maandlasten waar je je comfortabel bij voelt, nu en later."
+      }
+    ]
   }
 }

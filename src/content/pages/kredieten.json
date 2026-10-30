@@ -66,16 +66,6 @@
     "faq.span1": "Wat je moet weten",
     "faq.h21": "Vragen over <b>lenen</b>",
     "faq.p1": "Staat je vraag er niet tussen? Stel hem gerust in het gratis kennismakingsgesprek.",
-    "faq.summary1": "Wat is het verschil tussen een persoonlijke lening en een doorlopend krediet?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "faq.p2": "Bij een persoonlijke lening leen je één vast bedrag, met een vaste rente en een vaste looptijd. Je betaalt elke maand hetzelfde. Bij een doorlopend krediet heb je een bedrag dat je kunt opnemen en weer terugbetalen. De rente kan dan veranderen. Welke vorm bij je past, bespreken we samen.",
-    "faq.summary2": "Wat doet een lening met mijn hypotheek?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "faq.p3": "Een lening staat geregistreerd bij het BKR. Vraag je later een hypotheek aan, dan rekent de geldverstrekker je lening mee. Daardoor kun je minder hypotheek krijgen. Ik laat je vooraf zien wat dat voor jou betekent.",
-    "faq.summary3": "Mag ik eerder aflossen?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "faq.p4": "Ja, een lening mag je altijd helemaal of voor een deel eerder aflossen. Bij een vaste rente kan de kredietverstrekker daar een kleine vergoeding voor vragen. Dat staat vooraf in de voorwaarden.",
-    "faq.summary4": "Hoeveel kan ik lenen?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "faq.p5": "Dat hangt af van je inkomen, je vaste lasten en je andere leningen. De kredietverstrekker kijkt of je het bedrag verantwoord kunt terugbetalen. Ik kijk daarnaast naar wat jij elke maand prettig vindt, niet alleen naar het maximum.",
-    "faq.summary5": "Wat kost advies over een lening?<i class=\"faq-plus\" aria-hidden=\"true\"></i>",
-    "faq.p6": "Niets. Voor het advies over je lening en het afsluiten ervan betaal je mij geen kosten. Je betaalt alleen de rente aan de kredietverstrekker. Die zie je vooraf in het voorstel.",
     "contact.span1": "Gratis en vrijblijvend",
     "contact.h21": "Plan een gratis <b>kennismaking</b>",
     "contact.strong1": "Gratis",
@@ -157,5 +147,29 @@
       "src": "kredietverstrekkers/lender-spender.svg",
       "alt": "Lender & Spender"
     }
+  },
+  "l": {
+    "faq": [
+      {
+        "vraag": "Wat is het verschil tussen een persoonlijke lening en een doorlopend krediet?",
+        "antwoord": "Bij een persoonlijke lening leen je één vast bedrag, met een vaste rente en een vaste looptijd. Je betaalt elke maand hetzelfde. Bij een doorlopend krediet heb je een bedrag dat je kunt opnemen en weer terugbetalen. De rente kan dan veranderen. Welke vorm bij je past, bespreken we samen."
+      },
+      {
+        "vraag": "Wat doet een lening met mijn hypotheek?",
+        "antwoord": "Een lening staat geregistreerd bij het BKR. Vraag je later een hypotheek aan, dan rekent de geldverstrekker je lening mee. Daardoor kun je minder hypotheek krijgen. Ik laat je vooraf zien wat dat voor jou betekent."
+      },
+      {
+        "vraag": "Mag ik eerder aflossen?",
+        "antwoord": "Ja, een lening mag je altijd helemaal of voor een deel eerder aflossen. Bij een vaste rente kan de kredietverstrekker daar een kleine vergoeding voor vragen. Dat staat vooraf in de voorwaarden."
+      },
+      {
+        "vraag": "Hoeveel kan ik lenen?",
+        "antwoord": "Dat hangt af van je inkomen, je vaste lasten en je andere leningen. De kredietverstrekker kijkt of je het bedrag verantwoord kunt terugbetalen. Ik kijk daarnaast naar wat jij elke maand prettig vindt, niet alleen naar het maximum."
+      },
+      {
+        "vraag": "Wat kost advies over een lening?",
+        "antwoord": "Niets. Voor het advies over je lening en het afsluiten ervan betaal je mij geen kosten. Je betaalt alleen de rente aan de kredietverstrekker. Die zie je vooraf in het voorstel."
+      }
+    ]
   }
 }

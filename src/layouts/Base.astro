@@ -8,7 +8,7 @@ import satoshi from '../assets/fonts/Satoshi-Variable.woff2?url';
 import caslon from '@fontsource/libre-caslon-text/files/libre-caslon-text-latin-400-normal.woff2?url';
 import { getImage } from 'astro:assets';
 import { laad, beeldBestand } from '../lib/content';
-import { jsonLd, paginas } from '../lib/seo';
+import { jsonLd, seoVoor } from '../lib/seo';
 import { absoluut, bedrijf, isProductie } from '../lib/site';
 
 interface Props {
@@ -19,7 +19,7 @@ interface Props {
 
 const { pagina, meta = { title: bedrijf.naam, description: '' }, preload } = Astro.props;
 const { t } = await laad('site');
-const seo = paginas[pagina];
+const seo = seoVoor(pagina);
 const canonical = absoluut(seo?.pad ?? Astro.url.pathname);
 
 // Social-afbeelding: 1200x630, uit de content van de pagina of de standaardfoto

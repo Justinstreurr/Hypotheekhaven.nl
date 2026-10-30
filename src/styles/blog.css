@@ -276,3 +276,6 @@
 
 /* Brede foto in het artikel (liggend formaat) */
 .artikel-foto--breed img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+
+/* Artikelen uit het standaardsjabloon: de tekst staat in één bewerkbaar blok */
+.artikel-tekst > section { scroll-margin-top: 100px; }

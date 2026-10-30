@@ -74,3 +74,26 @@
   .hh-label, .hh-ruimte { display: none; }
   .hh-knop { height: 34px; padding: 0 10px; }
 }
+
+/* Lijsten: knoppen per item */
+.hh-item {
+  position: absolute; z-index: 2147483001; display: flex; gap: 2px; align-items: center; padding: 4px; background: var(--hh-inkt);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .25); border-radius: 3px; font: 13px system-ui, sans-serif;
+}
+.hh-keuze { height: 32px; margin: 0 4px; border: 0; border-radius: 2px; font: inherit; }
+.hh-bewerk:not(.hh-bekijk) [data-el] > [data-item]:hover { outline: 1px dashed rgba(142, 79, 75, .6); outline-offset: 6px; }
+.hh-lijst-leeg {
+  display: block; width: 100%; margin: 16px 0; padding: 18px; border: 2px dashed var(--hh-accent); background: transparent;
+  color: var(--hh-accent); font: 600 15px system-ui, sans-serif; cursor: pointer;
+}
+.hh-concept { padding: 6px 10px; background: #b7791f; border-radius: 2px; font-size: 13px; }
+
+/* Panelen: extra knoppen en de geschiedenis */
+.hh-knoppenrij { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.hh-paneel-doos .hh-knop--gevaar { border-color: #a12a2a; color: #a12a2a; }
+.hh-paneel-doos a.hh-knop { display: inline-flex; align-items: center; text-decoration: none; }
+.hh-versies { list-style: none; margin: 8px 0 0; padding: 0; max-height: 50vh; overflow: auto; }
+.hh-versies li { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #eee5da; }
+.hh-versies li div { display: flex; flex-direction: column; gap: 2px; }
+.hh-versies span { font-size: 13px; color: rgba(8, 21, 52, .7); }
+.hh-versies em { font-size: 13px; color: var(--hh-groen); font-style: normal; white-space: nowrap; }

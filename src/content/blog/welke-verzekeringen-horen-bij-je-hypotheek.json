@@ -1,0 +1,31 @@
+{
+  "artikel": {
+    "status": "binnenkort",
+    "categorie": "verzekeringen",
+    "datum": "2026-10-28"
+  },
+  "meta": {
+    "title": "Welke verzekeringen horen bij je hypotheek? | Hypotheekhaven",
+    "description": "Van overlijdensrisicoverzekering tot woonlastenverzekering: welke risico's je afdekt en wat bij jouw situatie past."
+  },
+  "t": {
+    "titel": "Welke verzekeringen horen bij je hypotheek?",
+    "samenvatting": "Van overlijdensrisicoverzekering tot woonlastenverzekering: welke risico's je afdekt en wat bij jouw situatie past.",
+    "leestijd": "5 minuten lezen",
+    "inleiding": "Schrijf hier een korte inleiding van twee of drie zinnen.",
+    "inhoud": "<h2>Eerste tussenkop</h2><p>Schrijf hier de tekst van je artikel.</p>"
+  },
+  "i": {
+    "kaart": {
+      "src": "hh-woonkamer-breed.jpg",
+      "alt": "Ruime, lichte woonkamer met bank en grote ramen"
+    },
+    "hero.foto1": {
+      "src": "hh-woonkamer-breed.jpg",
+      "alt": ""
+    }
+  },
+  "l": {
+    "faq": []
+  }
+}

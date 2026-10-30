@@ -9,7 +9,7 @@ import { laadPagina } from '../lib/content';
 import '../styles/pagina.css';
 import '../styles/verzekeringen.css';
 
-const { t, img, bg, meta, achtergronden } = await laadPagina('verzekeringen');
+const { t, img, bg, meta, achtergronden, lijst } = await laadPagina('verzekeringen');
 ---
 <Base pagina="verzekeringen" meta={meta} preload={achtergronden['hero.foto1']}>
 <header class="hero hero--pagina">
@@ -140,11 +140,10 @@ const { t, img, bg, meta, achtergronden } = await laadPagina('verzekeringen');
     <h2 data-e="verzekeringen:faq.h21" set:html={t('faq.h21')}></h2>
     <p data-e="verzekeringen:faq.p1" set:html={t('faq.p1')}></p>
   </div>
-  <div class="faq-list">
-    <details open><summary data-e="verzekeringen:faq.summary1" set:html={t('faq.summary1')}></summary><p data-e="verzekeringen:faq.p2" set:html={t('faq.p2')}></p></details>
-    <details><summary data-e="verzekeringen:faq.summary2" set:html={t('faq.summary2')}></summary><p data-e="verzekeringen:faq.p3" set:html={t('faq.p3')}></p></details>
-    <details><summary data-e="verzekeringen:faq.summary3" set:html={t('faq.summary3')}></summary><p data-e="verzekeringen:faq.p4" set:html={t('faq.p4')}></p></details>
-    <details><summary data-e="verzekeringen:faq.summary4" set:html={t('faq.summary4')}></summary><p data-e="verzekeringen:faq.p5" set:html={t('faq.p5')}></p></details>
+  <div class="faq-list" data-el="verzekeringen:faq">
+    {lijst('faq').map((v, n) => (
+      <details open={n === 0} data-item><summary><span data-e={`verzekeringen:faq.${n}.vraag`} set:html={v.vraag} /><i class="faq-plus" aria-hidden="true"></i></summary><p data-e={`verzekeringen:faq.${n}.antwoord`} set:html={v.antwoord} /></details>
+    ))}
   </div>
 </section>
 

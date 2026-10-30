@@ -1,0 +1,44 @@
+{
+  "meta": {
+    "title": "Blogartikel | Hypotheekhaven",
+    "description": "Vaste teksten van elk blogartikel"
+  },
+  "t": {
+    "kruimel.home": "Home",
+    "kruimel.blog": "Blog",
+    "kop.auteur": "Door <a href=\"/over-sabrina\" rel=\"author\"><strong>Sabrina Reiz-Coenraad</strong></a>",
+    "toc.titel": "In dit artikel",
+    "toc.link": "Plan een gratis kennismaking <i class=\"arrow\"></i>",
+    "faq.titel": "Veelgestelde vragen",
+    "auteur.eyebrow": "Over de schrijver",
+    "auteur.naam": "Sabrina Reiz-Coenraad",
+    "auteur.rol": "Onafhankelijk hypotheek- en verzekeringsadviseur in Noord-Holland",
+    "auteur.feit1": "Meer dan 25 jaar ervaring",
+    "auteur.feit2": "Partner van NBG Hypotheken",
+    "auteur.tekst": "Ik help mensen bij het kopen van een huis, het aanpassen van hun hypotheek en het regelen van de verzekeringen die daarbij horen. Persoonlijk, duidelijk en met één vast aanspreekpunt, van het eerste gesprek tot ver na de notaris.",
+    "auteur.link": "Meer over Sabrina <i class=\"arrow\"></i>",
+    "delen.titel": "Deel dit artikel",
+    "delen.linkedin": "LinkedIn",
+    "delen.whatsapp": "WhatsApp",
+    "delen.email": "E-mail",
+    "delen.kopieer": "Link kopiëren",
+    "disclaimer": "Dit artikel bevat algemene informatie en is geen persoonlijk advies. Leennormen, rentes en voorwaarden veranderen regelmatig en hangen af van je eigen situatie. Wil je weten wat er voor jou mogelijk is? Plan dan een gratis kennismaking.",
+    "gerelateerd.eyebrow": "Lees ook",
+    "gerelateerd.titel": "Gerelateerde <b>artikelen</b>",
+    "gerelateerd.link": "Alle artikelen <i class=\"arrow\"></i>",
+    "cta.eyebrow": "Gratis en vrijblijvend",
+    "cta.titel": "Vragen over <b>jouw situatie?</b>",
+    "cta.tekst": "In een gratis kennismaking kijken we samen naar jouw plannen. Online of bij je thuis.",
+    "cta.knop": "Plan een gratis kennismaking <i class=\"arrow\"></i>"
+  },
+  "i": {
+    "auteur.portret": {
+      "src": "hh-sabrina-portret.jpg",
+      "alt": "Portret van Sabrina Reiz-Coenraad, hypotheekadviseur bij Hypotheekhaven"
+    },
+    "kop.portret": {
+      "src": "hh-sabrina-portret.jpg",
+      "alt": "Portret van Sabrina Reiz-Coenraad"
+    }
+  }
+}

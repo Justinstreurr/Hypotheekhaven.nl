@@ -1,0 +1,32 @@
+{
+  "artikel": {
+    "status": "binnenkort",
+    "categorie": "huidige-hypotheek",
+    "datum": "2026-10-29"
+  },
+  "meta": {
+    "title": "Scheiden en je hypotheek | Hypotheekhaven",
+    "description": "Wat gebeurt er met het huis en de hypotheek als je uit elkaar gaat? De keuzes op een rij, rustig uitgelegd."
+  },
+  "t": {
+    "titel": "Scheiden en je hypotheek",
+    "samenvatting": "Wat gebeurt er met het huis en de hypotheek als je uit elkaar gaat? De keuzes op een rij, rustig uitgelegd.",
+    "leestijd": "5 minuten lezen",
+    "inleiding": "Schrijf hier een korte inleiding van twee of drie zinnen.",
+    "inhoud": "<h2>Eerste tussenkop</h2><p>Schrijf hier de tekst van je artikel.</p>"
+  },
+  "i": {
+    "kaart": {
+      "src": "hh-hand-tas.jpg",
+      "alt": "Hand met een gevlochten tas, in warm zonlicht",
+      "positie": "center 55%"
+    },
+    "hero.foto1": {
+      "src": "hh-hand-tas.jpg",
+      "alt": ""
+    }
+  },
+  "l": {
+    "faq": []
+  }
+}

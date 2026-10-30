@@ -9,7 +9,7 @@ import { laadPagina } from '../lib/content';
 import '../styles/pagina.css';
 import '../styles/werkwijze.css';
 
-const { t, img, bg, meta, achtergronden } = await laadPagina('werkwijze');
+const { t, img, bg, meta, achtergronden, lijst } = await laadPagina('werkwijze');
 ---
 <Base pagina="werkwijze" meta={meta} preload={achtergronden['hero.foto1']}>
 <header class="hero hero--pagina hero--werkwijze">
@@ -161,11 +161,10 @@ const { t, img, bg, meta, achtergronden } = await laadPagina('werkwijze');
     <h2 data-e="werkwijze:faq.h21" set:html={t('faq.h21')}></h2>
     <p data-e="werkwijze:faq.p1" set:html={t('faq.p1')}></p>
   </div>
-  <div class="faq-list">
-    <details open><summary data-e="werkwijze:faq.summary1" set:html={t('faq.summary1')}></summary><p data-e="werkwijze:faq.p2" set:html={t('faq.p2')}></p></details>
-    <details><summary data-e="werkwijze:faq.summary2" set:html={t('faq.summary2')}></summary><p data-e="werkwijze:faq.p3" set:html={t('faq.p3')}></p></details>
-    <details><summary data-e="werkwijze:faq.summary3" set:html={t('faq.summary3')}></summary><p data-e="werkwijze:faq.p4" set:html={t('faq.p4')}></p></details>
-    <details><summary data-e="werkwijze:faq.summary4" set:html={t('faq.summary4')}></summary><p data-e="werkwijze:faq.p5" set:html={t('faq.p5')}></p></details>
+  <div class="faq-list" data-el="werkwijze:faq">
+    {lijst('faq').map((v, n) => (
+      <details open={n === 0} data-item><summary><span data-e={`werkwijze:faq.${n}.vraag`} set:html={v.vraag} /><i class="faq-plus" aria-hidden="true"></i></summary><p data-e={`werkwijze:faq.${n}.antwoord`} set:html={v.antwoord} /></details>
+    ))}
   </div>
 </section>
 

@@ -1,45 +1,60 @@
 import { absoluut, bedrijf, siteUrl } from './site';
-import { inhoudVan } from './content';
+import { artikelen, CATEGORIEEN, inhoudVan } from './content';
 
 type Type = 'WebPage' | 'CollectionPage' | 'ContactPage' | 'AboutPage' | 'BlogPosting';
 
-interface PaginaSeo {
+export interface PaginaSeo {
   pad: string;
   type: Type;
   kruimel: string[]; // namen van de tussenstappen + deze pagina; Home staat er altijd voor
-  faq?: string;      // sleutelvoorvoegsel van de vragen in de content (summaryN / pN)
+  faq?: boolean;     // de pagina heeft een FAQ-lijst (content.l.faq)
   artikel?: { gepubliceerd: string; gewijzigd: string; sectie: string; beeld: string };
   index?: false;     // niet in llms.txt en zoekmachines
 }
 
-export const paginas: Record<string, PaginaSeo> = {
-  home: { pad: '/', type: 'WebPage', kruimel: [], faq: 'faq' },
+const vast: Record<string, PaginaSeo> = {
+  home: { pad: '/', type: 'WebPage', kruimel: [], faq: true },
   diensten: { pad: '/diensten', type: 'CollectionPage', kruimel: ['Diensten'] },
-  werkwijze: { pad: '/werkwijze', type: 'WebPage', kruimel: ['Werkwijze & kosten'], faq: 'faq' },
-  verzekeringen: { pad: '/verzekeringen', type: 'WebPage', kruimel: ['Verzekeringen'], faq: 'faq' },
-  kredieten: { pad: '/kredieten', type: 'WebPage', kruimel: ['Kredieten'], faq: 'faq' },
-  maandlasten: { pad: '/maandlasten-berekenen', type: 'WebPage', kruimel: ['Maandlasten berekenen'] },
-  rentevast: { pad: '/rentevast-berekenen', type: 'WebPage', kruimel: ['Rentevaste periode loopt af'] },
-  checklist: { pad: '/documentenchecklist', type: 'WebPage', kruimel: ['Documentenchecklist'] },
+  werkwijze: { pad: '/werkwijze', type: 'WebPage', kruimel: ['Werkwijze & kosten'], faq: true },
+  verzekeringen: { pad: '/verzekeringen', type: 'WebPage', kruimel: ['Verzekeringen'], faq: true },
+  kredieten: { pad: '/kredieten', type: 'WebPage', kruimel: ['Kredieten'], faq: true },
+  maandlasten: { pad: '/maandlasten-berekenen', type: 'WebPage', kruimel: ['Maandlasten berekenen'], faq: true },
+  rentevast: { pad: '/rentevast-berekenen', type: 'WebPage', kruimel: ['Rentevaste periode loopt af'], faq: true },
+  checklist: { pad: '/documentenchecklist', type: 'WebPage', kruimel: ['Documentenchecklist'], faq: true },
   blog: { pad: '/blog', type: 'CollectionPage', kruimel: ['Blog'] },
-  'blog-hoeveel-kan-ik-lenen': {
-    pad: '/blog/hoeveel-kan-ik-lenen', type: 'BlogPosting', kruimel: ['Blog', 'Hoeveel kan ik lenen?'], faq: 'veelgestelde-vragen',
-    artikel: { gepubliceerd: '2026-10-11', gewijzigd: '2026-10-11', sectie: 'Een huis kopen', beeld: 'hh-interieur-woonkamer.jpg' },
-  },
   contact: { pad: '/contact', type: 'ContactPage', kruimel: ['Contact'] },
   'over-sabrina': { pad: '/over-sabrina', type: 'AboutPage', kruimel: ['Over Sabrina'] },
   juridisch: { pad: '/juridisch', type: 'WebPage', kruimel: ['Privacy, cookies en klachten'] },
   'niet-gevonden': { pad: '/404', type: 'WebPage', kruimel: ['Pagina niet gevonden'], index: false },
 };
 
+const tekst = (html: string) => html.replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
+
+/** Alle pagina's met hun SEO-gegevens, inclusief blogartikelen */
+export function alleSeo(): Record<string, PaginaSeo> {
+  const blog: Record<string, PaginaSeo> = {};
+  for (const a of artikelen()) {
+    if (a.artikel.status === 'binnenkort') continue;
+    const seo: PaginaSeo = {
+      pad: `/blog/${a.slug}`, type: 'BlogPosting', kruimel: ['Blog', tekst(a.t.titel)], faq: !!a.l?.faq?.length,
+      artikel: { gepubliceerd: a.artikel.datum, gewijzigd: a.artikel.datum, sectie: CATEGORIEEN[a.artikel.categorie] ?? '', beeld: a.i['hero.foto1']?.src ?? 'hh-hero-kaartje.jpg' },
+    };
+    if (a.artikel.status === 'concept') seo.index = false;
+    // Een artikel met een eigen pagina gebruikt de content van die pagina (content/pages/blog-<slug>.json)
+    blog[a.artikel.eigenPagina ? `blog-${a.slug}` : `blog/${a.slug}`] = seo;
+  }
+  return { ...vast, ...blog };
+}
+
+export const seoVoor = (pagina: string): PaginaSeo | undefined => alleSeo()[pagina];
+
 const ORG = `${siteUrl}/#organisatie`;
 const WEBSITE = `${siteUrl}/#website`;
 const SABRINA = `${siteUrl}/over-sabrina#sabrina`;
 
-const tekst = (html: string) => html.replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
-
 export function jsonLd(pagina: string, meta: { title: string; description: string }, ogImage: string) {
-  const seo = paginas[pagina];
+  const alle = alleSeo();
+  const seo = alle[pagina];
   const url = absoluut(seo.pad);
   const graph: Record<string, unknown>[] = [
     {
@@ -65,17 +80,17 @@ export function jsonLd(pagina: string, meta: { title: string; description: strin
     },
   ];
 
-  const pagina_: Record<string, unknown> = {
+  const webpagina: Record<string, unknown> = {
     '@type': seo.type === 'BlogPosting' ? 'WebPage' : seo.type, '@id': `${url}#webpagina`, url,
     name: meta.title, description: meta.description, inLanguage: 'nl-NL',
     isPartOf: { '@id': WEBSITE }, about: { '@id': ORG }, primaryImageOfPage: ogImage,
   };
-  if (seo.kruimel.length) pagina_.breadcrumb = { '@id': `${url}#kruimelpad` };
-  graph.push(pagina_);
+  if (seo.kruimel.length) webpagina.breadcrumb = { '@id': `${url}#kruimelpad` };
+  graph.push(webpagina);
 
   if (seo.kruimel.length) {
     const stappen = [{ naam: 'Home', pad: '/' }, ...seo.kruimel.map((naam, n) => ({
-      naam, pad: n === seo.kruimel.length - 1 ? seo.pad : paginas[naam.toLowerCase()]?.pad ?? seo.pad,
+      naam, pad: n === seo.kruimel.length - 1 ? seo.pad : alle[naam.toLowerCase()]?.pad ?? seo.pad,
     }))];
     graph.push({
       '@type': 'BreadcrumbList', '@id': `${url}#kruimelpad`,
@@ -92,16 +107,12 @@ export function jsonLd(pagina: string, meta: { title: string; description: strin
     });
   }
 
-  if (seo.faq) {
-    const t = inhoudVan(pagina).t;
-    // De sleutels staan in documentvolgorde: het antwoord is de eerste alinea na de vraag
-    const sleutels = Object.keys(t).filter(k => k.startsWith(`${seo.faq}.`));
-    const vragen = sleutels.flatMap((k, n) => {
-      if (!k.startsWith(`${seo.faq}.summary`)) return [];
-      const antwoord = sleutels.slice(n + 1).find(a => a.startsWith(`${seo.faq}.p`));
-      return antwoord ? [{ '@type': 'Question', name: tekst(t[k]), acceptedAnswer: { '@type': 'Answer', text: tekst(t[antwoord]) } }] : [];
+  const faq = seo.faq ? inhoudVan(pagina).l?.faq ?? [] : [];
+  if (faq.length) {
+    graph.push({
+      '@type': 'FAQPage', '@id': `${url}#faq`,
+      mainEntity: faq.map(v => ({ '@type': 'Question', name: tekst(v.vraag), acceptedAnswer: { '@type': 'Answer', text: tekst(v.antwoord) } })),
     });
-    if (vragen.length) graph.push({ '@type': 'FAQPage', '@id': `${url}#faq`, mainEntity: vragen });
   }
   return { '@context': 'https://schema.org', '@graph': graph };
 }
