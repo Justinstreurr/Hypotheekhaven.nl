@@ -78,7 +78,11 @@
     window.addEventListener('beforeunload', e => {
       stopBewerken(true);
       if (wijzigingen.size && !bewaard) { e.preventDefault(); e.returnValue = ''; }
+      else weg = true;
     });
+    // Lokaal herlaadt de ontwikkelserver de pagina zodra er bestanden zijn opgeslagen; dat breekt
+    // een lopend verzoek af. Dat is dan geen mislukte publicatie.
+    window.addEventListener('pagehide', () => { weg = true; });
     if (localStorage.getItem('hh-zij') !== 'dicht') zijbalk(true);
     const scroll = sessionStorage.getItem(SCROLL);
     if (scroll) { sessionStorage.removeItem(SCROLL); requestAnimationFrame(() => scrollTo(0, Number(scroll))); }
@@ -396,9 +400,15 @@
         img.dataset.ei = `${ref}.${n}.${naam}`;
         const foto = lijst[n][naam];
         if (foto?.upload && uploads.has(foto.upload)) toonFoto(img, 'img', uploadUrl(foto.upload));
+        else if (foto?.src && img.dataset.bron !== foto.src) {
+          // de juiste foto staat al ergens in deze lijst: neem die over
+          const zelfde = [...houder.querySelectorAll('img[data-bron]')].find(i => i.dataset.bron === foto.src);
+          if (zelfde) ['src', 'srcset', 'sizes'].forEach(a => zelfde.hasAttribute(a) ? img.setAttribute(a, zelfde.getAttribute(a)) : img.removeAttribute(a));
+          img.dataset.bron = foto.src;
+        }
         if (foto) img.alt = foto.alt ?? '';
       });
-      item.querySelectorAll('[data-link]').forEach(a => { if (lijst[n][a.dataset.link]) a.setAttribute('href', lijst[n][a.dataset.link]); });
+      linkElementen(item).forEach(a => { if (lijst[n][a.dataset.link]) a.setAttribute('href', lijst[n][a.dataset.link]); });
       const avatar = item.querySelector('.review-avatar');
       if (avatar && lijst[n].naam) {
         const woorden = lijst[n].naam.replace(/<[^>]+>/g, '').trim().split(/\s+/);
@@ -411,15 +421,26 @@
     if (!lijst.length) houder.append($('button', { type: 'button', class: 'hh-lijst-leeg', onclick: () => voegToe(houder, -1), text: '+ Eerste item toevoegen' }));
   }
 
+  const linkElementen = item => [item, ...item.querySelectorAll('[data-link]')].filter(e => e.dataset.link);
+
   function bereidLijstenVoor() {
     document.querySelectorAll('[data-el]').forEach(houder => {
       houder.hidden = false;
+      // welke foto staat waar (zoals op de server), zodat foto's mee kunnen schuiven
+      const [bestand, sleutel] = splits(houder.dataset.el);
+      const origineel = bron[bestand]?.l?.[sleutel] || [];
+      items(houder).forEach((item, n) => item.querySelectorAll('img[data-ei]').forEach(img => {
+        const naam = splits(img.dataset.ei)[1].match(/\.([\w-]+)$/)[1];
+        if (origineel[n]?.[naam]?.src) img.dataset.bron = origineel[n][naam].src;
+      }));
       if (wijzigingen.has(sleutelVan('lijst', houder.dataset.el)) || !items(houder).length) tekenLijst(houder);
     });
   }
 
   // Een nieuw item lijkt op het item erboven: zelfde foto, link en opmaak, maar met lege teksten
-  const NIEUW_VELD = naam => NIEUW[naam] ?? ({ h3: 'Nieuwe titel', h4: 'Nieuwe titel', p: 'Schrijf hier de tekst.', li: 'Nieuw punt', strong: 'Titel' }[naam.replace(/\d+$/, '')] || 'Nieuwe tekst');
+  const PLAATSHOUDERS = { h2: 'Nieuwe titel', h3: 'Nieuwe titel', h4: 'Nieuwe titel', p: 'Schrijf hier de tekst.', li: 'Nieuw punt', strong: 'Titel', blockquote: 'Nieuwe tekst' };
+  // "li2" is de tweede li in een item; "h3" is gewoon een kop
+  const NIEUW_VELD = naam => NIEUW[naam] ?? PLAATSHOUDERS[naam] ?? PLAATSHOUDERS[naam.replace(/\d+$/, '')] ?? 'Nieuwe tekst';
   function nieuwItem(houder, na) {
     const lijst = huidigeWaarde('lijst', houder.dataset.el);
     const basis = lijst[Math.max(0, na)];
@@ -441,7 +462,7 @@
 
   function linkDialoog(houder, n) {
     const lijst = huidigeWaarde('lijst', houder.dataset.el);
-    const velden = [...new Set([...items(houder)[n].querySelectorAll('[data-link]')].map(a => a.dataset.link))];
+    const velden = [...new Set(linkElementen(items(houder)[n]).map(a => a.dataset.link))];
     const invoer = velden.map(v => $('input', { type: 'text', class: 'hh-veld', value: lijst[n][v] ?? '' }));
     paneel('Link', [
       $('p', { class: 'hh-uitleg', text: 'Waar gaat dit item naartoe? Bijvoorbeeld /contact, /diensten#oversluiten of een volledig adres met https://.' }),
@@ -462,6 +483,11 @@
     stap();
     const lijst = huidigeWaarde('lijst', houder.dataset.el);
     lijst.splice(na + 1, 0, nieuwItem(houder, na));
+    const dom = items(houder);
+    const kloon = (dom[Math.max(0, na)] || sjabloon(houder)).cloneNode(true);
+    if (dom[na]) dom[na].after(kloon);
+    else if (dom[0]) dom[0].before(kloon);
+    else (houder.querySelector(':scope > template') ? houder.querySelector(':scope > template').before(kloon) : houder.append(kloon));
     zetLijst(houder.dataset.el, lijst);
     tekenLijst(houder);
     verbergItemKnoppen();
@@ -474,6 +500,8 @@
     if (doel < 0 || doel >= lijst.length) return;
     stap();
     [lijst[n], lijst[doel]] = [lijst[doel], lijst[n]];
+    const dom = items(houder);
+    if (richting < 0) dom[doel].before(dom[n]); else dom[doel].after(dom[n]);
     zetLijst(houder.dataset.el, lijst);
     tekenLijst(houder);
     verbergItemKnoppen();
@@ -483,6 +511,7 @@
     stap();
     const lijst = huidigeWaarde('lijst', houder.dataset.el);
     lijst.splice(n, 1);
+    items(houder)[n]?.remove();
     zetLijst(houder.dataset.el, lijst);
     tekenLijst(houder);
     verbergItemKnoppen();
@@ -519,7 +548,7 @@
         knop('↑', 'Omhoog', () => verplaats(houder, n, -1)),
         knop('↓', 'Omlaag', () => verplaats(houder, n, 1)),
         knop('+ Nieuw', 'Nieuw item hieronder', () => voegToe(houder, n)),
-        item.querySelector('[data-link]') && knop('Link', 'Waar dit item naartoe linkt', () => linkDialoog(houder, n)),
+        linkElementen(item).length > 0 && knop('Link', 'Waar dit item naartoe linkt', () => linkDialoog(houder, n)),
         ...Object.entries(keuzes).map(([veld, opties]) => {
           const s = $('select', { class: 'hh-keuze', title: veld, onchange: () => kies(houder, n, veld, s.value) }, opties.map(o => $('option', { value: o, text: o[0].toUpperCase() + o.slice(1), selected: lijst[n]?.[veld] === o })));
           return s;
@@ -822,7 +851,9 @@
     } catch { /* geen opslag */ }
     return reserve;
   }
+  let weg = false;
   function herstelReserve(reserve) {
+    if (weg) return;
     try {
       if (reserve?.concept) localStorage.setItem(CONCEPT, reserve.concept);
       if (reserve?.stappen) sessionStorage.setItem(STAPPEN, reserve.stappen);
