@@ -31,8 +31,10 @@ Zet in de werkbalk de schakelaar op **Klikken = website gebruiken**.
 
 ### Lijsten (FAQ's en reviews)
 
-Ga met de muis over een vraag of review: er verschijnen knoppen om het item omhoog of omlaag te zetten,
-een nieuw item eronder toe te voegen of het te verwijderen. Bij een review kies je ook de bron (Google of Trustoo).
+Bijna elk herhalend blok is een lijst: FAQ's, reviews, diensten, tijdlijnstappen, opsommingen, contactpunten en meer. Ga met de muis over een item: er verschijnen knoppen om het item omhoog of omlaag te zetten,
+een nieuw item eronder toe te voegen (met dezelfde foto en link als het item erboven), de link aan te passen of het te verwijderen. Bij een review kies je ook de bron (Google of Trustoo).
+
+Links in de bewerkmodus staat een menu met alle pagina's, blogartikelen (met hun status) en de onderdelen van de huidige pagina. Een groene stip betekent: hier staan wijzigingen die nog niet live zijn.
 
 ### Blog
 
