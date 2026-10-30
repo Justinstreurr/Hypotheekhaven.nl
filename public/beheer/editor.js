@@ -184,7 +184,9 @@
   function opgeschoond(el) {
     const kopie = el.cloneNode(true);
     kopie.querySelectorAll('[contenteditable]').forEach(k => k.removeAttribute('contenteditable'));
-    return kopie.innerHTML.replace(/&nbsp;/g, ' ').replace(/(<br>)+$/, '').trim();
+    let html = kopie.innerHTML.replace(/&nbsp;/g, ' ');
+    for (let vorige = ''; vorige !== html;) { vorige = html; html = html.replace(/(\s*<br>\s*)+((<\/[a-z]+>)*)$/, '$2'); }
+    return html.trim();
   }
 
   function stopBewerken(bewaren) {

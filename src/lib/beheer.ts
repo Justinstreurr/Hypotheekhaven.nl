@@ -83,7 +83,8 @@ function schoon(node: Node) {
     }
     for (const naam of Object.keys(el.attributes)) {
       const waarde = el.getAttribute(naam) ?? '';
-      if (!ATTRS.has(naam.toLowerCase())) el.removeAttribute(naam);
+      // data-* stuurt effecten aan (bijv. data-woorden voor het inkleuren) en kan geen code uitvoeren
+      if (!ATTRS.has(naam.toLowerCase()) && !/^data-[a-z][a-z-]*$/.test(naam)) el.removeAttribute(naam);
       else if (naam === 'href' && !/^(https?:|mailto:|tel:|\/|#)/i.test(waarde.trim())) el.removeAttribute(naam);
     }
     if (el.getAttribute('target') === '_blank') el.setAttribute('rel', 'noopener');
@@ -95,7 +96,10 @@ export function schoneHtml(html: string) {
   const root = parse(`<div>${html}</div>`, { comment: false, blockTextElements: {} });
   const div = root.firstChild as HTMLElement;
   schoon(div);
-  return div.innerHTML.replace(/^(<br>)+/, '').trim();
+  // Geen lege regels aan het begin of eind, ook niet net binnen een afsluitende tag
+  let html = div.innerHTML.replace(/^(\s*<br>)+/, '');
+  for (let vorige = ''; vorige !== html;) { vorige = html; html = html.replace(/(\s*<br>\s*)+((<\/[a-z]+>)*)$/, '$2'); }
+  return html.trim();
 }
 
 export const schoneTekst = (s: string) => s.replace(/[<>]/g, '').replace(/\s+/g, ' ').trim();
