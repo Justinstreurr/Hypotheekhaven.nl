@@ -669,13 +669,39 @@
   }
 
   async function zetTerug(versie, datum) {
-    if (!confirm(`De hele website terugzetten naar hoe hij was op ${datum}?`)) return;
+    const extra = wijzigingen.size ? ' Je wijzigingen die nog niet live staan, vervallen dan ook.' : '';
+    if (!confirm(`De hele website terugzetten naar hoe hij was op ${datum}?${extra}`)) return;
+    const reserve = veiligstellen();
     try {
       await api('/api/beheer/geschiedenis', { id: versie.id, omschrijving: datum });
+      wijzigingen.clear();
+      stappen = [];
+      telBij();
       sluitPaneel();
       if (lokaal) { melding('Teruggezet. De pagina wordt ververst.'); setTimeout(() => location.reload(), 900); }
       else melding('Teruggezet. Over ongeveer een minuut staat de oude versie weer live.', 'ok', 10000);
-    } catch (e) { melding(e.message, 'fout', 0); }
+    } catch (e) {
+      herstelReserve(reserve);
+      melding(e.message, 'fout', 0);
+    }
+  }
+
+  // Het concept gaat pas weg als publiceren of terugzetten is gelukt. Tijdens het verzoek staat het
+  // alleen in deze reservekopie, zodat een tussentijds herladen het niet ten onrechte terugzet.
+  function veiligstellen() {
+    let reserve = null;
+    try {
+      reserve = { concept: localStorage.getItem(CONCEPT), stappen: sessionStorage.getItem(STAPPEN) };
+      localStorage.removeItem(CONCEPT);
+      sessionStorage.removeItem(STAPPEN);
+    } catch { /* geen opslag */ }
+    return reserve;
+  }
+  function herstelReserve(reserve) {
+    try {
+      if (reserve?.concept) localStorage.setItem(CONCEPT, reserve.concept);
+      if (reserve?.stappen) sessionStorage.setItem(STAPPEN, reserve.stappen);
+    } catch { /* geen opslag */ }
   }
 
   // ---------- paneel ----------
@@ -700,7 +726,17 @@
     try { c = JSON.parse(localStorage.getItem(CONCEPT) || 'null'); } catch { c = null; }
     if (!c) { telBij(); return; }
     c.u.forEach(u => uploads.set(u.id, u));
-    c.w.forEach(w => {
+    // Wat inmiddels al live staat (of nergens meer bestaat) hoort niet meer in het concept
+    const alLive = w => {
+      const b = bron[w.bestand];
+      if (!b) return false; // bestand van een andere pagina: niet geladen, dus bewaren
+      if (w.soort === 'tekst' || w.soort === 'attr') return b.t?.[w.sleutel] === w.waarde || !(w.sleutel in (b.t || {}));
+      if (w.soort === 'lijst') return JSON.stringify(b.l?.[w.sleutel]) === JSON.stringify(w.waarde);
+      if (w.soort === 'meta') return b.meta?.[w.sleutel] === w.waarde;
+      if (w.soort === 'artikel') return b.artikel?.[w.sleutel] === w.waarde;
+      return false;
+    };
+    c.w.filter(w => !alLive(w)).forEach(w => {
       const ref = w.bestand + ':' + w.sleutel;
       wijzigingen.set(sleutelVan(w.soort, ref), w);
       if (w.soort === 'tekst') document.querySelectorAll(`[data-e="${CSS.escape(ref)}"]`).forEach(el => { el.innerHTML = w.waarde; el.classList.add('hh-gewijzigd'); });
@@ -723,17 +759,18 @@
     if (JSON.stringify(body).length > 4_000_000) return melding('Te veel nieuwe foto\'s tegelijk. Publiceer eerst een deel en daarna de rest.', 'fout', 0);
     publiceerKnop.disabled = true;
     publiceerKnop.textContent = 'Bezig…';
+    const reserve = veiligstellen();
     try {
       await api('/api/beheer/publiceer', body);
       wijzigingen.clear();
       uploads.clear();
       stappen = [];
-      try { localStorage.removeItem(CONCEPT); sessionStorage.removeItem(STAPPEN); } catch { /* geen opslag */ }
       document.querySelectorAll('.hh-gewijzigd').forEach(el => el.classList.remove('hh-gewijzigd'));
       telBij();
       if (lokaal) { melding('Opgeslagen. De pagina wordt ververst.'); sessionStorage.setItem(SCROLL, String(scrollY)); setTimeout(() => location.reload(), 900); }
       else melding('Gepubliceerd! De website wordt nu bijgewerkt; over ongeveer een minuut staat alles live.', 'ok', 10000);
     } catch (e) {
+      herstelReserve(reserve);
       melding(e.message || 'Publiceren is mislukt', 'fout', 0);
       publiceerKnop.disabled = false;
     }
