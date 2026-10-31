@@ -3,6 +3,14 @@
 @media (max-width: 767px) {
   [data-eb] { --bg: var(--bg-m); }
 }
+/* Eerste herofoto ook als AVIF (kleiner, dus sneller in beeld). Alleen in browsers die image-set() met type()
+   kennen; andere browsers houden de WebP hierboven. */
+@supports (background-image: image-set(url("x.avif") type("image/avif"))) {
+  [data-eb][style*="--bg-la"] { --bg: image-set(var(--bg-la) type("image/avif"), var(--bg-l) type("image/webp")); }
+  @media (max-width: 767px) {
+    [data-eb][style*="--bg-ma"] { --bg: image-set(var(--bg-ma) type("image/avif"), var(--bg-m) type("image/webp")); }
+  }
+}
 
 /* width/height staan op elke <img> tegen verspringen tijdens het laden; de hoogte volgt de breedte */
 img { height: auto; }

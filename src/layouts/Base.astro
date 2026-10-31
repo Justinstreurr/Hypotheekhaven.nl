@@ -9,14 +9,17 @@ import caslon from '@fontsource/libre-caslon-text/files/libre-caslon-text-latin-
 import { getImage } from 'astro:assets';
 import CookieBanner from '../components/CookieBanner.astro';
 import Cookiebot from '../components/Cookiebot.astro';
-import { laad, beeldBestand } from '../lib/content';
+// Vercel Speed Insights: meet Core Web Vitals van echte bezoekers (Real Experience Score). Cookieloos en
+// first-party (/_vercel/speed-insights/script.js, met defer), daarom geen toestemming nodig.
+import SpeedInsights from '@vercel/speed-insights/astro';
+import { laad, beeldBestand, type Achtergrond } from '../lib/content';
 import { jsonLd, seoVoor } from '../lib/seo';
 import { absoluut, bedrijf, isProductie } from '../lib/site';
 
 interface Props {
   pagina: string;
   meta?: { title: string; description: string; ogImage?: string };
-  preload?: { breed: string; smal: string };
+  preload?: Achtergrond;
 }
 
 const { pagina, meta = { title: bedrijf.naam, description: '' }, preload } = Astro.props;
@@ -48,8 +51,8 @@ const graph = seo && seo.index !== false ? jsonLd(pagina, meta, ogUrl) : null;
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="preload" href={satoshi} as="font" type="font/woff2" crossorigin>
 <link rel="preload" href={caslon} as="font" type="font/woff2" crossorigin>
-{preload && <link rel="preload" as="image" href={preload.smal} media="(max-width: 767px)" fetchpriority="high">}
-{preload && <link rel="preload" as="image" href={preload.breed} media="(min-width: 768px)" fetchpriority="high">}
+{preload && <link rel="preload" as="image" href={preload.smalAvif ?? preload.smal} type={preload.smalAvif ? 'image/avif' : undefined} media="(max-width: 767px)" fetchpriority="high">}
+{preload && <link rel="preload" as="image" href={preload.breedAvif ?? preload.breed} type={preload.breedAvif ? 'image/avif' : undefined} media="(min-width: 768px)" fetchpriority="high">}
 <meta property="og:type" content={seo?.artikel ? 'article' : 'website'}>
 <meta property="og:locale" content="nl_NL">
 <meta property="og:site_name" content={bedrijf.naam}>
@@ -72,6 +75,7 @@ const graph = seo && seo.index !== false ? jsonLd(pagina, meta, ogUrl) : null;
 <slot />
 <template id="menu-voet-tekst" set:html={t('menu.bel')} />
 <CookieBanner />
+<SpeedInsights />
 <script>
   import '../scripts/meten.js';
   import '../scripts/toestemming.js';

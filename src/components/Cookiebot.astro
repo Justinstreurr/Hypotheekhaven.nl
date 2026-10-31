@@ -10,6 +10,10 @@
 // In de bewerkmodus en de heatmap-weergave laadt Cookiebot niet (geen banner over de editor of het dashboard).
 const cbid = import.meta.env.PUBLIC_COOKIEBOT_ID;
 ---
+{/* Verbinding met Cookiebot alvast opzetten: de banner (uc.js, daarna cc.js en de instellingen van consentcdn)
+     verschijnt zo eerder, zonder de eigen pagina op te houden. */}
+{cbid && <link rel="preconnect" href="https://consent.cookiebot.com">}
+{cbid && <link rel="preconnect" href="https://consentcdn.cookiebot.com">}
 {cbid && (
   <script is:inline data-cookieconsent="ignore">
 window.dataLayer = window.dataLayer || [];

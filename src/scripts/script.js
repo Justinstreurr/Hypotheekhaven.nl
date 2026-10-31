@@ -7,10 +7,17 @@ if (fotos.length) {
     else { el.style.setProperty('--bg-l', url(el.dataset.foto)); el.style.setProperty('--bg-m', url(el.dataset.fotoM || el.dataset.foto)); }
     el.removeAttribute('data-foto');
   };
-  if (!('IntersectionObserver' in window)) fotos.forEach(laad);
+  // Volgende dia's van de hero (data-foto-later) pas na het load-event, zodat de eerste foto (LCP) voorgaat
+  const later = [...fotos].filter(el => el.hasAttribute('data-foto-later'));
+  const nu = [...fotos].filter(el => !el.hasAttribute('data-foto-later'));
+  if (later.length) {
+    const laadLater = () => setTimeout(() => later.forEach(el => el.hasAttribute('data-foto') && laad(el)), 300);
+    if (document.readyState === 'complete') laadLater(); else addEventListener('load', laadLater, { once: true });
+  }
+  if (!('IntersectionObserver' in window)) nu.forEach(laad);
   else {
     const kijker = new IntersectionObserver(items => items.forEach(i => { if (i.isIntersecting) { kijker.unobserve(i.target); laad(i.target); } }), { rootMargin: '100% 0px' });
-    fotos.forEach(el => kijker.observe(el));
+    nu.forEach(el => kijker.observe(el));
   }
 }
 
