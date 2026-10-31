@@ -99,10 +99,14 @@ const clarity = import.meta.env.PUBLIC_CLARITY_ID;
     dagen: { dag: string; weergaven: number; bezoekers: number; doelen: number }[];
     totaal: Record<string, Record<string, number>>;
     feedback: { dag: string; pad: string; nuttig: boolean | null; opmerking: string; apparaat: string }[];
+    contact: string[];
   };
   const DOELEN: Record<string, string> = {
-    formulier: 'Contactformulier verstuurd', bellen: 'Op telefoonnummer geklikt', whatsapp: 'WhatsApp geopend', mail: 'E-mailadres aangeklikt',
-    kennismaking: 'Op "Plan een kennismaking" geklikt', rekentool: 'Rekentool gebruikt', checklist: 'Documentenchecklist gebruikt',
+    formulier: 'Contactformulier verstuurd', 'formulier-mail': 'Contactformulier via eigen e-mailprogramma', bellen: 'Op telefoonnummer geklikt',
+    whatsapp: 'WhatsApp geopend', mail: 'E-mailadres aangeklikt',
+    kennismaking: 'Op "Plan een kennismaking" geklikt', formulierstart: 'Contactformulier begonnen', formulierfout: 'Formulier geweigerd (fout of te vaak)',
+    rekentool: 'Rekentool gebruikt', uitkomst: 'Rekentool helemaal ingevuld', checklist: 'Documentenchecklist gebruikt', checklistklaar: 'Documentenchecklist afgerond',
+    print: 'Checklist geprint of als pdf bewaard', download: 'Pdf geopend (dienstenwijzer, vergelijkingskaart)', delen: 'Artikel gedeeld',
   };
   const inhoud = document.getElementById('inhoud')!;
   let namen: Record<string, string> = {};
@@ -178,7 +182,11 @@ const clarity = import.meta.env.PUBLIC_CLARITY_ID;
     catch (e) { inhoud.innerHTML = `<div class="melding">${esc((e as Error).message)}</div>`; return; }
     const t = d.totaal;
     const bezoekers = d.dagen.reduce((a, x) => a + x.bezoekers, 0);
-    const weergaven = som(t.pv), doelen = som(t.doel);
+    const weergaven = som(t.pv);
+    const isContact = (g: string) => d.contact.includes(g);
+    const doelen = Object.entries(t.doel).filter(([g]) => isContact(g)).reduce((a, [, v]) => a + v, 0);
+    const entrees = som(t.entree), doorgeklikt = som(t.verder);
+    const bounce = (n: number, door: number) => (n ? Math.max(0, Math.round((1 - door / n) * 100)) + '%' : '–');
     const sessies = som(t.tijdn), tijd = som(t.tijd);
     const fbJa = Object.entries(t.fb).filter(([k]) => k.endsWith('|ja')).reduce((a, [, v]) => a + v, 0);
     const fbNee = Object.entries(t.fb).filter(([k]) => k.endsWith('|nee')).reduce((a, [, v]) => a + v, 0);
@@ -186,27 +194,31 @@ const clarity = import.meta.env.PUBLIC_CLARITY_ID;
     const paginas = sorteer(t.pv).map(([pad, v]) => {
       const n = t.tijdn[pad] ?? 0;
       const ja = t.fb[`${pad}|ja`] ?? 0, nee = t.fb[`${pad}|nee`] ?? 0;
-      return { pad, v, tijd: n ? t.tijd[pad] / n : 0, scroll: n ? t.scroll[pad] / n : 0, ja, nee };
+      return { pad, v, tijd: n ? t.tijd[pad] / n : 0, scroll: n ? t.scroll[pad] / n : 0, uit: n ? (t.uitgelezen[pad] ?? 0) / n * 100 : -1, ja, nee };
     });
     const maxV = Math.max(1, ...paginas.map(p => p.v));
+    const tweeDelen = (o: Record<string, number>, label: (a: string, b: string) => [string, string]) =>
+      sorteer(o).slice(0, 10).map(([k, v]) => { const [a, b] = k.split('|'); const [n, sub] = label(a, b); return [n, v, sub] as [string, number, string]; });
+    const landing = sorteer(t.entree).slice(0, 10).map(([pad, v]) => [naam(pad), v, `${bounce(v, t.verder[pad] ?? 0)} direct weer weg`] as [string, number, string]);
     const klikken = sorteer(t.klik).slice(0, 15).map(([k, v]) => { const [pad, label] = k.split('|'); return [label, v, naam(pad)] as [string, number, string]; });
-    const doelPaginas = sorteer(t.doelpad).slice(0, 8).map(([k, v]) => { const [g, pad] = k.split('|'); return [DOELEN[g] ?? g, v, naam(pad)] as [string, number, string]; });
+    const doelPaginas = sorteer(t.doelpad).filter(([k]) => isContact(k.split('|')[0])).slice(0, 8).map(([k, v]) => { const [g, pad] = k.split('|'); return [DOELEN[g] ?? g, v, naam(pad)] as [string, number, string]; });
 
     inhoud.innerHTML = `
       <section class="tegels" aria-label="Kerncijfers">
         <div class="tegel"><span>Bezoekers</span><strong>${getal(bezoekers)}</strong><small>unieke bezoekers per dag, opgeteld</small></div>
         <div class="tegel"><span>Paginaweergaven</span><strong>${getal(weergaven)}</strong><small>${bezoekers ? (weergaven / bezoekers).toFixed(1).replace('.', ',') : 0} pagina's per bezoeker</small></div>
         <div class="tegel"><span>Gemiddelde tijd op een pagina</span><strong>${sessies ? duur(tijd / sessies) : '–'}</strong><small>alleen de tijd dat de pagina in beeld was</small></div>
-        <div class="tegel"><span>Aanvragen</span><strong>${getal(doelen)}</strong><small>formulier, bellen, WhatsApp, rekentools</small></div>
+        <div class="tegel"><span>Aanvragen</span><strong>${getal(doelen)}</strong><small>formulier, bellen, WhatsApp, e-mail</small></div>
         <div class="tegel"><span>Omzetting</span><strong>${bezoekers ? (doelen / bezoekers * 100).toFixed(1).replace('.', ',') + '%' : '–'}</strong><small>aanvragen per 100 bezoekers</small></div>
+        <div class="tegel"><span>Direct weer weg</span><strong>${bounce(entrees, doorgeklikt)}</strong><small>bekeek maar één pagina (bounce)</small></div>
         <div class="tegel"><span>Vond de pagina nuttig</span><strong>${fbJa + fbNee ? Math.round(fbJa / (fbJa + fbNee) * 100) + '%' : '–'}</strong><small>${getal(fbJa + fbNee)} reacties</small></div>
       </section>
 
       <section class="kaart"><h2>Bezoekers per dag</h2><p class="uitleg">Beweeg met de muis over de lijn voor de cijfers per dag.</p>${lijnGrafiek(d.dagen)}</section>
 
-      <section class="kaart"><h2>Pagina's</h2><p class="uitleg">Hoe vaak elke pagina bekeken is, hoe lang en hoe ver mensen lezen, en wat ze ervan vinden.</p>
-        ${paginas.length ? `<table><thead><tr><th>Pagina</th><th class="num">Weergaven</th><th class="num">Gem. tijd</th><th class="num">Gelezen</th><th class="num">Nuttig</th></tr></thead><tbody>
-        ${paginas.slice(0, 25).map(p => `<tr><td><a href="${esc(p.pad)}" target="_blank">${esc(naam(p.pad))}</a><span class="balk" style="width:${(p.v / maxV * 100).toFixed(1)}%"></span></td><td class="num">${getal(p.v)}</td><td class="num">${p.tijd ? duur(p.tijd) : '–'}</td><td class="num">${p.scroll ? Math.round(p.scroll) + '%' : '–'}</td><td class="num">${p.ja + p.nee ? `<span class="score-ja">${p.ja} ja</span> · <span class="score-nee">${p.nee} nee</span>` : '–'}</td></tr>`).join('')}
+      <section class="kaart"><h2>Pagina's</h2><p class="uitleg">Hoe vaak elke pagina bekeken is, hoe lang en hoe ver mensen lezen (gemiddeld gescrold, en hoeveel er tot onderaan kwamen), en wat ze ervan vinden.</p>
+        ${paginas.length ? `<table><thead><tr><th>Pagina</th><th class="num">Weergaven</th><th class="num">Gem. tijd</th><th class="num">Gescrold</th><th class="num">Uitgelezen</th><th class="num">Nuttig</th></tr></thead><tbody>
+        ${paginas.slice(0, 25).map(p => `<tr><td><a href="${esc(p.pad)}" target="_blank">${esc(naam(p.pad))}</a><span class="balk" style="width:${(p.v / maxV * 100).toFixed(1)}%"></span></td><td class="num">${getal(p.v)}</td><td class="num">${p.tijd ? duur(p.tijd) : '–'}</td><td class="num">${p.uit >= 0 ? Math.round(p.scroll) + '%' : '–'}</td><td class="num">${p.uit >= 0 ? Math.round(p.uit) + '%' : '–'}</td><td class="num">${p.ja + p.nee ? `<span class="score-ja">${p.ja} ja</span> · <span class="score-nee">${p.nee} nee</span>` : '–'}</td></tr>`).join('')}
         </tbody></table>` : '<p class="leeg">Nog geen bezoeken in deze periode.</p>'}
       </section>
 
@@ -216,8 +228,18 @@ const clarity = import.meta.env.PUBLIC_CLARITY_ID;
       </div>
 
       <div class="twee">
-        <section class="kaart"><h2>Aanvragen</h2><p class="uitleg">Momenten waarop een bezoeker contact zocht of een rekentool gebruikte.</p>${staafLijst(sorteer(t.doel).map(([k, v]) => [DOELEN[k] ?? k, v]), 'Nog geen aanvragen in deze periode.')}</section>
+        <section class="kaart"><h2>Eerste pagina van het bezoek</h2><p class="uitleg">Waar bezoekers binnenkomen, en hoeveel daarvan niet verder klikken.</p>${staafLijst(landing, 'Nog geen bezoeken.')}</section>
+        <section class="kaart"><h2>Campagnes</h2><p class="uitleg">Links met <code>?utm_source=…&amp;utm_campaign=…</code>, bijvoorbeeld in een nieuwsbrief of advertentie.</p>${staafLijst(tweeDelen(t.campagne, (bron, c) => [c, bron]), 'Nog geen bezoeken via een campagnelink.')}</section>
+      </div>
+
+      <div class="twee">
+        <section class="kaart"><h2>Aanvragen</h2><p class="uitleg">Momenten waarop een bezoeker contact zocht.</p>${staafLijst(sorteer(t.doel).filter(([k]) => isContact(k)).map(([k, v]) => [DOELEN[k] ?? k, v]), 'Nog geen aanvragen in deze periode.')}</section>
         <section class="kaart"><h2>Aanvragen per pagina</h2><p class="uitleg">Op welke pagina die aanvragen begonnen.</p>${staafLijst(doelPaginas, 'Nog geen aanvragen in deze periode.')}</section>
+      </div>
+
+      <div class="twee">
+        <section class="kaart"><h2>Interactie</h2><p class="uitleg">Rekentools, de checklist, het formulier (begonnen tegenover verstuurd), pdf's en delen.</p>${staafLijst(sorteer(t.doel).filter(([k]) => !isContact(k)).map(([k, v]) => [DOELEN[k] ?? k, v]), 'Nog geen interactie in deze periode.')}</section>
+        <section class="kaart"><h2>Links naar andere websites</h2><p class="uitleg">Bijvoorbeeld Trustoo, Google-reviews, LinkedIn of de pdf's op nbg.nl.</p>${staafLijst(tweeDelen(t.uit, (pad, host) => [host, naam(pad)]), 'Nog geen klikken naar andere websites.')}</section>
       </div>
 
       <section class="kaart"><h2>Waar het meest op geklikt wordt</h2><p class="uitleg">Knoppen, links en vragen, met de pagina eronder.</p>${staafLijst(klikken, 'Nog geen klikken in deze periode.')}</section>
@@ -230,6 +252,8 @@ const clarity = import.meta.env.PUBLIC_CLARITY_ID;
         <div class="heat-venster" id="heat-venster"></div>
         <div class="schaal"><span>weinig</span><i></i><span>veel klikken</span></div>
       </section>
+
+      ${som(t['404']) ? `<section class="kaart"><h2>Pagina niet gevonden (404)</h2><p class="uitleg">Adressen die niet bestaan, met de website waar de link stond. Zet een doorverwijzing als er een echte pagina bij hoort.</p>${staafLijst(tweeDelen(t['404'], (pad, bron) => [pad, bron]), '')}</section>` : ''}
 
       <section class="kaart"><h2>Wat bezoekers zeggen</h2><p class="uitleg">Opmerkingen bij "Was deze pagina nuttig?".</p>
         ${d.feedback.length ? `<ul class="reacties">${d.feedback.map(f => `<li><small>${new Date(f.dag + 'T12:00').toLocaleDateString('nl-NL', { day: 'numeric', month: 'long' })} · ${esc(naam(f.pad))} · ${f.nuttig === true ? '<span class="score-ja">nuttig</span>' : f.nuttig === false ? '<span class="score-nee">niet nuttig</span>' : ''} · ${esc(f.apparaat ?? '')}</small><p>${esc(f.opmerking)}</p></li>`).join('')}</ul>` : '<p class="leeg">Nog geen opmerkingen in deze periode.</p>'}

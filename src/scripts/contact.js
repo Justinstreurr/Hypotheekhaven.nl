@@ -107,6 +107,7 @@
     const voorkeur = (form.querySelector('input[name="voorkeur"]:checked') || {}).value || 'Maakt niet uit';
     const knop = form.querySelector('button[type="submit"]');
     knop.disabled = true;
+    let soort = 'formulier';
     try {
       const r = await fetch(form.action, {
         method: 'POST',
@@ -117,13 +118,15 @@
         })
       });
       const d = await r.json().catch(() => ({}));
-      if (!d.ok && r.status !== 429 && r.status !== 400) perMail(w, voorkeur);
-      else if (!d.ok) { toonFout(d.fout); knop.disabled = false; return; }
+      if (!d.ok && r.status !== 429 && r.status !== 400) { soort = 'formulier-mail'; perMail(w, voorkeur); }
+      else if (!d.ok) { toonFout(d.fout); knop.disabled = false; dispatchEvent(new CustomEvent('hh:doel', { detail: 'formulierfout' })); return; }
     } catch (fout) {
+      soort = 'formulier-mail';
       perMail(w, voorkeur);
     }
     knop.disabled = false;
-    dispatchEvent(new CustomEvent('hh:doel', { detail: 'formulier' }));
+    // statistieken: verstuurd, of via de e-mail-terugval (dan weten we niet of de mail ook echt verstuurd is)
+    dispatchEvent(new CustomEvent('hh:doel', { detail: soort }));
     toonBevestiging();
   });
 
