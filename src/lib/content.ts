@@ -1,6 +1,7 @@
 import type { ImageMetadata } from 'astro';
 import { getImage } from 'astro:assets';
 import site from '../content/site.json';
+import normenBron from '../scripts/normen.js?raw';
 
 // Alle teksten en foto's staan in src/content/. De bewerkmodus (/beheer) past deze bestanden aan.
 // Op de site heeft elk bewerkbaar element een verwijzing "<bestand>:<sleutel>":
@@ -80,6 +81,19 @@ async function achtergrond(meta: ImageMetadata, breedte: number) {
   return r.src;
 }
 
+// Cijfers uit normen.js (<span data-norm="...">) al bij het bouwen invullen, zodat ze ook in de HTML en
+// de gegevens voor Google staan. De rekentools vullen ze in de browser opnieuw in, met dezelfde opmaak.
+const N = (() => { const w: any = {}; new Function('window', normenBron)(w); return w.HH_NORMEN; })();
+const procent = (f: number, dec = 2) => (f * 100).toLocaleString('nl-NL', { minimumFractionDigits: dec, maximumFractionDigits: dec }) + '%';
+const NORMTEKST: Record<string, string> = {
+  jaar: String(N.jaar), maxAftrekTarief: procent(N.maxAftrekTarief), tariefSchijf1: procent(N.tariefSchijf1),
+  grensSchijf1: Math.round(N.grensSchijf1).toLocaleString('nl-NL'), boetevrijPct: procent(N.boetevrijPct, 0),
+  ewfPct: procent(N.eigenwoningforfait[N.eigenwoningforfait.length - 1].pct),
+};
+export const vulNormen = (html: string) => html.includes('data-norm')
+  ? html.replace(/(<span data-norm="([^"]+)">)[^<]*(<\/span>)/g, (m, open, k, dicht) => k in NORMTEKST ? open + NORMTEKST[k] + dicht : m)
+  : html;
+
 export async function laad(naam: string) {
   const inhoud = inhoudVan(naam);
   // Achtergrondfoto's (sleutels met "foto") vooraf optimaliseren: groot voor desktop, smal voor telefoon
@@ -92,7 +106,7 @@ export async function laad(naam: string) {
   const t = (k: string): string => {
     const v = inhoud.t[k];
     if (v === undefined) throw new Error(`Tekst ontbreekt: ${naam}:${k}`);
-    return v;
+    return vulNormen(v);
   };
   const img = (k: string): Beeld => {
     const v = inhoud.i[k];
@@ -102,7 +116,7 @@ export async function laad(naam: string) {
   const lijst = (k: string): LijstItem[] => {
     const v = inhoud.l?.[k];
     if (!v) throw new Error(`Lijst ontbreekt: ${naam}:${k}`);
-    return v;
+    return v.map(item => Object.fromEntries(Object.entries(item).map(([a, w]) => [a, typeof w === 'string' ? vulNormen(w) : w])));
   };
   // Achtergrond als inline style. background-image leest --bg, dat per schermbreedte
   // in basis.css wordt gekozen uit --bg-l en --bg-m. --foto wordt door de CSS zelf gebruikt.

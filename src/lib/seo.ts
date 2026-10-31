@@ -1,5 +1,5 @@
 import { absoluut, bedrijf, siteUrl } from './site';
-import { artikelen, CATEGORIEEN, inhoudVan } from './content';
+import { artikelen, CATEGORIEEN, inhoudVan, vulNormen } from './content';
 
 type Type = 'WebPage' | 'CollectionPage' | 'ContactPage' | 'AboutPage' | 'BlogPosting';
 
@@ -28,7 +28,7 @@ const vast: Record<string, PaginaSeo> = {
   'niet-gevonden': { pad: '/404', type: 'WebPage', kruimel: ['Pagina niet gevonden'], index: false },
 };
 
-const tekst = (html: string) => html.replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
+const tekst = (html: string) => html.replace(/<\/?(br|p|h\d|li|ul|ol|div|blockquote)\b[^>]*>/gi, ' ').replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
 
 /** Alle pagina's met hun SEO-gegevens, inclusief blogartikelen */
 export function alleSeo(): Record<string, PaginaSeo> {
@@ -111,7 +111,7 @@ export function jsonLd(pagina: string, meta: { title: string; description: strin
   if (faq.length) {
     graph.push({
       '@type': 'FAQPage', '@id': `${url}#faq`,
-      mainEntity: faq.map(v => ({ '@type': 'Question', name: tekst(v.vraag), acceptedAnswer: { '@type': 'Answer', text: tekst(v.antwoord) } })),
+      mainEntity: faq.map(v => ({ '@type': 'Question', name: tekst(vulNormen(v.vraag)), acceptedAnswer: { '@type': 'Answer', text: tekst(vulNormen(v.antwoord)) } })),
     });
   }
   return { '@context': 'https://schema.org', '@graph': graph };
