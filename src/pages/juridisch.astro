@@ -9,6 +9,8 @@ import '../styles/pagina.css';
 import '../styles/juridisch.css';
 
 const { t, bg, meta, achtergronden, lijst } = await laadPagina('juridisch');
+// Cookieverklaring van Cookiebot (actuele lijst cookies + toestemming wijzigen), alleen als Cookiebot aan staat
+const cookiebot = import.meta.env.PUBLIC_COOKIEBOT_ID;
 ---
 <Base pagina="juridisch" meta={meta} preload={achtergronden['hero.foto1']}>
 <header class="hero hero--pagina">
@@ -127,6 +129,11 @@ const { t, bg, meta, achtergronden, lijst } = await laadPagina('juridisch');
 
       <h3 data-e="juridisch:cookies.h33" set:html={t('cookies.h33')}></h3>
       <p data-e="juridisch:cookies.p3" set:html={t('cookies.p3')}></p>
+      {cookiebot && (
+        <div class="cookieverklaring">
+          <script is:inline id="CookieDeclaration" src={`https://consent.cookiebot.com/${cookiebot}/cd.js`} data-culture="NL" async></script>
+        </div>
+      )}
     </section>
 
     

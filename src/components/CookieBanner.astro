@@ -1,9 +1,10 @@
 ---
 // Toestemming voor Microsoft Clarity (klikken, scrollen en opnames). Alleen nodig als PUBLIC_CLARITY_ID
 // is ingesteld; de eigen statistieken gebruiken geen cookies en vragen daarom geen toestemming.
+// Met PUBLIC_COOKIEBOT_ID neemt Cookiebot het over (zie Cookiebot.astro) en verschijnt deze banner niet.
 import { laad } from '../lib/content';
 
-const clarity = import.meta.env.PUBLIC_CLARITY_ID;
+const clarity = import.meta.env.PUBLIC_COOKIEBOT_ID ? '' : import.meta.env.PUBLIC_CLARITY_ID;
 const { t } = await laad('site');
 ---
 {clarity && (

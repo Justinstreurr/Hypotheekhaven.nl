@@ -8,6 +8,7 @@ import satoshi from '../assets/fonts/Satoshi-Variable.woff2?url';
 import caslon from '@fontsource/libre-caslon-text/files/libre-caslon-text-latin-400-normal.woff2?url';
 import { getImage } from 'astro:assets';
 import CookieBanner from '../components/CookieBanner.astro';
+import Cookiebot from '../components/Cookiebot.astro';
 import { laad, beeldBestand } from '../lib/content';
 import { jsonLd, seoVoor } from '../lib/seo';
 import { absoluut, bedrijf, isProductie } from '../lib/site';
@@ -34,6 +35,7 @@ const graph = seo && seo.index !== false ? jsonLd(pagina, meta, ogUrl) : null;
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<Cookiebot />
 <title>{meta.title}</title>
 <meta name="description" content={meta.description}>
 {seo?.index !== false && <link rel="canonical" href={canonical}>}
