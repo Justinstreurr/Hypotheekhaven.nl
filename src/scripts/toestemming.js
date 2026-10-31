@@ -4,13 +4,13 @@
 //    opent Cookiebot opnieuw.
 // 2. Geen Cookiebot: de eigen kleine banner, alleen voor Microsoft Clarity. De keuze staat in localStorage
 //    (geen cookie nodig) en is te wijzigen via "Cookie-instellingen" in de footer. Google Analytics laadt dan nooit.
-import { laadGa, gaGeladen } from './ga.js';
+import { laadGa, gaGeladen, meetOmgeving } from './ga.js';
 
 const COOKIEBOT = import.meta.env.PUBLIC_COOKIEBOT_ID;
 const CLARITY = import.meta.env.PUBLIC_CLARITY_ID;
 
 const laadClarity = id => {
-  if (!id || window.clarity || /(^|; )hh_edit=1/.test(document.cookie) || location.search.includes('hh-heatmap')) return;
+  if (!id || !meetOmgeving || window.clarity || /(^|; )hh_edit=1/.test(document.cookie) || location.search.includes('hh-heatmap')) return;
   window.clarity = function () { (window.clarity.q = window.clarity.q || []).push(arguments); };
   const s = document.createElement('script');
   s.async = true;

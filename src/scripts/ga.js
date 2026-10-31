@@ -12,6 +12,8 @@ const debug = (() => {
     return sessionStorage.getItem('hh-ga-debug') === '1';
   } catch { return location.search.includes('ga-debug'); }
 })();
+// Ook voor Clarity: alleen op productie, of buiten productie met ?ga-debug
+export const meetOmgeving = productie || debug;
 const uitgesloten = /(^|; )hh_edit=1/.test(document.cookie) || location.search.includes('hh-heatmap');
 export const gaMogelijk = Boolean(GA_ID && import.meta.env.PUBLIC_COOKIEBOT_ID && (productie || debug) && !uitgesloten);
 
