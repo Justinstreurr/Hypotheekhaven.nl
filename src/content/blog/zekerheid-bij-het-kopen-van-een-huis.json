@@ -1,0 +1,36 @@
+{
+  "artikel": {
+    "status": "concept",
+    "categorie": "huis-kopen",
+    "datum": "2026-10-31",
+    "gerelateerd": [
+      "hoeveel-kan-ik-lenen",
+      "maximale-hypotheek-2027-nieuwe-leennormen"
+    ]
+  },
+  "meta": {
+    "title": "Ontbindende voorwaarden bij het kopen van een huis | Hypotheekhaven",
+    "description": "Wat zijn ontbindende voorwaarden en waarom zijn ze belangrijk? Lees hoe je met een voorbehoud van financiering, NHG of keuring onnodige risico’s voorkomt."
+  },
+  "t": {
+    "titel": "Zekerheid bij het kopen van een huis: voorkom onnodige risico’s",
+    "samenvatting": "Bieden zonder ontbindende voorwaarden lijkt slim, maar kan je een boete van 10% van de koopsom kosten. Lees welke voorwaarden je beschermen en wanneer een bod bindend is.",
+    "leestijd": "3 minuten lezen",
+    "inleiding": "Een huis kopen is een grote stap. Naast het vinden van je droomwoning komt er ook veel regelwerk bij kijken. Zodra je een bod uitbrengt en de verkoper dit accepteert, ben je officieel in onderhandeling. Maar heb je al nagedacht over de ontbindende voorwaarden?",
+    "inhoud": "<p>Sommige kopers laten deze voorwaarden achterwege om hun bod aantrekkelijker te maken, vooral in populaire gebieden met veel concurrentie. Dit lijkt misschien een slimme zet, maar het kan grote financiële risico’s met zich meebrengen. Wat zijn ontbindende voorwaarden precies, en waarom zijn ze zo belangrijk?</p><h2>Wat zijn ontbindende voorwaarden?</h2><p>Ontbindende voorwaarden geven je zekerheid bij het kopen van een huis. Ze beschermen je tegen financiële en juridische problemen als de koop onverhoopt niet door kan gaan. Als je deze voorwaarden in het koopcontract opneemt en aan de bijbehorende eisen voldoet, kun je zonder boete van de koop afzien.</p><p>Veelvoorkomende ontbindende voorwaarden zijn:</p><h3>Onder voorbehoud van financiering</h3><p>Dit is de meest gebruikte ontbindende voorwaarde. Hiermee voorkom je dat je vastzit aan de koop als je hypotheekaanvraag wordt afgewezen. Je krijgt een bepaalde termijn (meestal 4 tot 6 weken) om de financiering rond te krijgen. Lukt dat niet? Dan kun je de koop zonder financiële gevolgen ontbinden.</p><h3>Onder voorbehoud van Nationale Hypotheek Garantie (NHG)</h3><p>Een hypotheek met NHG biedt voordelen, zoals een lagere rente en extra zekerheid. Maar niet iedereen komt hiervoor in aanmerking. In 2026 geldt bijvoorbeeld dat de maximale koopsom niet hoger mag zijn dan € 470.000; per 1 januari 2027 wordt dat € 500.000. Wil je NHG? Dan is het slim om deze voorwaarde op te nemen in het koopcontract. Let op: je moet kunnen aantonen dat je alles hebt geprobeerd om de financiering rond te krijgen. Dit betekent dat je afwijzingen van geldverstrekkers moet kunnen overleggen.</p><h3>Onder voorbehoud van bouwkundige keuring</h3><p>Vooral bij oudere woningen is een bouwkundige keuring aan te raden. Blijkt uit het rapport dat de woning ernstige gebreken heeft en de herstelkosten hoger zijn dan het afgesproken bedrag? Dan kun je de koop annuleren. Dit voorkomt onverwachte kosten voor verborgen gebreken.</p><h3>Onder voorbehoud van verkoop eigen woning</h3><p>Wil je een nieuw huis kopen terwijl je huidige woning nog niet verkocht is? Dan kan het slim zijn om een voorbehoud van verkoop op te nemen. Zo voorkom je dubbele maandlasten als je oude woning langer te koop staat dan verwacht.</p><h2>Wanneer is een bod bindend?</h2><p>Veel mensen denken dat een mondeling bod direct bindend is, maar dat is niet zo. Een bod is pas definitief als het schriftelijk is vastgelegd en beide partijen het koopcontract hebben ondertekend. Tot dat moment kunnen jij en de verkoper nog terug.</p><p>Na ondertekening heb je nog drie dagen wettelijke bedenktijd. Binnen deze periode kun je zonder opgaaf van reden afzien van de koop, zonder een boete te betalen.</p><h2>Wat als je geen ontbindende voorwaarden opneemt?</h2><p>Sommige kopers kiezen ervoor om zonder ontbindende voorwaarden te bieden. Dit kan aantrekkelijk lijken, maar brengt grote risico’s met zich mee.</p><p><strong>Wat als:</strong></p><ul><li>de taxatie lager uitvalt dan verwacht?</li><li>je toch minder kunt lenen door een BKR-registratie of studieschuld?</li><li>je je baan verliest en de financiering niet meer haalbaar is?</li></ul><p>Zonder ontbindende voorwaarden loop je het risico op een forse boete. Vaak bedraagt deze 10% van de koopsom. En als de verkoper kan aantonen dat de schade hoger is, kan dat bedrag zelfs nog oplopen.</p><p>Daarom is het verstandig om duidelijke afspraken te maken en de voorwaarden goed te laten vastleggen in het voorlopig koopcontract. Ook moet je als koper kunnen aantonen dat je echt niet aan de voorwaarden kunt voldoen, bijvoorbeeld door afwijzingen van hypotheekaanvragen of bouwkundige rapporten.</p><h2>Stap voor stap naar jouw nieuwe thuis</h2><p>Een goede voorbereiding helpt je om snel en met zekerheid een huis te kopen. Wil je weten wat jouw financiële mogelijkheden zijn? <a href=\"/contact#formulier\">Maak dan een afspraak met Hypotheekhaven.</a></p><p><strong>Tip:</strong> wist je dat kopers onder de 35 jaar, onder bepaalde voorwaarden, geen overdrachtsbelasting hoeven te betalen? Dit kan je zomaar 2% van de koopsom besparen!</p><p><strong>Van financieel advies en verzekeringen tot het regelen van je hypotheek en verduurzamingsplannen: wij helpen je bij elke stap op weg naar jouw nieuwe thuis.</strong></p>"
+  },
+  "i": {
+    "kaart": {
+      "src": "hh-sleutel.jpg",
+      "alt": "Hand met een huissleutel in een lege, lichte woonkamer met visgraatvloer",
+      "positie": "center 50%"
+    },
+    "hero.foto1": {
+      "src": "hh-woonkamer-breed.jpg",
+      "alt": ""
+    }
+  },
+  "l": {
+    "faq": []
+  }
+}
