@@ -128,6 +128,9 @@
         "li": "<strong>Eigen anonieme statistieken, zonder cookies.</strong> Ik tel hoe de website gebruikt wordt: welke pagina’s bezocht worden, hoe lang, hoe ver er gescrold wordt, waarop geklikt wordt en via welke website bezoekers binnenkomen. Om bezoekers per dag te tellen, maak ik van je IP-adres en browser samen met een geheime code een versleutelde code (een SHA-256-hash). Die code verandert elke dag en is de volgende dag niet meer naar jou te herleiden. Je IP-adres zelf wordt niet opgeslagen. De cijfers staan bij Upstash en worden na 400 dagen automatisch verwijderd. Dit staat los van Google Analytics. Ik doe dit op basis van mijn gerechtvaardigd belang: begrijpen hoe de website gebruikt wordt, zodat ik die kan verbeteren."
       },
       {
+        "li": "<strong>Laadsnelheid (Vercel Speed Insights).</strong> Via Vercel Speed Insights meet ik anoniem hoe snel de pagina’s laden, zodat ik de site snel kan houden. Daarvoor worden geen cookies geplaatst en geen persoonsgegevens opgeslagen."
+      },
+      {
         "li": "<strong>Google Analytics, alleen met je toestemming.</strong> Geef je toestemming voor Statistieken, dan gebruik ik Google Analytics 4 van Google Ireland Ltd. om te zien hoe de website gebruikt wordt. Zonder toestemming wordt Google Analytics niet geladen (Google Consent Mode v2). Google signals staat uit en de gegevens worden niet gebruikt voor advertenties of personalisatie. Google Analytics plaatst de cookies “_ga” en “_ga_” gevolgd door een code, die maximaal 2 jaar blijven staan. De gegevens worden na 14 maanden verwijderd. Google kan gegevens in de Verenigde Staten verwerken, onder het EU-VS Data Privacy Framework. Meer lees je in de <a href=\"https://policies.google.com/privacy?hl=nl\" target=\"_blank\" rel=\"noopener\">privacyverklaring van Google</a>."
       },
       {
