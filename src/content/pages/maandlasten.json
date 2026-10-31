@@ -46,12 +46,12 @@
     "berekenen.h34": "Je inkomen <span class=\"rt-optioneel\">optioneel</span>",
     "berekenen.button13": "Wijzig",
     "berekenen.label6": "Bruto jaarinkomen",
-    "berekenen.p12": "Van degene die de renteaftrek krijgt. Hiermee bepalen we je belastingtarief. Leeg laten? Dan rekenen we met <span data-norm=\"maxAftrekTarief\"></span>. Je inkomen wordt nergens opgeslagen of verstuurd.",
+    "berekenen.p12": "Van degene die de renteaftrek krijgt. Hiermee bepaal ik je belastingtarief. Leeg laten? Dan reken ik met <span data-norm=\"maxAftrekTarief\"></span>. Je inkomen wordt nergens opgeslagen of verstuurd.",
     "berekenen.button14": "Bereken mijn maandlasten <i class=\"arrow\"></i>",
     "berekenen.h35": "Zo verloopt je <b>maandlast</b>",
     "berekenen.p13": "Totaal aan rente over de looptijd: <strong>€ <span data-uit=\"totaleRente\">0</span></strong>",
     "rt-zij.h31": "Jouw <b>berekening</b>",
-    "rt-zij.p1": "Vul stap 1 en 2 in, dan rekenen we direct mee.",
+    "rt-zij.p1": "Vul stap 1 en 2 in, dan reken ik direct mee.",
     "rt-zij.p2": "Netto per maand <span>eerste maand</span>",
     "rt-zij.p3": "<span class=\"rt-euro\">€</span><span data-uit=\"netto\">0</span>",
     "rt-zij.dt1": "Bruto per maand",
@@ -69,7 +69,7 @@
     "rt-zij.p5": "Indicatie, geen advies en geen aanbod. Belastingregels <span data-norm=\"jaar\"></span>, rente zoals jij invult.",
     "rt-zij.h32": "Plan je gratis <b>kennismaking</b>",
     "rt-zij.a1": "Bespreek je uitkomst <i class=\"arrow\"></i>",
-    "uitleg.span1": "Zo rekenen we",
+    "uitleg.span1": "Zo reken ik",
     "uitleg.h21": "Uitleg bij <br><b>je uitkomst</b>",
     "uitleg.p1": "Liever alles samen doorlopen, voor jouw situatie? Dat doen we in het gratis kennismakingsgesprek.",
     "uitleg.a1": "Plan een gratis kennismaking <i class=\"arrow\"></i>"
@@ -99,12 +99,12 @@
         "antwoord": "Een klein percentage van de WOZ-waarde van je huis dat bij je inkomen wordt opgeteld, omdat je in je eigen huis woont. Voor de meeste woningen is dat <span data-norm=\"ewfPct\"></span> per jaar. Het verlaagt je belastingvoordeel een beetje."
       },
       {
-        "vraag": "Met welk belastingtarief rekenen jullie?",
-        "antwoord": "Je trekt hypotheekrente af tegen maximaal <span data-norm=\"maxAftrekTarief\"></span> (<span data-norm=\"jaar\"></span>). Verdien je minder dan € <span data-norm=\"grensSchijf1\"></span> per jaar, dan is dat <span data-norm=\"tariefSchijf1\"></span>. Vul je je inkomen in, dan kiezen we het juiste tarief voor je."
+        "vraag": "Met welk belastingtarief reken je?",
+        "antwoord": "Je trekt hypotheekrente af tegen maximaal <span data-norm=\"maxAftrekTarief\"></span> (<span data-norm=\"jaar\"></span>). Verdien je minder dan € <span data-norm=\"grensSchijf1\"></span> per jaar, dan is dat <span data-norm=\"tariefSchijf1\"></span>. Vul je je inkomen in, dan kies ik het juiste tarief voor je."
       },
       {
         "vraag": "Wat zit er níet in deze berekening?",
-        "antwoord": "Verzekeringen, de kosten van je woning zelf (zoals energie en onderhoud), een aflossingsvrij deel, de bijleenregeling en het verdelen van de renteaftrek tussen partners. Ook rekenen we met één rente voor de hele looptijd, terwijl die na je rentevaste periode kan veranderen. Dat is allemaal maatwerk, en precies waar ik je in het gesprek mee help."
+        "antwoord": "Verzekeringen, de kosten van je woning zelf (zoals energie en onderhoud), een aflossingsvrij deel, de bijleenregeling en het verdelen van de renteaftrek tussen partners. Ook reken ik met één rente voor de hele looptijd, terwijl die na je rentevaste periode kan veranderen. Dat is allemaal maatwerk, en precies waar ik je in het gesprek mee help."
       }
     ],
     "rt-vinkjes": [

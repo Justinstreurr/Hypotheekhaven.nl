@@ -33,7 +33,7 @@
     "berekenen.h33": "De nieuwe rente",
     "berekenen.button6": "Wijzig",
     "berekenen.label6": "Rentevoorstel van je eigen bank",
-    "berekenen.p8": "Dit krijg je meestal zo'n drie maanden voor het einde van je rentevaste periode.",
+    "berekenen.p8": "Dit krijg je meestal zo’n drie maanden voor het einde van je rentevaste periode.",
     "berekenen.label7": "<span data-voor=\"aflopen\">Rente bij een andere geldverstrekker</span><span data-voor=\"tussentijds\">Rente bij oversluiten</span>",
     "berekenen.p9": "Kijk op de websites van geldverstrekkers, of laat mij vergelijken.",
     "berekenen.label8": "Actuele rente van je eigen bank <span class=\"rt-optioneel\">optioneel</span>",
@@ -53,10 +53,10 @@
     "berekenen.button13": "Bekijk mijn vergelijking <i class=\"arrow\"></i>",
     "berekenen.h35": "Je maandlast per <b>keuze</b>",
     "rt-zij.h31": "Jouw <b>vergelijking</b>",
-    "rt-zij.p1": "Vul stap 1 tot en met 3 in, dan rekenen we direct mee.",
+    "rt-zij.p1": "Vul stap 1 tot en met 3 in, dan reken ik direct mee.",
     "rt-zij.p2": "Verschil per maand",
     "rt-zij.p3": "<span class=\"rt-euro\">€</span><span data-uit=\"hoofd\">0</span>",
-    "rt-zij.p4": "Indicatie, geen advies en geen aanbod. We rekenen met bruto maandlasten en de rentes die jij invult. De boeterente die je bank echt rekent, staat op je aflosnota.",
+    "rt-zij.p4": "Indicatie, geen advies en geen aanbod. Ik reken met bruto maandlasten en de rentes die jij invult. De boeterente die je bank echt rekent, staat op je aflosnota.",
     "rt-zij.h32": "Plan je gratis <b>kennismaking</b>",
     "rt-zij.a1": "Bespreek je uitkomst <i class=\"arrow\"></i>",
     "uitleg.span1": "Goed om te weten",
@@ -74,7 +74,7 @@
     "faq": [
       {
         "vraag": "Wat gebeurt er als ik niets doe?",
-        "antwoord": "Je bank stuurt je meestal zo'n drie maanden voor het einde van je rentevaste periode een rentevoorstel. Reageer je niet, dan verlengt de bank vaak automatisch met dezelfde rentevaste periode, tegen de rente van dat moment. Dat is niet altijd de voordeligste keuze."
+        "antwoord": "Je bank stuurt je meestal zo’n drie maanden voor het einde van je rentevaste periode een rentevoorstel. Reageer je niet, dan verlengt de bank vaak automatisch met dezelfde rentevaste periode, tegen de rente van dat moment. Dat is niet altijd de voordeligste keuze."
       },
       {
         "vraag": "Wanneer loont oversluiten naar een andere bank?",
