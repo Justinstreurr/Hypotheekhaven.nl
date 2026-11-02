@@ -71,6 +71,7 @@ const graph = seo && seo.index !== false ? jsonLd(pagina, meta, ogUrl) : null;
 <script is:inline>if (/(^|; )hh_edit=1/.test(document.cookie) && !location.search.includes('hh-heatmap')) { var s = document.createElement('script'); s.src = '/beheer/editor.js'; s.defer = true; document.head.appendChild(s); }</script>
 </head>
 <body data-pagina={pagina}>
+<a class="naar-inhoud" href="#inhoud">Naar de inhoud</a>
 <div class="review-balk"><span class="review-balk-item" data-e="site:balk.google" set:html={t('balk.google')} /><span class="scheiding" aria-hidden="true"></span><a href={bedrijf.trustoo} target="_blank" rel="noopener" data-e="site:balk.trustoo" set:html={t('balk.trustoo')} /></div>
 <slot />
 <template id="menu-voet-tekst" set:html={t('menu.bel')} />

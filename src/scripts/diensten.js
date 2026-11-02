@@ -20,7 +20,15 @@
     const kaart = document.getElementById(decodeURIComponent(location.hash.slice(1)));
     if (!kaart || !kaart.classList.contains('tab-kaart')) return;
     kiesTab(kaart.parentElement); kiesKaart(kaart);
-    requestAnimationFrame(() => document.querySelector('.tabs').scrollIntoView({ behavior: 'smooth', block: 'start' }));
+    // Mobiel: kaarten onder elkaar, dus naar de kaart zelf (scroll-margin-top op .tab-kaart houdt rekening met de vaste navigatie).
+    // Desktop: tabknoppen en kaarten samen in beeld; past dat niet, dan in elk geval de hele rij kaarten onder de navigatie
+    if (window.matchMedia('(max-width: 1024px)').matches) return requestAnimationFrame(() => kaart.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+    requestAnimationFrame(() => {
+      const paneel = kaart.parentElement, boven = (el) => el.getBoundingClientRect().top + window.scrollY;
+      let y = boven(document.querySelector('.tabs-knoppen')) - 100;
+      if (boven(paneel) + paneel.offsetHeight - y > window.innerHeight - 20) y = boven(paneel) - 100;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    });
   };
   window.addEventListener('hashchange', openVanuitHash);
   openVanuitHash();

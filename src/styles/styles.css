@@ -430,10 +430,10 @@ h1, h2, h3 { font-weight: 400; line-height: 1.1; }
   border: 0; background: transparent;
   font: inherit; font-size: 19px; color: var(--inkt);
   cursor: pointer;
-  opacity: .4;
+  opacity: .62;
   transition: opacity .6s ease, background .6s ease, padding .6s ease;
 }
-.wiel-item[data-afstand="2"] { opacity: .18; }
+.wiel-item[data-afstand="2"] { opacity: .62; }
 .wiel-item[data-afstand="3"] { opacity: 0; }
 .wiel-item.is-actief { opacity: 1; background: var(--zand); padding-right: 8px; }
 .wiel-icoon { width: 40px; height: 40px; display: grid; place-items: center; }
@@ -697,7 +697,7 @@ h1, h2, h3 { font-weight: 400; line-height: 1.1; }
 .werkwijze h2 { font-size: 52px; letter-spacing: -1px; line-height: 1.12; margin-bottom: 34px; }
 .werkwijze h2 .kleur-zin { display: block; }
 /* Woorden kleuren tijdens het scrollen van grijs naar donker (zie script.js) */
-.kleur-zin span { color: rgba(8, 21, 52, .22); transition: color .4s ease; }
+.kleur-zin span { color: rgba(8, 21, 52, .47); transition: color .4s ease; }
 .kleur-zin span.is-gekleurd { color: var(--inkt); }
 
 /* HERKENNING: grote zin onder de kopfoto, eerste regel ingesprongen, afzender eronder */
@@ -944,7 +944,11 @@ h1, h2, h3 { font-weight: 400; line-height: 1.1; }
 
 /* RESPONSIVE */
 /* Menubalk met Rekentools is breder: logotekst iets eerder weg, zodat het menu er niet overheen valt */
-@media (max-width: 1320px) { .logo .brand-text { display: none; } }
+@media (max-width: 1400px) { .logo .brand-text { display: none; } }
+/* Menu-items nooit over twee regels; na de hero is er tot 1400px geen ruimte voor Over Sabrina én de kennismakingsknop,
+   dan neemt de knop het over (Over Sabrina staat bovenaan de pagina en in de footer) */
+.nav > a, .nav-tools-knop { white-space: nowrap; }
+@media (min-width: 1025px) and (max-width: 1400px) { .nav.is-scrolled .nav-sabrina { display: none; } }
 @media (max-width: 1200px) {
   /* Menu met 6 items: compacter zodat het niet over het logo valt */
   .nav a { padding: 0 13px; font-size: 15px; }
@@ -952,6 +956,8 @@ h1, h2, h3 { font-weight: 400; line-height: 1.1; }
   .nav-tools-knop { padding: 0 13px; font-size: 15px; }
   .nav-tools.is-huidig .nav-tools-knop::after { left: 13px; right: 28px; }
   .logo .brand-text { display: none; }
+  .nav.is-scrolled > a, .nav.is-scrolled .nav-tools-knop { padding: 0 10px; } /* met de kennismakingsknop erbij */
+  .nav.is-scrolled .nav-tools.is-huidig .nav-tools-knop::after { left: 10px; right: 25px; }
 }
 @media (max-width: 1024px) {
   :root { --rand: 20px; --h2: 40px; --h2-foto: 36px; --intro: 17px; --sectie: 90px; }

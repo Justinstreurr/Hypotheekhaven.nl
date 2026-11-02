@@ -89,15 +89,32 @@ taak(() => {
         <a href="${cta ? cta.getAttribute('href') : '/contact#formulier'}" class="btn btn-dark">${cta ? cta.textContent : ''} <i class="arrow"></i></a>
         <a href="tel:+31655767819" class="menu-bel">${document.getElementById('menu-voet-tekst')?.innerHTML ?? ''}</a>
       </div>`;
-    document.body.append(paneel, knop);
+    // Knop vooraan in de tabvolgorde (na de overslaanlink); hij staat vast in beeld, dus de plek in de html maakt visueel niets uit
+    const overslaan = document.querySelector('.naar-inhoud');
+    overslaan ? overslaan.after(knop) : document.body.prepend(knop);
+    document.body.append(paneel);
 
-    const zet = (open) => {
+    const isOpen = () => document.documentElement.classList.contains('menu-open');
+    const zet = (open, focusKnop) => {
       document.documentElement.classList.toggle('menu-open', open);
       knop.setAttribute('aria-expanded', String(open));
       knop.setAttribute('aria-label', open ? 'Menu sluiten' : 'Menu openen');
+      // Open: de rest van de pagina onbereikbaar (inert), focus naar de eerste link. Dicht: focus terug naar de knop
+      [...document.body.children].forEach((el) => { if (el !== paneel && el !== knop) el.inert = open; });
+      if (open) setTimeout(() => paneel.querySelector('a')?.focus(), 50);
+      else if (focusKnop) knop.focus();
     };
-    knop.addEventListener('click', () => zet(!document.documentElement.classList.contains('menu-open')));
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') zet(false); });
+    knop.addEventListener('click', () => zet(!isOpen(), true));
+    document.addEventListener('keydown', (e) => {
+      if (!isOpen()) return;
+      if (e.key === 'Escape') { zet(false, true); return; }
+      if (e.key !== 'Tab') return;
+      // Focus binnen menu en knop houden
+      const reeks = [knop, ...paneel.querySelectorAll('a')];
+      const i = reeks.indexOf(document.activeElement);
+      if (e.shiftKey && i <= 0) { e.preventDefault(); reeks[reeks.length - 1].focus(); }
+      else if (!e.shiftKey && (i === reeks.length - 1 || i === -1)) { e.preventDefault(); reeks[0].focus(); }
+    });
     // Na het kiezen van een link (ook een anker op dezelfde pagina) het menu sluiten
     paneel.addEventListener('click', (e) => { if (e.target.closest('a')) zet(false); });
     window.matchMedia('(min-width: 1025px)').addEventListener('change', (e) => { if (e.matches) zet(false); });
@@ -118,6 +135,8 @@ taak(() => {
 taak(() => {
   // Hero background slideshow (fade, 5s per slide)
   const slides = document.querySelectorAll('.hero-slide');
+  // Niets te wisselen bij 0 of 1 dia, en niet automatisch bewegen als de bezoeker minder beweging wil
+  if (slides.length < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   let current = 0;
   setInterval(() => {
     slides[current].classList.remove('is-active');

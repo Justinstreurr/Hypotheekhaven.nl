@@ -66,11 +66,13 @@
     p.textContent = tekst;
   };
 
-  const toonBevestiging = () => {
+  // Twee teksten: verstuurd via de site, of klaargezet in het e-mailprogramma (terugval)
+  const toonBevestiging = (perEmail) => {
     if (!bevestiging) return;
     const voornaam = form.elements.naam.value.trim().split(/\s+/)[0];
     const naamVak = bevestiging.querySelector('.bevestiging-naam');
     if (naamVak) naamVak.textContent = voornaam;
+    bevestiging.querySelectorAll('[data-variant]').forEach((v) => { v.hidden = (v.dataset.variant === 'mail') !== perEmail; });
     form.hidden = true;
     bevestiging.hidden = false;
     bevestiging.focus();
@@ -127,7 +129,7 @@
     knop.disabled = false;
     // statistieken: verstuurd, of via de e-mail-terugval (dan weten we niet of de mail ook echt verstuurd is)
     dispatchEvent(new CustomEvent('hh:doel', { detail: soort }));
-    toonBevestiging();
+    toonBevestiging(soort === 'formulier-mail');
   });
 
   const opnieuwKnop = document.querySelector('.bevestiging-opnieuw');

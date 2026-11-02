@@ -18,6 +18,11 @@ img { height: auto; }
 /* Alleen voor schermlezers */
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
 
+/* Overslaanlink: eerste tab op elke pagina, pas zichtbaar bij focus */
+.naar-inhoud { position: fixed; top: 12px; left: 12px; z-index: 1000; padding: 12px 18px; background: var(--inkt); color: var(--white); font-size: 15px; text-decoration: none; transform: translateY(-160%); transition: transform .2s ease; }
+.naar-inhoud:focus, .naar-inhoud:focus-visible { transform: none; outline: 2px solid var(--rozenhout); outline-offset: 2px; }
+#inhoud:focus { outline: none; }
+
 /* Feedback onderaan elke pagina: "Was deze pagina nuttig?" */
 .feedback { padding: 34px var(--pad); background: var(--zand); border-top: 1px solid rgba(8, 21, 52, .08); text-align: center; }
 .feedback-vraag { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }

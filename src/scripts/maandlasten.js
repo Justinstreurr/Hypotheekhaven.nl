@@ -275,10 +275,20 @@
   /* ---------- Knoppen en velden ---------- */
   tool.querySelectorAll('.rt-keuze').forEach((knop) => knop.addEventListener('click', () => {
     const k = knop.dataset.kies;
-    a[k] = k === 'looptijd' ? parseInt(knop.dataset.waarde, 10) : knop.dataset.waarde;
+    const v = k === 'looptijd' ? parseInt(knop.dataset.waarde, 10) : knop.dataset.waarde;
+    // Andere situatie gekozen: de stappen erna opnieuw doorlopen en de oude uitkomst wissen (zoals bij rentevast)
+    if (k === 'situatie' && a.situatie != null && a.situatie !== v) {
+      const b = knop.closest('.rt-blok');
+      blokken.slice(blokken.indexOf(b) + 1).forEach((x) => x.classList.remove('is-klaar'));
+      tool.classList.remove('is-klaar');
+      gereed = false; laatste = null;
+    }
+    a[k] = v;
     vulVelden();
     if (k === 'situatie') {
       toonPerSituatie();
+      werkSamenvattingBij();
+      werkBij();
       setTimeout(() => rondAf('situatie'), 200);
     } else {
       werkSamenvattingBij();

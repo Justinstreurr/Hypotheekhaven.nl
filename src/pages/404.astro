@@ -9,7 +9,7 @@ import '../styles/pagina.css';
 const { t, bg, meta, achtergronden } = await laadPagina('niet-gevonden');
 ---
 <Base pagina="niet-gevonden" meta={meta} preload={achtergronden['hero.foto1']}>
-<main>
+<main id="inhoud" tabindex="-1">
 <header class="hero hero--pagina">
   <div class="hero-slides">
     <div class="hero-slide is-active" {...bg('hero.foto1', 'background-image')}></div>
