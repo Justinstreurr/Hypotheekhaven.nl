@@ -824,6 +824,8 @@ h1, h2, h3 { font-weight: 400; line-height: 1.1; }
 .faq h2 { font-size: var(--h2); letter-spacing: -1px; margin-bottom: 22px; }
 .faq-side { align-self: start; }
 .faq-side p { font-size: 17px; line-height: 1.45; color: rgba(8, 21, 52, .75); max-width: 380px; margin-bottom: 32px; }
+.faq-side p a, .faq details p a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(8, 21, 52, .35); }
+.faq-side p a:hover, .faq details p a:hover { color: var(--rozenhout); }
 .faq details { border-bottom: 1px solid rgba(8, 21, 52, .2); }
 .faq summary {
   list-style: none;

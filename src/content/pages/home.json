@@ -1,11 +1,11 @@
 {
   "meta": {
-    "title": "Hypotheekhaven | Persoonlijk hypotheekadvies in Noord-Holland",
-    "description": "Onafhankelijk hypotheek- en verzekeringsadvies in Noord-Holland. Van de eerste berekening tot de notaris én daarna, online of bij je thuis."
+    "title": "Hypotheekadviseur Enkhuizen & West-Friesland | Hypotheekhaven",
+    "description": "Onafhankelijk hypotheekadviseur in Enkhuizen en West-Friesland. Van eerste berekening tot notaris en daarna, bij je thuis of online. Gratis kennismaking."
   },
   "t": {
     "hero.h11": "Persoonlijk hypotheekadvies<br><b>&amp; zorgeloos geregeld</b>",
-    "hero.p1": "Onafhankelijk hypotheek- en verzekeringsadvies in Noord-Holland. <br>Persoonlijke begeleiding van de eerste berekening tot aan de notaris én daarna. <br><span class=\"hero-extra\">Gemakkelijk online of gewoon bij je thuis.</span>",
+    "hero.p1": "Je onafhankelijke hypotheekadviseur in Enkhuizen, West-Friesland en de rest van Noord-Holland. <br>Persoonlijke begeleiding van de eerste berekening tot aan de notaris én daarna. <br><span class=\"hero-extra\">Gemakkelijk online of gewoon bij je thuis.</span>",
     "hero.a1": "Plan een gratis kennismaking <i class=\"arrow\"></i>",
     "hero.a2": "Mijn diensten <i class=\"arrow arrow--down\"></i>",
     "herkenning.p1": "Je wilt weten wat je kunt lenen, je rentevaste periode loopt af, of je leven verandert en je huis moet mee veranderen. <span class=\"kleur-zin\" data-woorden>Achter elke hypotheek zit <b>een eigen verhaal,</b> met eigen vragen. Daar begin ik mee.</span>",
@@ -163,7 +163,7 @@
     "faq": [
       {
         "vraag": "Hoeveel kan ik lenen?",
-        "antwoord": "Dat hangt af van je inkomen, je vaste lasten en de rente van dat moment. In het eerste gesprek reken ik het voor je uit, maar belangrijker: we kijken samen wat jij per maand comfortabel kunt én wilt betalen. Het maximale is niet altijd het verstandigste."
+        "antwoord": "Dat hangt af van je inkomen, je vaste lasten en de rente van dat moment. In het eerste gesprek reken ik het voor je uit, maar belangrijker: we kijken samen wat jij per maand comfortabel kunt én wilt betalen. Het maximale is niet altijd het verstandigste. <a href=\"/blog/hoeveel-kan-ik-lenen\">Lees hoe je berekent hoeveel je kunt lenen</a>."
       },
       {
         "vraag": "Wat kost hypotheekadvies bij Hypotheekhaven?",
@@ -182,8 +182,8 @@
         "antwoord": "Dat rekenen we gewoon uit. Ik zet de boeterente en de kosten af tegen wat je per maand bespaart over de resterende looptijd. Soms is oversluiten slim, soms is rentemiddeling of gewoon afwachten beter. Je krijgt een eerlijk antwoord, ook als dat “niet doen” is."
       },
       {
-        "vraag": "Moet ik naar Purmerend komen?",
-        "antwoord": "Nee, dat hoeft niet. Het eerste gesprek doen we online of bij jou thuis, wanneer het jou uitkomt. Ook op zaterdag, en via WhatsApp. Alles daarna, van documenten tot handtekening, kan digitaal. Kom je liever langs, dan is de koffie klaar."
+        "vraag": "Moet ik naar kantoor komen?",
+        "antwoord": "Nee, dat hoeft niet. Ik kom bij je thuis, of we spreken online af. Overdag of ’s avonds, wanneer het jou uitkomt. Alles daarna, van documenten tot handtekening, kan digitaal."
       }
     ],
     "reviews": [

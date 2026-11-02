@@ -1,13 +1,13 @@
 {
   "meta": {
-    "title": "Rentevaste periode loopt af: verlengen of oversluiten? | Hypotheekhaven",
+    "title": "Rentevaste periode loopt af? Bereken het | Hypotheekhaven",
     "description": "Je rentevaste periode loopt af, of je overweegt nu al over te sluiten? Vergelijk verlengen bij je eigen bank met oversluiten, inclusief boeterente en kosten."
   },
   "t": {
     "hero.a1": "Home",
     "hero.span1": "Rekentools",
     "hero.span2": "Rentevaste periode",
-    "hero.h11": "Je rente loopt af: <b>verlengen of oversluiten?</b>",
+    "hero.h11": "Je rentevaste periode loopt af: <b>verlengen of oversluiten?</b>",
     "hero.p1": "Vergelijk het rentevoorstel van je bank met een andere geldverstrekker. Of reken uit of nu al oversluiten loont, inclusief boeterente en kosten.",
     "berekenen.p1": "Zet JavaScript aan om te rekenen, of <a href=\"/contact#formulier\">plan een gratis kennismaking</a>.",
     "berekenen.h31": "Je situatie",
@@ -78,7 +78,7 @@
       },
       {
         "vraag": "Wanneer loont oversluiten naar een andere bank?",
-        "antwoord": "Als het verschil in maandlast groot genoeg is om de kosten van advies, notaris en taxatie terug te verdienen binnen je nieuwe rentevaste periode. Loopt je rente af, dan betaal je geen boeterente, en dat maakt oversluiten op dat moment vaak het interessantst."
+        "antwoord": "Als het verschil in maandlast groot genoeg is om de kosten van advies, notaris en taxatie terug te verdienen binnen je nieuwe rentevaste periode. Loopt je rente af, dan betaal je geen boeterente, en dat maakt oversluiten op dat moment vaak het interessantst. Lees meer over <a href=\"/diensten#oversluiten\">hypotheek oversluiten</a>."
       },
       {
         "vraag": "Hoe wordt boeterente berekend?",

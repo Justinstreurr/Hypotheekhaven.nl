@@ -140,7 +140,7 @@
         { label: 'Boeterente na aftrek + kosten', waarde: u.kosten },
         { label: `Besparing tot einde rentevaste periode`, waarde: Math.max(0, u.besparing), accent: true }
       ]);
-      uit('balkenTekst', 'Na het einde van je huidige rentevaste periode had je sowieso een nieuwe rente gekregen. Daarom tellen we alleen de besparing tot dat moment.');
+      uit('balkenTekst', 'Na het einde van je huidige rentevaste periode had je sowieso een nieuwe rente gekregen. Daarom tel ik alleen de besparing tot dat moment.');
     }
   }
 

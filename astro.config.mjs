@@ -24,7 +24,7 @@ export default defineConfig({
         const pad = new URL(page).pathname.replace(/\/$/, '');
         return !/^\/(beheer|api)(\/|$)/.test(pad) && pad !== '/404' && !concepten.includes(pad);
       },
-      serialize: item => ({ ...item, url: item.url.replace(/\/$/, '') || item.url, lastmod: new Date().toISOString() }),
+      serialize: item => ({ ...item, url: item.url.replace(/\/$/, '') || item.url }), // geen lastmod: de bouwtijd zegt niets over wanneer de inhoud veranderde
     }),
   ],
   devToolbar: { enabled: false },

@@ -1,12 +1,12 @@
 {
   "meta": {
-    "title": "Contact | Hypotheekhaven, hypotheekadviseur in Noord-Holland",
-    "description": "Neem contact op met Hypotheekhaven, onafhankelijk hypotheek- en verzekeringsadviseur in Noord-Holland. Bel, app of mail Sabrina voor een gratis en vrijblijvende kennismaking, online of bij je thuis."
+    "title": "Contact met je hypotheekadviseur in Enkhuizen | Hypotheekhaven",
+    "description": "Bel, app of mail Sabrina Reiz-Coenraad, onafhankelijk hypotheekadviseur in Enkhuizen en West-Friesland. Gratis kennismaking, bij je thuis of online."
   },
   "t": {
     "hero.a1": "Home",
     "hero.span1": "Contact",
-    "hero.h11": "Neem gerust <b>contact op</b>",
+    "hero.h11": "Contact met <b>Hypotheekhaven</b>",
     "hero.p1": "Bel, app of mail me, of laat hieronder een bericht achter. Het eerste gesprek is altijd gratis en vrijblijvend, online of gewoon bij je thuis.",
     "direct.span1": "Direct contact",
     "direct.h21": "Bel, app of <b>mail me</b>",
@@ -15,7 +15,7 @@
     "direct.a1": "06 55 76 78 19",
     "direct.p2": "Bel me gerust, ook voor een korte vraag.",
     "direct.a2": "Bel nu <i class=\"arrow\"></i>",
-    "direct.span3": "Kantoor",
+    "direct.span3": "Vast nummer",
     "direct.a3": "085 800 19 77",
     "direct.p3": "Mijn vaste nummer voor afspraken en vragen.",
     "direct.a4": "Bel nu <i class=\"arrow\"></i>",
@@ -94,7 +94,7 @@
       {
         "span": "03",
         "h3": "Online of bij je thuis",
-        "p": "Via een videocall of gewoon bij je aan de keukentafel, overal in Noord-Holland.",
+        "p": "Bij je thuis aan de keukentafel of via een videocall: in Enkhuizen, Hoorn, Stede Broec, Medemblik, Drechterland en verder in West-Friesland en Noord-Holland.",
         "foto": {
           "src": "hh-enkhuizen-lucht.jpg",
           "alt": "Enkhuizen van bovenaf, met de haven en de Zuiderkerk",

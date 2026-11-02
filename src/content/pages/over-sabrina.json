@@ -1,13 +1,13 @@
 {
   "meta": {
-    "title": "Over Sabrina Reiz-Coenraad | Hypotheekadviseur in Noord-Holland | Hypotheekhaven",
-    "description": "Maak kennis met Sabrina Reiz-Coenraad van Hypotheekhaven: onafhankelijk hypotheek- en verzekeringsadviseur in Noord-Holland met meer dan 25 jaar ervaring. Persoonlijk advies en één vast aanspreekpunt, tot aan de notaris en ook daarna."
+    "title": "Sabrina Reiz-Coenraad, hypotheekadviseur | Hypotheekhaven",
+    "description": "Sabrina Reiz-Coenraad is al ruim 25 jaar hypotheek- en verzekeringsadviseur in Enkhuizen en West-Friesland. Persoonlijk advies en één vast aanspreekpunt."
   },
   "t": {
     "hero.a1": "Home",
     "hero.span1": "Over Sabrina",
-    "hero.h11": "Even <b>voorstellen</b>",
-    "hero.p1": "Ik ben Sabrina Reiz-Coenraad, onafhankelijk hypotheek- en verzekeringsadviseur in Noord-Holland. Al meer dan 25 jaar help ik mensen met een van de grootste beslissingen in hun leven.",
+    "hero.h11": "Sabrina Reiz&#8209;Coenraad,<br><b>je hypotheekadviseur</b>",
+    "hero.p1": "Ik ben Sabrina Reiz-Coenraad, onafhankelijk hypotheek- en verzekeringsadviseur uit Enkhuizen, voor heel West-Friesland en Noord-Holland. Al meer dan 25 jaar help ik mensen met een van de grootste beslissingen in hun leven.",
     "over-intro.span1": "Over Sabrina",
     "over-intro.h21": "Persoonlijk advies van <b>Sabrina Reiz&#8209;Coenraad</b>",
     "over-intro.p1": "Duidelijke uitleg, korte lijnen en één vast aanspreekpunt. Van de eerste berekening tot aan de notaris, en ook daarna.",
@@ -64,7 +64,7 @@
     },
     "over-intro.img2": {
       "src": "hh-sabrina-bankje.jpg",
-      "alt": ""
+      "alt": "Sabrina Reiz-Coenraad, hypotheekadviseur in Enkhuizen"
     },
     "over-intro.img3": {
       "src": "logo-google-reviews.png",

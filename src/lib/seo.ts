@@ -36,8 +36,10 @@ export function alleSeo(): Record<string, PaginaSeo> {
   for (const a of artikelen()) {
     if (a.artikel.status === 'binnenkort') continue;
     const seo: PaginaSeo = {
-      pad: `/blog/${a.slug}`, type: 'BlogPosting', kruimel: ['Blog', tekst(a.t.titel)], faq: !!a.l?.faq?.length,
-      artikel: { gepubliceerd: a.artikel.datum, gewijzigd: a.artikel.datum, sectie: CATEGORIEEN[a.artikel.categorie] ?? '', beeld: a.i['hero.foto1']?.src ?? 'hh-hero-kaartje.jpg' },
+      pad: `/blog/${a.slug}`, type: 'BlogPosting', kruimel: ['Blog', tekst(a.t.titel)],
+      // Een handgemaakt artikel heeft zijn FAQ in de content van zijn eigen pagina
+      faq: !!(a.artikel.eigenPagina ? inhoudVan(`blog-${a.slug}`) : a).l?.faq?.length,
+      artikel: { gepubliceerd: a.artikel.datum, gewijzigd: a.artikel.bijgewerkt ?? a.artikel.datum, sectie: CATEGORIEEN[a.artikel.categorie] ?? '', beeld: a.i['hero.foto1']?.src ?? 'hh-hero-kaartje.jpg' },
     };
     if (a.artikel.status === 'concept') seo.index = false;
     // Een artikel met een eigen pagina gebruikt de content van die pagina (content/pages/blog-<slug>.json)
@@ -48,11 +50,14 @@ export function alleSeo(): Record<string, PaginaSeo> {
 
 export const seoVoor = (pagina: string): PaginaSeo | undefined => alleSeo()[pagina];
 
+// De H1 van een artikel (titel in het sjabloon, hero.h11 op een eigen pagina) als headline
+const kop = (pagina: string) => { const t = inhoudVan(pagina).t; return tekst(t.titel ?? t['hero.h11'] ?? ''); };
+
 const ORG = `${siteUrl}/#organisatie`;
 const WEBSITE = `${siteUrl}/#website`;
 const SABRINA = `${siteUrl}/over-sabrina#sabrina`;
 
-export function jsonLd(pagina: string, meta: { title: string; description: string }, ogImage: string) {
+export function jsonLd(pagina: string, meta: { title: string; description: string }, ogImage: string, portret: string) {
   const alle = alleSeo();
   const seo = alle[pagina];
   const url = absoluut(seo.pad);
@@ -62,21 +67,29 @@ export function jsonLd(pagina: string, meta: { title: string; description: strin
     },
     {
       '@type': 'FinancialService', '@id': ORG, name: bedrijf.naam, url: siteUrl + '/',
-      logo: absoluut('/icon-512.png'), image: ogImage,
-      description: 'Onafhankelijk hypotheek- en verzekeringsadvies in Noord-Holland, online of bij je thuis.',
+      logo: absoluut('/icon-512.png'), image: portret,
+      description: bedrijf.omschrijving,
       telephone: bedrijf.telefoon, email: bedrijf.email,
-      areaServed: { '@type': 'AdministrativeArea', name: bedrijf.regio },
+      // Geen bezoekadres: Sabrina adviseert bij de klant thuis of online (servicegebied)
+      address: { '@type': 'PostalAddress', addressLocality: bedrijf.plaats, addressRegion: bedrijf.regio, addressCountry: 'NL' },
+      areaServed: [
+        ...bedrijf.werkgebied.map(name => ({ '@type': 'City', name })),
+        { '@type': 'AdministrativeArea', name: bedrijf.regio },
+      ],
+      hasMap: bedrijf.googleProfiel,
       founder: { '@id': SABRINA },
       identifier: [
         { '@type': 'PropertyValue', propertyID: 'KvK', value: bedrijf.kvk },
         { '@type': 'PropertyValue', propertyID: 'AFM', value: bedrijf.afm },
       ],
       knowsAbout: ['Hypotheekadvies', 'Oversluiten', 'Overwaarde', 'Verzekeringsadvies', 'Kredieten'],
-      sameAs: [bedrijf.linkedin, bedrijf.trustoo],
+      sameAs: [bedrijf.googleProfiel, bedrijf.linkedin, bedrijf.trustoo],
     },
     {
       '@type': 'Person', '@id': SABRINA, name: bedrijf.eigenaar, jobTitle: 'Onafhankelijk hypotheek- en verzekeringsadviseur',
-      url: absoluut('/over-sabrina'), worksFor: { '@id': ORG }, sameAs: [bedrijf.linkedin],
+      url: absoluut('/over-sabrina'), image: portret, description: `Onafhankelijk hypotheek- en verzekeringsadviseur uit ${bedrijf.plaats}.`,
+      knowsAbout: ['Hypotheekadvies', 'Hypotheek oversluiten', 'Overwaarde', 'Hypotheek bij scheiding', 'Hypotheek voor ondernemers', 'Overlijdensrisicoverzekering', 'Arbeidsongeschiktheidsverzekering', 'Kredieten'],
+      knowsLanguage: 'nl', worksFor: { '@id': ORG }, sameAs: [bedrijf.linkedin],
     },
   ];
 
@@ -100,7 +113,7 @@ export function jsonLd(pagina: string, meta: { title: string; description: strin
 
   if (seo.artikel) {
     graph.push({
-      '@type': 'BlogPosting', '@id': `${url}#artikel`, headline: meta.title.replace(/\s*\|.*$/, ''), description: meta.description,
+      '@type': 'BlogPosting', '@id': `${url}#artikel`, headline: kop(pagina) || meta.title.replace(/\s*\|.*$/, ''), description: meta.description,
       url, mainEntityOfPage: { '@id': `${url}#webpagina` }, image: ogImage,
       datePublished: seo.artikel.gepubliceerd, dateModified: seo.artikel.gewijzigd, articleSection: seo.artikel.sectie,
       inLanguage: 'nl-NL', author: { '@id': SABRINA }, publisher: { '@id': ORG },

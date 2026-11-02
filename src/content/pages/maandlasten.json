@@ -1,13 +1,13 @@
 {
   "meta": {
-    "title": "Maandlasten berekenen: bruto en netto | Hypotheekhaven",
-    "description": "Bereken je bruto en netto maandlasten voor je hypotheek, met de hypotheekrenteaftrek en het eigenwoningforfait van 2026. Zie ook hoe je maandlast zich ontwikkelt in de jaren daarna."
+    "title": "Maandlasten hypotheek berekenen | Hypotheekhaven",
+    "description": "Bereken je bruto en netto maandlasten voor je hypotheek, met hypotheekrenteaftrek en eigenwoningforfait 2026. Plus hoe je maandlast zich daarna ontwikkelt."
   },
   "t": {
     "hero.a1": "Home",
     "hero.span1": "Rekentools",
     "hero.span2": "Maandlasten",
-    "hero.h11": "Wat worden je <b>maandlasten?</b>",
+    "hero.h11": "Maandlasten <b>berekenen</b>",
     "hero.p1": "Reken uit wat je hypotheek per maand kost, bruto en netto. En zie meteen hoe dat bedrag zich ontwikkelt in de jaren daarna.",
     "berekenen.p1": "Zet JavaScript aan om je maandlasten te berekenen, of <a href=\"/contact#formulier\">plan een gratis kennismaking</a>.",
     "berekenen.h31": "Je situatie",
@@ -71,7 +71,7 @@
     "rt-zij.a1": "Bespreek je uitkomst <i class=\"arrow\"></i>",
     "uitleg.span1": "Zo reken ik",
     "uitleg.h21": "Uitleg bij <br><b>je uitkomst</b>",
-    "uitleg.p1": "Liever alles samen doorlopen, voor jouw situatie? Dat doen we in het gratis kennismakingsgesprek.",
+    "uitleg.p1": "Liever alles samen doorlopen, voor jouw situatie? Dat doen we in het gratis kennismakingsgesprek. Wil je eerst weten wat je kunt lenen? Lees <a href=\"/blog/hoeveel-kan-ik-lenen\">hoeveel kan ik lenen voor een huis</a>.",
     "uitleg.a1": "Plan een gratis kennismaking <i class=\"arrow\"></i>"
   },
   "i": {

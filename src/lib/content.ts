@@ -27,6 +27,7 @@ export interface Artikel extends Inhoud {
     status: ArtikelStatus;
     categorie: string;
     datum: string;          // JJJJ-MM-DD
+    bijgewerkt?: string;    // JJJJ-MM-DD, laatste inhoudelijke wijziging (dateModified)
     eigenPagina?: boolean;  // heeft een eigen .astro-bestand in plaats van het standaardsjabloon
     gerelateerd?: string[]; // slugs voor "Lees ook"; anders de nieuwste andere artikelen
   };
