@@ -84,6 +84,7 @@ h1, h2, h3 { font-weight: 400; line-height: 1.1; }
   background-position: center;
   opacity: 0;
   transition: opacity 1.3s ease;
+  will-change: opacity; /* eigen laag: overvloeien zonder de foto opnieuw te tekenen */
 }
 .hero-slide.is-active { opacity: 1; } /* houdt het kaartje in beeld bij smalle schermen */
 .hero-slide--sabrina { background-position: 63% center; } /* Sabrina staat rechts van het midden */
@@ -499,8 +500,21 @@ h1, h2, h3 { font-weight: 400; line-height: 1.1; }
   position: sticky; top: 0;
   height: 100vh; height: 100svh;
   overflow: hidden;
-  clip-path: inset(var(--inset-y, 12vh) var(--inset-x, 8vw));
+}
+/* Meegroeien zonder opnieuw tekenen: het raam schaalt (en snijdt af), de inhoud schaalt precies terug.
+   Beide zijn transforms, die de videokaart afhandelt; de foto zelf blijft even groot en scherp.
+   Beginstand: 8vw links/rechts en 12vh boven/onder ingesprongen (scriptje in script.js werkt dit bij). */
+.verhaal-raam {
+  position: absolute; inset: 0;
+  overflow: hidden;
   background: #000;
+  transform: scale(.84, .76);
+  will-change: transform;
+}
+.verhaal-inhoud {
+  position: absolute; inset: 0;
+  transform: scale(1.190476, 1.315789);
+  will-change: transform;
 }
 .verhaal-scene {
   position: absolute; inset: 0;
@@ -515,15 +529,22 @@ h1, h2, h3 { font-weight: 400; line-height: 1.1; }
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(to right, rgba(0, 0, 0, var(--links, .62)) 0%, rgba(0, 0, 0, var(--midden, .4)) 45%, rgba(0, 0, 0, .28) 100%);
 }
-/* Achter de tekst een zachte vervaging (zelfde techniek als de banners), zodat hij ook op een drukke foto rustig leest */
+/* Achter de tekst een zachte vervaging (zelfde techniek als de banners), zodat hij ook op een drukke foto rustig leest.
+   Een vervaagde kopie van de foto (filter) in plaats van backdrop-filter: die wordt één keer berekend op een eigen laag,
+   terwijl backdrop-filter bij elk scrollframe opnieuw over het hele scherm vervaagt en de animatie laat haperen.
+   De donkere laag (::before) ligt erboven, zoals voorheen. */
+.verhaal-scene::before { z-index: 1; }
 .verhaal-scene::after {
   content: ""; position: absolute; inset: 0;
-  -webkit-backdrop-filter: blur(14px);
-          backdrop-filter: blur(14px);
+  background: var(--foto) var(--pos, center) / cover no-repeat;
+  filter: blur(14px);
   -webkit-mask-image: linear-gradient(to right, #000 25%, transparent 48%);
           mask-image: linear-gradient(to right, #000 25%, transparent 48%);
+  transform: translateZ(0);
   pointer-events: none;
 }
+/* Alleen de zichtbare foto tekent zijn vervaging */
+.verhaal-scene:not(.is-actief)::after { display: none; }
 /* Laag die de foto naar zwart dimt bij een overgang; de tekst ligt erboven */
 .verhaal-dim { position: absolute; inset: 0; z-index: 1; background: #000; opacity: 0; }
 /* Tekst en labels boven de vervaging en de dim-laag */
@@ -659,11 +680,12 @@ h1, h2, h3 { font-weight: 400; line-height: 1.1; }
   color: var(--white);
   background: var(--foto) var(--pos, center) / cover no-repeat;
 }
-/* Linkerkant: vervaagd (via backdrop-filter met een zacht verlopend masker) en donker */
+/* Linkerkant: vervaagd (vervaagde kopie van de foto met een zacht verlopend masker; sneller dan backdrop-filter) en donker */
 .banner::before {
   content: ""; position: absolute; inset: 0;
-  -webkit-backdrop-filter: blur(18px);
-          backdrop-filter: blur(18px);
+  background: var(--foto) var(--pos, center) / cover no-repeat;
+  filter: blur(18px);
+  transform: translateZ(0);
   -webkit-mask-image: linear-gradient(to right, #000 35%, transparent 62%);
           mask-image: linear-gradient(to right, #000 35%, transparent 62%);
 }
@@ -1049,7 +1071,7 @@ html, body { overflow-x: clip; }
   .banner::before, .banner-track .banner::before {
     inset: 0 0 auto 0; height: 210px;
     background: var(--foto) var(--pos, center) / cover no-repeat;
-    -webkit-backdrop-filter: none; backdrop-filter: none;
+    filter: none;
     -webkit-mask-image: none; mask-image: none;
   }
   .banner::after, .banner-track .banner::after { content: none; }
@@ -1063,6 +1085,7 @@ html, body { overflow-x: clip; }
     position: static; height: auto; overflow: visible; clip-path: none; background: none;
     display: flex; flex-direction: column; gap: 16px; padding: 0 var(--pad);
   }
+  .verhaal-raam, .verhaal-inhoud { display: contents; }
   .verhaal-scene { position: relative; inset: auto; opacity: 1; pointer-events: auto; background: var(--inkt); padding-top: 64vw; }
   .verhaal-scene::before { inset: 0 0 auto 0; height: 64vw; background: var(--foto) var(--pos, center) / cover no-repeat; }
   .verhaal-scene::after, .verhaal-dim { display: none; }

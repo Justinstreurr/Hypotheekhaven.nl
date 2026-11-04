@@ -471,9 +471,11 @@ taak(() => {
   const verhaalPin = document.querySelector('.verhaal-pin');
   if (verhaalPin) {
     const podium = verhaalPin.querySelector('.verhaal-podium');
+    const raam = podium.querySelector('.verhaal-raam');
+    const inhoud = podium.querySelector('.verhaal-inhoud');
     const vScenes = [...podium.querySelectorAll('.verhaal-scene')];
     const rustig = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let huidige = 0, t1, t2;
+    let huidige = 0, t1, t2, laatsteSchaal;
     const dim = (sc, waarde, overgang) => {
       const laag = sc.querySelector('.verhaal-dim');
       laag.style.transition = overgang ? 'opacity ' + overgang : 'none';
@@ -500,7 +502,7 @@ taak(() => {
     const mobiel = window.matchMedia('(max-width: 767px)');
     const updateVerhaal = () => {
       if (mobiel.matches) {
-        podium.style.removeProperty('--inset-y'); podium.style.removeProperty('--inset-x');
+        raam.style.removeProperty('transform'); inhoud.style.removeProperty('transform'); laatsteSchaal = undefined;
         vScenes.forEach(sc => { sc.classList.add('is-actief', 'is-zichtbaar'); const d = sc.querySelector('.verhaal-dim'); d.style.transition = 'none'; d.style.opacity = 0; });
         return;
       }
@@ -509,16 +511,26 @@ taak(() => {
       // Aankomen: van ingesprongen (r.top = vh) naar schermvullend (r.top = 0)
       const groei = Math.min(1, Math.max(0, 1 - r.top / vh));
       const zacht = 1 - Math.pow(1 - groei, 2);
-      podium.style.setProperty('--inset-y', (12 * (1 - zacht)).toFixed(2) + 'vh');
-      podium.style.setProperty('--inset-x', (8 * (1 - zacht)).toFixed(2) + 'vw');
+      // Raam van 84% x 76% (8vw / 12vh ingesprongen) naar schermvullend; de inhoud schaalt precies terug,
+      // zodat de foto niet vervormt maar alleen meer of minder ervan te zien is. Alleen transforms: geen hertekenen.
+      const sx = 1 - .16 * (1 - zacht), sy = 1 - .24 * (1 - zacht);
+      const schaal = sx.toFixed(4) + ',' + sy.toFixed(4);
+      if (schaal !== laatsteSchaal) {
+        raam.style.transform = `scale(${sx}, ${sy})`;
+        inhoud.style.transform = `scale(${1 / sx}, ${1 / sy})`;
+        laatsteSchaal = schaal;
+      }
       if (groei > .85 && huidige === 0) vScenes[0].classList.add('is-zichtbaar');
       // Vastgepind: elke foto krijgt een eigen stuk scrollen
       const totaal = verhaalPin.offsetHeight - vh;
       const stuk = totaal / vScenes.length;
       wissel(Math.min(vScenes.length - 1, Math.max(0, Math.floor((-r.top + stuk * .15) / stuk))));
     };
-    window.addEventListener('scroll', updateVerhaal, { passive: true });
-    window.addEventListener('resize', updateVerhaal);
+    // Hoogstens één keer per beeldje rekenen, ook als de browser vaker scroll-events stuurt
+    let gepland = false;
+    const plan = () => { if (!gepland) { gepland = true; requestAnimationFrame(() => { gepland = false; updateVerhaal(); }); } };
+    window.addEventListener('scroll', plan, { passive: true });
+    window.addEventListener('resize', plan);
     updateVerhaal();
   }
 });
