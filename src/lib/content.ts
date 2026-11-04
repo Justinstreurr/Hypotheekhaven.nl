@@ -74,12 +74,15 @@ export function inhoudVan(naam: string): Inhoud {
 }
 
 const BREED = 2000;
-const SMAL = 800;
+// Telefoons tonen achtergrondfoto's schermvullend op een staand scherm (cover) met 2-3x pixeldichtheid:
+// een smalle versie wordt dan flink opgerekt en zacht. Daarom ook hier tot 1400 px (of de bronbreedte).
+const SMAL = 1400;
 
 async function achtergrond(meta: ImageMetadata, breedte: number, format: 'webp' | 'avif' = 'webp') {
   if (meta.format === 'svg') return meta.src;
-  // AVIF (alleen voor de eerste herofoto, de LCP) is bij gelijke beeldkwaliteit ongeveer 45% kleiner dan WebP
-  const r = await getImage({ src: meta, width: Math.min(breedte, meta.width), format, quality: format === 'avif' ? 50 : 68 });
+  // AVIF (alleen voor de eerste herofoto, de LCP) is kleiner dan WebP. Kwaliteit niet lager dan ~70:
+  // daaronder maakt AVIF fijne details (haar, stof, baksteen) zichtbaar zacht. WebP 82 is visueel gelijk aan het origineel.
+  const r = await getImage({ src: meta, width: Math.min(breedte, meta.width), format, quality: format === 'avif' ? 72 : 82 });
   return r.src;
 }
 
