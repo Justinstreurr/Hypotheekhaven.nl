@@ -1,0 +1,31 @@
+{
+  "artikel": {
+    "status": "concept",
+    "categorie": "huis-kopen",
+    "datum": "2026-11-04"
+  },
+  "meta": {
+    "title": "Nieuwe hypotheeknormen 2027: hoeveel meer hypotheek kun jij straks krijgen? | Hypotheekhaven",
+    "description": "Nieuwe hypotheeknormen 2027: hoeveel meer hypotheek kun jij straks krijgen?: uitleg van Sabrina Reiz-Coenraad, onafhankelijk hypotheekadviseur in Noord-Holland."
+  },
+  "t": {
+    "titel": "Nieuwe hypotheeknormen 2027: hoeveel meer hypotheek kun jij straks krijgen?",
+    "samenvatting": "Een korte samenvatting voor de kaart in het blogoverzicht.",
+    "leestijd": "5 minuten lezen",
+    "inleiding": "Schrijf hier een korte inleiding van twee of drie zinnen.",
+    "inhoud": "<h2>Eerste tussenkop</h2><p>Schrijf hier de tekst van je artikel. Met de knoppen boven de tekst maak je een tussenkop, een opsomming of vetgedrukte tekst.</p>"
+  },
+  "i": {
+    "kaart": {
+      "src": "hh-hero-kaartje.jpg",
+      "alt": ""
+    },
+    "hero.foto1": {
+      "src": "hh-hero-kaartje.jpg",
+      "alt": ""
+    }
+  },
+  "l": {
+    "faq": []
+  }
+}
