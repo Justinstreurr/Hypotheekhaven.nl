@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import { aanvragenBeschikbaar, bewaarAanvraag, zetMail } from '../../lib/aanvragen';
 
 export const prerender = false;
 
@@ -39,8 +40,14 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     return json({ ok: false, fout: 'Niet alle verplichte velden zijn goed ingevuld.' }, 400);
   }
 
+  // Eerst bewaren in de beheeromgeving (/beheer/aanvragen), zodat de aanvraag er ook is als de mail mislukt
+  let id: string | null = null;
+  if (aanvragenBeschikbaar()) {
+    try { id = await bewaarAanvraag(v); } catch (e) { console.error('aanvraag bewaren', e); }
+  }
+
   const sleutel = env('RESEND_API_KEY');
-  if (!sleutel) return json({ ok: false, fout: 'niet-ingesteld' }, 503);
+  if (!sleutel) return id ? json({ ok: true }) : json({ ok: false, fout: 'niet-ingesteld' }, 503);
 
   const regels: [string, string][] = [
     ['Naam', v.naam], ['E-mail', v.email], ['Telefoon', v.telefoon || '-'],
@@ -59,9 +66,11 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
         + `<p><strong>Bericht</strong><br>${html(v.bericht).replace(/\n/g, '<br>')}</p><p>Privacyverklaring gelezen: ja</p>`,
     }),
   });
+  if (id) await zetMail(id, res.ok).catch(e => console.error('aanvraag bijwerken', e));
   if (!res.ok) {
     console.error('Resend', res.status, await res.text());
-    return json({ ok: false, fout: 'versturen-mislukt' }, 502);
+    // Bewaard in de beheeromgeving: voor de bezoeker is het gelukt; anders terugvallen op het eigen mailprogramma
+    return id ? json({ ok: true }) : json({ ok: false, fout: 'versturen-mislukt' }, 502);
   }
   return json({ ok: true });
 };

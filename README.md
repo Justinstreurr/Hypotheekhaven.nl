@@ -108,6 +108,18 @@ Nieuwe tekst of foto toevoegen aan een pagina: zet het element in het `.astro`-b
   Cookiebot scant de site maandelijks; controleer na nieuwe diensten of de cookies goed zijn ingedeeld in het
   Cookiebot-beheer. De cookieverklaring van Cookiebot verschijnt dan vanzelf op `/juridisch#cookies`.
 
+## Aanvragen (contactformulier)
+
+Elk bericht via het contactformulier komt per e-mail binnen op `CONTACT_AAN` (via Resend) en wordt daarnaast
+bewaard in dezelfde Upstash-database als de statistieken. Na inloggen staan ze op `/beheer/aanvragen`
+(tegel *Aanvragen* met het aantal nieuwe): openen markeert als gelezen, verder beantwoorden per e-mail, bellen,
+afhandelen of verwijderen.
+
+- Gaat de mail mis, dan staat de aanvraag er toch, met een waarschuwing; de bezoeker ziet gewoon "verstuurd".
+- Aanvragen worden 12 maanden na ontvangst automatisch verwijderd (zie de privacyverklaring op `/juridisch`).
+- Code: `src/lib/aanvragen.ts`, `src/pages/api/beheer/aanvragen.ts`, `src/pages/beheer/aanvragen.astro`.
+  Lokaal komen ze in `.data/statistiek.json`.
+
 ## Statistieken en feedback
 
 Het dashboard staat op **`/beheer/statistieken`** (ook via de werkbalk van de bewerkmodus). Het toont bezoekers per dag,

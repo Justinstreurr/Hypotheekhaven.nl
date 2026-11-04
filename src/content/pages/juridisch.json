@@ -14,7 +14,7 @@
     "toc.li3": "<a href=\"#klachten\"><span>03</span>Klachtenprocedure</a>",
     "toc.li4": "<a href=\"#gegevens\"><span>04</span>Bedrijfsgegevens</a>",
     "toc.p1": "<strong>Vragen over deze pagina?</strong>Mail naar <a href=\"mailto:info@hypotheekhaven.nl\">info@hypotheekhaven.nl</a> of bel <a href=\"tel:+31655767819\">06 55 76 78 19</a>.",
-    "juridisch-tekst.p1": "Laatst bijgewerkt: 31 oktober 2026",
+    "juridisch-tekst.p1": "Laatst bijgewerkt: 4 november 2026",
     "juridisch-tekst.p2": "Hypotheekhaven is het advieskantoor van Sabrina Reiz-Coenraad, onafhankelijk hypotheek- en verzekeringsadviseur in Noord-Holland en partner van NBG Hypotheken. Op deze pagina lees je hoe ik met je persoonsgegevens omga, welke cookies deze website gebruikt, hoe je een klacht indient en waar je mijn bedrijfsgegevens vindt.",
     "privacy.span1": "01",
     "privacy.h21": "Privacy<b>verklaring</b>",
@@ -25,7 +25,7 @@
     "privacy.h32": "Waarvoor gebruik ik je gegevens?",
     "privacy.p4": "Ik gebruik alleen gegevens die nodig zijn om mijn werk te doen. Vraag je bijvoorbeeld advies over een hypotheek of verzekering, dan heb ik je financiële gegevens nodig om je goed te kunnen adviseren. Ik verwerk je gegevens onder andere om:",
     "privacy.p5": "<strong>Nieuwsbrief.</strong> Als ik een nieuwsbrief verstuur, ontvang je die als klant over mijn eigen, vergelijkbare diensten. Ben je (nog) geen klant, dan krijg je de nieuwsbrief alleen als je je daar zelf voor hebt aangemeld. In elke nieuwsbrief staat een link waarmee je je met één klik afmeldt. Wie het contactformulier invult, zet ik nooit op de verzendlijst.",
-    "privacy.p6": "<strong>Contact via e-mail of formulier.</strong> Stuur je mij een bericht via het contactformulier, dan komt dat via de e-maildienst Resend als e-mail in mijn mailbox. Je bericht wordt niet in een database van de website bewaard. Ik gebruik je gegevens om je vraag te beantwoorden en af te handelen. Wat deze website verder bijhoudt, lees je bij <a href=\"#cookies\">Cookies</a>.",
+    "privacy.p6": "<strong>Contact via e-mail of formulier.</strong> Stuur je mij een bericht via het contactformulier, dan komt dat via de e-maildienst Resend als e-mail in mijn mailbox. Daarnaast bewaar ik je bericht in de beveiligde, met een wachtwoord afgeschermde beheeromgeving van de website (opslag bij Upstash in Frankfurt, Duitsland), zodat er geen aanvraag verloren gaat. Daar wordt het uiterlijk 12 maanden na ontvangst automatisch verwijderd. Ik gebruik je gegevens om je vraag te beantwoorden en af te handelen. Wat deze website verder bijhoudt, lees je bij <a href=\"#cookies\">Cookies</a>.",
     "privacy.p7": "<strong>Geen geautomatiseerde besluiten.</strong> Ik neem geen besluiten over je die alleen door een computer worden genomen. Een geldverstrekker of verzekeraar kan bij het beoordelen van je aanvraag wel geautomatiseerde systemen gebruiken. Die laat je dat dan zelf weten.",
     "privacy.h33": "Op welke grond?",
     "privacy.p8": "Ik verwerk je gegevens op basis van minimaal één van deze gronden:",
@@ -163,7 +163,7 @@
         "li": "notarissen, advocaten, accountants, makelaars en taxateurs;"
       },
       {
-        "li": "dienstverleners die voor deze website gegevens verwerken: Vercel (hosting van de website), Resend (versturen van het contactformulier per e-mail), Upstash (opslag van de anonieme statistieken en feedback), Google (Google Analytics, alleen met je toestemming), Microsoft (Clarity, alleen met je toestemming) en Usercentrics/Cybot (de cookiebanner)."
+        "li": "dienstverleners die voor deze website gegevens verwerken: Vercel (hosting van de website), Resend (versturen van het contactformulier per e-mail), Upstash (opslag van de anonieme statistieken, feedback en berichten via het contactformulier), Google (Google Analytics, alleen met je toestemming), Microsoft (Clarity, alleen met je toestemming) en Usercentrics/Cybot (de cookiebanner)."
       }
     ],
     "ul-2-2": [

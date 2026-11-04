@@ -39,10 +39,13 @@ async function lokaal(commandos: Commando[]) {
   const lijst = (k: string) => (db[k] ??= []) as string[];
   let gewijzigd = false;
   const uit = commandos.map(([cmd, k, ...a]) => {
-    if (['HINCRBY', 'PFADD', 'LPUSH', 'LTRIM'].includes(String(cmd))) gewijzigd = true;
+    if (['HINCRBY', 'PFADD', 'LPUSH', 'LTRIM', 'HSET', 'HDEL'].includes(String(cmd))) gewijzigd = true;
     const key = String(k);
     switch (cmd) {
       case 'HINCRBY': { const h = hash(key); h[String(a[0])] = (h[String(a[0])] ?? 0) + Number(a[1]); return h[String(a[0])]; }
+      case 'HSET': { const h = hash(key) as unknown as Record<string, string>; h[String(a[0])] = String(a[1]); return 1; }
+      case 'HGET': return ((db[key] ?? {}) as unknown as Record<string, string>)[String(a[0])] ?? null;
+      case 'HDEL': { const h = hash(key); let n = 0; a.forEach(x => { if (String(x) in h) { delete h[String(x)]; n++; } }); return n; }
       case 'HGETALL': return Object.entries((db[key] ?? {}) as Record<string, number>).flat();
       case 'PFADD': { const h = hash(key); a.forEach(x => { h[String(x)] = 1; }); return 1; }
       case 'PFCOUNT': return Object.keys((db[key] ?? {}) as Record<string, number>).length;
@@ -58,6 +61,9 @@ async function lokaal(commandos: Commando[]) {
   });
   return uit;
 }
+
+// Dezelfde opslag, ook gebruikt voor de aanvragen van het contactformulier (zie lib/aanvragen.ts)
+export const opslag = redis;
 
 export const statistiekBeschikbaar = () => !!(env('UPSTASH_REDIS_REST_URL') || env('KV_REST_API_URL')) || import.meta.env.DEV;
 

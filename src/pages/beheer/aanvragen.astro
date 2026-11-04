@@ -1,0 +1,181 @@
+---
+// Aanvragen via het contactformulier. Alleen te zien voor wie is ingelogd (de API controleert dat).
+---
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Aanvragen | Hypotheekhaven</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style is:global>
+  :root {
+    --inkt: #081534; --accent: #8E4F4B; --accent-zacht: rgba(142, 79, 75, .12); --zand: #F5F0EA; --kaart: #fff;
+    --lijn: #E9E2D8; --tekst: #081534; --tekst-2: rgba(8, 21, 52, .66); --tekst-3: rgba(8, 21, 52, .48);
+    --goed: #2f7a3d; --let-op: #a5552b;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--zand); color: var(--tekst); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  a { color: inherit; }
+  .kop { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding: 16px 28px; background: var(--inkt); color: #fff; }
+  .kop h1 { font-size: 18px; font-weight: 650; margin-right: auto; }
+  .kop a { font-size: 14px; opacity: .85; }
+  .filters { display: flex; gap: 4px; padding: 3px; background: rgba(255, 255, 255, .1); border-radius: 10px; }
+  .filters button { border: 0; padding: 7px 14px; border-radius: 8px; background: transparent; color: #fff; font: inherit; font-size: 14px; cursor: pointer; }
+  .filters button[aria-pressed="true"] { background: #fff; color: var(--inkt); font-weight: 600; }
+  main { max-width: 900px; margin: 0 auto; padding: 28px; display: grid; gap: 12px; }
+  #lijst { display: grid; gap: 12px; }
+  .uitleg { font-size: 13.5px; color: var(--tekst-3); margin-bottom: 4px; }
+  .leeg { padding: 40px 24px; text-align: center; color: var(--tekst-2); background: var(--kaart); border: 1px solid var(--lijn); border-radius: 14px; }
+  .fout { color: #a12a2a; }
+  details { background: var(--kaart); border: 1px solid var(--lijn); border-radius: 14px; overflow: hidden; }
+  details[data-status="nieuw"] { border-left: 4px solid var(--accent); }
+  summary { display: grid; grid-template-columns: 1fr auto; gap: 2px 16px; padding: 16px 20px; cursor: pointer; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .naam { font-weight: 600; font-size: 16px; }
+  details[data-status="nieuw"] .naam::after { content: "Nieuw"; margin-left: 8px; padding: 2px 8px; border-radius: 99px; background: var(--accent-zacht); color: var(--accent); font-size: 12px; font-weight: 600; vertical-align: 2px; }
+  details[data-status="afgehandeld"] .naam { color: var(--tekst-2); }
+  .datum { font-size: 13px; color: var(--tekst-3); text-align: right; white-space: nowrap; }
+  .onderwerp { grid-column: 1 / -1; font-size: 14px; color: var(--tekst-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .details { padding: 0 20px 20px; border-top: 1px solid var(--lijn); }
+  dl { display: grid; grid-template-columns: 150px 1fr; gap: 6px 16px; padding: 16px 0; font-size: 14.5px; }
+  dt { color: var(--tekst-2); }
+  dd { overflow-wrap: anywhere; }
+  .bericht { white-space: pre-wrap; padding: 14px 16px; background: var(--zand); border-radius: 10px; overflow-wrap: anywhere; }
+  .waarschuwing { margin-top: 12px; padding: 10px 14px; border-radius: 10px; background: rgba(165, 85, 43, .1); color: var(--let-op); font-size: 14px; }
+  .knoppen { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .knoppen a, .knoppen button { display: inline-flex; align-items: center; height: 40px; padding: 0 16px; border: 1px solid var(--lijn); border-radius: 10px; background: #fff; color: var(--inkt); font: inherit; font-size: 14px; font-weight: 500; text-decoration: none; cursor: pointer; }
+  .knoppen .hoofd { background: var(--inkt); border-color: var(--inkt); color: #fff; }
+  .knoppen .weg { margin-left: auto; color: #a12a2a; }
+  .knoppen a:hover, .knoppen button:hover { border-color: var(--accent); }
+  @media (max-width: 640px) {
+    main { padding: 16px; } .kop { padding: 14px 16px; }
+    dl { grid-template-columns: 1fr; gap: 0; } dd { margin-bottom: 8px; }
+    .knoppen .weg { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+<header class="kop">
+  <h1>Aanvragen</h1>
+  <div class="filters" role="group" aria-label="Filter">
+    <button type="button" data-filter="open" aria-pressed="true">Open</button>
+    <button type="button" data-filter="afgehandeld">Afgehandeld</button>
+    <button type="button" data-filter="alles">Alles</button>
+  </div>
+  <a href="/beheer">Beheer</a>
+  <a href="/">Naar de website</a>
+</header>
+
+<main>
+  <p class="uitleg">Berichten via het contactformulier. Je ontvangt ze ook per e-mail op het info-adres. Aanvragen worden 12 maanden na ontvangst automatisch verwijderd.</p>
+  <div id="lijst"><p class="leeg">Laden…</p></div>
+</main>
+
+<script>
+  type Aanvraag = {
+    id: string; tijd: string; naam: string; email: string; telefoon: string; onderwerp: string;
+    voorkeur: string; bericht: string; status: 'nieuw' | 'gelezen' | 'afgehandeld'; mail: boolean | null;
+  };
+  const lijstEl = document.getElementById('lijst')!;
+  let alle: Aanvraag[] = [];
+  let filter = 'open';
+  const esc = (s: string) => s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
+  const datum = (iso: string) => new Date(iso).toLocaleString('nl-NL', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+
+  async function api(method: string, url: string, body?: unknown) {
+    const r = await fetch(url, { method, cache: 'no-store', headers: body ? { 'content-type': 'application/json' } : {}, body: body ? JSON.stringify(body) : undefined });
+    if (r.status === 401) { location.href = '/beheer?naar=/beheer/aanvragen'; throw new Error('Niet ingelogd'); }
+    const d = await r.json();
+    if (!d.ok) throw new Error(d.fout);
+    return d;
+  }
+
+  function teken() {
+    const zichtbaar = alle.filter(a => filter === 'alles' || (filter === 'open' ? a.status !== 'afgehandeld' : a.status === 'afgehandeld'));
+    if (!zichtbaar.length) {
+      lijstEl.innerHTML = `<p class="leeg">${filter === 'open' ? 'Geen openstaande aanvragen.' : filter === 'afgehandeld' ? 'Nog geen afgehandelde aanvragen.' : 'Nog geen aanvragen ontvangen.'}</p>`;
+      return;
+    }
+    lijstEl.innerHTML = zichtbaar.map(a => {
+      const tel = a.telefoon && a.telefoon !== '-' ? a.telefoon : '';
+      const onderwerp = encodeURIComponent(`Re: ${a.onderwerp}`);
+      return `<details data-id="${a.id}" data-status="${a.status}">
+        <summary>
+          <span class="naam">${esc(a.naam)}</span>
+          <span class="datum">${datum(a.tijd)}</span>
+          <span class="onderwerp">${esc(a.onderwerp)}</span>
+        </summary>
+        <div class="details">
+          <dl>
+            <dt>E-mail</dt><dd><a href="mailto:${esc(a.email)}">${esc(a.email)}</a></dd>
+            <dt>Telefoon</dt><dd>${tel ? `<a href="tel:${esc(tel.replace(/[^\d+]/g, ''))}">${esc(tel)}</a>` : '–'}</dd>
+            <dt>Onderwerp</dt><dd>${esc(a.onderwerp)}</dd>
+            <dt>Voorkeur gesprek</dt><dd>${esc(a.voorkeur)}</dd>
+          </dl>
+          <div class="bericht">${esc(a.bericht)}</div>
+          ${a.mail === false ? '<p class="waarschuwing">Let op: de e-mail van deze aanvraag kon niet worden verstuurd. Hij staat alleen hier.</p>' : ''}
+          <div class="knoppen">
+            <a class="hoofd" href="mailto:${esc(a.email)}?subject=${onderwerp}">Beantwoorden per e-mail</a>
+            ${tel ? `<a href="tel:${esc(tel.replace(/[^\d+]/g, ''))}">Bellen</a>` : ''}
+            ${a.status === 'afgehandeld'
+              ? '<button type="button" data-actie="open">Terug naar open</button>'
+              : '<button type="button" data-actie="afgehandeld">Markeer als afgehandeld</button>'}
+            <button type="button" class="weg" data-actie="verwijder">Verwijderen</button>
+          </div>
+        </div>
+      </details>`;
+    }).join('');
+  }
+
+  async function laad() {
+    try {
+      alle = (await api('GET', '/api/beheer/aanvragen')).aanvragen;
+      teken();
+    } catch (e) {
+      lijstEl.innerHTML = `<p class="leeg fout">${esc((e as Error).message || 'Kon de aanvragen niet laden')}</p>`;
+    }
+  }
+
+  async function zet(id: string, status: Aanvraag['status']) {
+    const a = alle.find(x => x.id === id);
+    if (!a) return;
+    const oud = a.status;
+    a.status = status;
+    try { await api('PATCH', '/api/beheer/aanvragen', { id, status }); }
+    catch (e) { a.status = oud; alert((e as Error).message); }
+  }
+
+  // Openklappen van een nieuwe aanvraag = gelezen
+  lijstEl.addEventListener('toggle', e => {
+    const d = e.target as HTMLDetailsElement;
+    if (d.open && d.dataset.status === 'nieuw') { d.dataset.status = 'gelezen'; zet(d.dataset.id!, 'gelezen'); }
+  }, true);
+
+  lijstEl.addEventListener('click', async e => {
+    const knop = (e.target as HTMLElement).closest('button[data-actie]') as HTMLButtonElement | null;
+    if (!knop) return;
+    const id = (knop.closest('details') as HTMLDetailsElement).dataset.id!;
+    const actie = knop.dataset.actie;
+    if (actie === 'verwijder') {
+      if (!confirm('Deze aanvraag definitief verwijderen?')) return;
+      try { await api('DELETE', `/api/beheer/aanvragen?id=${encodeURIComponent(id)}`); alle = alle.filter(a => a.id !== id); teken(); }
+      catch (err) { alert((err as Error).message); }
+      return;
+    }
+    await zet(id, actie === 'afgehandeld' ? 'afgehandeld' : 'gelezen');
+    teken();
+  });
+
+  document.querySelectorAll<HTMLButtonElement>('.filters button').forEach(b => b.addEventListener('click', () => {
+    filter = b.dataset.filter!;
+    document.querySelectorAll('.filters button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    teken();
+  }));
+
+  laad();
+</script>
+</body>
+</html>
