@@ -54,9 +54,9 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       to: [env('CONTACT_AAN') || 'info@hypotheekhaven.nl'],
       reply_to: v.email,
       subject: `Contactformulier: ${v.onderwerp} (${v.naam})`,
-      text: regels.map(([k, w]) => `${k}: ${w}`).join('\n') + `\n\nBericht:\n${v.bericht}\n\nAkkoord met de privacyverklaring: ja`,
+      text: regels.map(([k, w]) => `${k}: ${w}`).join('\n') + `\n\nBericht:\n${v.bericht}\n\nPrivacyverklaring gelezen: ja`,
       html: `<table>${regels.map(([k, w]) => `<tr><td><strong>${k}</strong></td><td>${html(w)}</td></tr>`).join('')}</table>`
-        + `<p><strong>Bericht</strong><br>${html(v.bericht).replace(/\n/g, '<br>')}</p><p>Akkoord met de privacyverklaring: ja</p>`,
+        + `<p><strong>Bericht</strong><br>${html(v.bericht).replace(/\n/g, '<br>')}</p><p>Privacyverklaring gelezen: ja</p>`,
     }),
   });
   if (!res.ok) {

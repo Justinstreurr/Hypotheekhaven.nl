@@ -66,11 +66,13 @@
     p.textContent = tekst;
   };
 
-  const toonBevestiging = () => {
+  // Twee teksten: verstuurd via de site, of klaargezet in het e-mailprogramma (terugval)
+  const toonBevestiging = (perEmail) => {
     if (!bevestiging) return;
     const voornaam = form.elements.naam.value.trim().split(/\s+/)[0];
     const naamVak = bevestiging.querySelector('.bevestiging-naam');
     if (naamVak) naamVak.textContent = voornaam;
+    bevestiging.querySelectorAll('[data-variant]').forEach((v) => { v.hidden = (v.dataset.variant === 'mail') !== perEmail; });
     form.hidden = true;
     bevestiging.hidden = false;
     bevestiging.focus();
@@ -107,6 +109,7 @@
     const voorkeur = (form.querySelector('input[name="voorkeur"]:checked') || {}).value || 'Maakt niet uit';
     const knop = form.querySelector('button[type="submit"]');
     knop.disabled = true;
+    let soort = 'formulier';
     try {
       const r = await fetch(form.action, {
         method: 'POST',
@@ -117,14 +120,16 @@
         })
       });
       const d = await r.json().catch(() => ({}));
-      if (!d.ok && r.status !== 429 && r.status !== 400) perMail(w, voorkeur);
-      else if (!d.ok) { toonFout(d.fout); knop.disabled = false; return; }
+      if (!d.ok && r.status !== 429 && r.status !== 400) { soort = 'formulier-mail'; perMail(w, voorkeur); }
+      else if (!d.ok) { toonFout(d.fout); knop.disabled = false; dispatchEvent(new CustomEvent('hh:doel', { detail: 'formulierfout' })); return; }
     } catch (fout) {
+      soort = 'formulier-mail';
       perMail(w, voorkeur);
     }
     knop.disabled = false;
-    dispatchEvent(new CustomEvent('hh:doel', { detail: 'formulier' }));
-    toonBevestiging();
+    // statistieken: verstuurd, of via de e-mail-terugval (dan weten we niet of de mail ook echt verstuurd is)
+    dispatchEvent(new CustomEvent('hh:doel', { detail: soort }));
+    toonBevestiging(soort === 'formulier-mail');
   });
 
   const opnieuwKnop = document.querySelector('.bevestiging-opnieuw');

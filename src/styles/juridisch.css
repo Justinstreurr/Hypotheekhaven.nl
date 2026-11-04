@@ -33,7 +33,7 @@
   color: rgba(8, 21, 52, .6);
   transition: color .3s;
 }
-.toc ol a span { font-size: 11px; letter-spacing: .16em; padding-top: 3px; color: rgba(8, 21, 52, .45); transition: color .3s; }
+.toc ol a span { font-size: 11px; letter-spacing: .16em; padding-top: 3px; color: rgba(8, 21, 52, .6); transition: color .3s; }
 .toc ol a::before {
   content: "";
   position: absolute;

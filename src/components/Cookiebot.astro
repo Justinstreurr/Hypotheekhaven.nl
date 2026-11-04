@@ -1,0 +1,41 @@
+---
+// Cookiebot (cookiebanner) met Google Consent Mode v2. Staat alleen aan als PUBLIC_COOKIEBOT_ID is ingevuld;
+// zonder dat ID verandert er niets en wordt Google Analytics nooit geladen.
+// Volgorde in <head>: eerst de Consent Mode-standaard (alles "denied"), daarna Cookiebot. Cookiebot stuurt zelf
+// gtag('consent', 'update', ...) zodra de bezoeker kiest. Google Analytics en Clarity laden pas ná toestemming
+// voor statistieken (src/scripts/toestemming.js en src/scripts/ga.js).
+// Blokkeermodus: handmatig (geen data-blockingmode="auto"). "auto" herschrijft en vertraagt alle scripts, ook de
+// eigen Astro-modules en /beheer/editor.js; we laden de enige twee trackers (GA en Clarity) zelf pas na toestemming.
+// data-consentmode-defaults="disabled": de standaard staat hieronder al, Cookiebot hoeft hem niet nog eens te zetten.
+// In de bewerkmodus en de heatmap-weergave laadt Cookiebot niet (geen banner over de editor of het dashboard).
+const cbid = import.meta.env.PUBLIC_COOKIEBOT_ID;
+---
+{/* Verbinding met Cookiebot alvast opzetten: de banner (uc.js, daarna cc.js en de instellingen van consentcdn)
+     verschijnt zo eerder, zonder de eigen pagina op te houden. */}
+{cbid && <link rel="preconnect" href="https://consent.cookiebot.com">}
+{cbid && <link rel="preconnect" href="https://consentcdn.cookiebot.com">}
+{cbid && (
+  <script is:inline data-cookieconsent="ignore">
+window.dataLayer = window.dataLayer || [];
+function gtag() { dataLayer.push(arguments); }
+gtag('consent', 'default', {
+  ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied',
+  functionality_storage: 'granted', security_storage: 'granted', wait_for_update: 500
+});
+gtag('set', 'ads_data_redaction', true);
+gtag('set', 'url_passthrough', false);
+  </script>
+)}
+{cbid && (
+  <script is:inline data-cookieconsent="ignore" define:vars={{ cbid }}>
+if (!/(^|; )hh_edit=1/.test(document.cookie) && !location.search.includes('hh-heatmap')) {
+  var cb = document.createElement('script');
+  cb.id = 'Cookiebot';
+  cb.src = 'https://consent.cookiebot.com/uc.js';
+  cb.setAttribute('data-cbid', cbid);
+  cb.setAttribute('data-culture', 'NL');
+  cb.setAttribute('data-consentmode-defaults', 'disabled');
+  document.head.appendChild(cb);
+}
+  </script>
+)}

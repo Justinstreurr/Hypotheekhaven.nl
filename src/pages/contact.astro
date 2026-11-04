@@ -31,7 +31,7 @@ const { t, img, bg, meta, achtergronden, lijst } = await laadPagina('contact');
   <HeroBanks />
 </header>
 
-<main>
+<main id="inhoud" tabindex="-1">
 
 <section class="direct container" aria-labelledby="direct-kop">
   <div class="direct-kop">
@@ -169,10 +169,17 @@ const { t, img, bg, meta, achtergronden, lijst } = await laadPagina('contact');
       </form>
 
       <div class="formulier-bevestiging" role="status" aria-live="polite" tabindex="-1" hidden>
-        <span class="eyebrow" data-e="contact:formulier.span2" set:html={t('formulier.span2')}></span>
-        <h3 data-e="contact:formulier.h31" set:html={t('formulier.h31')}></h3>
-        <p data-e="contact:formulier.p2" set:html={t('formulier.p2')}></p>
-        <p data-e="contact:formulier.p3" set:html={t('formulier.p3')}></p>
+        <div class="bevestiging-variant" data-variant="mail">
+          <span class="eyebrow" data-e="contact:formulier.span2" set:html={t('formulier.span2')}></span>
+          <h3 data-e="contact:formulier.h31" set:html={t('formulier.h31')}></h3>
+          <p data-e="contact:formulier.p2" set:html={t('formulier.p2')}></p>
+          <p data-e="contact:formulier.p3" set:html={t('formulier.p3')}></p>
+        </div>
+        <div class="bevestiging-variant" data-variant="verstuurd" hidden>
+          <span class="eyebrow" data-e="contact:formulier.verstuurd-label" set:html={t('formulier.verstuurd-label')}></span>
+          <h3 data-e="contact:formulier.verstuurd-kop" set:html={t('formulier.verstuurd-kop')}></h3>
+          <p data-e="contact:formulier.verstuurd-tekst" set:html={t('formulier.verstuurd-tekst')}></p>
+        </div>
         <button type="button" class="waarom-link bevestiging-opnieuw" data-e="contact:formulier.button1" set:html={t('formulier.button1')}></button>
       </div>
     </div>

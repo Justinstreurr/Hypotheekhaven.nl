@@ -72,6 +72,7 @@
 /* Het formulier zelf: op zand, recht, met ruimte */
 .formulier-vak { background: var(--zand); padding: clamp(32px, 4vw, 56px); }
 .contactformulier { display: flex; flex-direction: column; gap: 28px; }
+.contactformulier[hidden], .bevestiging-variant[hidden] { display: none; }
 .veld-rij { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
 .veld { display: flex; flex-direction: column; min-width: 0; border: 0; }
 

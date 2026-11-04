@@ -682,7 +682,10 @@
     el.removeAttribute('data-foto');
     if (soort === 'img') { el.removeAttribute('srcset'); el.src = url; }
     else if (soort === 'foto') el.style.setProperty('--foto', `url("${url}")`);
-    else { el.style.setProperty('--bg-l', `url("${url}")`); el.style.setProperty('--bg-m', `url("${url}")`); }
+    else {
+      el.style.setProperty('--bg-l', `url("${url}")`); el.style.setProperty('--bg-m', `url("${url}")`);
+      el.style.removeProperty('--bg-la'); el.style.removeProperty('--bg-ma'); // AVIF-versie van de oude foto (herofoto)
+    }
   }
 
   // Foto verkleinen in de browser: snel uploaden, de site maakt er daarna zelf de juiste formaten van

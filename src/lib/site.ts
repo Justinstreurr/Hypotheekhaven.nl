@@ -12,6 +12,10 @@ export const bedrijf = {
   kvk: '94387672',
   afm: '12042801',
   regio: 'Noord-Holland',
+  plaats: 'Enkhuizen', // geen bezoekadres: advies bij de klant thuis of online
+  omschrijving: 'Onafhankelijk hypotheek- en verzekeringsadvies in Enkhuizen, West-Friesland en Noord-Holland, bij je thuis of online.',
+  werkgebied: ['Enkhuizen', 'Stede Broec', 'Drechterland', 'Medemblik', 'Hoorn', 'Koggenland', 'Opmeer', 'Schagen', 'Alkmaar', 'Purmerend', 'Edam-Volendam'],
+  googleProfiel: 'https://www.google.com/maps?cid=3046776625114960757',
   linkedin: 'https://www.linkedin.com/in/sabrina-reiz-coenraad-a4a829135/',
   trustoo: 'https://trustoo.nl/noord-holland/enkhuizen/hypotheekadviseur/hypotheekhaven/',
 };

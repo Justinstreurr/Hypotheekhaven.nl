@@ -14,55 +14,57 @@
     "toc.li3": "<a href=\"#klachten\"><span>03</span>Klachtenprocedure</a>",
     "toc.li4": "<a href=\"#gegevens\"><span>04</span>Bedrijfsgegevens</a>",
     "toc.p1": "<strong>Vragen over deze pagina?</strong>Mail naar <a href=\"mailto:info@hypotheekhaven.nl\">info@hypotheekhaven.nl</a> of bel <a href=\"tel:+31655767819\">06 55 76 78 19</a>.",
-    "juridisch-tekst.p1": "Laatst bijgewerkt: <span class=\"placeholder\">[datum]</span>",
+    "juridisch-tekst.p1": "Laatst bijgewerkt: 31 oktober 2026",
     "juridisch-tekst.p2": "Hypotheekhaven is het advieskantoor van Sabrina Reiz-Coenraad, onafhankelijk hypotheek- en verzekeringsadviseur in Noord-Holland en partner van NBG Hypotheken. Op deze pagina lees je hoe ik met je persoonsgegevens omga, welke cookies deze website gebruikt, hoe je een klacht indient en waar je mijn bedrijfsgegevens vindt.",
     "privacy.span1": "01",
     "privacy.h21": "Privacy<b>verklaring</b>",
-    "privacy.p1": "Hypotheekhaven adviseert en bemiddelt in financiële diensten en producten. Daarvoor heb ik persoonsgegevens van je nodig. Ik ben ervoor verantwoordelijk om die zo goed mogelijk te beschermen en houd me daarbij aan de Algemene Verordening Gegevensbescherming (AVG) en andere wetgeving, zoals de Telecommunicatiewet.",
+    "privacy.p1": "Hypotheekhaven (Sabrina Reiz-Coenraad, KvK 94387672) is verantwoordelijk voor de persoonsgegevens die je via deze website of bij het opnemen van contact met mij deelt. Voor advies en bemiddeling werk ik als aangesloten instelling onder de verantwoordelijkheid van NBG Hypotheken. NBG verwerkt je gegevens dan ook, volgens de eigen <a href=\"https://nbg.nl/privacy-statement/\" target=\"_blank\" rel=\"noopener\">privacyverklaring van NBG</a>. Ik ga zorgvuldig met je gegevens om en houd me aan de Algemene Verordening Gegevensbescherming (AVG) en andere wetgeving, zoals de Telecommunicatiewet.",
     "privacy.h31": "Welke gegevens verwerk ik?",
-    "privacy.p2": "Ik verwerk de gegevens die je zelf aan mij geeft wanneer je deze website, mijn diensten of producten gebruikt, en alleen voor het doel waarvoor ik ze heb gevraagd. Het gaat (mogelijk) om:",
-    "privacy.p3": "Gezondheidsgegevens of strafrechtelijke gegevens verwerk ik uiterst zorgvuldig en doorgaans alleen met jouw toestemming.",
+    "privacy.p2": "Ik verwerk de gegevens die je zelf aan mij geeft wanneer je deze website of mijn diensten gebruikt, en alleen voor het doel waarvoor ik ze heb gevraagd. Het gaat (mogelijk) om:",
+    "privacy.p3": "Gezondheidsgegevens of strafrechtelijke gegevens verwerk ik alleen als dat nodig is voor je aanvraag, uiterst zorgvuldig en doorgaans met jouw uitdrukkelijke toestemming.",
     "privacy.h32": "Waarvoor gebruik ik je gegevens?",
     "privacy.p4": "Ik gebruik alleen gegevens die nodig zijn om mijn werk te doen. Vraag je bijvoorbeeld advies over een hypotheek of verzekering, dan heb ik je financiële gegevens nodig om je goed te kunnen adviseren. Ik verwerk je gegevens onder andere om:",
-    "privacy.p5": "<strong>Nieuwsbrief.</strong> Met de nieuwsbrief informeer ik klanten en potentiële klanten over mijn dienstverlening en over ontwikkelingen rond verzekeringen en financiële producten. Het e-mailadres van klanten en potentiële klanten wordt automatisch aan de verzendlijst toegevoegd. In elke nieuwsbrief staat een link waarmee je je kunt afmelden.",
-    "privacy.p6": "<strong>Contact via e-mail of formulier.</strong> Stuur je mij een e-mail of een bericht via de website, dan bewaar ik die gegevens zolang dat nodig is om je bericht volledig te beantwoorden en af te handelen.",
-    "privacy.p7": "<strong>Profilering en geautomatiseerde besluitvorming.</strong> Ik kan gebruikmaken van geautomatiseerde besluitvorming. Daarbij kan ik je persoonsgegevens koppelen aan bijvoorbeeld gedrag, locatie en persoonlijke voorkeuren om analyses of voorspellingen te maken. Op basis daarvan kan ik je wel of geen aanbieding doen. Van externe partijen gebruik ik alleen de gegevens die nodig zijn om contact met je te onderhouden.",
+    "privacy.p5": "<strong>Nieuwsbrief.</strong> Als ik een nieuwsbrief verstuur, ontvang je die als klant over mijn eigen, vergelijkbare diensten. Ben je (nog) geen klant, dan krijg je de nieuwsbrief alleen als je je daar zelf voor hebt aangemeld. In elke nieuwsbrief staat een link waarmee je je met één klik afmeldt. Wie het contactformulier invult, zet ik nooit op de verzendlijst.",
+    "privacy.p6": "<strong>Contact via e-mail of formulier.</strong> Stuur je mij een bericht via het contactformulier, dan komt dat via de e-maildienst Resend als e-mail in mijn mailbox. Je bericht wordt niet in een database van de website bewaard. Ik gebruik je gegevens om je vraag te beantwoorden en af te handelen. Wat deze website verder bijhoudt, lees je bij <a href=\"#cookies\">Cookies</a>.",
+    "privacy.p7": "<strong>Geen geautomatiseerde besluiten.</strong> Ik neem geen besluiten over je die alleen door een computer worden genomen. Een geldverstrekker of verzekeraar kan bij het beoordelen van je aanvraag wel geautomatiseerde systemen gebruiken. Die laat je dat dan zelf weten.",
     "privacy.h33": "Op welke grond?",
     "privacy.p8": "Ik verwerk je gegevens op basis van minimaal één van deze gronden:",
-    "privacy.h34": "Inzien, aanpassen of verwijderen",
-    "privacy.p9": "Je hebt het recht om je persoonsgegevens in te zien, aan te passen of te laten verwijderen. Stuur je verzoek naar <a href=\"mailto:info@hypotheekhaven.nl\">info@hypotheekhaven.nl</a>. Om je privacy te beschermen stel ik eerst vast dat het verzoek echt van jou komt. Ik reageer zo snel mogelijk, uiterlijk binnen een maand. Ook met vragen over hoe ik je gegevens gebruik kun je contact opnemen. Meer over privacy lees je op de website van de <a href=\"https://www.autoriteitpersoonsgegevens.nl\" target=\"_blank\" rel=\"noopener\">Autoriteit Persoonsgegevens</a>.",
+    "privacy.h34": "Je rechten",
+    "privacy.p9": "Over je persoonsgegevens heb je de volgende rechten:",
+    "privacy.p17": "Wil je een van deze rechten gebruiken? Stuur je verzoek naar <a href=\"mailto:info@hypotheekhaven.nl\">info@hypotheekhaven.nl</a>. Gaat het om je adviesdossier bij NBG, dan kun je ook mailen naar de functionaris gegevensbescherming van NBG via <a href=\"mailto:fg@nbg.nl\">fg@nbg.nl</a>. Ik reageer zo snel mogelijk, uiterlijk binnen een maand. Een kopie van je identiteitsbewijs is niet nodig: ik vraag je alleen om aanvullende gegevens als dat nodig is om vast te stellen dat het verzoek van jou komt. Kan ik een verzoek niet (helemaal) uitvoeren, bijvoorbeeld omdat ik gegevens wettelijk moet bewaren, dan leg ik je uit waarom.",
     "privacy.h35": "Beveiliging en bewaartermijn",
-    "privacy.p10": "Je privacy staat voorop. Ik heb passende technische en organisatorische maatregelen genomen, zodat alleen bevoegde mensen je gegevens verwerken. Ik ga terughoudend en zorgvuldig met persoonsgegevens om, zorg dat ze juist en actueel zijn, en ze worden alleen verwerkt door mensen met een geheimhoudingsplicht. De beveiliging is vastgelegd in een informatiebeveiligingsbeleid.",
-    "privacy.p11": "Ik bewaar je gegevens niet langer dan nodig is voor het doel waarvoor ze zijn verzameld, en houd me aan de bewaartermijnen uit wet- en regelgeving. Over het gebruik van je gegevens informeer ik je vooraf, in eenvoudige en duidelijke taal, bijvoorbeeld met deze privacyverklaring.",
+    "privacy.p10": "Je privacy staat voorop. Ik heb passende technische en organisatorische maatregelen genomen, zodat alleen bevoegde mensen je gegevens verwerken. Ik ga terughoudend en zorgvuldig met persoonsgegevens om, zorg dat ze juist en actueel zijn, en ze worden alleen verwerkt door mensen met een geheimhoudingsplicht.",
+    "privacy.p11": "Ik bewaar je gegevens niet langer dan nodig is voor het doel waarvoor ze zijn verzameld, en houd me aan de bewaartermijnen uit wet- en regelgeving. Concreet:",
     "privacy.h36": "Delen met anderen",
     "privacy.p12": "Ik geef je gegevens niet zomaar aan anderen. Dat doe ik alleen als je daar toestemming voor hebt gegeven, als ik daartoe verplicht ben door de wet of een rechterlijke uitspraak, of als het nodig is voor de doelen hierboven. Je kunt je toestemming altijd intrekken; vanaf dat moment deel ik je gegevens niet meer met die partij. Je gegevens kunnen (mogelijk) worden gedeeld met:",
-    "privacy.p13": "Partijen die namens mij gegevens verwerken, doen dat alleen voor de doelen en onder de voorwaarden die we hebben afgesproken. Met hen sluit ik een verwerkersovereenkomst, zodat je gegevens even goed beveiligd en vertrouwelijk blijven. Ik blijf altijd verantwoordelijk voor die verwerkingen.",
+    "privacy.p13": "Partijen die namens mij gegevens verwerken, doen dat alleen voor de doelen en onder de voorwaarden die we hebben afgesproken. Daarvoor zijn verwerkersafspraken gemaakt, zodat je gegevens even goed beveiligd en vertrouwelijk blijven. Een aantal van deze dienstverleners zit in de Verenigde Staten of kan daar gegevens verwerken. Dat gebeurt alleen met passende waarborgen, zoals het EU-VS Data Privacy Framework of de standaardcontractbepalingen van de Europese Commissie.",
     "privacy.h37": "Vragen, klachten of een datalek melden",
-    "privacy.p14": "Denk je dat je gegevens niet goed beveiligd zijn, wil je een datalek melden, of heb je een vraag of klacht over hoe ik je persoonsgegevens verwerk? Mail naar <a href=\"mailto:info@hypotheekhaven.nl\">info@hypotheekhaven.nl</a>. Je kunt ook een klacht indienen bij de <a href=\"https://www.autoriteitpersoonsgegevens.nl\" target=\"_blank\" rel=\"noopener\">Autoriteit Persoonsgegevens</a>.",
+    "privacy.p14": "Denk je dat je gegevens niet goed beveiligd zijn, wil je een datalek melden, of heb je een vraag of klacht over hoe ik je persoonsgegevens verwerk? Mail naar <a href=\"mailto:info@hypotheekhaven.nl\">info@hypotheekhaven.nl</a>. Komen we er samen niet uit, dan kun je een klacht indienen bij de <a href=\"https://www.autoriteitpersoonsgegevens.nl\" target=\"_blank\" rel=\"noopener\">Autoriteit Persoonsgegevens</a>, Postbus 93374, 2509 AJ Den Haag.",
     "privacy.h38": "Websites van anderen",
     "privacy.p15": "Deze website linkt naar websites van anderen. Ik kan niet garanderen dat zij betrouwbaar en veilig met je gegevens omgaan. Lees daarom hun privacyverklaring voordat je hun website gebruikt.",
     "privacy.h39": "Wijzigingen",
-    "privacy.p16": "Ik kan deze privacyverklaring op elk moment aanpassen, zonder dat vooraf aan te kondigen. Een wijziging geldt vanaf het moment dat die op de website staat. Kijk daarom af en toe of er iets is veranderd.",
+    "privacy.p16": "Ik kan deze privacyverklaring aanpassen, bijvoorbeeld als de website of de wet verandert. Bij belangrijke wijzigingen laat ik dat weten; de datum bovenaan laat zien wanneer deze tekst voor het laatst is aangepast.",
     "cookies.span1": "02",
     "cookies.h21": "<b>Cookies</b>",
-    "cookies.p1": "Een cookie is een klein bestand dat een website op je computer of telefoon opslaat. Deze website meet anoniem hoe de site gebruikt wordt, zonder cookies. Alleen als je daar toestemming voor geeft, gebruik ik Microsoft Clarity, dat wel cookies plaatst.",
-    "cookies.h31": "Wat deze website wel gebruikt",
+    "cookies.p1": "Een cookie is een klein bestand dat een website op je computer of telefoon opslaat. Deze website gebruikt zonder je toestemming alleen wat nodig is om goed te werken. Cookies voor statistieken, van Google Analytics en Microsoft Clarity, komen er alleen als je daar toestemming voor geeft.",
+    "cookies.h31": "Wat deze website gebruikt",
     "cookies.h32": "Je toestemming",
-    "cookies.p2": "Bij je eerste bezoek vraag ik of je Microsoft Clarity toestaat. Kies je “Liever niet”, dan wordt Clarity niet geladen en plaatst deze website geen cookies. Je keuze pas je altijd aan via “Cookie-instellingen” onderaan elke pagina.",
+    "cookies.p2": "Bij je eerste bezoek vraag ik in de cookiebanner van Cookiebot om je toestemming. <strong>Noodzakelijk</strong> staat altijd aan: daarmee onthoudt de website je keuze. Onder <strong>Statistieken</strong> vallen Google Analytics en Microsoft Clarity. Geef je daar geen toestemming voor, dan wordt voor statistieken niets geladen en worden er geen statistiekcookies geplaatst. Voor advertenties of marketing gebruikt deze website geen cookies. Je keuze wijzig je, of je toestemming trek je in, via “Cookie-instellingen” onderaan elke pagina.",
     "cookies.h33": "Zelf cookies beheren",
-    "cookies.p3": "In de instellingen van je browser kun je cookies altijd bekijken, blokkeren of verwijderen.",
+    "cookies.p3": "In de instellingen van je browser kun je cookies en opgeslagen websitegegevens altijd bekijken, blokkeren of verwijderen. Verwijder je ze, dan vraagt de cookiebanner bij je volgende bezoek opnieuw om je keuze.",
+    "cookies.p4": "Hieronder staat de volledige, actuele lijst van cookies op deze website, automatisch bijgehouden door Cookiebot. Daar zie je ook welke keuze je hebt gemaakt en kun je die direct aanpassen.",
     "klachten.span1": "03",
     "klachten.h21": "Klachten<b>procedure</b>",
     "klachten.p1": "Ik doe mijn uiterste best om je zo goed mogelijk te helpen. Ben je toch ergens ontevreden over, dan hoor ik dat graag. Samen zoeken we naar een oplossing.",
-    "klachten.p2": "Hypotheekhaven is partner van NBG Hypotheken en werkt onder de vergunning van NBG bij de Autoriteit Financiële Markten (AFM). Daarom loopt een formele klacht via de klachtenprocedure van NBG.",
-    "klachten.dt1": "KiFiD",
+    "klachten.p2": "Hypotheekhaven is als aangesloten instelling verbonden aan NBG Hypotheken. Mijn advies en bemiddeling vallen onder de verantwoordelijkheid van NBG. Daarom loopt een formele klacht via de klachtenprocedure van NBG.",
+    "klachten.dt1": "Kifid",
     "klachten.dd1": "Klachteninstituut Financiële Dienstverlening",
     "klachten.dt2": "Postadres",
     "klachten.dd2": "Postbus 93257, 2509 AG Den Haag",
     "klachten.dt3": "Telefoon",
-    "klachten.dd3": "0900 355 22 48",
+    "klachten.dd3": "<a href=\"tel:+31703338999\">070 333 8 999</a> (werkdagen 9.00–17.00 uur)",
     "klachten.dt4": "E-mail",
-    "klachten.dd4": "<a href=\"mailto:info@kifid.nl\">info@kifid.nl</a>",
+    "klachten.dd4": "<a href=\"mailto:consumenten@kifid.nl\">consumenten@kifid.nl</a>",
     "klachten.dt5": "Website",
     "klachten.dd5": "<a href=\"https://www.kifid.nl\" target=\"_blank\" rel=\"noopener\">www.kifid.nl</a>",
     "klachten.dt6": "Aansluitnummer",
@@ -84,10 +86,14 @@
     "gegevens.dd6": "<a href=\"mailto:info@hypotheekhaven.nl\">info@hypotheekhaven.nl</a>",
     "gegevens.dt7": "Partner van",
     "gegevens.dd7": "NBG Hypotheken",
-    "gegevens.dt8": "Vergunning",
-    "gegevens.dd8": "Onder de vergunning van NBG bij de Autoriteit Financiële Markten (AFM), registratienummer 12042801",
-    "gegevens.dt9": "KiFiD",
+    "gegevens.dt8": "AFM-registratie",
+    "gegevens.dd8": "Aangesloten instelling van NBG Hypotheken in de zin van de Wet financieel toezicht (Wft); ingeschreven in het register van de Autoriteit Financiële Markten (AFM) onder nummer 12042801. Het advies en de bemiddeling vallen onder de verantwoordelijkheid van NBG Hypotheken.",
+    "gegevens.dt9": "Kifid",
     "gegevens.dd9": "Aangesloten onder nummer 300.015907",
+    "gegevens.dt10": "Aansprakelijkheid",
+    "gegevens.dd10": "Er is een beroepsaansprakelijkheidsverzekering afgesloten. De aansprakelijkheid is beperkt tot het bedrag waarop deze verzekering aanspraak geeft.",
+    "gegevens.dt11": "Algemene voorwaarden",
+    "gegevens.dd11": "Op mijn dienstverlening zijn de <a href=\"https://nbg.nl/algemene-voorwaarden/\" target=\"_blank\" rel=\"noopener\">algemene voorwaarden van NBG Hypotheken</a> van toepassing. Op verzoek stuur ik ze je toe.",
     "gegevens.p1": "In de <a href=\"https://nbg.nl/wp-content/uploads/documents/Dienstenwijzer-Hypotheekhaven.pdf\" target=\"_blank\" rel=\"noopener\">Dienstenwijzer van Hypotheekhaven</a> (pdf) lees je meer over mijn dienstverlening, de samenwerking met NBG, hoe ik word beloond en wat je van mij kunt verwachten."
   },
   "i": {
@@ -104,11 +110,11 @@
       },
       {
         "h3": "Dien een klacht in bij NBG",
-        "p": "Komen we er samen niet uit, of wil je liever direct een formele klacht indienen? Stuur je klacht dan naar <a href=\"mailto:klachten@nbg.nl\">klachten@nbg.nl</a> of per post naar De Pinckart 54, 5674 CC Nuenen. Na ontvangst van je klacht wordt contact met je opgenomen. Het streven is om je klacht binnen 2 weken af te handelen."
+        "p": "Komen we er samen niet uit, of wil je liever direct een formele klacht indienen? Stuur je klacht dan naar <a href=\"mailto:klachten@nbg.nl\">klachten@nbg.nl</a> of per post naar NBG Hypotheken, De Pinckart 54, 5674 CC Nuenen. Na ontvangst wordt contact met je opgenomen en hoor je uiterlijk binnen 14 dagen hoe en wanneer je klacht wordt afgehandeld. Het streven is om je klacht binnen 2 weken af te handelen. Aan de behandeling van je klacht zijn geen kosten verbonden."
       },
       {
-        "h3": "Leg je klacht voor aan het KiFiD",
-        "p": "Kom je samen niet tot een oplossing waar je tevreden mee bent? Dan kun je terecht bij het onafhankelijke Klachteninstituut Financiële Dienstverlening (KiFiD). Hypotheekhaven is daar aangesloten onder nummer 300.015907."
+        "h3": "Leg je klacht voor aan Kifid",
+        "p": "Kom je samen niet tot een oplossing waar je tevreden mee bent? Dan kun je terecht bij het onafhankelijke Klachteninstituut Financiële Dienstverlening (Kifid). Hypotheekhaven is daar aangesloten onder nummer 300.015907. Kifid vraagt dat je NBG eerst de gelegenheid geeft om op je klacht te reageren (in de regel 8 weken). Dien je klacht bij Kifid in binnen 3 maanden nadat je het definitieve standpunt over je klacht hebt gekregen, of binnen 1 jaar nadat je de klacht voor het eerst hebt ingediend."
       }
     ],
     "ul-2-2-2-2": [
@@ -116,13 +122,25 @@
         "li": "<strong>Lettertypes vanaf deze website zelf.</strong> De lettertypes worden niet bij een andere partij geladen; daarbij gaan geen gegevens naar derden."
       },
       {
-        "li": "<strong>Anonieme statistieken.</strong> Ik tel hoe de website gebruikt wordt: welke pagina’s bezocht worden, hoe lang, hoe ver er gescrold wordt, waarop geklikt wordt en via welke website bezoekers binnenkomen. Dat gebeurt zonder cookies en zonder dat ik je kan herkennen. Je IP-adres wordt niet opgeslagen."
+        "li": "<strong>Cookiebanner (noodzakelijk).</strong> Voor de cookiebanner gebruik ik Cookiebot van Usercentrics (Cybot A/S, Denemarken). Het cookie “CookieConsent” onthoudt je keuze 12 maanden."
       },
       {
-        "li": "<strong>Microsoft Clarity, alleen met je toestemming.</strong> Clarity laat zien hoe bezoekers de website gebruiken, zoals klikken, scrollen en muisbewegingen, en maakt daarvan opnames. Wat je in formulieren typt, wordt afgeschermd. Clarity plaatst hiervoor cookies en Microsoft kan gegevens buiten de EU verwerken. Meer lees je in de <a href=\"https://privacy.microsoft.com/nl-nl/privacystatement\" target=\"_blank\" rel=\"noopener\">privacyverklaring van Microsoft</a>."
+        "li": "<strong>Eigen anonieme statistieken, zonder cookies.</strong> Ik tel hoe de website gebruikt wordt: welke pagina’s bezocht worden, hoe lang, hoe ver er gescrold wordt, waarop geklikt wordt en via welke website bezoekers binnenkomen. Om bezoekers per dag te tellen, maak ik van je IP-adres en browser samen met een geheime code een versleutelde code (een SHA-256-hash). Die code verandert elke dag en is de volgende dag niet meer naar jou te herleiden. Je IP-adres zelf wordt niet opgeslagen. De cijfers staan bij Upstash en worden na 400 dagen automatisch verwijderd. Dit staat los van Google Analytics. Ik doe dit op basis van mijn gerechtvaardigd belang: begrijpen hoe de website gebruikt wordt, zodat ik die kan verbeteren."
       },
       {
-        "li": "<strong>Feedback.</strong> Geef je een reactie bij “Was deze pagina nuttig?”, dan bewaar ik die zonder je naam of contactgegevens."
+        "li": "<strong>Laadsnelheid (Vercel Speed Insights).</strong> Via Vercel Speed Insights meet ik anoniem hoe snel de pagina’s laden, zodat ik de site snel kan houden. Daarvoor worden geen cookies geplaatst en geen persoonsgegevens opgeslagen."
+      },
+      {
+        "li": "<strong>Google Analytics, alleen met je toestemming.</strong> Geef je toestemming voor Statistieken, dan gebruik ik Google Analytics 4 van Google Ireland Ltd. om te zien hoe de website gebruikt wordt. Zonder toestemming wordt Google Analytics niet geladen (Google Consent Mode v2). Google signals staat uit en de gegevens worden niet gebruikt voor advertenties of personalisatie. Google Analytics plaatst de cookies “_ga” en “_ga_” gevolgd door een code, die maximaal 2 jaar blijven staan. De gegevens worden na 14 maanden verwijderd. Google kan gegevens in de Verenigde Staten verwerken, onder het EU-VS Data Privacy Framework. Meer lees je in de <a href=\"https://policies.google.com/privacy?hl=nl\" target=\"_blank\" rel=\"noopener\">privacyverklaring van Google</a>."
+      },
+      {
+        "li": "<strong>Microsoft Clarity, alleen met je toestemming.</strong> Ook Clarity van Microsoft Ireland valt onder Statistieken. Clarity laat zien hoe bezoekers de website gebruiken, zoals klikken, scrollen en muisbewegingen, en maakt daarvan opnames en heatmaps. Wat je in formulieren typt, wordt afgeschermd. Clarity plaatst de cookies “_clck” (1 jaar), “_clsk” (1 dag) en “MUID” (ongeveer 1 jaar). Microsoft kan gegevens buiten de EU verwerken, met passende waarborgen. Meer lees je in de <a href=\"https://privacy.microsoft.com/nl-nl/privacystatement\" target=\"_blank\" rel=\"noopener\">privacyverklaring van Microsoft</a>."
+      },
+      {
+        "li": "<strong>Opslag in je eigen browser, zonder toestemming.</strong> Een paar functies onthouden iets in je browser, zonder dat het naar mij wordt verstuurd: welke documenten je hebt afgevinkt in de documentenchecklist (localStorage, blijft staan tot je het zelf wist), de uitkomst van een rekentool, zodat het contactformulier die al kan invullen (“hh-rekentool”, sessionStorage, verdwijnt als je het tabblad sluit), en je keuze in de eenvoudige eigen cookiemelding (“hh-toestemming”, localStorage), die alleen wordt gebruikt als de cookiebanner van Cookiebot niet actief is."
+      },
+      {
+        "li": "<strong>Feedback.</strong> Geef je een reactie bij “Was deze pagina nuttig?”, dan bewaar ik je antwoord (ja of nee), je eventuele opmerking (maximaal 600 tekens), de pagina, de datum en het soort apparaat (mobiel, tablet of desktop). Dat gebeurt zonder je naam, contactgegevens of IP-adres. Ik bewaar alleen de laatste 500 reacties; oudere verdwijnen vanzelf. Zet daarom geen persoonlijke gegevens in het tekstvak."
       },
       {
         "li": "<strong>Links naar andere websites.</strong> Klik je op een link naar bijvoorbeeld WhatsApp, LinkedIn, Trustoo of NBG, dan gelden daar de cookie- en privacyregels van die website."
@@ -130,33 +148,36 @@
     ],
     "ul-2-2-2": [
       {
+        "li": "NBG Hypotheken, onder wiens verantwoordelijkheid ik adviseer en bemiddel;"
+      },
+      {
         "li": "financiële instellingen, zoals banken en verzekeraars, waar ik voor je een product aanvraag, waar je een product hebt dat ik voor je beheer, of waarbij ik je begeleid tijdens de looptijd;"
       },
       {
         "li": "personen en instanties die volgens de wet geïnformeerd moeten worden;"
       },
       {
-        "li": "externe partijen die gegevens onder mijn verantwoordelijkheid verwerken, zoals een ICT-dienstverlener of marketingpartij;"
-      },
-      {
         "li": "schade-experts en databases voor fraudebestrijding, zoals CIS;"
       },
       {
-        "li": "notarissen, advocaten, accountants, makelaars en taxateurs."
+        "li": "notarissen, advocaten, accountants, makelaars en taxateurs;"
+      },
+      {
+        "li": "dienstverleners die voor deze website gegevens verwerken: Vercel (hosting van de website), Resend (versturen van het contactformulier per e-mail), Upstash (opslag van de anonieme statistieken en feedback), Google (Google Analytics, alleen met je toestemming), Microsoft (Clarity, alleen met je toestemming) en Usercentrics/Cybot (de cookiebanner)."
       }
     ],
     "ul-2-2": [
       {
-        "li": "het uitvoeren van een overeenkomst binnen de EU voor een financieel product of een financiële dienst;"
+        "li": "de uitvoering van een overeenkomst met je, of stappen die je zelf vraagt voordat we een overeenkomst sluiten, zoals het beantwoorden van je vraag of een adviesgesprek;"
       },
       {
         "li": "een wettelijke verplichting, zoals mijn wettelijke zorgplicht of wettelijke bewaartermijnen;"
       },
       {
-        "li": "jouw uitdrukkelijke toestemming voor een specifiek doel; die toestemming kun je altijd weer intrekken;"
+        "li": "jouw toestemming voor een specifiek doel, bijvoorbeeld voor Google Analytics en Microsoft Clarity; die toestemming kun je altijd weer intrekken;"
       },
       {
-        "li": "een gerechtvaardigd belang van mijn bedrijfsvoering of van een derde, zoals het zorgvuldig uitvoeren van overeenkomsten met je en het onderhouden en uitbouwen van de klantrelatie, eventueel via direct marketing en/of profilering gericht op marketing. Ik weeg daarbij steeds jouw belangen af tegen die van mij."
+        "li": "een gerechtvaardigd belang van mijn bedrijfsvoering of van een derde, zoals het zorgvuldig uitvoeren van overeenkomsten, het onderhouden van de klantrelatie en het beveiligen en verbeteren van deze website met anonieme statistieken. Ik weeg daarbij steeds jouw belangen af tegen die van mij, en je kunt hier altijd bezwaar tegen maken."
       }
     ],
     "ul-2": [
@@ -167,13 +188,13 @@
         "li": "(potentiële) klanten te beoordelen en te accepteren;"
       },
       {
-        "li": "de relatie met (potentiële) klanten en bezoekers te onderhouden;"
+        "li": "je vragen te beantwoorden en de relatie met (potentiële) klanten te onderhouden;"
       },
       {
         "li": "schades te behandelen waarbij je als benadeelde betrokken bent;"
       },
       {
-        "li": "(gerichte) marketing- en promotieactiviteiten uit te voeren om een klantrelatie op te bouwen, te onderhouden of uit te breiden;"
+        "li": "klanten te informeren over mijn diensten, bijvoorbeeld met een nieuwsbrief (zie hieronder);"
       },
       {
         "li": "te voldoen aan wettelijke verplichtingen;"
@@ -182,7 +203,7 @@
         "li": "fraude te voorkomen, zoals witwassen of identiteitsfraude;"
       },
       {
-        "li": "nieuwsbrieven of specifieke informatie te versturen."
+        "li": "deze website te laten werken, te beveiligen en te verbeteren."
       }
     ],
     "ul": [
@@ -209,6 +230,49 @@
       },
       {
         "li": "overige gegevens, als die nodig zijn om mijn dienstverlening uit te voeren."
+      }
+    ],
+    "rechten": [
+      {
+        "li": "<strong>Inzage:</strong> je mag weten welke gegevens ik van je heb en wat ik ermee doe;"
+      },
+      {
+        "li": "<strong>Correctie:</strong> kloppen je gegevens niet, dan pas ik ze aan;"
+      },
+      {
+        "li": "<strong>Verwijdering:</strong> je kunt vragen je gegevens te verwijderen, tenzij ik ze wettelijk moet bewaren;"
+      },
+      {
+        "li": "<strong>Beperking:</strong> je kunt vragen het gebruik van je gegevens tijdelijk te beperken, bijvoorbeeld zolang we uitzoeken of ze kloppen;"
+      },
+      {
+        "li": "<strong>Overdraagbaarheid:</strong> je kunt de gegevens die je mij hebt gegeven in een gangbaar bestandsformaat krijgen, of laten doorsturen naar een ander;"
+      },
+      {
+        "li": "<strong>Bezwaar:</strong> je kunt bezwaar maken tegen gebruik op basis van mijn gerechtvaardigd belang. Tegen direct marketing, zoals een nieuwsbrief, kun je altijd bezwaar maken; dan stop ik daar meteen mee;"
+      },
+      {
+        "li": "<strong>Toestemming intrekken:</strong> heb je toestemming gegeven, dan kun je die altijd intrekken. Voor cookies doe je dat via “Cookie-instellingen” onderaan elke pagina. Wat er vóór het intrekken is gebeurd, blijft geldig."
+      }
+    ],
+    "bewaartermijnen": [
+      {
+        "li": "<strong>Berichten via het contactformulier of e-mail:</strong> zolang nodig om je vraag af te handelen. Word je geen klant, dan verwijder ik je bericht uiterlijk 12 maanden na het laatste contact. Word je klant, dan gelden de wettelijke bewaartermijnen voor je dossier."
+      },
+      {
+        "li": "<strong>Je klantdossier:</strong> zolang onze relatie of overeenkomst loopt, en daarna zolang de wettelijke bewaartermijnen dat voorschrijven."
+      },
+      {
+        "li": "<strong>Eigen anonieme statistieken:</strong> 400 dagen, daarna worden ze automatisch verwijderd."
+      },
+      {
+        "li": "<strong>Feedback bij “Was deze pagina nuttig?”:</strong> alleen de laatste 500 reacties; oudere verdwijnen vanzelf."
+      },
+      {
+        "li": "<strong>Google Analytics:</strong> 14 maanden, en alleen als je toestemming hebt gegeven."
+      },
+      {
+        "li": "<strong>Je cookiekeuze:</strong> 12 maanden; daarna vraagt de cookiebanner opnieuw om je keuze."
       }
     ]
   }

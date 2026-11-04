@@ -102,8 +102,11 @@ Nieuwe tekst of foto toevoegen aan een pagina: zet het element in het `.astro`-b
 - **Normen rekentools**: één keer per jaar (na Prinsjesdag) bijwerken in `src/scripts/normen.js`.
 - **Beeldmaten bijwerken**: alleen nodig als de opmaak van foto's verandert (een andere foto op dezelfde plek hoeft niet).
   Meet dan opnieuw de breedte van elke `img[data-ei]` op schermbreedtes 390, 820, 1280 en 1920 en werk `src/content/beeldmaten.json` bij.
-- **Cookiebanner**: de site plaatst nu geen tracking-cookies en heeft daarom geen banner nodig. Komt er Google Analytics of Tag Manager bij,
-  plaats dan eerst een gecertificeerde cookiebanner (Cookiebot, CookieYes of Osano) met Consent Mode v2 in `Base.astro`, vóór de GTM-code.
+- **Cookiebanner**: zonder `PUBLIC_COOKIEBOT_ID` toont de site alleen de eigen kleine banner voor Microsoft Clarity
+  (als `PUBLIC_CLARITY_ID` is ingevuld). Met `PUBLIC_COOKIEBOT_ID` neemt Cookiebot het over, met Google Consent Mode v2
+  (`src/components/Cookiebot.astro`, `src/scripts/toestemming.js`). Google Analytics laadt nooit zonder Cookiebot.
+  Cookiebot scant de site maandelijks; controleer na nieuwe diensten of de cookies goed zijn ingedeeld in het
+  Cookiebot-beheer. De cookieverklaring van Cookiebot verschijnt dan vanzelf op `/juridisch#cookies`.
 
 ## Statistieken en feedback
 
@@ -115,8 +118,26 @@ bellen, WhatsApp, rekentools), waarop geklikt wordt, een heatmap per pagina en d
 - **Eigen statistieken zijn anoniem**: geen cookies, geen IP-adressen, geen persoonsgegevens; een bezoeker telt één
   keer per dag via een hash die de volgende dag niet meer te herleiden is. Daarvoor is geen toestemming nodig.
   Bezoeken met de bewerkmodus aan tellen niet mee. Code: `src/scripts/meten.js`, `src/lib/statistiek.ts`, `src/pages/api/m.ts`.
+- **Wat er gemeten wordt**: paginaweergaven, unieke bezoekers per dag, zichtbare tijd en scrolldiepte (en hoeveel
+  bezoekers een pagina uitlezen), herkomst (verwijzende site of `utm_source`) en campagnes (`utm_campaign`), de eerste
+  pagina van een bezoek en hoeveel bezoekers direct weer weg zijn, apparaat, klikken en heatmap, links naar andere
+  websites (alleen de domeinnaam), 404-adressen, en doelen. *Aanvragen*: contactformulier verstuurd (of via de
+  e-mail-terugval), bellen, WhatsApp, e-mail. *Interactie*: formulier begonnen/geweigerd, rekentool gebruikt en helemaal
+  ingevuld, checklist gebruikt/afgerond/geprint, pdf geopend, artikel gedeeld, "Plan een kennismaking". Andere scripts
+  melden een doel met `dispatchEvent(new CustomEvent('hh:doel', { detail: 'naam' }))` (naam ook toevoegen aan `DOELEN`
+  in `statistiek.ts` en aan het dashboard).
 - **Opslag**: online in Upstash Redis (in Vercel: *Storage → Upstash → Redis*, koppelen aan het project). Lokaal in `.data/`.
 - **Microsoft Clarity** (opnames van bezoeken, muisbewegingen en Clarity's eigen heatmaps): maak een project aan op
   clarity.microsoft.com en zet het ID in `PUBLIC_CLARITY_ID`. Dan verschijnt de cookiebanner; Clarity laadt pas na
   "Akkoord". Bezoekers wijzigen hun keuze via "Cookie-instellingen" in de footer. De cookietekst op `/juridisch` gaat
   hier al van uit; laat die controleren voordat Clarity live gaat.
+- **Google Analytics 4 + Cookiebot**: vul `PUBLIC_COOKIEBOT_ID` (Domain Group ID) en `PUBLIC_GA_ID` (`G-...`) in.
+  In `<head>` staat dan eerst de Consent Mode v2-standaard (alles geweigerd), daarna Cookiebot (handmatige
+  blokkeermodus, taal NL). GA4 en Clarity laden pas na toestemming voor *Statistieken*; trekt een bezoeker die in,
+  dan herlaadt de pagina zonder GA en Clarity. GA meet alleen met `PUBLIC_ENV=production`; testen kan met `?ga-debug`
+  achter een URL (blijft aan voor dat tabblad, zichtbaar in GA4 → DebugView). Niet in de bewerkmodus of heatmap.
+  Events (`src/scripts/ga.js`, zonder persoonsgegevens): `generate_lead` (contactformulier verstuurd),
+  `contactformulier_mail` (terugval naar mailprogramma), `bellen`, `whatsapp`, `email` (met `link_locatie`),
+  `rekentool_gebruikt` (met `tool`, één keer per weergave), `rekentool_bespreken`, `checklist_ingevuld`,
+  `checklist_afvinken`, `checklist_printen` en `feedback` (`nuttig`: ja/nee). Uitgaande links, scrollen en
+  paginaweergaven meet GA zelf (Enhanced measurement).

@@ -1,10 +1,11 @@
 ---
 import Img from './Img.astro';
 import { laad } from '../lib/content';
+import { bedrijf } from '../lib/site';
 
 const { t, img } = await laad('site');
 ---
 <div class="hero-reviews">
-  <div class="verhaal-label hero-review"><Img data={img('reviews.img1')} class="verhaal-logo" sizes="120px" /><strong data-e="site:reviews.strong1" set:html={t('reviews.strong1')} /><span data-e="site:reviews.span1" set:html={t('reviews.span1')} /></div>
+  <a href={bedrijf.googleProfiel} target="_blank" rel="noopener" class="verhaal-label hero-review"><Img data={img('reviews.img1')} class="verhaal-logo" sizes="120px" /><strong data-e="site:reviews.strong1" set:html={t('reviews.strong1')} /><span data-e="site:reviews.span1" set:html={t('reviews.span1')} /></a>
   <div class="verhaal-label hero-review"><Img data={img('reviews.img2')} class="verhaal-logo" sizes="120px" /><strong data-e="site:reviews.strong2" set:html={t('reviews.strong2')} /><span data-e="site:reviews.span2" set:html={t('reviews.span2')} /></div>
 </div>

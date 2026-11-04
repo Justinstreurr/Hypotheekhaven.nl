@@ -9,6 +9,8 @@ import '../styles/pagina.css';
 import '../styles/juridisch.css';
 
 const { t, bg, meta, achtergronden, lijst } = await laadPagina('juridisch');
+// Cookieverklaring van Cookiebot (actuele lijst cookies + toestemming wijzigen), alleen als Cookiebot aan staat
+const cookiebot = import.meta.env.PUBLIC_COOKIEBOT_ID;
 ---
 <Base pagina="juridisch" meta={meta} preload={achtergronden['hero.foto1']}>
 <header class="hero hero--pagina">
@@ -30,7 +32,7 @@ const { t, bg, meta, achtergronden, lijst } = await laadPagina('juridisch');
   <HeroBanks />
 </header>
 
-<main class="juridisch container">
+<main id="inhoud" tabindex="-1" class="juridisch container">
   <aside class="toc" aria-label="Inhoud van deze pagina">
     <span class="eyebrow" data-e="juridisch:toc.span1" set:html={t('toc.span1')}></span>
     <ol>
@@ -83,10 +85,21 @@ const { t, bg, meta, achtergronden, lijst } = await laadPagina('juridisch');
 
       <h3 data-e="juridisch:privacy.h34" set:html={t('privacy.h34')}></h3>
       <p data-e="juridisch:privacy.p9" set:html={t('privacy.p9')}></p>
+      <ul data-el="juridisch:rechten">
+        {lijst('rechten').map((x, n) => (
+          <li data-item data-e={`juridisch:rechten.${n}.li`} set:html={x['li']}></li>
+        ))}
+      </ul>
+      <p data-e="juridisch:privacy.p17" set:html={t('privacy.p17')}></p>
 
       <h3 data-e="juridisch:privacy.h35" set:html={t('privacy.h35')}></h3>
       <p data-e="juridisch:privacy.p10" set:html={t('privacy.p10')}></p>
       <p data-e="juridisch:privacy.p11" set:html={t('privacy.p11')}></p>
+      <ul data-el="juridisch:bewaartermijnen">
+        {lijst('bewaartermijnen').map((x, n) => (
+          <li data-item data-e={`juridisch:bewaartermijnen.${n}.li`} set:html={x['li']}></li>
+        ))}
+      </ul>
 
       <h3 data-e="juridisch:privacy.h36" set:html={t('privacy.h36')}></h3>
       <p data-e="juridisch:privacy.p12" set:html={t('privacy.p12')}></p>
@@ -127,6 +140,12 @@ const { t, bg, meta, achtergronden, lijst } = await laadPagina('juridisch');
 
       <h3 data-e="juridisch:cookies.h33" set:html={t('cookies.h33')}></h3>
       <p data-e="juridisch:cookies.p3" set:html={t('cookies.p3')}></p>
+      {cookiebot && (
+        <div class="cookieverklaring">
+          <p data-e="juridisch:cookies.p4" set:html={t('cookies.p4')}></p>
+          <script is:inline id="CookieDeclaration" src={`https://consent.cookiebot.com/${cookiebot}/cd.js`} data-culture="NL" async></script>
+        </div>
+      )}
     </section>
 
     
@@ -147,7 +166,7 @@ const { t, bg, meta, achtergronden, lijst } = await laadPagina('juridisch');
         ))}
       </ol>
 
-      <dl class="gegevens" aria-label="Contactgegevens KiFiD">
+      <dl class="gegevens" aria-label="Contactgegevens Kifid">
         <dt data-e="juridisch:klachten.dt1" set:html={t('klachten.dt1')}></dt><dd data-e="juridisch:klachten.dd1" set:html={t('klachten.dd1')}></dd>
         <dt data-e="juridisch:klachten.dt2" set:html={t('klachten.dt2')}></dt><dd data-e="juridisch:klachten.dd2" set:html={t('klachten.dd2')}></dd>
         <dt data-e="juridisch:klachten.dt3" set:html={t('klachten.dt3')}></dt><dd data-e="juridisch:klachten.dd3" set:html={t('klachten.dd3')}></dd>
@@ -172,6 +191,8 @@ const { t, bg, meta, achtergronden, lijst } = await laadPagina('juridisch');
         <dt data-e="juridisch:gegevens.dt7" set:html={t('gegevens.dt7')}></dt><dd data-e="juridisch:gegevens.dd7" set:html={t('gegevens.dd7')}></dd>
         <dt data-e="juridisch:gegevens.dt8" set:html={t('gegevens.dt8')}></dt><dd data-e="juridisch:gegevens.dd8" set:html={t('gegevens.dd8')}></dd>
         <dt data-e="juridisch:gegevens.dt9" set:html={t('gegevens.dt9')}></dt><dd data-e="juridisch:gegevens.dd9" set:html={t('gegevens.dd9')}></dd>
+        <dt data-e="juridisch:gegevens.dt10" set:html={t('gegevens.dt10')}></dt><dd data-e="juridisch:gegevens.dd10" set:html={t('gegevens.dd10')}></dd>
+        <dt data-e="juridisch:gegevens.dt11" set:html={t('gegevens.dt11')}></dt><dd data-e="juridisch:gegevens.dd11" set:html={t('gegevens.dd11')}></dd>
       </dl>
       <p data-e="juridisch:gegevens.p1" set:html={t('gegevens.p1')}></p>
     </section>

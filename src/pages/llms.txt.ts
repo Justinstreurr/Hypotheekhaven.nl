@@ -9,14 +9,19 @@ export const GET: APIRoute = () => {
     const meta = inhoudVan(naam).meta;
     return `- [${meta?.title.replace(/\s*\|.*$/, '') ?? naam}](${absoluut(seo.pad)}): ${meta?.description ?? ''}`;
   });
+  // +31655767819 -> 06 55 76 78 19
+  const telefoon = bedrijf.telefoon.replace(/^\+31(\d)(\d{2})(\d{2})(\d{2})(\d{2})$/, '0$1 $2 $3 $4 $5');
   const tekst = `# ${bedrijf.naam}
 
-> Onafhankelijk hypotheek- en verzekeringsadvies in ${bedrijf.regio}, door ${bedrijf.eigenaar}. Persoonlijke begeleiding van de eerste berekening tot aan de notaris en daarna, online of bij de klant thuis. Het eerste gesprek is gratis en vrijblijvend.
+> Onafhankelijk hypotheek- en verzekeringsadvies in ${bedrijf.plaats}, West-Friesland en ${bedrijf.regio}, door ${bedrijf.eigenaar}. Persoonlijke begeleiding van de eerste berekening tot aan de notaris en daarna, bij de klant thuis of online (geen bezoekadres). Het eerste gesprek is gratis en vrijblijvend.
 
-- Telefoon: 06 55 76 78 19
+- Telefoon: ${telefoon}
+- Gevestigd in ${bedrijf.plaats}
+- Werkgebied: ${bedrijf.werkgebied.join(', ')} en de rest van ${bedrijf.regio}
+- Google-bedrijfsprofiel: ${bedrijf.googleProfiel}
 - E-mail: ${bedrijf.email}
 - KvK ${bedrijf.kvk} · AFM ${bedrijf.afm}
-- Werkt onder de vergunning van NBG Hypotheken bij de AFM
+- Aangesloten instelling van NBG Hypotheken
 
 ## Pagina's
 

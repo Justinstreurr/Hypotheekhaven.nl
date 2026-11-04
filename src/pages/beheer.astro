@@ -14,7 +14,7 @@
   * { box-sizing: border-box; margin: 0; }
   body { min-height: 100vh; display: grid; place-items: center; padding: 24px; background: var(--zand); color: var(--inkt); font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
   main { width: 100%; max-width: 400px; background: #fff; padding: 40px 36px; box-shadow: 0 20px 60px rgba(8, 21, 52, .08); }
-  svg { width: 40px; height: 40px; fill: var(--inkt); margin-bottom: 20px; }
+  main > svg { width: 40px; height: 40px; fill: none; stroke: var(--inkt); stroke-width: 5; stroke-linejoin: miter; overflow: visible; margin-bottom: 20px; }
   h1 { font-size: 26px; font-weight: 500; margin-bottom: 6px; }
   p { color: rgba(8, 21, 52, .7); margin-bottom: 24px; }
   label { display: block; font-weight: 500; margin-bottom: 6px; }
@@ -24,14 +24,24 @@
   .licht { background: var(--linnen); color: var(--inkt); }
   .fout { color: #a12a2a; margin: 12px 0 0; min-height: 1.5em; }
   [hidden] { display: none !important; }
+  main:has(#binnen:not([hidden])) { max-width: 640px; }
+  .tegels { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 8px 0 20px; }
+  .tegel { display: flex; flex-direction: column; gap: 6px; padding: 22px 20px; border: 1px solid #e3dad0; background: var(--zand); color: var(--inkt); text-decoration: none; transition: border-color .2s, box-shadow .2s; }
+  .tegel:hover, .tegel:focus-visible { border-color: var(--rozenhout); box-shadow: 0 10px 30px rgba(8, 21, 52, .08); outline: none; }
+  .tegel svg { width: 28px; height: 28px; margin: 0 0 6px; fill: none; stroke: var(--rozenhout); stroke-width: 1.8; }
+  .tegel strong { font-size: 19px; font-weight: 500; }
+  .tegel span { color: rgba(8, 21, 52, .7); font-size: 15px; }
+  .tegel .cijfers { margin-top: 6px; color: var(--inkt); font-size: 14px; }
+  .uitlog { width: auto; height: auto; margin: 0 auto; padding: 6px 10px; background: none; color: rgba(8, 21, 52, .6); text-decoration: underline; }
+  @media (max-width: 560px) { .tegels { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
 <main>
   <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M11.5 91.5V44.5L28 35V66L56 80V27L87.5 11.5V91.5H72V36L41 51.5V91.5Z"/></svg>
   <section id="inloggen">
-    <h1>Website bewerken</h1>
-    <p>Log in om teksten en foto's op de site aan te passen.</p>
+    <h1>Beheer</h1>
+    <p>Log in om de website te bewerken of de statistieken te bekijken.</p>
     <form id="form">
       <label for="wachtwoord">Wachtwoord</label>
       <input id="wachtwoord" name="wachtwoord" type="password" autocomplete="current-password" required>
@@ -40,11 +50,22 @@
     </form>
   </section>
   <section id="binnen" hidden>
-    <h1>Je bent ingelogd</h1>
-    <p>Ga naar een pagina en klik op een tekst of foto om die aan te passen. Klaar? Druk onderin op <strong>Publiceren</strong>.</p>
-    <a class="knop" href="/">Naar de website</a>
-    <a class="knop licht" href="/beheer/statistieken">Statistieken bekijken</a>
-    <button type="button" class="licht" id="uit">Uitloggen</button>
+    <h1>Welkom terug</h1>
+    <p>Wat wil je doen?</p>
+    <div class="tegels">
+      <a class="tegel" href="/">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4zM13.5 6.5l4 4"/></svg>
+        <strong>Website bewerken</strong>
+        <span>Teksten, foto's en blogartikelen aanpassen en publiceren.</span>
+      </a>
+      <a class="tegel" href="/beheer/statistieken">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
+        <strong>Statistieken</strong>
+        <span>Bezoekers, aanvragen, heatmap en feedback.</span>
+        <span class="cijfers" id="cijfers" hidden></span>
+      </a>
+    </div>
+    <button type="button" class="uitlog" id="uit">Uitloggen</button>
   </section>
 </main>
 <script>
@@ -54,7 +75,23 @@
     document.getElementById('inloggen')!.hidden = binnen;
     document.getElementById('binnen')!.hidden = !binnen;
   };
-  fetch('/api/beheer/sessie').then(r => r.json()).then(s => toon(s.ingelogd)).catch(() => {});
+  // Na inloggen terug naar de pagina die erom vroeg (bijv. het dashboard), anders het keuzescherm
+  const naar = new URLSearchParams(location.search).get('naar');
+  const veiligNaar = naar && naar.startsWith('/') && !naar.startsWith('//') ? naar : null;
+  // Kort overzicht van de afgelopen 7 dagen in de tegel Statistieken (niet erg als dat niet lukt)
+  const cijfers = async () => {
+    try {
+      const d = await (await fetch('/api/beheer/statistiek?dagen=7', { cache: 'no-store' })).json();
+      if (!d.ok) return;
+      const som = (k: string) => d.dagen.reduce((a: number, x: Record<string, number>) => a + (x[k] || 0), 0);
+      const b = som('bezoekers'), a = som('doelen');
+      const el = document.getElementById('cijfers')!;
+      el.textContent = `Afgelopen 7 dagen: ${b} ${b === 1 ? 'bezoeker' : 'bezoekers'}, ${a} ${a === 1 ? 'aanvraag' : 'aanvragen'}`;
+      el.hidden = false;
+    } catch { /* geen cijfers, dan alleen de tegel */ }
+  };
+  const binnen = () => { if (veiligNaar) location.href = veiligNaar; else { toon(true); cijfers(); } };
+  fetch('/api/beheer/sessie').then(r => r.json()).then(s => s.ingelogd ? binnen() : toon(false)).catch(() => {});
   form.addEventListener('submit', async e => {
     e.preventDefault();
     fout.textContent = '';
@@ -66,7 +103,7 @@
         body: JSON.stringify({ wachtwoord: (form.elements.namedItem('wachtwoord') as HTMLInputElement).value }),
       });
       const d = await r.json();
-      if (d.ok) location.href = '/';
+      if (d.ok) binnen();
       else fout.textContent = d.fout;
     } catch {
       fout.textContent = 'Er ging iets mis. Controleer je internetverbinding.';

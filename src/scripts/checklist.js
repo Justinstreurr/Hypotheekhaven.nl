@@ -67,6 +67,28 @@
   try { afgevinkt = new Set(JSON.parse(localStorage.getItem(OPSLAG) || '[]')); } catch (e) { /* geen opslag beschikbaar */ }
   const bewaarVinkjes = () => { try { localStorage.setItem(OPSLAG, JSON.stringify([...afgevinkt])); } catch (e) { /* geen opslag */ } };
 
+  // Ook de gekozen situatie, inkomen en bijzonderheden onthouden, zodat de lijst na herladen meteen klaarstaat
+  const KEUZES = 'hh-checklist-keuzes';
+  const bewaarKeuzes = () => {
+    try {
+      const klaar = [...tool.querySelectorAll('.rt-blok.is-klaar')].map((b) => b.dataset.blok);
+      localStorage.setItem(KEUZES, JSON.stringify({ situatie: a.situatie, samen: a.samen, inkomen: a.inkomen, extra: a.extra, gereed, klaar }));
+    } catch (e) { /* geen opslag */ }
+  };
+  let bewaard = null;
+  try {
+    const k = JSON.parse(localStorage.getItem(KEUZES) || 'null');
+    if (k && namen.situatie[k.situatie]) {
+      bewaard = {
+        situatie: k.situatie, samen: k.samen === 'samen' ? 'samen' : 'alleen',
+        inkomen: (Array.isArray(k.inkomen) ? k.inkomen : []).filter((x) => namen.inkomen[x]),
+        extra: (Array.isArray(k.extra) ? k.extra : []).filter((x) => namen.extra[x]),
+        gereed: k.gereed === true, klaar: Array.isArray(k.klaar) ? k.klaar : []
+      };
+      if (!bewaard.inkomen.length) bewaard.gereed = false;
+    }
+  } catch (e) { /* geen of ongeldige opslag: gewoon bij stap 1 beginnen */ }
+
   /* ---------- Tonen ---------- */
   let gereed = false;
   const uit = (naam, tekst) => tool.querySelectorAll(`[data-uit="${naam}"]`).forEach((el) => { el.textContent = tekst; });
@@ -123,12 +145,12 @@
     },
     naStap(naam) {
       if (naam === 'inkomen') gereed = true;
-      bouwLijst();
+      bouwLijst(); bewaarKeuzes();
     },
     wijziging() {
       const fout = tool.querySelector('[data-blok="inkomen"] [data-fout]');
       if (a.inkomen.length) fout.hidden = true;
-      bouwLijst();
+      bouwLijst(); bewaarKeuzes();
     },
     opnieuw() { gereed = false; bouwLijst(); },
     klaar() {
@@ -139,6 +161,17 @@
   // Printen of als pdf bewaren: de printopmaak toont alleen de lijst
   tool.querySelector('[data-print]').addEventListener('click', () => window.print());
 
-  stappen.open('situatie');
+  if (bewaard) {
+    // Bewaarde keuzes terugzetten: afgeronde stappen dicht, verder bij de eerste open stap (of meteen de lijst)
+    const { klaar, gereed: g, ...keuzes } = bewaard;
+    Object.assign(a, keuzes);
+    gereed = g;
+    const blokken = [...tool.querySelectorAll('.rt-blok')];
+    blokken.forEach((b) => b.classList.toggle('is-klaar', klaar.includes(b.dataset.blok)));
+    stappen.samenvattingen();
+    const volgende = blokken.find((b) => !b.classList.contains('is-klaar'));
+    if (volgende) stappen.open(volgende.dataset.blok);
+    else { blokken.forEach((b) => b.classList.remove('is-open')); stappen.vul(); tool.classList.add('is-klaar'); }
+  } else stappen.open('situatie');
   bouwLijst();
 })();

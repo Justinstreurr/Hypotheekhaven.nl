@@ -8,14 +8,18 @@ import satoshi from '../assets/fonts/Satoshi-Variable.woff2?url';
 import caslon from '@fontsource/libre-caslon-text/files/libre-caslon-text-latin-400-normal.woff2?url';
 import { getImage } from 'astro:assets';
 import CookieBanner from '../components/CookieBanner.astro';
-import { laad, beeldBestand } from '../lib/content';
+import Cookiebot from '../components/Cookiebot.astro';
+// Vercel Speed Insights: meet Core Web Vitals van echte bezoekers (Real Experience Score). Cookieloos en
+// first-party (/_vercel/speed-insights/script.js, met defer), daarom geen toestemming nodig.
+import SpeedInsights from '@vercel/speed-insights/astro';
+import { laad, beeldBestand, type Achtergrond } from '../lib/content';
 import { jsonLd, seoVoor } from '../lib/seo';
 import { absoluut, bedrijf, isProductie } from '../lib/site';
 
 interface Props {
   pagina: string;
   meta?: { title: string; description: string; ogImage?: string };
-  preload?: { breed: string; smal: string };
+  preload?: Achtergrond;
 }
 
 const { pagina, meta = { title: bedrijf.naam, description: '' }, preload } = Astro.props;
@@ -26,14 +30,19 @@ const canonical = absoluut(seo?.pad ?? Astro.url.pathname);
 // Social-afbeelding: 1200x630, uit de content van de pagina of de standaardfoto
 const og = await getImage({ src: beeldBestand(meta.ogImage ?? seo?.artikel?.beeld ?? 'hh-hero-kaartje.jpg'), width: 1200, height: 630, fit: 'cover', format: 'jpg', quality: 80 });
 const ogUrl = absoluut(og.src);
+const ogMaat = { breedte: og.attributes.width ?? og.options.width, hoogte: og.attributes.height ?? og.options.height };
+// Portret van Sabrina voor de organisatie en de persoon in de gestructureerde data
+const portret = await getImage({ src: beeldBestand('hh-sabrina-portret.jpg'), width: 600, format: 'jpg', quality: 80 });
 const indexeren = isProductie && seo?.index !== false;
-const graph = seo && seo.index !== false ? jsonLd(pagina, meta, ogUrl) : null;
+const graph = seo && seo.index !== false ? jsonLd(pagina, meta, ogUrl, absoluut(portret.src)) : null;
+const artikel = seo?.artikel;
 ---
 <!doctype html>
 <html lang="nl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<Cookiebot />
 <title>{meta.title}</title>
 <meta name="description" content={meta.description}>
 {seo?.index !== false && <link rel="canonical" href={canonical}>}
@@ -46,8 +55,8 @@ const graph = seo && seo.index !== false ? jsonLd(pagina, meta, ogUrl) : null;
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="preload" href={satoshi} as="font" type="font/woff2" crossorigin>
 <link rel="preload" href={caslon} as="font" type="font/woff2" crossorigin>
-{preload && <link rel="preload" as="image" href={preload.smal} media="(max-width: 767px)" fetchpriority="high">}
-{preload && <link rel="preload" as="image" href={preload.breed} media="(min-width: 768px)" fetchpriority="high">}
+{preload && <link rel="preload" as="image" href={preload.smalAvif ?? preload.smal} type={preload.smalAvif ? 'image/avif' : undefined} media="(max-width: 767px)" fetchpriority="high">}
+{preload && <link rel="preload" as="image" href={preload.breedAvif ?? preload.breed} type={preload.breedAvif ? 'image/avif' : undefined} media="(min-width: 768px)" fetchpriority="high">}
 <meta property="og:type" content={seo?.artikel ? 'article' : 'website'}>
 <meta property="og:locale" content="nl_NL">
 <meta property="og:site_name" content={bedrijf.naam}>
@@ -55,21 +64,29 @@ const graph = seo && seo.index !== false ? jsonLd(pagina, meta, ogUrl) : null;
 <meta property="og:description" content={meta.description}>
 <meta property="og:url" content={canonical}>
 <meta property="og:image" content={ogUrl}>
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+<meta property="og:image:width" content={String(ogMaat.breedte)}>
+<meta property="og:image:height" content={String(ogMaat.hoogte)}>
+<meta property="og:image:alt" content={meta.title}>
+{artikel && <meta property="article:published_time" content={artikel.gepubliceerd}>}
+{artikel && <meta property="article:modified_time" content={artikel.gewijzigd}>}
+{artikel && <meta property="article:author" content={absoluut('/over-sabrina')}>}
+{artikel?.sectie && <meta property="article:section" content={artikel.sectie}>}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content={meta.title}>
 <meta name="twitter:description" content={meta.description}>
 <meta name="twitter:image" content={ogUrl}>
+<meta name="twitter:image:alt" content={meta.title}>
 <style is:inline set:html={`@font-face{font-family:"Satoshi";src:url("${satoshi}") format("woff2");font-weight:300 900;font-display:swap}`}></style>
 {graph && <script type="application/ld+json" set:html={JSON.stringify(graph)} />}
 <script is:inline>if (/(^|; )hh_edit=1/.test(document.cookie) && !location.search.includes('hh-heatmap')) { var s = document.createElement('script'); s.src = '/beheer/editor.js'; s.defer = true; document.head.appendChild(s); }</script>
 </head>
 <body data-pagina={pagina}>
-<div class="review-balk"><span class="review-balk-item" data-e="site:balk.google" set:html={t('balk.google')} /><span class="scheiding" aria-hidden="true"></span><a href={bedrijf.trustoo} target="_blank" rel="noopener" data-e="site:balk.trustoo" set:html={t('balk.trustoo')} /></div>
+<a class="naar-inhoud" href="#inhoud">Naar de inhoud</a>
+<div class="review-balk"><a href={bedrijf.googleProfiel} target="_blank" rel="noopener" class="review-balk-item" data-e="site:balk.google" set:html={t('balk.google')} /><span class="scheiding" aria-hidden="true"></span><a href={bedrijf.trustoo} target="_blank" rel="noopener" data-e="site:balk.trustoo" set:html={t('balk.trustoo')} /></div>
 <slot />
 <template id="menu-voet-tekst" set:html={t('menu.bel')} />
 <CookieBanner />
+<SpeedInsights />
 <script>
   import '../scripts/meten.js';
   import '../scripts/toestemming.js';

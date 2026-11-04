@@ -1,6 +1,7 @@
 import type { ImageMetadata } from 'astro';
 import { getImage } from 'astro:assets';
 import site from '../content/site.json';
+import normenBron from '../scripts/normen.js?raw';
 
 // Alle teksten en foto's staan in src/content/. De bewerkmodus (/beheer) past deze bestanden aan.
 // Op de site heeft elk bewerkbaar element een verwijzing "<bestand>:<sleutel>":
@@ -26,6 +27,7 @@ export interface Artikel extends Inhoud {
     status: ArtikelStatus;
     categorie: string;
     datum: string;          // JJJJ-MM-DD
+    bijgewerkt?: string;    // JJJJ-MM-DD, laatste inhoudelijke wijziging (dateModified)
     eigenPagina?: boolean;  // heeft een eigen .astro-bestand in plaats van het standaardsjabloon
     gerelateerd?: string[]; // slugs voor "Lees ook"; anders de nieuwste andere artikelen
   };
@@ -74,25 +76,46 @@ export function inhoudVan(naam: string): Inhoud {
 const BREED = 2000;
 const SMAL = 800;
 
-async function achtergrond(meta: ImageMetadata, breedte: number) {
+async function achtergrond(meta: ImageMetadata, breedte: number, format: 'webp' | 'avif' = 'webp') {
   if (meta.format === 'svg') return meta.src;
-  const r = await getImage({ src: meta, width: Math.min(breedte, meta.width), format: 'webp', quality: 68 });
+  // AVIF (alleen voor de eerste herofoto, de LCP) is bij gelijke beeldkwaliteit ongeveer 45% kleiner dan WebP
+  const r = await getImage({ src: meta, width: Math.min(breedte, meta.width), format, quality: format === 'avif' ? 50 : 68 });
   return r.src;
 }
+
+export interface Achtergrond { breed: string; smal: string; breedAvif?: string; smalAvif?: string }
+const isEersteHero = (k: string) => k === 'hero.foto1' || k === 'hero.foto';
+
+// Cijfers uit normen.js (<span data-norm="...">) al bij het bouwen invullen, zodat ze ook in de HTML en
+// de gegevens voor Google staan. De rekentools vullen ze in de browser opnieuw in, met dezelfde opmaak.
+const N = (() => { const w: any = {}; new Function('window', normenBron)(w); return w.HH_NORMEN; })();
+const procent = (f: number, dec = 2) => (f * 100).toLocaleString('nl-NL', { minimumFractionDigits: dec, maximumFractionDigits: dec }) + '%';
+const NORMTEKST: Record<string, string> = {
+  jaar: String(N.jaar), maxAftrekTarief: procent(N.maxAftrekTarief), tariefSchijf1: procent(N.tariefSchijf1),
+  grensSchijf1: Math.round(N.grensSchijf1).toLocaleString('nl-NL'), boetevrijPct: procent(N.boetevrijPct, 0),
+  ewfPct: procent(N.eigenwoningforfait[N.eigenwoningforfait.length - 1].pct),
+};
+export const vulNormen = (html: string) => html.includes('data-norm')
+  ? html.replace(/(<span data-norm="([^"]+)">)[^<]*(<\/span>)/g, (m, open, k, dicht) => k in NORMTEKST ? open + NORMTEKST[k] + dicht : m)
+  : html;
 
 export async function laad(naam: string) {
   const inhoud = inhoudVan(naam);
   // Achtergrondfoto's (sleutels met "foto") vooraf optimaliseren: groot voor desktop, smal voor telefoon
-  const achtergronden: Record<string, { breed: string; smal: string }> = {};
+  const achtergronden: Record<string, Achtergrond> = {};
   await Promise.all(Object.entries(inhoud.i).filter(([k]) => /(^|\.)foto\d*$/.test(k)).map(async ([k, v]) => {
     const meta = beeldBestand(v.src);
     achtergronden[k] = { breed: await achtergrond(meta, BREED), smal: await achtergrond(meta, SMAL) };
+    if (isEersteHero(k) && meta.format !== 'svg') {
+      achtergronden[k].breedAvif = await achtergrond(meta, BREED, 'avif');
+      achtergronden[k].smalAvif = await achtergrond(meta, SMAL, 'avif');
+    }
   }));
 
   const t = (k: string): string => {
     const v = inhoud.t[k];
     if (v === undefined) throw new Error(`Tekst ontbreekt: ${naam}:${k}`);
-    return v;
+    return vulNormen(v);
   };
   const img = (k: string): Beeld => {
     const v = inhoud.i[k];
@@ -102,25 +125,30 @@ export async function laad(naam: string) {
   const lijst = (k: string): LijstItem[] => {
     const v = inhoud.l?.[k];
     if (!v) throw new Error(`Lijst ontbreekt: ${naam}:${k}`);
-    return v;
+    return v.map(item => Object.fromEntries(Object.entries(item).map(([a, w]) => [a, typeof w === 'string' ? vulNormen(w) : w])));
   };
   // Achtergrond als inline style. background-image leest --bg, dat per schermbreedte
-  // in basis.css wordt gekozen uit --bg-l en --bg-m. --foto wordt door de CSS zelf gebruikt.
-  // Alleen de hero laadt direct; de rest zet script.js pas vlak voordat het in beeld komt
-  // (data-foto), zodat die foto's niet concurreren met de eerste foto bovenaan.
+  // in basis.css wordt gekozen uit --bg-l en --bg-m (WebP). De eerste herofoto heeft daarnaast
+  // --bg-la en --bg-ma (AVIF), die basis.css via image-set() kiest als de browser dat ondersteunt.
+  // De bewerkmodus zet alleen --bg-l/--bg-m en haalt --bg-la/--bg-ma weg. --foto wordt door de CSS zelf gebruikt.
+  // Alleen de eerste herofoto laadt direct; de rest zet script.js pas vlak voordat het in beeld komt
+  // (data-foto), zodat die foto's niet concurreren met de eerste foto bovenaan. Volgende dia's van de
+  // hero (hero.foto2, ...) staan al "in beeld" maar zijn onzichtbaar: die laden pas na het load-event
+  // (data-foto-later), ruim voor de eerste wissel na 5 s.
   const bg = (k: string, prop: string, rest = '') => {
     const a = achtergronden[k];
     if (!a) throw new Error(`Achtergrond ontbreekt: ${naam}:${k}`);
     const extra = rest ? (rest.endsWith(';') ? rest : rest + ';') : '';
-    const direct = k.startsWith('hero.');
+    const direct = isEersteHero(k);
+    const later = !direct && k.startsWith('hero.') ? { 'data-foto-later': '' } : {};
     if (prop === '--foto') {
       return direct
         ? { style: `--foto: url('${a.breed}'); ${extra}`.trim(), 'data-ef': `${naam}:${k}` }
-        : { style: `--foto: none; ${extra}`.trim(), 'data-ef': `${naam}:${k}`, 'data-foto': a.breed };
+        : { style: `--foto: none; ${extra}`.trim(), 'data-ef': `${naam}:${k}`, 'data-foto': a.breed, ...later };
     }
     return direct
-      ? { style: `--bg-l: url('${a.breed}'); --bg-m: url('${a.smal}'); background-image: var(--bg); ${extra}`.trim(), 'data-eb': `${naam}:${k}` }
-      : { style: `--bg-l: none; --bg-m: none; background-image: var(--bg); ${extra}`.trim(), 'data-eb': `${naam}:${k}`, 'data-foto': a.breed, 'data-foto-m': a.smal };
+      ? { style: `--bg-l: url('${a.breed}'); --bg-m: url('${a.smal}'); ${a.breedAvif ? `--bg-la: url('${a.breedAvif}'); --bg-ma: url('${a.smalAvif}'); ` : ''}background-image: var(--bg); ${extra}`.trim(), 'data-eb': `${naam}:${k}` }
+      : { style: `--bg-l: none; --bg-m: none; background-image: var(--bg); ${extra}`.trim(), 'data-eb': `${naam}:${k}`, 'data-foto': a.breed, 'data-foto-m': a.smal, ...later };
   };
   return { t, img, bg, lijst, meta: inhoud.meta, achtergronden };
 }
