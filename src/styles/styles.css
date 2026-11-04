@@ -529,22 +529,13 @@ h1, h2, h3 { font-weight: 400; line-height: 1.1; }
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(to right, rgba(0, 0, 0, var(--links, .62)) 0%, rgba(0, 0, 0, var(--midden, .4)) 45%, rgba(0, 0, 0, .28) 100%);
 }
-/* Achter de tekst een zachte vervaging (zelfde techniek als de banners), zodat hij ook op een drukke foto rustig leest.
-   Een vervaagde kopie van de foto (filter) in plaats van backdrop-filter: die wordt één keer berekend op een eigen laag,
-   terwijl backdrop-filter bij elk scrollframe opnieuw over het hele scherm vervaagt en de animatie laat haperen.
-   De donkere laag (::before) ligt erboven, zoals voorheen. */
-.verhaal-scene::before { z-index: 1; }
+/* Geen vervaging achter de tekst: blur over een schermvullende, vastgepinde foto moet de videokaart elk frame
+   opnieuw berekenen en liet deze sectie haperen. Een iets sterker donker verloop links houdt de tekst leesbaar. */
 .verhaal-scene::after {
   content: ""; position: absolute; inset: 0;
-  background: var(--foto) var(--pos, center) / cover no-repeat;
-  filter: blur(14px);
-  -webkit-mask-image: linear-gradient(to right, #000 25%, transparent 48%);
-          mask-image: linear-gradient(to right, #000 25%, transparent 48%);
-  transform: translateZ(0);
+  background: linear-gradient(to right, rgba(0, 0, 0, .22) 0%, rgba(0, 0, 0, .12) 35%, rgba(0, 0, 0, 0) 55%);
   pointer-events: none;
 }
-/* Alleen de zichtbare foto tekent zijn vervaging */
-.verhaal-scene:not(.is-actief)::after { display: none; }
 /* Laag die de foto naar zwart dimt bij een overgang; de tekst ligt erboven */
 .verhaal-dim { position: absolute; inset: 0; z-index: 1; background: #000; opacity: 0; }
 /* Tekst en labels boven de vervaging en de dim-laag */
