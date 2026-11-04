@@ -542,11 +542,13 @@ h1, h2, h3 { font-weight: 400; line-height: 1.1; }
 .verhaal-tekst, .verhaal-label { z-index: 2; }
 .verhaal-tekst {
   position: absolute; left: var(--pad); top: 50%;
-  translate: 0 -50%; /* op halve hoogte van de foto */
   max-width: 480px;
   padding-left: 22px;
   border-left: 1px solid rgba(255, 255, 255, .7);
 }
+/* Op halve hoogte van de foto, alleen vanaf tablet. Niet op mobiel overschrijven met "translate: none":
+   de CSS-minifier laat die weg naast "transform: none", waardoor de tekst op mobiel over de foto schoof. */
+@media (min-width: 768px) { .verhaal-tekst { translate: 0 -50%; } }
 .verhaal-tekst h2 { font-size: 44px; letter-spacing: -1px; line-height: 1.1; margin-bottom: 18px; }
 .verhaal-tekst h2 b { font-family: "Libre Caslon Text", Georgia, serif; font-weight: 400; letter-spacing: -1.5px; }
 .verhaal-tekst p { font-size: 17px; line-height: 1.5; color: rgba(255, 255, 255, .85); }

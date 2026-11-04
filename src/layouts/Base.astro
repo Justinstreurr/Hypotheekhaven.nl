@@ -28,7 +28,7 @@ const seo = seoVoor(pagina);
 const canonical = absoluut(seo?.pad ?? Astro.url.pathname);
 
 // Social-afbeelding: 1200x630, uit de content van de pagina of de standaardfoto
-const og = await getImage({ src: beeldBestand(meta.ogImage ?? seo?.artikel?.beeld ?? 'hh-hero-kaartje.jpg'), width: 1200, height: 630, fit: 'cover', format: 'jpg', quality: 80 });
+const og = await getImage({ src: beeldBestand(meta.ogImage ?? seo?.artikel?.beeld ?? 'hh-hero-kaartje.jpg'), width: 1200, height: 630, fit: 'cover', format: 'jpg', quality: 90 });
 const ogUrl = absoluut(og.src);
 const ogMaat = { breedte: og.attributes.width ?? og.options.width, hoogte: og.attributes.height ?? og.options.height };
 // Portret van Sabrina voor de organisatie en de persoon in de gestructureerde data
