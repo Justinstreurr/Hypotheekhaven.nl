@@ -161,6 +161,9 @@
   display: grid; place-items: center; background: var(--zij-hover); font-size: 11px; font-weight: 600; color: var(--zij-zacht);
 }
 .hh-zij-voet { padding: 12px 20px 84px; border-top: 1px solid var(--zij-lijn); }
+.hh-zij-beheer { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+.hh-zij-beheer a { padding: 6px 10px; border: 1px solid var(--zij-lijn); border-radius: 8px; color: var(--hh-inkt); font-size: 13px; text-decoration: none; }
+.hh-zij-beheer a:hover { background: rgba(0, 0, 0, .04); }
 .hh-zij-uit { border: 0; background: none; padding: 6px 0; color: var(--zij-zacht); font: inherit; font-size: 13.5px; text-decoration: underline; cursor: pointer; }
 .hh-zij-uit:hover { color: var(--hh-inkt); }
 .hh-zij-leeg { padding: 20px; color: #a12a2a; }

@@ -1,5 +1,6 @@
 ---
 // Aanvragen via het contactformulier. Alleen te zien voor wie is ingelogd (de API controleert dat).
+import BeheerMenu from '../../components/BeheerMenu.astro';
 ---
 <!doctype html>
 <html lang="nl">
@@ -58,6 +59,7 @@
 </style>
 </head>
 <body>
+<BeheerMenu huidig="aanvragen" />
 <header class="kop">
   <h1>Aanvragen</h1>
   <div class="filters" role="group" aria-label="Filter">
@@ -65,8 +67,6 @@
     <button type="button" data-filter="afgehandeld">Afgehandeld</button>
     <button type="button" data-filter="alles">Alles</button>
   </div>
-  <a href="/beheer">Beheer</a>
-  <a href="/?bewerken">Naar de website</a>
 </header>
 
 <main>

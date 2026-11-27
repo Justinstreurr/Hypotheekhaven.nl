@@ -1,6 +1,7 @@
 ---
 // Dashboard met de anonieme bezoekersstatistieken. Alleen te zien voor wie is ingelogd (de API controleert dat).
 const clarity = import.meta.env.PUBLIC_CLARITY_ID;
+import BeheerMenu from '../../components/BeheerMenu.astro';
 ---
 <!doctype html>
 <html lang="nl">
@@ -78,6 +79,7 @@ const clarity = import.meta.env.PUBLIC_CLARITY_ID;
 </style>
 </head>
 <body>
+<BeheerMenu huidig="statistieken" />
 <header class="kop">
   <h1>Statistieken</h1>
   <div class="perioden" role="group" aria-label="Periode">
@@ -87,7 +89,6 @@ const clarity = import.meta.env.PUBLIC_CLARITY_ID;
     <button type="button" data-dagen="365">Jaar</button>
   </div>
   {clarity && <a href={`https://clarity.microsoft.com/projects/view/${clarity}/dashboard`} target="_blank" rel="noopener">Opnames in Clarity ↗</a>}
-  <a href="/?bewerken">Naar de website</a>
 </header>
 
 <main id="inhoud">

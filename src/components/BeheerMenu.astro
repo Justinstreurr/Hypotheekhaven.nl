@@ -1,0 +1,43 @@
+---
+// Vaste menubalk bovenaan de beheerpagina's (aanvragen, statistieken), zodat je overal snel kunt wisselen.
+interface Props { huidig: 'overzicht' | 'aanvragen' | 'statistieken' }
+const { huidig } = Astro.props;
+const items = [
+  { id: 'overzicht', href: '/beheer', tekst: 'Overzicht' },
+  { id: 'website', href: '/?bewerken', tekst: 'Website bewerken' },
+  { id: 'aanvragen', href: '/beheer/aanvragen', tekst: 'Aanvragen' },
+  { id: 'statistieken', href: '/beheer/statistieken', tekst: 'Statistieken' },
+];
+---
+<nav class="beheer-menu" aria-label="Beheer">
+  <a class="bm-merk" href="/beheer">Hypotheekhaven <span>beheer</span></a>
+  <div class="bm-links">
+    {items.map(i => <a href={i.href} aria-current={i.id === huidig ? 'page' : undefined}>{i.tekst}</a>)}
+  </div>
+  <a class="bm-site" href="/" target="_blank" rel="noopener">Bekijk als bezoeker ↗</a>
+  <button type="button" class="bm-uit" id="bm-uit">Uitloggen</button>
+</nav>
+
+<style is:global>
+  .beheer-menu { display: flex; align-items: center; gap: 6px 18px; flex-wrap: wrap; padding: 10px 28px; background: #0b1530; color: #fff; font-size: 14px; }
+  .beheer-menu a, .beheer-menu button { color: inherit; text-decoration: none; font: inherit; }
+  .beheer-menu .bm-merk { font-weight: 650; margin-right: 8px; }
+  .beheer-menu .bm-merk span { font-weight: 400; opacity: .6; }
+  .beheer-menu .bm-links { display: flex; gap: 4px; flex-wrap: wrap; margin-right: auto; }
+  .beheer-menu .bm-links a { padding: 6px 12px; border-radius: 8px; opacity: .8; }
+  .beheer-menu .bm-links a:hover { opacity: 1; background: rgba(255, 255, 255, .08); }
+  .beheer-menu .bm-links a[aria-current='page'] { opacity: 1; background: rgba(255, 255, 255, .16); font-weight: 600; }
+  .beheer-menu .bm-site { opacity: .8; }
+  .beheer-menu .bm-site:hover { opacity: 1; }
+  .beheer-menu .bm-uit { background: none; border: 1px solid rgba(255, 255, 255, .3); border-radius: 8px; padding: 5px 12px; cursor: pointer; }
+  .beheer-menu .bm-uit:hover { background: rgba(255, 255, 255, .08); }
+  @media (max-width: 960px) { .beheer-menu { padding: 10px 16px; } }
+</style>
+
+<script>
+  document.getElementById('bm-uit')?.addEventListener('click', async () => {
+    try { await fetch('/api/beheer/login', { method: 'DELETE' }); } catch { /* toch naar het inlogscherm */ }
+    try { sessionStorage.removeItem('hh_bewerk'); } catch { /* geen opslag */ }
+    location.href = '/beheer';
+  });
+</script>

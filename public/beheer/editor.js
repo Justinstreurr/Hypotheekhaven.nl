@@ -208,7 +208,14 @@
           href: '#', title: o.kop, onclick: e => { e.preventDefault(); o.el.scrollIntoView({ behavior: 'smooth', block: 'start' }); },
         }, $('span', { class: 'hh-zij-naam', text: o.kop })))))]),
       ]),
-      $('div', { class: 'hh-zij-voet' }, $('button', { type: 'button', class: 'hh-zij-uit', onclick: uitloggen, text: 'Uitloggen' })),
+      $('div', { class: 'hh-zij-voet' }, [
+        $('div', { class: 'hh-zij-beheer' }, [
+          $('a', { href: '/beheer', text: 'Overzicht' }),
+          $('a', { href: '/beheer/aanvragen', text: 'Aanvragen' }),
+          $('a', { href: '/beheer/statistieken', text: 'Statistieken' }),
+        ]),
+        $('button', { type: 'button', class: 'hh-zij-uit', onclick: uitloggen, text: 'Uitloggen' }),
+      ]),
     );
   }
   const verversZijbalk = () => { const zij = document.querySelector('.hh-zij'); if (zij && paginaLijst) vulZijbalk(zij); };
