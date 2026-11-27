@@ -7,6 +7,7 @@
     { "source": "/blog/:slug.html", "destination": "/blog/:slug", "permanent": true },
     { "source": "/:pagina.html", "destination": "/:pagina", "permanent": true },
     { "source": "/sitemap.xml", "destination": "/sitemap-index.xml", "permanent": true },
+    { "source": "/(review|Review|reviews|Reviews){/}?", "destination": "https://g.page/r/CXXT8LEyU0gqEAE/review", "permanent": false },
     { "source": "/(Welkom|welkom){/index.php}?{/}?", "destination": "/", "statusCode": 301 },
     { "source": "/www-hypotheekhaven-nl/sitemap-xml{/index.php}?{/}?", "destination": "/", "statusCode": 301 },
     { "source": "/(Hypotheken|hypotheken){/index.php}?{/}?", "destination": "/diensten", "statusCode": 301 },
