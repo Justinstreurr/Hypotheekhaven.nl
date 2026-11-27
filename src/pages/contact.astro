@@ -6,10 +6,13 @@ import HeroReviews from '../components/HeroReviews.astro';
 import HeroBanks from '../components/HeroBanks.astro';
 import Footer from '../components/Footer.astro';
 import { laadPagina, lijstBeeld } from '../lib/content';
+import { bedrijf, contactLinks } from '../lib/site';
 import '../styles/pagina.css';
 import '../styles/contact.css';
 
 const { t, img, bg, meta, achtergronden, lijst } = await laadPagina('contact');
+// Onderwerpen in het formulier, per groep; aan te passen in de bewerkmodus (knop Formulier)
+const onderwerpen = lijst('onderwerpen') as { groep: string; tekst: string }[];
 ---
 <Base pagina="contact" meta={meta} preload={achtergronden['hero.foto1']}>
 <header class="hero hero--pagina">
@@ -44,27 +47,27 @@ const { t, img, bg, meta, achtergronden, lijst } = await laadPagina('contact');
   <ul class="direct-lijst">
     <li class="direct-punt">
       <span class="direct-label" data-e="contact:direct.span2" set:html={t('direct.span2')}></span>
-      <a class="direct-waarde" href="tel:+31655767819" data-e="contact:direct.a1" set:html={t('direct.a1')}></a>
+      <a class="direct-waarde" href={contactLinks.bel} data-e="contact:direct.a1" set:html={t('direct.a1')}></a>
       <p data-e="contact:direct.p2" set:html={t('direct.p2')}></p>
-      <a class="direct-link" href="tel:+31655767819" data-e="contact:direct.a2" set:html={t('direct.a2')}></a>
+      <a class="direct-link" href={contactLinks.bel} data-e="contact:direct.a2" set:html={t('direct.a2')}></a>
     </li>
     <li class="direct-punt">
       <span class="direct-label" data-e="contact:direct.span3" set:html={t('direct.span3')}></span>
-      <a class="direct-waarde" href="tel:+31858001977" data-e="contact:direct.a3" set:html={t('direct.a3')}></a>
+      <a class="direct-waarde" href={contactLinks.belVast} data-e="contact:direct.a3" set:html={t('direct.a3')}></a>
       <p data-e="contact:direct.p3" set:html={t('direct.p3')}></p>
-      <a class="direct-link" href="tel:+31858001977" data-e="contact:direct.a4" set:html={t('direct.a4')}></a>
+      <a class="direct-link" href={contactLinks.belVast} data-e="contact:direct.a4" set:html={t('direct.a4')}></a>
     </li>
     <li class="direct-punt">
       <span class="direct-label" data-e="contact:direct.span4" set:html={t('direct.span4')}></span>
-      <a class="direct-waarde" href="https://wa.me/31655767819" target="_blank" rel="noopener" data-e="contact:direct.a5" set:html={t('direct.a5')}></a>
+      <a class="direct-waarde" href={contactLinks.whatsapp} target="_blank" rel="noopener" data-e="contact:direct.a5" set:html={t('direct.a5')}></a>
       <p data-e="contact:direct.p4" set:html={t('direct.p4')}></p>
-      <a class="direct-link" href="https://wa.me/31655767819" target="_blank" rel="noopener" data-e="contact:direct.a6" set:html={t('direct.a6')}></a>
+      <a class="direct-link" href={contactLinks.whatsapp} target="_blank" rel="noopener" data-e="contact:direct.a6" set:html={t('direct.a6')}></a>
     </li>
     <li class="direct-punt">
       <span class="direct-label" data-e="contact:direct.span5" set:html={t('direct.span5')}></span>
-      <a class="direct-waarde direct-waarde--mail" href="mailto:info@hypotheekhaven.nl" data-e="contact:direct.a7" set:html={t('direct.a7')}></a>
+      <a class="direct-waarde direct-waarde--mail" href={contactLinks.mail} data-e="contact:direct.a7" set:html={t('direct.a7')}></a>
       <p data-e="contact:direct.p5" set:html={t('direct.p5')}></p>
-      <a class="direct-link" href="mailto:info@hypotheekhaven.nl" data-e="contact:direct.a8" set:html={t('direct.a8')}></a>
+      <a class="direct-link" href={contactLinks.mail} data-e="contact:direct.a8" set:html={t('direct.a8')}></a>
     </li>
   </ul>
 </section>
@@ -90,7 +93,7 @@ const { t, img, bg, meta, achtergronden, lijst } = await laadPagina('contact');
 
     <div class="formulier-vak">
       
-      <form class="contactformulier" action="/api/contact" method="post" novalidate>
+      <form class="contactformulier" action="/api/contact" method="post" novalidate data-mail={bedrijf.email}>
         <div class="veld-hp" aria-hidden="true"><label>Laat dit veld leeg <input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
         <div class="veld-rij">
           <div class="veld">
@@ -114,24 +117,11 @@ const { t, img, bg, meta, achtergronden, lijst } = await laadPagina('contact');
           <div class="veld">
             <label for="onderwerp" data-e="contact:contactformulier.label4" set:html={t('contactformulier.label4')}></label>
             <div class="veld-select">
-              <select id="onderwerp" name="onderwerp" required aria-describedby="onderwerp-fout">
-                <option value="" selected disabled>Kies een onderwerp</option>
-                <optgroup label="Hypotheek">
-                  <option>Kan ik een huis kopen?</option>
-                  <option>Je eerste huis kopen</option>
-                  <option>Verhuizen naar een ander huis</option>
-                  <option>Scheiden en je hypotheek</option>
-                  <option>Overwaarde opnemen</option>
-                  <option>Je huis verduurzamen</option>
-                  <option>Verbouwen of verhuizen?</option>
-                  <option>Je rentevaste periode loopt af</option>
-                  <option>Hypotheek oversluiten</option>
-                  <option>Ondernemer en een hypotheek</option>
-                </optgroup>
-                <optgroup label="Overig">
-                  <option>Verzekeringen</option>
-                  <option>Iets anders</option>
-                </optgroup>
+              <select id="onderwerp" name="onderwerp" required aria-describedby="onderwerp-fout" data-onderwerpen="contact:onderwerpen">
+                <option value="" selected disabled set:html={t('formulier.kies')}></option>
+                {[...new Set(onderwerpen.map(o => o.groep))].map(groep => (
+                  <optgroup label={groep.replace(/&amp;/g, "&")}>{onderwerpen.filter(o => o.groep === groep).map(o => <option set:html={o.tekst} />)}</optgroup>
+                ))}
               </select>
             </div>
             <p class="veld-fout" id="onderwerp-fout" hidden></p>
@@ -210,8 +200,8 @@ const { t, img, bg, meta, achtergronden, lijst } = await laadPagina('contact');
     <span class="eyebrow" data-e="contact:pagina.span1" set:html={t('pagina.span1')}></span>
     <h2 data-e="contact:pagina.h21" set:html={t('pagina.h21')}></h2>
     <div class="btn-row">
-      <a href="tel:+31655767819" class="btn btn-dark" data-e="contact:pagina.a1" set:html={t('pagina.a1')}></a>
-      <a href="https://wa.me/31655767819" target="_blank" rel="noopener" class="btn btn-light" data-e="contact:pagina.a2" set:html={t('pagina.a2')}></a>
+      <a href={contactLinks.bel} class="btn btn-dark" data-e="contact:pagina.a1" set:html={t('pagina.a1')}></a>
+      <a href={contactLinks.whatsapp} target="_blank" rel="noopener" class="btn btn-light" data-e="contact:pagina.a2" set:html={t('pagina.a2')}></a>
     </div>
   </div>
 </Fragment>

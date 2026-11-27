@@ -5,10 +5,15 @@ import fs from 'node:fs';
 
 const site = (process.env.PUBLIC_SITE_URL || 'https://www.hypotheekhaven.nl').replace(/\/$/, '');
 
-// Blogartikelen die nog concept zijn, horen niet in de sitemap
+// Blogartikelen die nog concept zijn (of ingepland voor een latere datum), horen niet in de sitemap
+const vandaag = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Amsterdam' });
 const blogMap = new URL('./src/content/blog/', import.meta.url);
 const concepten = fs.readdirSync(blogMap)
-  .filter(f => f.endsWith('.json') && JSON.parse(fs.readFileSync(new URL(f, blogMap), 'utf8')).artikel.status === 'concept')
+  .filter(f => {
+    if (!f.endsWith('.json')) return false;
+    const a = JSON.parse(fs.readFileSync(new URL(f, blogMap), 'utf8')).artikel;
+    return a.status === 'concept' || (a.status === 'ingepland' && a.datum > vandaag);
+  })
   .map(f => `/blog/${f.replace(/\.json$/, '')}`);
 
 export default defineConfig({

@@ -49,6 +49,37 @@ Links in de bewerkmodus staat een menu met alle pagina's, blogartikelen (met hun
 - Het artikel "Hoeveel kan ik lenen?" heeft een eigen, handgemaakte pagina (`src/pages/blog/hoeveel-kan-ik-lenen.astro`);
   nieuwe artikelen gebruiken het sjabloon `src/pages/blog/[slug].astro`.
 
+### Blog uit een document (Word of Google Docs)
+
+Op `/blog` → **+ Nieuw artikel** → **Uit een document**: upload een Word-bestand (.docx; in Google Docs via
+Bestand → Downloaden → Microsoft Word) of plak de tekst uit Google Docs. `public/beheer/document.js` deelt het in:
+
+- **Titel**: stijl "Titel" of "Kop 1"; **inleiding**: de eerste alinea daaronder.
+- **Tussenkoppen**: de grootste kopstijl (meestal "Kop 2") wordt een tussenkop in de inhoudsopgave, kleinere koppen een kleine kop.
+  Zonder kopstijlen tellen korte, helemaal vetgedrukte regels als tussenkop.
+- **Veelgestelde vragen**: alles onder een kop "Veelgestelde vragen" (of "FAQ"); elke vraag vetgedrukt of als kop, het antwoord eronder.
+- **Foto**: de eerste foto in het document wordt de foto bovenaan en in het blogoverzicht.
+- Optionele regels die er zelf weer uit gaan: `Titel voor Google: …`, `Omschrijving voor Google: …`, `Samenvatting: …`,
+  `Onderwerp: …`, `Datum: 15 januari 2027` (datum in de toekomst = meteen ingepland).
+
+Je ziet eerst wat er gevonden is en kiest daarna: concept, direct online of inplannen. Bij een bestaand artikel vervangt
+**Artikel** → **Tekst vervangen uit document** de tekst (als gewone wijziging, dus pas live na Publiceren).
+Word-bestanden worden gelezen met mammoth (`public/beheer/mammoth.min.js`, gekopieerd uit `node_modules/mammoth`).
+
+### Blog inplannen
+
+Status **Ingepland** + een datum: tot die dag is het artikel een concept (niet in het overzicht, niet in de sitemap,
+noindex). Elke ochtend rond 5-6 uur roept Vercel `/api/cron/blog` aan (`crons` in `vercel.json`); die zet ingeplande
+artikelen van vandaag op "gepubliceerd" met een commit, waarna Vercel de site opnieuw bouwt. **Blogplanning** in de
+werkbalk (op /blog en bij artikelen) toont een agenda van drie maanden en alle ingeplande, concept- en online artikelen.
+Optioneel: zet `CRON_SECRET` in Vercel, dan accepteert de route alleen aanroepen van Vercel zelf.
+
+### Bedrijfsgegevens en formulier
+
+**Bedrijfsgegevens** (op elke pagina) past `bedrijf` in `src/content/site.json` aan: telefoon, e-mail, KvK, AFM,
+werkgebied en links. Die zitten achter alle bel-, WhatsApp- en mailknoppen (`contactLinks` in `src/lib/site.ts`) en in de
+gegevens voor Google. Op `/contact` past **Formulier** de onderwerpen in het contactformulier aan.
+
 ### Ongedaan maken en back-ups
 
 - **↶ Ongedaan maken** (of Ctrl+Z) draait de laatste nog niet gepubliceerde wijziging terug, stap voor stap.

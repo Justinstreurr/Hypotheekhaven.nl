@@ -6,6 +6,7 @@ import HeroReviews from '../components/HeroReviews.astro';
 import HeroBanks from '../components/HeroBanks.astro';
 import Footer from '../components/Footer.astro';
 import { laadPagina, lijstBeeld } from '../lib/content';
+import { contactLinks } from '../lib/site';
 import '../styles/pagina.css';
 import '../styles/over-sabrina.css';
 
@@ -204,7 +205,7 @@ const { t, img, bg, meta, achtergronden, lijst } = await laadPagina('over-sabrin
 
   <div class="btn-row">
     <a href="/contact#formulier" class="btn btn-dark" data-e="over-sabrina:contact.a1" set:html={t('contact.a1')}></a>
-    <a href="tel:+31655767819" class="btn btn-light" data-e="over-sabrina:contact.a2" set:html={t('contact.a2')}></a>
+    <a href={contactLinks.bel} class="btn btn-light" data-e="over-sabrina:contact.a2" set:html={t('contact.a2')}></a>
   </div>
   </div>
 </Fragment>

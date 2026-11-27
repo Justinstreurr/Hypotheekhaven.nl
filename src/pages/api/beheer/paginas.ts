@@ -35,7 +35,9 @@ export const GET: APIRoute = ({ cookies }) => {
       bestand: a.artikel.eigenPagina ? `blog-${a.slug}` : `blog/${a.slug}`,
       pad: a.artikel.status === 'binnenkort' ? '/blog' : `/blog/${a.slug}`,
       titel: kaal(a.t.titel),
-      status: a.artikel.status,
+      // "ingepland" tot de datum er is, daarna gewoon gepubliceerd
+      status: a.ingesteld === 'ingepland' && a.artikel.status === 'concept' ? 'ingepland' : a.artikel.status,
+      datum: a.artikel.datum,
       artikel: `blog/${a.slug}`,
     } as never);
   }

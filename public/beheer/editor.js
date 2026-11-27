@@ -21,7 +21,10 @@
   let lokaal = false;
 
   const CATEGORIEEN = { 'huis-kopen': 'Een huis kopen', 'huidige-hypotheek': 'Je huidige hypotheek', verzekeringen: 'Verzekeringen', ondernemers: 'Ondernemers' };
-  const STATUSSEN = { concept: 'Concept (alleen zichtbaar voor jou)', gepubliceerd: 'Gepubliceerd', binnenkort: 'Binnenkort (alleen de kaart, nog geen artikel)' };
+  const STATUSSEN = { concept: 'Concept (alleen zichtbaar voor jou)', gepubliceerd: 'Gepubliceerd', ingepland: 'Ingepland (gaat op de datum vanzelf live)', binnenkort: 'Binnenkort (alleen de kaart, nog geen artikel)' };
+  const vandaag = () => new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Amsterdam' });
+  const datumKort = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nl-NL', { weekday: 'short', day: 'numeric', month: 'short' });
+  const datumLang = iso => new Date(iso + 'T12:00:00').toLocaleDateString('nl-NL', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
   const NIEUW = { vraag: 'Nieuwe vraag', antwoord: 'Schrijf hier het antwoord.', tekst: '“Schrijf hier de review.”', naam: 'Naam' };
 
   const $ = (tag, attrs = {}, kids = []) => {
@@ -104,15 +107,20 @@
     terugKnop = $('button', { class: 'hh-knop', type: 'button', disabled: true, onclick: ongedaan, title: 'Laatste wijziging ongedaan maken (Ctrl+Z)', text: '↶ Ongedaan maken' });
     const artikel = PAGINA.startsWith('blog/') ? PAGINA : PAGINA.startsWith('blog-') ? 'blog/' + PAGINA.slice(5) : null;
     const status = artikel && bron[artikel]?.artikel?.status;
+    const datum = artikel && bron[artikel]?.artikel?.datum;
     const balk = $('div', { class: 'hh-balk', role: 'toolbar', 'aria-label': 'Bewerkmodus' }, [
       $('button', { class: 'hh-knop hh-knop--menu', type: 'button', onclick: () => zijbalk(!document.querySelector('.hh-zij')), title: 'Alle pagina\'s', text: '☰ Pagina\'s' }),
       $('span', { class: 'hh-label', text: lokaal ? 'Bewerkmodus (lokaal)' : 'Bewerkmodus' }),
       status === 'concept' && $('span', { class: 'hh-concept', text: 'Concept: nog niet zichtbaar in het blog' }),
+      status === 'ingepland' && datum > vandaag() && $('span', { class: 'hh-concept hh-concept--gepland', text: `Ingepland: gaat ${datumLang(datum)} vanzelf live` }),
       schakel,
       PAGINA === 'blog' && $('button', { class: 'hh-knop', type: 'button', onclick: nieuwArtikel, text: '+ Nieuw artikel' }),
+      (PAGINA === 'blog' || artikel) && $('button', { class: 'hh-knop', type: 'button', onclick: planningPaneel, text: 'Blogplanning' }),
       artikel && bron[artikel] && $('button', { class: 'hh-knop', type: 'button', onclick: () => artikelPaneel(artikel), text: 'Artikel' }),
+      PAGINA === 'contact' && $('button', { class: 'hh-knop', type: 'button', onclick: formulierPaneel, text: 'Formulier' }),
       $('button', { class: 'hh-knop', type: 'button', onclick: fotoPaneel, text: 'Achtergrondfoto\'s' }),
       $('button', { class: 'hh-knop', type: 'button', onclick: paginaPaneel, text: 'Google & menu' }),
+      $('button', { class: 'hh-knop', type: 'button', onclick: bedrijfPaneel, text: 'Bedrijfsgegevens' }),
       $('button', { class: 'hh-knop', type: 'button', onclick: geschiedenisPaneel, text: 'Geschiedenis' }),
       $('a', { class: 'hh-knop hh-knop--link', href: '/beheer/statistieken', text: 'Statistieken' }),
       $('span', { class: 'hh-ruimte' }),
@@ -141,7 +149,7 @@
   function vulZijbalk(zij) {
     const gewijzigd = new Set([...wijzigingen.values()].map(w => w.bestand));
     const zoek = $('input', { type: 'search', class: 'hh-zij-zoek', placeholder: 'Zoek een pagina…', 'aria-label': 'Zoek een pagina' });
-    const STATUS = { concept: 'Concept', binnenkort: 'Binnenkort' };
+    const STATUS = { concept: 'Concept', binnenkort: 'Binnenkort', ingepland: 'Gepland' };
     // Standaard staat alleen "Pagina's" open; daarna onthoudt het menu wat je open- of dichtklapt
     let stand = {};
     try { stand = JSON.parse(localStorage.getItem('hh-zij-stand') || '{}'); } catch { /* geen opslag */ }
@@ -158,7 +166,7 @@
         title: anders ? 'Hier staan wijzigingen die nog niet live zijn' : p.titel,
       }, [
         $('span', { class: 'hh-zij-naam', text: p.titel }),
-        p.status && STATUS[p.status] && $('em', { class: 'hh-zij-status hh-zij-status--' + p.status, text: STATUS[p.status] }),
+        p.status && STATUS[p.status] && $('em', { class: 'hh-zij-status hh-zij-status--' + p.status, text: p.status === 'ingepland' && p.datum ? datumKort(p.datum) : STATUS[p.status], title: p.status === 'ingepland' && p.datum ? 'Gaat live op ' + datumLang(p.datum) : undefined }),
         anders && $('i', { class: 'hh-zij-stip', 'aria-label': 'niet gepubliceerde wijzigingen' }),
       ]));
     };
@@ -772,7 +780,7 @@
       $('p', { class: 'hh-uitleg', text: 'Titel, samenvatting en tekst pas je aan door erop te klikken. Hier regel je de rest.' }),
       ...(eigen ? [] : veld('Status', huidig('artikel', ref, 'status', a.artikel.status), { opties: STATUSSEN }, zet(ref, 'artikel', 'status', a.artikel.status))),
       ...veld('Onderwerp', huidig('artikel', ref, 'categorie', a.artikel.categorie), { opties: CATEGORIEEN }, zet(ref, 'artikel', 'categorie', a.artikel.categorie)),
-      ...veld('Datum', huidig('artikel', ref, 'datum', a.artikel.datum), { type: 'date' }, zet(ref, 'artikel', 'datum', a.artikel.datum)),
+      ...veld('Datum (bij Ingepland: de dag waarop het artikel live gaat)', huidig('artikel', ref, 'datum', a.artikel.datum), { type: 'date' }, zet(ref, 'artikel', 'datum', a.artikel.datum)),
     ];
     if (ref !== PAGINA && a.meta) {
       inhoud.push(...veld('Titel in Google', huidig('meta', ref, 'title', a.meta.title), { max: 60 }, zet(ref, 'meta', 'title', a.meta.title)));
@@ -783,13 +791,29 @@
       const img = $('img');
       fotoDialoog({ el: img, ref: ref + ':kaart', soort: 'img' });
     }, text: 'Foto in het blogoverzicht' })];
+    if (!eigen) knoppen.push($('button', { type: 'button', class: 'hh-knop', onclick: () => importPaneel(ref), text: 'Tekst vervangen uit document' }));
     if (!eigen) knoppen.push($('button', { type: 'button', class: 'hh-knop hh-knop--gevaar', onclick: () => verwijderArtikel(ref), text: 'Artikel verwijderen' }));
     if (!eigen && a.artikel.status !== 'binnenkort' && ref !== PAGINA) knoppen.unshift($('a', { class: 'hh-knop', href: '/' + ref, text: 'Artikel openen' }));
     inhoud.push($('div', { class: 'hh-knoppenrij' }, knoppen));
     paneel('Artikel', inhoud, () => { opslaan(); telBij(); melding('Aangepast. Publiceer om het live te zetten.', 'ok', 4000); });
   }
 
+  // Nieuw artikel: uit een document (Word of Google Docs) of leeg beginnen
   function nieuwArtikel() {
+    paneel('Nieuw artikel', [
+      $('p', { class: 'hh-uitleg', text: 'Heb je het artikel al geschreven in Word of Google Docs? Dan zet de website het in één keer goed: titel, inleiding, tussenkoppen en veelgestelde vragen komen vanzelf op de juiste plek.' }),
+      $('div', { class: 'hh-keuzes' }, [
+        $('button', { type: 'button', class: 'hh-keuzekaart is-aanrader', onclick: () => importPaneel() }, [
+          $('strong', { text: 'Uit een document' }), $('span', { text: 'Word-bestand uploaden of tekst uit Google Docs plakken' }),
+        ]),
+        $('button', { type: 'button', class: 'hh-keuzekaart', onclick: leegArtikel }, [
+          $('strong', { text: 'Leeg beginnen' }), $('span', { text: 'Typ het artikel zelf op de pagina' }),
+        ]),
+      ]),
+    ]);
+  }
+
+  function leegArtikel() {
     const titel = $('input', { type: 'text', class: 'hh-veld', placeholder: 'Bijvoorbeeld: Wat kost een hypotheekadviseur?' });
     const onderwerp = $('select', { class: 'hh-veld' }, Object.entries(CATEGORIEEN).map(([k, t]) => $('option', { value: k, text: t })));
     paneel('Nieuw artikel', [
@@ -826,6 +850,351 @@
       melding(lokaal ? 'Verwijderd.' : 'Verwijderd. Over ongeveer een minuut is het ook online weg.', 'ok', 6000);
       setTimeout(() => { location.href = '/blog'; }, lokaal ? 800 : 2500);
     } catch (e) { melding(e.message, 'fout', 0); }
+  }
+
+  // ---------- blog uit een document (Word of Google Docs) ----------
+  let documentLaden = null;
+  const laadDocument = () => documentLaden ||= new Promise((ok, mis) => {
+    if (window.hhDocument) return ok(window.hhDocument);
+    const s = $('script', { src: '/beheer/document.js' });
+    s.onload = () => ok(window.hhDocument);
+    s.onerror = () => { documentLaden = null; mis(new Error('Het inlezen kon niet starten. Probeer het opnieuw.')); };
+    document.head.append(s);
+  });
+
+  // doel: leeg = nieuw artikel; "blog/<slug>" = de tekst van dat artikel vervangen
+  function importPaneel(doel) {
+    const bestandVeld = $('input', { type: 'file', accept: '.docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document', class: 'hh-verborgen' });
+    const status = $('p', { class: 'hh-import-status', role: 'status' });
+    const plak = $('div', { class: 'hh-plakvak', contenteditable: 'true', 'data-leeg': 'Of plak hier de tekst uit Google Docs (in je document: Ctrl+A, Ctrl+C; hier: Ctrl+V)' });
+    const verwerk = async (lees, wat) => {
+      status.textContent = 'Bezig met inlezen…';
+      status.className = 'hh-import-status';
+      try {
+        const doc = await laadDocument();
+        const r = await lees(doc);
+        if (!r.inhoud && !r.faq.length) throw new Error('Er is geen tekst gevonden in ' + wat + '.');
+        voorbeeldPaneel(r, doel);
+      } catch (e) { status.textContent = e.message; status.className = 'hh-import-status is-fout'; }
+    };
+    bestandVeld.addEventListener('change', () => { const f = bestandVeld.files[0]; if (f) verwerk(d => d.leesBestand(f), 'dit bestand'); });
+    plak.addEventListener('paste', e => {
+      e.preventDefault();
+      const cd = e.clipboardData;
+      verwerk(d => d.leesKlembord(cd.getData('text/html'), cd.getData('text/plain')), 'de geplakte tekst');
+    });
+    const sleep = $('div', { class: 'hh-sleepvak' }, [
+      $('strong', { text: 'Sleep je Word-bestand hierheen' }),
+      $('span', { text: 'of' }),
+      $('button', { type: 'button', class: 'hh-knop hh-knop--hoofd', onclick: () => bestandVeld.click(), text: 'Kies een bestand (.docx)' }),
+    ]);
+    sleep.addEventListener('dragover', e => { e.preventDefault(); sleep.classList.add('is-erboven'); });
+    sleep.addEventListener('dragleave', () => sleep.classList.remove('is-erboven'));
+    sleep.addEventListener('drop', e => {
+      e.preventDefault(); sleep.classList.remove('is-erboven');
+      const f = e.dataTransfer.files[0];
+      if (f) verwerk(d => d.leesBestand(f), 'dit bestand');
+    });
+    paneel(doel ? 'Tekst vervangen uit document' : 'Artikel uit een document', [
+      $('p', { class: 'hh-uitleg', text: doel
+        ? 'De titel, inleiding, tekst en veelgestelde vragen van dit artikel worden vervangen door die uit het document. Je ziet eerst wat er gevonden is.'
+        : 'Upload je Word-bestand, of plak de tekst uit Google Docs. Je ziet eerst wat er gevonden is voordat het artikel wordt aangemaakt.' }),
+      sleep, bestandVeld, plak, status,
+      $('details', { class: 'hh-tips' }, [
+        $('summary', { text: 'Zo wordt je document ingedeeld' }),
+        $('ul', {}, [
+          ['Titel', 'de bovenste kop (stijl "Titel" of "Kop 1")'],
+          ['Inleiding', 'de eerste alinea onder de titel'],
+          ['Tussenkoppen', 'koppen met stijl "Kop 2" (of korte, vetgedrukte regels); kleinere koppen worden een kleine kop'],
+          ['Veelgestelde vragen', 'alles onder een kop "Veelgestelde vragen": elke vraag vetgedrukt of als kop, het antwoord eronder'],
+          ['Foto', 'de eerste foto in het document komt bovenaan het artikel'],
+          ['Extra (mag)', 'losse regels zoals "Titel voor Google: …", "Omschrijving voor Google: …", "Samenvatting: …", "Onderwerp: …" of "Datum: 15 januari 2027"'],
+        ].map(([k, t]) => $('li', {}, [$('strong', { text: k + ': ' }), t]))),
+      ]),
+    ]);
+    plak.focus();
+  }
+
+  async function geplandeDatums() {
+    try { return (await api('/api/beheer/blog')).artikelen.filter(a => a.status === 'ingepland' && a.datum > vandaag()); } catch { return []; }
+  }
+
+  async function voorbeeldPaneel(r, doel) {
+    const { veld } = veldMaker();
+    const velden = {};
+    const maakVeld = (naam, label, waarde, opties) => { const [l, v, t] = veld(label, waarde, opties, () => {}); velden[naam] = v; return [l, v, t]; };
+    const morgen = new Date(Date.now() + 864e5).toLocaleDateString('sv-SE', { timeZone: 'Europe/Amsterdam' });
+    const standaardStatus = r.datum && r.datum > vandaag() ? 'ingepland' : 'concept';
+    const gevonden = $('ul', { class: 'hh-gevonden' }, [
+      ['Titel', r.titel || '—'],
+      ['Inleiding', r.inleiding ? r.inleiding.replace(/<[^>]+>/g, '').slice(0, 90) + '…' : '—'],
+      ['Tussenkoppen', String(r.tussenkoppen)],
+      ['Veelgestelde vragen', String(r.faq.length)],
+      ['Lengte', `${r.woorden} woorden (${r.leestijd})`],
+    ].map(([k, v]) => $('li', {}, [$('span', { text: k }), $('strong', { text: v })])));
+    let fotoAan = !!r.foto;
+    const fotoBlok = r.foto && $('label', { class: 'hh-importfoto' }, [
+      $('img', { src: r.foto.url, alt: '' }),
+      $('span', {}, [
+        $('input', { type: 'checkbox', checked: true, onchange: e => { fotoAan = e.target.checked; } }),
+        ' Deze foto bovenaan het artikel en in het blogoverzicht gebruiken',
+      ]),
+    ]);
+    const inhoud = [
+      $('p', { class: 'hh-uitleg', text: 'Dit is gevonden in je document. Controleer de gegevens hieronder; de tekst zelf pas je daarna gewoon op de pagina aan.' }),
+      gevonden,
+      ...r.waarschuwingen.map(w => $('p', { class: 'hh-waarschuwing', text: w })),
+      fotoBlok,
+      ...maakVeld('titel', 'Titel', r.titel, { max: 90 }),
+    ];
+    if (!doel) {
+      const datumRij = $('div', { class: 'hh-datumrij' });
+      const statusVeld = maakVeld('status', 'Wanneer moet het online?', standaardStatus, { opties: {
+        concept: 'Nog niet: eerst zelf nakijken (concept)',
+        ingepland: 'Inplannen op een datum',
+        gepubliceerd: 'Direct online zetten',
+      } });
+      const [dl, dv] = maakVeld('datum', 'Datum waarop het live gaat', r.datum && r.datum > vandaag() ? r.datum : morgen, { type: 'date' });
+      dv.min = morgen;
+      const gepland = $('p', { class: 'hh-tel' });
+      geplandeDatums().then(lijst => {
+        if (lijst.length) gepland.textContent = 'Al ingepland: ' + lijst.sort((a, b) => a.datum.localeCompare(b.datum)).map(a => datumKort(a.datum)).join(', ');
+      });
+      datumRij.append(dl, dv, gepland);
+      const toon = () => { datumRij.hidden = velden.status.value !== 'ingepland'; };
+      velden.status.addEventListener('change', toon); toon();
+      inhoud.push(...statusVeld, datumRij, ...maakVeld('categorie', 'Onderwerp', r.categorie, { opties: CATEGORIEEN }));
+    }
+    inhoud.push(
+      ...maakVeld('metaTitel', 'Titel in Google', r.meta.title, { max: 60 }),
+      ...maakVeld('metaOmschrijving', 'Omschrijving in Google', r.meta.description, { max: 155, rijen: 3 }),
+      ...maakVeld('samenvatting', 'Samenvatting op de kaart in het blogoverzicht', r.samenvatting, { rijen: 3 }),
+    );
+
+    paneel(doel ? 'Tekst vervangen: controleren' : 'Artikel controleren', inhoud, async () => {
+      const w = k => velden[k]?.value.trim() ?? '';
+      if (!w('titel')) { melding('Geef het artikel een titel', 'fout'); return false; }
+      let foto = null;
+      if (fotoAan && r.foto) {
+        try {
+          const klein = await verklein(await (await fetch(r.foto.url)).blob());
+          foto = { data: klein.url.split(',')[1], alt: r.foto.alt, url: klein.url };
+        } catch { melding('De foto uit het document kon niet worden gebruikt; het artikel krijgt de standaardfoto.', 'fout'); }
+      }
+      if (doel) return vervangArtikel(doel, r, w, foto);
+      const status = w('status');
+      const datum = status === 'ingepland' ? w('datum') : vandaag();
+      if (status === 'ingepland' && !(datum > vandaag())) { melding('Kies een datum in de toekomst om in te plannen', 'fout'); return false; }
+      melding('Artikel wordt aangemaakt…', 'ok', 0);
+      try {
+        const d = await api('/api/beheer/blog', {
+          actie: 'importeer', titel: w('titel'), categorie: w('categorie'), status, datum,
+          inleiding: r.inleiding, inhoud: r.inhoud, faq: r.faq, samenvatting: w('samenvatting'), leestijd: r.leestijd,
+          meta: { title: w('metaTitel'), description: w('metaOmschrijving') },
+          foto: foto && { data: foto.data, alt: foto.alt },
+        });
+        const wat = status === 'ingepland' ? `Ingepland voor ${datumLang(datum)}.` : status === 'gepubliceerd' ? 'Artikel staat online.' : 'Concept aangemaakt.';
+        naarArtikel(d.slug, wat);
+      } catch (e) { melding(e.message, 'fout', 0); return false; }
+    }, doel ? 'Tekst vervangen' : 'Artikel aanmaken');
+  }
+
+  // Bestaand artikel: alles als gewone wijzigingen klaarzetten; met Publiceren gaat het live
+  function vervangArtikel(ref, r, w, foto) {
+    const a = bron[ref];
+    if (!a) { melding('Dit artikel kon niet worden geladen', 'fout'); return; }
+    stap();
+    const tekst = (sleutel, waarde) => {
+      const k = sleutelVan('tekst', ref + ':' + sleutel);
+      if (waarde === (a.t?.[sleutel] ?? '')) wijzigingen.delete(k);
+      else wijzigingen.set(k, { bestand: ref, soort: 'tekst', sleutel, waarde });
+    };
+    tekst('titel', w('titel'));
+    if (r.inleiding) tekst('inleiding', r.inleiding);
+    tekst('inhoud', r.inhoud);
+    tekst('samenvatting', w('samenvatting'));
+    tekst('leestijd', r.leestijd);
+    wijzigingen.set(sleutelVan('lijst', ref + ':faq'), { bestand: ref, soort: 'lijst', sleutel: 'faq', waarde: r.faq });
+    for (const [sleutel, veld] of [['title', 'metaTitel'], ['description', 'metaOmschrijving']]) {
+      if (w(veld) && w(veld) !== a.meta?.[sleutel]) wijzigingen.set(sleutelVan('meta', ref + ':' + sleutel), { bestand: ref, soort: 'meta', sleutel, waarde: w(veld) });
+    }
+    if (foto) {
+      const id = 'u' + Date.now();
+      uploads.set(id, { id, naam: 'foto-uit-document.jpg', data: foto.data });
+      for (const sleutel of ['hero.foto1', 'kaart']) if (a.i?.[sleutel]) wijzigingen.set(sleutelVan('beeld', ref + ':' + sleutel), { bestand: ref, soort: 'beeld', sleutel, waarde: { upload: id, alt: foto.alt } });
+    }
+    telBij();
+    if (ref === PAGINA) {
+      melding('Tekst vervangen. Kijk het artikel na en klik op Publiceren.');
+      sessionStorage.setItem(SCROLL, '0');
+      setTimeout(() => location.reload(), 800);
+    } else melding('Tekst vervangen. Open het artikel om het na te kijken en klik op Publiceren.', 'ok', 8000);
+  }
+
+  // ---------- blogplanning: agenda met alle artikelen ----------
+  async function planningPaneel() {
+    const lijst = $('div', { class: 'hh-planning' }, $('p', { class: 'hh-uitleg', text: 'Laden…' }));
+    paneel('Blogplanning', [
+      $('p', { class: 'hh-uitleg', text: 'Plan artikelen vooruit: een ingepland artikel gaat op de gekozen dag \'s ochtends vroeg vanzelf live. Tot die dag is het alleen voor jou zichtbaar.' }),
+      $('div', { class: 'hh-knoppenrij' }, [$('button', { type: 'button', class: 'hh-knop hh-knop--hoofd', onclick: () => importPaneel(), text: '+ Nieuw artikel uit document' })]),
+      lijst,
+    ]);
+    document.querySelector('.hh-paneel-doos')?.classList.add('is-breed');
+    let artikelen;
+    try { artikelen = (await api('/api/beheer/blog')).artikelen; } catch (e) { lijst.replaceChildren($('p', { class: 'hh-waarschuwing', text: e.message })); return; }
+    // Niet-gepubliceerde wijzigingen (bijv. net een datum aangepast) meetellen
+    artikelen = artikelen.map(a => ({ ...a, opgeslagen: { status: a.status, datum: a.datum }, status: huidig('artikel', a.ref, 'status', a.status), datum: huidig('artikel', a.ref, 'datum', a.datum) }));
+    const dag = vandaag();
+    const gepland = artikelen.filter(a => a.status === 'ingepland' && a.datum > dag).sort((x, y) => x.datum.localeCompare(y.datum));
+    const concepten = artikelen.filter(a => a.status === 'concept').sort((x, y) => y.datum.localeCompare(x.datum));
+    const live = artikelen.filter(a => a.status === 'gepubliceerd' || (a.status === 'ingepland' && a.datum <= dag)).sort((x, y) => y.datum.localeCompare(x.datum));
+
+    const inplannen = (a, rij) => {
+      const morgen = new Date(Date.now() + 864e5).toLocaleDateString('sv-SE', { timeZone: 'Europe/Amsterdam' });
+      const datum = $('input', { type: 'date', class: 'hh-veld hh-veld--klein', value: a.datum > dag ? a.datum : morgen, min: morgen });
+      rij.querySelector('.hh-rij-acties').replaceChildren(datum,
+        $('button', { type: 'button', class: 'hh-knop hh-knop--hoofd', text: 'Opslaan', onclick: () => {
+          if (!(datum.value > dag)) return melding('Kies een datum in de toekomst', 'fout');
+          zet(a.ref, 'artikel', 'status', a.opgeslagen.status)('ingepland');
+          zet(a.ref, 'artikel', 'datum', a.opgeslagen.datum)(datum.value);
+          telBij();
+          melding(`Ingepland voor ${datumLang(datum.value)}. Klik op Publiceren om de planning op te slaan.`, 'ok', 8000);
+          planningPaneel();
+        } }));
+      datum.focus();
+    };
+    const naarConcept = a => {
+      zet(a.ref, 'artikel', 'status', a.opgeslagen.status)('concept');
+      telBij();
+      melding('Weer een concept. Klik op Publiceren om dit op te slaan.', 'ok', 6000);
+      planningPaneel();
+    };
+    const rij = (a, soort) => {
+      const r = $('li', { class: 'hh-rij' }, [
+        $('time', { datetime: a.datum, text: datumKort(a.datum) }),
+        $('span', { class: 'hh-rij-titel', text: a.titel }),
+        $('span', { class: 'hh-rij-acties' }, [
+          $('a', { class: 'hh-knop', href: '/' + a.ref, text: 'Openen' }),
+          soort !== 'live' && !a.eigenPagina && $('button', { type: 'button', class: 'hh-knop', text: soort === 'gepland' ? 'Andere datum' : 'Inplannen', onclick: () => inplannen(a, r) }),
+          soort === 'gepland' && $('button', { type: 'button', class: 'hh-knop hh-knop--stil', text: 'Niet inplannen', onclick: () => naarConcept(a) }),
+        ]),
+      ]);
+      return r;
+    };
+    const groep = (titel, items, soort, leeg) => [
+      $('h3', { class: 'hh-planning-kop', text: `${titel} (${items.length})` }),
+      items.length ? $('ul', { class: 'hh-rijen' }, items.map(a => rij(a, soort))) : $('p', { class: 'hh-tel', text: leeg }),
+    ];
+    lijst.replaceChildren(
+      kalender(gepland, live),
+      ...groep('Ingepland', gepland, 'gepland', 'Nog niets ingepland. Kies bij een concept "Inplannen".'),
+      ...groep('Concepten', concepten, 'concept', 'Geen concepten.'),
+      ...groep('Online', live.slice(0, 8), 'live', 'Nog geen artikelen online.'),
+    );
+  }
+
+  // Drie maanden vooruit; dagen met een artikel zijn gemarkeerd
+  function kalender(gepland, live) {
+    const opDag = {};
+    [...gepland, ...live].forEach(a => { (opDag[a.datum] ||= []).push(a); });
+    const nu = new Date(vandaag() + 'T12:00:00');
+    const maanden = [0, 1, 2].map(n => {
+      const eerste = new Date(nu.getFullYear(), nu.getMonth() + n, 1, 12);
+      const dagen = new Date(eerste.getFullYear(), eerste.getMonth() + 1, 0).getDate();
+      const leeg = (eerste.getDay() + 6) % 7; // maandag eerst
+      const cellen = [...Array(leeg)].map(() => $('span'));
+      for (let d = 1; d <= dagen; d++) {
+        const iso = `${eerste.getFullYear()}-${String(eerste.getMonth() + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+        const items = opDag[iso];
+        const klasse = ['hh-dag', iso === vandaag() && 'is-vandaag', items && (iso > vandaag() ? 'is-gepland' : 'is-live')].filter(Boolean).join(' ');
+        cellen.push(items
+          ? $('a', { class: klasse, href: '/' + items[0].ref, title: items.map(a => a.titel).join('\n'), text: String(d) })
+          : $('span', { class: klasse, text: String(d) }));
+      }
+      return $('div', { class: 'hh-maand' }, [
+        $('strong', { text: eerste.toLocaleDateString('nl-NL', { month: 'long', year: 'numeric' }) }),
+        $('div', { class: 'hh-dagen' }, [...['ma', 'di', 'wo', 'do', 'vr', 'za', 'zo'].map(t => $('i', { text: t })), ...cellen]),
+      ]);
+    });
+    return $('div', { class: 'hh-kalender' }, [
+      ...maanden,
+      $('p', { class: 'hh-kalender-uitleg' }, [$('i', { class: 'hh-stip is-gepland' }), ' ingepland ', $('i', { class: 'hh-stip is-live' }), ' online']),
+    ]);
+  }
+
+  // ---------- bedrijfsgegevens ----------
+  const BEDRIJF_VELDEN = [
+    ['telefoon', 'Mobiel nummer (bel- en WhatsApp-knoppen)'],
+    ['telefoonVast', 'Vast nummer'],
+    ['email', 'E-mailadres'],
+    ['kvk', 'KvK-nummer'],
+    ['afm', 'AFM-vergunningnummer'],
+    ['plaats', 'Plaats'],
+    ['regio', 'Provincie of regio'],
+    ['werkgebied', 'Werkgebied (plaatsen, gescheiden door komma\'s)', { rijen: 3 }],
+    ['omschrijving', 'Korte omschrijving van het bedrijf (voor Google)', { rijen: 3, max: 300 }],
+    ['googleProfiel', 'Link naar je Google-bedrijfsprofiel'],
+    ['linkedin', 'Link naar LinkedIn'],
+    ['trustoo', 'Link naar Trustoo'],
+  ];
+  function bedrijfWeergave(k, v) {
+    if (Array.isArray(v)) return v.join(', ');
+    if ((k === 'telefoon' || k === 'telefoonVast') && typeof v === 'string') {
+      const m = v.match(/^\+31(6)(\d{2})(\d{2})(\d{2})(\d{2})$/) || v.match(/^\+31(\d{2})(\d{3})(\d{4})$/);
+      if (m && m[1] === '6') return `06 ${m[2]} ${m[3]} ${m[4]} ${m[5]}`;
+      if (m) return `0${m[1]} ${m[2]} ${m[3]}`;
+    }
+    return v ?? '';
+  }
+  function bedrijfPaneel() {
+    const b = bron.site?.bedrijf;
+    if (!b) return melding('De bedrijfsgegevens konden niet worden geladen', 'fout');
+    const { veld, opslaan } = veldMaker();
+    paneel('Bedrijfsgegevens', [
+      $('p', { class: 'hh-uitleg', text: 'Deze gegevens zitten achter de bel-, WhatsApp- en mailknoppen op de hele site en in de informatie die Google over je bedrijf leest. De zichtbare teksten, zoals "Bel 06 …", pas je aan door er op de pagina op te klikken.' }),
+      ...BEDRIJF_VELDEN.flatMap(([k, label, opties = {}]) => {
+        const oud = bedrijfWeergave(k, b[k]);
+        return veld(label, huidig('bedrijf', 'site', k, oud), opties, zet('site', 'bedrijf', k, oud));
+      }),
+    ], () => { opslaan(); telBij(); melding('Aangepast. Klik op Publiceren om het live te zetten.', 'ok', 5000); });
+  }
+
+  // ---------- contactformulier: onderwerpen ----------
+  function formulierPaneel() {
+    const ref = 'contact:onderwerpen';
+    const onderwerpen = huidigeWaarde('lijst', ref);
+    const kies = bron.contact?.t?.['formulier.kies'] ?? '';
+    const groepen = [];
+    onderwerpen.forEach(o => { let g = groepen.find(x => x.naam === o.groep); if (!g) groepen.push(g = { naam: o.groep, items: [] }); g.items.push(o.tekst); });
+    const vakken = $('div', { class: 'hh-groepen' });
+    const voegGroepToe = (naam = '', items = []) => {
+      const naamVeld = $('input', { type: 'text', class: 'hh-veld', value: naam, placeholder: 'Naam van de groep, bijv. Hypotheek' });
+      const itemsVeld = $('textarea', { class: 'hh-veld', rows: String(Math.max(3, items.length + 1)), placeholder: 'Eén onderwerp per regel' });
+      itemsVeld.value = items.map(t => t.replace(/&amp;/g, '&')).join('\n');
+      const vak = $('div', { class: 'hh-groep' }, [
+        $('label', { class: 'hh-veldlabel', text: 'Groep' }), naamVeld,
+        $('label', { class: 'hh-veldlabel', text: 'Onderwerpen (één per regel)' }), itemsVeld,
+        $('button', { type: 'button', class: 'hh-knop hh-knop--stil', text: 'Groep verwijderen', onclick: () => vak.remove() }),
+      ]);
+      vak._lees = () => ({ naam: naamVeld.value.trim(), items: itemsVeld.value.split('\n').map(s => s.trim()).filter(Boolean) });
+      vakken.append(vak);
+    };
+    groepen.forEach(g => voegGroepToe(g.naam, g.items));
+    const kiesVeld = $('input', { type: 'text', class: 'hh-veld', value: huidig('tekst', 'contact', 'formulier.kies', kies) });
+    paneel('Onderwerpen in het contactformulier', [
+      $('p', { class: 'hh-uitleg', text: 'Dit zijn de keuzes bij "Waar gaat je vraag over?". Je ziet het verschil na het publiceren.' }),
+      $('label', { class: 'hh-veldlabel', text: 'Eerste regel in de keuzelijst' }), kiesVeld,
+      vakken,
+      $('button', { type: 'button', class: 'hh-knop', text: '+ Groep toevoegen', onclick: () => voegGroepToe() }),
+    ], () => {
+      const lijst = [...vakken.children].map(v => v._lees()).filter(g => g.naam && g.items.length)
+        .flatMap(g => g.items.map(tekst => ({ groep: g.naam, tekst })));
+      if (!lijst.length) { melding('Er moet minstens één onderwerp overblijven', 'fout'); return false; }
+      if (JSON.stringify(lijst) !== JSON.stringify(huidigeWaarde('lijst', ref))) { stap(); zetLijst(ref, lijst); }
+      zet('contact', 'tekst', 'formulier.kies', kies)(kiesVeld.value.trim());
+      telBij();
+      melding('Aangepast. Klik op Publiceren om het live te zetten.', 'ok', 5000);
+    });
   }
 
   // ---------- geschiedenis: elke publicatie is een back-up ----------
@@ -890,9 +1259,14 @@
   // ---------- paneel ----------
   function paneel(titel, inhoud, opslaan, knopTekst = 'Toepassen') {
     sluitPaneel();
+    // opslaan mag async zijn; geeft hij false terug, dan blijft het paneel open (bijv. bij een fout)
     const knoppen = opslaan
       ? [$('button', { type: 'button', class: 'hh-knop', onclick: sluitPaneel, text: 'Annuleren' }),
-         $('button', { type: 'button', class: 'hh-knop hh-knop--hoofd', onclick: () => { opslaan(); sluitPaneel(); }, text: knopTekst })]
+         $('button', { type: 'button', class: 'hh-knop hh-knop--hoofd', onclick: async e => {
+           const knop = e.currentTarget;
+           knop.disabled = true;
+           try { if (await opslaan() === false) return; sluitPaneel(); } finally { knop.disabled = false; }
+         }, text: knopTekst })]
       : [$('button', { type: 'button', class: 'hh-knop', onclick: sluitPaneel, text: 'Sluiten' })];
     const p = $('div', { class: 'hh-paneel', role: 'dialog', 'aria-modal': 'true', 'aria-label': titel }, [
       $('div', { class: 'hh-paneel-doos' }, [$('h2', { text: titel }), ...inhoud, $('div', { class: 'hh-paneel-knoppen' }, knoppen)]),
@@ -917,6 +1291,7 @@
       if (w.soort === 'lijst') return JSON.stringify(b.l?.[w.sleutel]) === JSON.stringify(w.waarde);
       if (w.soort === 'meta') return b.meta?.[w.sleutel] === w.waarde;
       if (w.soort === 'artikel') return b.artikel?.[w.sleutel] === w.waarde;
+      if (w.soort === 'bedrijf') return bedrijfWeergave(w.sleutel, b.bedrijf?.[w.sleutel]) === w.waarde;
       return false;
     };
     c.w.filter(w => !alLive(w)).forEach(w => {

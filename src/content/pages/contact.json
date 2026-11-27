@@ -57,7 +57,8 @@
     "pagina.span1": "Gratis en vrijblijvend",
     "pagina.h21": "Liever meteen <b>even bellen?</b>",
     "pagina.a1": "Bel 06 55 76 78 19 <i class=\"arrow\"></i>",
-    "pagina.a2": "Stuur een WhatsApp <i class=\"arrow\"></i>"
+    "pagina.a2": "Stuur een WhatsApp <i class=\"arrow\"></i>",
+    "formulier.kies": "Kies een onderwerp"
   },
   "i": {
     "hero.foto1": {
@@ -111,6 +112,56 @@
       },
       {
         "li": "Je vaste adviseur, ook na de notaris"
+      }
+    ],
+    "onderwerpen": [
+      {
+        "groep": "Hypotheek",
+        "tekst": "Kan ik een huis kopen?"
+      },
+      {
+        "groep": "Hypotheek",
+        "tekst": "Je eerste huis kopen"
+      },
+      {
+        "groep": "Hypotheek",
+        "tekst": "Verhuizen naar een ander huis"
+      },
+      {
+        "groep": "Hypotheek",
+        "tekst": "Scheiden en je hypotheek"
+      },
+      {
+        "groep": "Hypotheek",
+        "tekst": "Overwaarde opnemen"
+      },
+      {
+        "groep": "Hypotheek",
+        "tekst": "Je huis verduurzamen"
+      },
+      {
+        "groep": "Hypotheek",
+        "tekst": "Verbouwen of verhuizen?"
+      },
+      {
+        "groep": "Hypotheek",
+        "tekst": "Je rentevaste periode loopt af"
+      },
+      {
+        "groep": "Hypotheek",
+        "tekst": "Hypotheek oversluiten"
+      },
+      {
+        "groep": "Hypotheek",
+        "tekst": "Ondernemer en een hypotheek"
+      },
+      {
+        "groep": "Overig",
+        "tekst": "Verzekeringen"
+      },
+      {
+        "groep": "Overig",
+        "tekst": "Iets anders"
       }
     ]
   }

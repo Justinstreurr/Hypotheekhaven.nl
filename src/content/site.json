@@ -1,4 +1,32 @@
 {
+  "bedrijf": {
+    "naam": "Hypotheekhaven",
+    "eigenaar": "Sabrina Reiz-Coenraad",
+    "telefoon": "+31655767819",
+    "telefoonVast": "+31858001977",
+    "email": "info@hypotheekhaven.nl",
+    "kvk": "94387672",
+    "afm": "12042801",
+    "regio": "Noord-Holland",
+    "plaats": "Enkhuizen",
+    "omschrijving": "Onafhankelijk hypotheek- en verzekeringsadvies in Enkhuizen, West-Friesland en Noord-Holland, bij je thuis of online.",
+    "werkgebied": [
+      "Enkhuizen",
+      "Stede Broec",
+      "Drechterland",
+      "Medemblik",
+      "Hoorn",
+      "Koggenland",
+      "Opmeer",
+      "Schagen",
+      "Alkmaar",
+      "Purmerend",
+      "Edam-Volendam"
+    ],
+    "googleProfiel": "https://www.google.com/maps?cid=3046776625114960757",
+    "linkedin": "https://www.linkedin.com/in/sabrina-reiz-coenraad-a4a829135/",
+    "trustoo": "https://trustoo.nl/noord-holland/enkhuizen/hypotheekadviseur/hypotheekhaven/"
+  },
   "t": {
     "nav.a1": "Diensten",
     "nav.a2": "Werkwijze &amp; kosten",
@@ -76,7 +104,9 @@
     "cookie.tekst": "Ik meet anoniem hoe deze website gebruikt wordt, zonder cookies. Met jouw toestemming gebruik ik ook Microsoft Clarity om te zien waar bezoekers klikken en scrollen, zodat ik de website kan verbeteren. Clarity plaatst daarvoor cookies. <a href=\"/juridisch#cookies\">Meer informatie</a>",
     "cookie.ja": "Akkoord",
     "cookie.nee": "Liever niet",
-    "cookie.instellingen": "Cookie-instellingen"
+    "cookie.instellingen": "Cookie-instellingen",
+    "merk.naam": "Hypotheekhaven",
+    "merk.tag": "Hypotheek- &amp; verzekeringsadvies"
   },
   "i": {
     "reviews.img1": {

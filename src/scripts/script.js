@@ -87,7 +87,7 @@ taak(() => {
     paneel.innerHTML = `<ul class="menu-links">${items}</ul>
       <div class="menu-voet">
         <a href="${cta ? cta.getAttribute('href') : '/contact#formulier'}" class="btn btn-dark">${cta ? cta.textContent : ''} <i class="arrow"></i></a>
-        <a href="tel:+31655767819" class="menu-bel">${document.getElementById('menu-voet-tekst')?.innerHTML ?? ''}</a>
+        <a href="${document.getElementById('menu-voet-tekst')?.dataset.href ?? '/contact'}" class="menu-bel">${document.getElementById('menu-voet-tekst')?.innerHTML ?? ''}</a>
       </div>`;
     // Knop vooraan in de tabvolgorde (na de overslaanlink); hij staat vast in beeld, dus de plek in de html maakt visueel niets uit
     const overslaan = document.querySelector('.naar-inhoud');

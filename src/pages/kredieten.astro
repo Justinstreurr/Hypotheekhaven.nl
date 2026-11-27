@@ -7,6 +7,7 @@ import Header from '../components/Header.astro';
 import HeroReviews from '../components/HeroReviews.astro';
 import Footer from '../components/Footer.astro';
 import { laadPagina, lijstBeeld } from '../lib/content';
+import { contactLinks } from '../lib/site';
 import '../styles/pagina.css';
 import '../styles/verzekeringen.css';
 import '../styles/kredieten.css';
@@ -185,8 +186,8 @@ const waarschuwingSmal = await getImage({ src: smal, format: 'webp', quality: 80
   <p class="krediet-waarschuwing-voet" data-e="kredieten:contact.p4" set:html={t('contact.p4')}></p>
 
   <div class="btn-row">
-    <a href="tel:+31655767819" class="btn btn-dark" data-e="kredieten:contact.a1" set:html={t('contact.a1')}></a>
-    <a href="https://wa.me/31655767819" target="_blank" rel="noopener" class="btn btn-light" data-e="kredieten:contact.a2" set:html={t('contact.a2')}></a>
+    <a href={contactLinks.bel} class="btn btn-dark" data-e="kredieten:contact.a1" set:html={t('contact.a1')}></a>
+    <a href={contactLinks.whatsapp} target="_blank" rel="noopener" class="btn btn-light" data-e="kredieten:contact.a2" set:html={t('contact.a2')}></a>
   </div>
   </div>
 </Fragment>

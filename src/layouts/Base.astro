@@ -14,7 +14,7 @@ import Cookiebot from '../components/Cookiebot.astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
 import { laad, beeldBestand, type Achtergrond } from '../lib/content';
 import { jsonLd, seoVoor } from '../lib/seo';
-import { absoluut, bedrijf, isProductie } from '../lib/site';
+import { absoluut, bedrijf, contactLinks, isProductie } from '../lib/site';
 
 interface Props {
   pagina: string;
@@ -85,7 +85,7 @@ const artikel = seo?.artikel;
 <a class="naar-inhoud" href="#inhoud">Naar de inhoud</a>
 <div class="review-balk"><a href={bedrijf.googleProfiel} target="_blank" rel="noopener" class="review-balk-item" data-e="site:balk.google" set:html={t('balk.google')} /><span class="scheiding" aria-hidden="true"></span><a href={bedrijf.trustoo} target="_blank" rel="noopener" data-e="site:balk.trustoo" set:html={t('balk.trustoo')} /></div>
 <slot />
-<template id="menu-voet-tekst" set:html={t('menu.bel')} />
+<template id="menu-voet-tekst" data-href={contactLinks.bel} set:html={t('menu.bel')} />
 <CookieBanner />
 <SpeedInsights />
 <script>

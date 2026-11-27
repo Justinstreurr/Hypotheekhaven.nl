@@ -4,7 +4,7 @@
   const form = document.querySelector('.contactformulier');
   if (!form) return;
   const bevestiging = document.querySelector('.formulier-bevestiging');
-  const ONTVANGER = 'info@hypotheekhaven.nl';
+  const ONTVANGER = document.querySelector('.contactformulier')?.dataset.mail || 'info@hypotheekhaven.nl';
 
   // Komt de bezoeker uit een rekentool ("Bespreek je uitkomst")? Dan staat de samenvatting klaar in het berichtveld.
   try {

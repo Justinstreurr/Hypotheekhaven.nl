@@ -3,6 +3,7 @@ import Img from './Img.astro';
 import Logo from './Logo.astro';
 import Feedback from './Feedback.astro';
 import { laad, lijstBeeld } from '../lib/content';
+import { contactLinks } from '../lib/site';
 
 interface Props {
   kort?: boolean;
@@ -27,8 +28,8 @@ const { t, img, bg, lijst } = await laad('site');
   </div>
 
   <div class="btn-row">
-    <a href="tel:+31655767819" class="btn btn-dark" data-e="site:contact.a1" set:html={t('contact.a1')}></a>
-    <a href="https://wa.me/31655767819" target="_blank" rel="noopener" class="btn btn-light" data-e="site:contact.a2" set:html={t('contact.a2')}></a>
+    <a href={contactLinks.bel} class="btn btn-dark" data-e="site:contact.a1" set:html={t('contact.a1')}></a>
+    <a href={contactLinks.whatsapp} target="_blank" rel="noopener" class="btn btn-light" data-e="site:contact.a2" set:html={t('contact.a2')}></a>
   </div>
   </div>
   </slot>
@@ -75,10 +76,10 @@ const { t, img, bg, lijst } = await laad('site');
         </div>
         <div class="footer-kolom">
           <h4 data-e="site:footer.h44" set:html={t('footer.h44')}></h4>
-          <a href="tel:+31655767819" data-e="site:footer.a23" set:html={t('footer.a23')}></a>
-          <a href="tel:+31858001977" data-e="site:footer.a24" set:html={t('footer.a24')}></a>
-          <a href="mailto:info@hypotheekhaven.nl" data-e="site:footer.a25" set:html={t('footer.a25')}></a>
-          <a href="https://wa.me/31655767819" target="_blank" rel="noopener" data-e="site:footer.a26" set:html={t('footer.a26')}></a>
+          <a href={contactLinks.bel} data-e="site:footer.a23" set:html={t('footer.a23')}></a>
+          <a href={contactLinks.belVast} data-e="site:footer.a24" set:html={t('footer.a24')}></a>
+          <a href={contactLinks.mail} data-e="site:footer.a25" set:html={t('footer.a25')}></a>
+          <a href={contactLinks.whatsapp} target="_blank" rel="noopener" data-e="site:footer.a26" set:html={t('footer.a26')}></a>
           <a href="https://www.linkedin.com/in/sabrina-reiz-coenraad-a4a829135/" target="_blank" rel="noopener" data-e="site:footer.a27" set:html={t('footer.a27')}></a>
           <a href="https://trustoo.nl/noord-holland/enkhuizen/hypotheekadviseur/hypotheekhaven/" target="_blank" rel="noopener" data-e="site:footer.a28" set:html={t('footer.a28')}></a>
         </div>

@@ -19,12 +19,19 @@ export interface Inhoud {
   l?: Record<string, LijstItem[]>;
 }
 
-export type ArtikelStatus = 'gepubliceerd' | 'concept' | 'binnenkort';
+export type ArtikelStatus = 'gepubliceerd' | 'concept' | 'binnenkort' | 'ingepland';
+
+/** Datum van vandaag in Nederland als JJJJ-MM-DD */
+export const vandaag = () => new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Amsterdam' });
+
+/** Een ingepland artikel telt vanaf zijn datum als gepubliceerd, daarvoor als concept */
+export const effectieveStatus = (a: { status: ArtikelStatus; datum: string }): Exclude<ArtikelStatus, 'ingepland'> =>
+  a.status === 'ingepland' ? (a.datum <= vandaag() ? 'gepubliceerd' : 'concept') : a.status;
 
 export interface Artikel extends Inhoud {
   meta: { title: string; description: string };
   artikel: {
-    status: ArtikelStatus;
+    status: ArtikelStatus;  // "ingepland": gaat op `datum` vanzelf live (zie api/cron/blog.ts)
     categorie: string;
     datum: string;          // JJJJ-MM-DD
     bijgewerkt?: string;    // JJJJ-MM-DD, laatste inhoudelijke wijziging (dateModified)
@@ -57,10 +64,15 @@ export function beeldBestand(src: string): ImageMetadata {
   return meta;
 }
 
-/** Alle artikelen, nieuwste eerst */
+/** Alle artikelen, nieuwste eerst. `artikel.status` is de status zoals die nu geldt (een ingepland artikel
+ *  is vóór zijn datum een concept); `ingesteld` is de status uit het bestand. */
 export function artikelen() {
   return Object.entries(artikelBestanden)
-    .map(([pad, inhoud]) => ({ slug: pad.replace(/^.*\/(.+)\.json$/, '$1'), ...inhoud }))
+    .map(([pad, inhoud]) => ({
+      slug: pad.replace(/^.*\/(.+)\.json$/, '$1'), ...inhoud,
+      ingesteld: inhoud.artikel.status,
+      artikel: { ...inhoud.artikel, status: effectieveStatus(inhoud.artikel) },
+    }))
     .sort((a, b) => b.artikel.datum.localeCompare(a.artikel.datum));
 }
 

@@ -9,7 +9,7 @@ const json = (data: unknown, status = 200) => new Response(JSON.stringify(data),
 type Waarde = string | { upload?: string; alt?: string } | Record<string, unknown>[];
 interface Wijziging {
   bestand: string;
-  soort: 'tekst' | 'attr' | 'beeld' | 'meta' | 'lijst' | 'artikel';
+  soort: 'tekst' | 'attr' | 'beeld' | 'meta' | 'lijst' | 'artikel' | 'bedrijf';
   sleutel: string;
   waarde: Waarde;
 }
@@ -18,9 +18,37 @@ interface Upload { id: string; naam: string; data: string }
 const SOORTEN: Record<string, string> = { '/9j/': 'jpg', iVBORw0KGgo: 'png', UklGR: 'webp' };
 const MAX_BEELD = 3 * 1024 * 1024;
 const KEUZES: Record<string, string[]> = { bron: ['google', 'trustoo'] };
-const STATUSSEN = ['gepubliceerd', 'concept', 'binnenkort'];
+const STATUSSEN = ['gepubliceerd', 'concept', 'binnenkort', 'ingepland'];
 
 class Fout extends Error {}
+
+// Bedrijfsgegevens (site.json "bedrijf"): elk veld met zijn eigen controle
+const telefoon = (v: string) => {
+  let n = v.replace(/[^\d+]/g, '');
+  if (n.startsWith('00')) n = '+' + n.slice(2);
+  else if (n.startsWith('0')) n = '+31' + n.slice(1);
+  if (!/^\+\d{9,14}$/.test(n)) throw new Fout('Vul een geldig telefoonnummer in, bijvoorbeeld 06 12 34 56 78');
+  return n;
+};
+const adres = (v: string) => {
+  const a = v.trim();
+  if (!/^https:\/\/[^\s<>"]+$/.test(a)) throw new Fout('Een webadres begint met https://');
+  return a;
+};
+const tekstVeld = (max: number) => (v: string) => {
+  const t = schoneTekst(v);
+  if (!t || t.length > max) throw new Fout('Een bedrijfsgegeven is leeg of te lang');
+  return t;
+};
+const BEDRIJF: Record<string, (v: string) => unknown> = {
+  telefoon, telefoonVast: telefoon,
+  email: v => { if (!/^[^\s@<>]+@[^\s@<>]+\.[a-z]{2,}$/i.test(v.trim())) throw new Fout('Vul een geldig e-mailadres in'); return v.trim().toLowerCase(); },
+  kvk: v => { const n = v.replace(/\D/g, ''); if (n.length !== 8) throw new Fout('Een KvK-nummer heeft 8 cijfers'); return n; },
+  afm: v => { const n = v.replace(/\D/g, ''); if (n.length < 5 || n.length > 10) throw new Fout('Vul een geldig AFM-nummer in'); return n; },
+  plaats: tekstVeld(60), regio: tekstVeld(60), omschrijving: tekstVeld(300),
+  werkgebied: v => { const l = v.split(',').map(schoneTekst).filter(Boolean); if (!l.length || l.length > 40) throw new Fout('Vul de plaatsen van je werkgebied in, gescheiden door komma\'s'); return l; },
+  googleProfiel: adres, linkedin: adres, trustoo: adres,
+};
 
 type Uploads = Map<string, { src: string }>;
 
@@ -57,7 +85,7 @@ function beschrijving(wijzigingen: Wijziging[], uploads: number) {
   const tel = (soorten: string[]) => wijzigingen.filter(w => soorten.includes(w.soort)).length;
   const delen = [
     [tel(['tekst', 'attr']), 'tekst', 'teksten'], [uploads, 'nieuwe foto', 'nieuwe foto\'s'],
-    [tel(['lijst']), 'lijst', 'lijsten'], [tel(['meta']), 'Google-tekst', 'Google-teksten'], [tel(['artikel']), 'artikelinstelling', 'artikelinstellingen'],
+    [tel(['lijst']), 'lijst', 'lijsten'], [tel(['meta']), 'Google-tekst', 'Google-teksten'], [tel(['artikel']), 'artikelinstelling', 'artikelinstellingen'], [tel(['bedrijf']), 'bedrijfsgegeven', 'bedrijfsgegevens'],
   ].filter(([n]) => n).map(([n, een, meer]) => `${n} ${n === 1 ? een : meer}`);
   const plekken = [...new Set(wijzigingen.map(w => w.bestand))].join(', ');
   return `Website bijgewerkt: ${delen.join(', ') || 'wijzigingen'} (${plekken})`;
@@ -120,6 +148,10 @@ export const POST: APIRoute = async ({ request, cookies }) => {
         else if (w.sleutel === 'datum' && /^\d{4}-\d{2}-\d{2}$/.test(v)) a.datum = v;
         else throw new Fout('Ongeldige artikelinstelling');
         if (a.eigenPagina && w.sleutel === 'status' && v !== 'gepubliceerd') throw new Fout('Dit artikel heeft een eigen pagina en blijft gepubliceerd');
+      } else if (w.soort === 'bedrijf') {
+        const b = (inhoud as Inhoud & { bedrijf?: Record<string, unknown> }).bedrijf;
+        if (w.bestand !== 'site' || !b || !Object.hasOwn(BEDRIJF, w.sleutel)) throw new Fout('Onbekend bedrijfsgegeven');
+        b[w.sleutel] = BEDRIJF[w.sleutel](String(w.waarde));
       } else throw new Fout('Onbekende wijziging');
     }
 

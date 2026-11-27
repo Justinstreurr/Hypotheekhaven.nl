@@ -238,7 +238,7 @@ const { t, img, bg, meta, achtergronden, lijst } = await laadPagina('home');
         </div>
         <Img data={img('werkwijze.img4')} class="tijdlijn-foto" style="object-position: center 45%" />
       </li>
-      <li class="tijdlijn-label" aria-hidden="true"><span>Na de notaris</span></li>
+      <li class="tijdlijn-label" aria-hidden="true"><span data-e="home:tijdlijn.na" set:html={t('tijdlijn.na')}></span></li>
       <li class="tijdlijn-stap tijdlijn-stap--na">
         <div class="tijdlijn-tekst">
           <h3 data-e="home:werkwijze.h35" set:html={t('werkwijze.h35')}></h3>
