@@ -2,7 +2,7 @@
 import Img from './Img.astro';
 import Logo from './Logo.astro';
 import Feedback from './Feedback.astro';
-import { laad, lijstBeeld } from '../lib/content';
+import { laad, lijstBeeld, plaatsen } from '../lib/content';
 import { contactLinks } from '../lib/site';
 
 interface Props {
@@ -10,6 +10,7 @@ interface Props {
 }
 const { kort = false } = Astro.props;
 const { t, img, bg, lijst } = await laad('site');
+const werkgebied = plaatsen();
 ---
 <Feedback />
 <footer class:list={['footer', { 'footer--kort': kort }]} {...bg('footer.foto', '--foto')}>
@@ -86,6 +87,14 @@ const { t, img, bg, lijst } = await laad('site');
       </div>
     </div>
   </div>
+
+  {werkgebied.length > 0 && (
+    <nav class="footer-werkgebied container" aria-label="Werkgebied">
+      <span data-e="site:footer.werkgebied" set:html={t('footer.werkgebied')}></span>
+      <a href="/">Enkhuizen</a>
+      {werkgebied.map(p => <a href={p.pad}>{p.naam}</a>)}
+    </nav>
+  )}
 
   <div class="footer-wettelijk container">
     <Logo class="footer-logo" href="/" />

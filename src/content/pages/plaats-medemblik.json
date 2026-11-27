@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "title": "Hypotheekadviseur Medemblik, Andijk en Wervershoof | Hypotheekhaven",
+    "description": "Onafhankelijk hypotheekadviseur in de gemeente Medemblik: Medemblik, Andijk, Wervershoof, Wognum en meer. Starterslening, oversluiten of verhuizen. Eerste gesprek gratis."
+  },
+  "t": {
+    "plaats.naam": "Medemblik",
+    "plaats.volgorde": "2",
+    "hero.a1": "Home",
+    "hero.span1": "Hypotheekadviseur Medemblik",
+    "hero.h11": "Hypotheekadviseur in <b>Medemblik</b>",
+    "hero.p1": "Voor Medemblik, Andijk, Wervershoof, Wognum, Abbekerk en alle dorpen ertussen. Persoonlijk hypotheekadvies van iemand uit de regio, bij je thuis of online.",
+    "hero.a2": "Plan een gratis kennismaking <i class=\"arrow\"></i>",
+    "hero.a3": "Bel 06 55 76 78 19",
+    "intro.span1": "Waarom een adviseur uit de buurt",
+    "intro.h21": "Veel dorpen, <b>één</b> vast aanspreekpunt",
+    "intro.p1": "De gemeente Medemblik is groot: van het oude stadje aan het IJsselmeer tot Andijk, Wervershoof en Wognum. Ik kom gewoon bij je langs, waar je ook woont.",
+    "intro.p2": "Ik vergelijk de voorwaarden van vrijwel alle geldverstrekkers en neem de regelingen van de gemeente mee, zoals de starterslening en leningen om je huis aan te passen. Van de eerste berekening tot aan de notaris, en daarna.",
+    "lokaal.span1": "Goed om te weten",
+    "lokaal.h21": "Een huis kopen in <b>Medemblik</b>",
+    "lokaal.p1": "De gemeente Medemblik heeft een paar eigen regelingen die het verschil kunnen maken.",
+    "lokaal.p2": "Stand november 2026. Regelingen en bedragen veranderen geregeld; ik check altijd de actuele voorwaarden voordat je iets aanvraagt. Bronnen: <a href=\"https://www.medemblik.nl/subsidies-en-leningen/leningen/starterslening-aanvragen\" target=\"_blank\" rel=\"noopener\">gemeente Medemblik</a>, <a href=\"https://www.waarderingskamer.nl/gemeente/medemblik\" target=\"_blank\" rel=\"noopener\">Waarderingskamer</a>.",
+    "hulp.span1": "Waarmee ik je help",
+    "hulp.h21": "Waar sta <b>jij</b>?",
+    "faq.span1": "Veelgestelde vragen",
+    "faq.h21": "Hypotheek in <b>Medemblik</b>",
+    "faq.p1": "Staat je vraag er niet bij? Bel of app me gerust, ook voor een korte vraag.",
+    "anderen.span1": "Ook hypotheekadviseur in"
+  },
+  "i": {
+    "hero.foto1": { "src": "hh-hero-kaartje.jpg", "alt": "" }
+  },
+  "l": {
+    "lokaal": [
+      { "h3": "Starterslening Medemblik", "p": "Koop je je eerste huis in de gemeente Medemblik, dan kun je een starterslening aanvragen. De koopsom mag in 2026 maximaal € 420.000 zijn, inclusief meerwerk en verbeterkosten. De eerste 3 jaar betaal je over de starterslening geen rente en aflossing. Je moet in Medemblik wonen of werken, of er minstens een jaar gewoond hebben." },
+      { "h3": "Reken op wat tijd", "p": "De beoordeling van een starterslening duurt ongeveer 10 weken. Vraag hem daarom op tijd aan en neem dit mee in je planning en in de voorwaarden van je koopcontract." },
+      { "h3": "Wat kost een huis hier?", "p": "De gemiddelde WOZ-waarde van een koopwoning in de gemeente Medemblik is € 509.000 (2026). Tussen de dorpen zit veel verschil. Ik reken graag met jouw situatie." },
+      { "h3": "Je huis aanpassen", "p": "Medemblik heeft ook een stimuleringslening woningverbetering (€ 3.500 tot € 25.000), bijvoorbeeld om je huis levensloopbestendig te maken of voor funderingsherstel. Ik kijk met je hoe dat past naast je hypotheek." }
+    ],
+    "hulp": [
+      { "h3": "Je eerste huis kopen", "p": "Wat kun je lenen, en past de starterslening bij jou?", "link": "/diensten#eerste-huis" },
+      { "h3": "Verhuizen naar een ander huis", "p": "Je huidige hypotheek meenemen, of opnieuw beginnen?", "link": "/diensten#verhuizen" },
+      { "h3": "Verbouwen of verhuizen?", "p": "Uitzoeken wat slimmer is: blijven en verbouwen, of iets anders kopen.", "link": "/diensten#verbouwen-of-verhuizen" },
+      { "h3": "Rentevaste periode loopt af", "p": "Verlengen bij je bank, of oversluiten naar een lagere rente?", "link": "/rentevast-berekenen" },
+      { "h3": "Ondernemer en een hypotheek", "p": "Zzp of eigen bedrijf? Dan kijk ik anders naar je inkomen.", "link": "/diensten#ondernemer" },
+      { "h3": "Maandlasten berekenen", "p": "Zie direct wat een hypotheek je per maand kost, bruto en netto.", "link": "/maandlasten-berekenen" }
+    ],
+    "faq": [
+      { "vraag": "Kom je ook naar Andijk, Wervershoof of Wognum?", "antwoord": "Ja, ik kom in de hele gemeente Medemblik bij je thuis. Liever online? Dat kan ook, bijvoorbeeld via een videogesprek, of stel je vraag via WhatsApp." },
+      { "vraag": "Hoe hoog is de starterslening in Medemblik?", "antwoord": "De gemeente noemt op haar site geen vast maximumbedrag; dat hangt af van je situatie. De koopsom mag in 2026 maximaal € 420.000 zijn. In het eerste gesprek reken ik uit wat de starterslening voor jou kan betekenen." },
+      { "vraag": "Wat kost een hypotheekadviseur?", "antwoord": "Het eerste gesprek is altijd gratis. Daarna weet je vooraf precies wat het advies kost. Op de pagina <a href=\"/werkwijze#kosten\">werkwijze en kosten</a> lees je hoe dat werkt." },
+      { "vraag": "Waarom niet gewoon naar de bank?", "antwoord": "Een bank biedt alleen haar eigen hypotheken. Ik ben onafhankelijk en vergelijk vrijwel alle geldverstrekkers in Nederland. Zo kies je de hypotheek die het beste bij jou past." }
+    ]
+  }
+}

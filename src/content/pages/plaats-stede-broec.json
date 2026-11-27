@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "title": "Hypotheekadviseur Bovenkarspel en Grootebroek (Stede Broec) | Hypotheekhaven",
+    "description": "Onafhankelijk hypotheekadviseur voor Bovenkarspel, Grootebroek en Lutjebroek. Hulp met de starterslening van Stede Broec, oversluiten of verhuizen. Eerste gesprek gratis."
+  },
+  "t": {
+    "plaats.naam": "Stede Broec",
+    "plaats.volgorde": "3",
+    "hero.a1": "Home",
+    "hero.span1": "Hypotheekadviseur Stede Broec",
+    "hero.h11": "Hypotheekadviseur in <b>Bovenkarspel</b> en Grootebroek",
+    "hero.p1": "Voor Bovenkarspel, Grootebroek en Lutjebroek. Hypotheekhaven zit in Enkhuizen, letterlijk om de hoek. Persoonlijk advies bij je thuis of online.",
+    "hero.a2": "Plan een gratis kennismaking <i class=\"arrow\"></i>",
+    "hero.a3": "Bel 06 55 76 78 19",
+    "intro.span1": "Waarom een adviseur uit de buurt",
+    "intro.h21": "Advies van <b>om de hoek</b>",
+    "intro.p1": "Stede Broec en Enkhuizen liggen tegen elkaar aan. Ik ben dus snel bij je, en ik ken de woningmarkt en de regelingen hier goed.",
+    "intro.p2": "Ik vergelijk de voorwaarden van vrijwel alle geldverstrekkers en help je met de starterslening van de gemeente. Je hebt één vast aanspreekpunt, van de eerste berekening tot aan de notaris en ook daarna.",
+    "lokaal.span1": "Goed om te weten",
+    "lokaal.h21": "Een huis kopen in <b>Stede Broec</b>",
+    "lokaal.p1": "Wat je moet weten als je in Bovenkarspel, Grootebroek of Lutjebroek een huis wilt kopen.",
+    "lokaal.p2": "Stand november 2026. Regelingen en bedragen veranderen geregeld; ik check altijd de actuele voorwaarden voordat je iets aanvraagt. Bronnen: <a href=\"https://www.stedebroec.nl/direct-regelen/wonen-verkeer-en-veiligheid/wonen/starterslening/34158/\" target=\"_blank\" rel=\"noopener\">gemeente Stede Broec</a>, <a href=\"https://www.waarderingskamer.nl/gemeente/stede-broec\" target=\"_blank\" rel=\"noopener\">Waarderingskamer</a>.",
+    "hulp.span1": "Waarmee ik je help",
+    "hulp.h21": "Waar sta <b>jij</b>?",
+    "faq.span1": "Veelgestelde vragen",
+    "faq.h21": "Hypotheek in <b>Stede Broec</b>",
+    "faq.p1": "Staat je vraag er niet bij? Bel of app me gerust, ook voor een korte vraag.",
+    "anderen.span1": "Ook hypotheekadviseur in"
+  },
+  "i": {
+    "hero.foto1": { "src": "hh-planner-bank-groot.jpg", "alt": "" }
+  },
+  "l": {
+    "lokaal": [
+      { "h3": "Starterslening tot € 35.000", "p": "Stede Broec heeft een starterslening van maximaal € 35.000, voor bestaande bouw en nieuwbouw. De koopsom mag maximaal € 399.500 zijn (2026), inclusief verbeterkosten en meerwerk. Volgens de gemeente is er op dit moment voldoende budget." },
+      { "h3": "Wie komt in aanmerking?", "p": "Het moet je eerste huis zijn en je gaat er zelf wonen. Koop je samen, dan moet een van jullie in Stede Broec wonen, of je woonde er minstens 8 van de afgelopen 15 jaar. Je vraagt het eerst aan bij de gemeente en daarna bij SVn." },
+      { "h3": "Wat kost een huis hier?", "p": "De gemiddelde WOZ-waarde van een koopwoning in Stede Broec is € 455.000 (2026). Kijk dus goed of het huis dat je zoekt onder de grens van de starterslening valt." },
+      { "h3": "Dicht bij Enkhuizen", "p": "Werk je in Enkhuizen of Hoorn, of zoek je ook net over de gemeentegrens? Ik ken de regelingen in heel West-Friesland en zet ze voor je naast elkaar." }
+    ],
+    "hulp": [
+      { "h3": "Je eerste huis kopen", "p": "Wat kun je lenen, en past de starterslening bij jou?", "link": "/diensten#eerste-huis" },
+      { "h3": "Kan ik een huis kopen?", "p": "Een eerste indruk van wat je kunt lenen.", "link": "/diensten#kan-ik-kopen" },
+      { "h3": "Verhuizen naar een ander huis", "p": "Je huidige hypotheek meenemen, of opnieuw beginnen?", "link": "/diensten#verhuizen" },
+      { "h3": "Overwaarde opnemen", "p": "Je huis is meer waard geworden. Wat kun je daarmee?", "link": "/diensten#overwaarde" },
+      { "h3": "Rentevaste periode loopt af", "p": "Verlengen bij je bank, of oversluiten naar een lagere rente?", "link": "/rentevast-berekenen" },
+      { "h3": "Documentenchecklist", "p": "Welke papieren heb je nodig voor je hypotheek?", "link": "/documentenchecklist" }
+    ],
+    "faq": [
+      { "vraag": "Kom je ook bij mij thuis in Bovenkarspel of Grootebroek?", "antwoord": "Ja, graag. Vanuit Enkhuizen ben ik zo bij je. Liever online? Dat kan ook, bijvoorbeeld via een videogesprek, of stel je vraag via WhatsApp." },
+      { "vraag": "Kan ik de starterslening van Stede Broec krijgen?", "antwoord": "Als het je eerste huis is, de koopsom niet hoger is dan € 399.500 en je binding hebt met Stede Broec, is de kans groot. Ik kijk in het eerste gesprek met je of je in aanmerking komt en help je met de aanvraag bij de gemeente en SVn." },
+      { "vraag": "Wat kost een hypotheekadviseur?", "antwoord": "Het eerste gesprek is altijd gratis. Daarna weet je vooraf precies wat het advies kost. Op de pagina <a href=\"/werkwijze#kosten\">werkwijze en kosten</a> lees je hoe dat werkt." },
+      { "vraag": "Waarom niet gewoon naar de bank?", "antwoord": "Een bank biedt alleen haar eigen hypotheken. Ik ben onafhankelijk en vergelijk vrijwel alle geldverstrekkers in Nederland. Zo kies je de hypotheek die het beste bij jou past." }
+    ]
+  }
+}

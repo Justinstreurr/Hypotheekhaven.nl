@@ -1,5 +1,5 @@
 import { absoluut, bedrijf, siteUrl } from './site';
-import { artikelen, CATEGORIEEN, inhoudVan, vulNormen } from './content';
+import { artikelen, CATEGORIEEN, inhoudVan, plaatsen, vulNormen } from './content';
 
 type Type = 'WebPage' | 'CollectionPage' | 'ContactPage' | 'AboutPage' | 'BlogPosting';
 
@@ -45,7 +45,9 @@ export function alleSeo(): Record<string, PaginaSeo> {
     // Een artikel met een eigen pagina gebruikt de content van die pagina (content/pages/blog-<slug>.json)
     blog[a.artikel.eigenPagina ? `blog-${a.slug}` : `blog/${a.slug}`] = seo;
   }
-  return { ...vast, ...blog };
+  const werkgebied: Record<string, PaginaSeo> = {};
+  for (const p of plaatsen()) werkgebied[p.bestand] = { pad: p.pad, type: 'WebPage', kruimel: [`Hypotheekadviseur ${p.naam}`], faq: true };
+  return { ...vast, ...werkgebied, ...blog };
 }
 
 export const seoVoor = (pagina: string): PaginaSeo | undefined => alleSeo()[pagina];

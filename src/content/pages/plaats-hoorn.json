@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "title": "Hypotheekadviseur Hoorn: persoonlijk en onafhankelijk | Hypotheekhaven",
+    "description": "Onafhankelijk hypotheekadviseur voor Hoorn, Zwaag en Blokker. Hulp met de Westfriese starterslening, oversluiten of verhuizen. Bij je thuis of online, eerste gesprek gratis."
+  },
+  "t": {
+    "plaats.naam": "Hoorn",
+    "plaats.volgorde": "1",
+    "hero.a1": "Home",
+    "hero.span1": "Hypotheekadviseur Hoorn",
+    "hero.h11": "Hypotheekadviseur in <b>Hoorn</b>",
+    "hero.p1": "Een huis kopen in Hoorn, Zwaag of Blokker, of je hypotheek opnieuw bekijken? Ik ben je onafhankelijke adviseur uit Enkhuizen, vlakbij. Bij je thuis aan tafel of online.",
+    "hero.a2": "Plan een gratis kennismaking <i class=\"arrow\"></i>",
+    "hero.a3": "Bel 06 55 76 78 19",
+    "intro.span1": "Waarom een adviseur uit de buurt",
+    "intro.h21": "Ik ken de <b>Westfriese</b> woningmarkt",
+    "intro.p1": "In Hoorn gaat het snel: van een appartement in de binnenstad tot een eengezinswoning in Zwaag of nieuwbouw in Bangert en Oosterpolder. Dan wil je vooraf weten wat je kunt lenen en wat je maandlasten worden.",
+    "intro.p2": "Ik vergelijk de voorwaarden van vrijwel alle geldverstrekkers en kijk ook naar regelingen van de gemeente, zoals de starterslening. Je hebt één vast aanspreekpunt, van de eerste berekening tot aan de notaris en ook daarna.",
+    "lokaal.span1": "Goed om te weten",
+    "lokaal.h21": "Een huis kopen in <b>Hoorn</b>",
+    "lokaal.p1": "Een paar dingen die in Hoorn anders zijn dan elders. Ik neem ze mee in je advies.",
+    "lokaal.p2": "Stand november 2026. Regelingen en bedragen veranderen geregeld; ik check altijd de actuele voorwaarden voordat je iets aanvraagt. Bronnen: <a href=\"https://www.hoorn.nl/starterslening\" target=\"_blank\" rel=\"noopener\">gemeente Hoorn</a>, <a href=\"https://www.waarderingskamer.nl/gemeente/hoorn\" target=\"_blank\" rel=\"noopener\">Waarderingskamer</a>.",
+    "hulp.span1": "Waarmee ik je help",
+    "hulp.h21": "Waar sta <b>jij</b>?",
+    "faq.span1": "Veelgestelde vragen",
+    "faq.h21": "Hypotheek in <b>Hoorn</b>",
+    "faq.p1": "Staat je vraag er niet bij? Bel of app me gerust, ook voor een korte vraag.",
+    "anderen.span1": "Ook hypotheekadviseur in"
+  },
+  "i": {
+    "hero.foto1": { "src": "hh-sabrina-bankje-breed.jpg", "alt": "" }
+  },
+  "l": {
+    "lokaal": [
+      { "h3": "Westfriese starterslening", "p": "Hoorn heeft een starterslening voor je eerste huis tot € 376.000 (inclusief verbeterkosten), met een lening van maximaal € 37.600. Woon je in een van de Westfriese gemeenten, dan hoef je geen extra binding met Hoorn aan te tonen. Je hypotheek moet met NHG zijn." },
+      { "h3": "Wat kost een huis hier?", "p": "De gemiddelde WOZ-waarde van een koopwoning in Hoorn is € 470.000 (2026). Wat jij kunt lenen hangt af van je inkomen en situatie. Dat reken ik graag met je door." },
+      { "h3": "Nieuwbouw in Bangert en Oosterpolder en Zwaag", "p": "In Hoorn lopen meerdere nieuwbouwprojecten. Bij nieuwbouw komt er meer bij kijken: een bouwdepot, dubbele lasten tijdens de bouw en een renteafspraak die lang genoeg loopt." },
+      { "h3": "Verduurzamen", "p": "De duurzaamheidslening van Hoorn heeft op dit moment geen budget meer. Je kunt energiebesparende maatregelen vaak wel meefinancieren in je hypotheek. Ik kijk met je naar wat er kan." }
+    ],
+    "hulp": [
+      { "h3": "Je eerste huis kopen", "p": "Wat kun je lenen, en kun je de starterslening gebruiken?", "link": "/diensten#eerste-huis" },
+      { "h3": "Verhuizen naar een ander huis", "p": "Je huidige hypotheek meenemen, of opnieuw beginnen?", "link": "/diensten#verhuizen" },
+      { "h3": "Rentevaste periode loopt af", "p": "Verlengen bij je bank, of oversluiten naar een lagere rente?", "link": "/rentevast-berekenen" },
+      { "h3": "Hypotheek oversluiten", "p": "Bekijken of een andere hypotheek je geld bespaart.", "link": "/diensten#oversluiten" },
+      { "h3": "Maandlasten berekenen", "p": "Zie direct wat een hypotheek je per maand kost, bruto en netto.", "link": "/maandlasten-berekenen" },
+      { "h3": "Hypotheek bij scheiden", "p": "Rustig uitzoeken wat er kan met het huis en de hypotheek.", "link": "/diensten#scheiden" }
+    ],
+    "faq": [
+      { "vraag": "Kom je ook bij mij thuis in Hoorn?", "antwoord": "Ja. Ik kom graag bij je aan de keukentafel in Hoorn, Zwaag of Blokker. Liever online? Dat kan ook, bijvoorbeeld via een videogesprek, of stel je vraag via WhatsApp." },
+      { "vraag": "Kan ik de starterslening van Hoorn krijgen?", "antwoord": "Dat hangt af van de koopsom (maximaal € 376.000 inclusief verbeterkosten), of het je eerste huis is en of je binding hebt met West-Friesland. Je hypotheek moet met NHG zijn en minstens 10 jaar rentevast. Ik kijk in het eerste gesprek of je in aanmerking komt en help je met de aanvraag." },
+      { "vraag": "Wat kost een hypotheekadviseur in Hoorn?", "antwoord": "Het eerste gesprek is altijd gratis. Daarna weet je vooraf precies wat het advies kost. Op de pagina <a href=\"/werkwijze#kosten\">werkwijze en kosten</a> lees je hoe dat werkt." },
+      { "vraag": "Waarom niet gewoon naar de bank?", "antwoord": "Een bank biedt alleen haar eigen hypotheken. Ik ben onafhankelijk en vergelijk vrijwel alle geldverstrekkers in Nederland. Zo kies je de hypotheek die het beste bij jou past, niet bij de bank." }
+    ]
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "title": "Hypotheekadviseur Hoogkarspel, Venhuizen en Westwoud | Hypotheekhaven",
+    "description": "Onafhankelijk hypotheekadviseur in Drechterland: Hoogkarspel, Venhuizen, Westwoud, Hem en Schellinkhout. Starterslening, nieuwbouw of oversluiten. Eerste gesprek gratis."
+  },
+  "t": {
+    "plaats.naam": "Drechterland",
+    "plaats.volgorde": "4",
+    "hero.a1": "Home",
+    "hero.span1": "Hypotheekadviseur Drechterland",
+    "hero.h11": "Hypotheekadviseur in <b>Drechterland</b>",
+    "hero.p1": "Voor Hoogkarspel, Venhuizen, Westwoud, Hem, Schellinkhout en de andere dorpen in Drechterland. Persoonlijk hypotheekadvies van dichtbij, bij je thuis of online.",
+    "hero.a2": "Plan een gratis kennismaking <i class=\"arrow\"></i>",
+    "hero.a3": "Bel 06 55 76 78 19",
+    "intro.span1": "Waarom een adviseur uit de buurt",
+    "intro.h21": "Dorps wonen, <b>persoonlijk</b> advies",
+    "intro.p1": "In Drechterland woon je ruim en dichtbij de dijk, maar de huizen zijn er ook wat duurder dan gemiddeld in de regio. Dan is een goed plan vooraf extra belangrijk.",
+    "intro.p2": "Ik vergelijk de voorwaarden van vrijwel alle geldverstrekkers en neem de starterslening van de gemeente mee in je berekening. Je hebt één vast aanspreekpunt, van de eerste berekening tot aan de notaris en ook daarna.",
+    "lokaal.span1": "Goed om te weten",
+    "lokaal.h21": "Een huis kopen in <b>Drechterland</b>",
+    "lokaal.p1": "Wat je moet weten als je in Hoogkarspel, Venhuizen of een van de andere dorpen een huis wilt kopen.",
+    "lokaal.p2": "Stand november 2026. Regelingen en bedragen veranderen geregeld; ik check altijd de actuele voorwaarden voordat je iets aanvraagt. Bronnen: <a href=\"https://www.drechterland.nl/direct-regelen/wonen-verkeer-en-veiligheid/wonen/starterslening/\" target=\"_blank\" rel=\"noopener\">gemeente Drechterland</a>, <a href=\"https://www.cbs.nl/nl-nl/cijfers/detail/85036NED\" target=\"_blank\" rel=\"noopener\">CBS</a>.",
+    "hulp.span1": "Waarmee ik je help",
+    "hulp.h21": "Waar sta <b>jij</b>?",
+    "faq.span1": "Veelgestelde vragen",
+    "faq.h21": "Hypotheek in <b>Drechterland</b>",
+    "faq.p1": "Staat je vraag er niet bij? Bel of app me gerust, ook voor een korte vraag.",
+    "anderen.span1": "Ook hypotheekadviseur in"
+  },
+  "i": {
+    "hero.foto1": { "src": "hh-woonkamer-breed.jpg", "alt": "" }
+  },
+  "l": {
+    "lokaal": [
+      { "h3": "Starterslening tot € 35.000", "p": "Drechterland heeft een starterslening van maximaal € 35.000, voor bestaande bouw en nieuwbouw. De koopsom mag maximaal € 399.500 zijn (2026). Je moet minstens een jaar in Drechterland wonen of gewoond hebben. Volgens de gemeente is er op dit moment voldoende budget." },
+      { "h3": "Wat kost een huis hier?", "p": "De gemiddelde WOZ-waarde van een koopwoning in Drechterland is € 520.000 (2026), hoger dan in de rest van West-Friesland. Kijk daarom goed of een woning onder de grens van de starterslening valt." },
+      { "h3": "Nieuwbouw in Venhuizen", "p": "In Venhuizen wordt gebouwd, onder meer in het plan Hillegaar. Bij nieuwbouw komt er meer bij kijken: een bouwdepot, dubbele lasten tijdens de bouw en een renteafspraak die lang genoeg loopt. Dat regel ik met je." },
+      { "h3": "Ondernemers en zzp'ers", "p": "Heb je een eigen bedrijf, bijvoorbeeld in de agrarische sector? Dan kijkt een geldverstrekker anders naar je inkomen. Ik weet welke geldverstrekkers daar goed mee omgaan." }
+    ],
+    "hulp": [
+      { "h3": "Je eerste huis kopen", "p": "Wat kun je lenen, en past de starterslening bij jou?", "link": "/diensten#eerste-huis" },
+      { "h3": "Ondernemer en een hypotheek", "p": "Zzp of eigen bedrijf? Dan kijk ik anders naar je inkomen.", "link": "/diensten#ondernemer" },
+      { "h3": "Verhuizen naar een ander huis", "p": "Je huidige hypotheek meenemen, of opnieuw beginnen?", "link": "/diensten#verhuizen" },
+      { "h3": "Je huis verduurzamen", "p": "Zonnepanelen, isolatie of een warmtepomp meefinancieren.", "link": "/diensten#verduurzamen" },
+      { "h3": "Rentevaste periode loopt af", "p": "Verlengen bij je bank, of oversluiten naar een lagere rente?", "link": "/rentevast-berekenen" },
+      { "h3": "Maandlasten berekenen", "p": "Zie direct wat een hypotheek je per maand kost, bruto en netto.", "link": "/maandlasten-berekenen" }
+    ],
+    "faq": [
+      { "vraag": "Kom je ook naar Hoogkarspel, Venhuizen of Westwoud?", "antwoord": "Ja, ik kom in heel Drechterland bij je thuis. Liever online? Dat kan ook, bijvoorbeeld via een videogesprek, of stel je vraag via WhatsApp." },
+      { "vraag": "Kan ik de starterslening van Drechterland krijgen?", "antwoord": "Als het je eerste huis is, de koopsom niet hoger is dan € 399.500 en je minstens een jaar in Drechterland woont of gewoond hebt, is de kans groot. Ik kijk in het eerste gesprek met je of je in aanmerking komt en help je met de aanvraag." },
+      { "vraag": "Ik ben ondernemer. Kan ik een hypotheek krijgen?", "antwoord": "Meestal wel. Geldverstrekkers kijken dan naar je jaarcijfers van de afgelopen jaren. Lees meer bij <a href=\"/diensten#ondernemer\">ondernemer en een hypotheek</a>, of bel me voor een eerste inschatting." },
+      { "vraag": "Wat kost een hypotheekadviseur?", "antwoord": "Het eerste gesprek is altijd gratis. Daarna weet je vooraf precies wat het advies kost. Op de pagina <a href=\"/werkwijze#kosten\">werkwijze en kosten</a> lees je hoe dat werkt." }
+    ]
+  }
+}

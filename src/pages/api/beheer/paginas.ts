@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 import { ingelogd } from '../../../lib/beheer';
-import { artikelen, inhoudVan } from '../../../lib/content';
+import { artikelen, inhoudVan, plaatsen } from '../../../lib/content';
 import { alleSeo } from '../../../lib/seo';
 
 export const prerender = false;
@@ -27,6 +27,8 @@ export const GET: APIRoute = ({ cookies }) => {
       titel: n === 'home' ? 'Home' : n === 'blog' ? 'Blog (overzicht)' : seo[n].kruimel.at(-1) ?? kaal(inhoudVan(n).meta?.title ?? n),
     })),
   }));
+  // Plaatspagina's in een eigen groep, na "Pagina's"
+  groepen.splice(1, 0, { titel: 'Werkgebied', paginas: plaatsen().map(p => ({ bestand: p.bestand, pad: p.pad, titel: p.naam })) });
   // Blogartikelen onder het blogoverzicht, nieuwste eerst
   const blog = groepen.find(g => g.titel === 'Blog')!;
   const volgorde = { gepubliceerd: 0, concept: 1, binnenkort: 2 };

@@ -1,0 +1,114 @@
+---
+// Plaatspagina: hypotheekadviseur in een plaats in het werkgebied. Eén sjabloon, de inhoud per plaats staat in
+// content/pages/plaats-<slug>.json (bewerkbaar in /beheer). Elke pagina heeft echte lokale informatie
+// (regelingen, woningmarkt, kernen), geen kopie met een andere plaatsnaam.
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import HeroReviews from '../../components/HeroReviews.astro';
+import HeroBanks from '../../components/HeroBanks.astro';
+import Footer from '../../components/Footer.astro';
+import { laadPagina, plaatsen } from '../../lib/content';
+import { contactLinks } from '../../lib/site';
+import '../../styles/pagina.css';
+import '../../styles/plaats.css';
+
+export function getStaticPaths() {
+  return plaatsen().map(p => ({ params: { plaats: p.slug }, props: { bestand: p.bestand } }));
+}
+
+const { bestand } = Astro.props as { bestand: string };
+const { t, bg, meta, achtergronden, lijst } = await laadPagina(bestand);
+const anderen = plaatsen().filter(p => p.bestand !== bestand);
+const e = (k: string) => `${bestand}:${k}`;
+---
+<Base pagina={bestand} meta={meta} preload={achtergronden['hero.foto1']}>
+<header class="hero hero--pagina hero--plaats">
+  <div class="hero-slides">
+    <div class="hero-slide is-active" {...bg('hero.foto1', 'background-image', '')}></div>
+  </div>
+  <div class="hero-overlay"></div>
+
+  <Header />
+
+  <div class="hero-content">
+    <nav class="kruimelpad" aria-label="Kruimelpad"><a href="/" data-e={e('hero.a1')} set:html={t('hero.a1')}></a><span aria-hidden="true">/</span><span data-e={e('hero.span1')} set:html={t('hero.span1')}></span></nav>
+    <h1 data-e={e('hero.h11')} set:html={t('hero.h11')}></h1>
+    <p data-e={e('hero.p1')} set:html={t('hero.p1')}></p>
+    <div class="btn-row">
+      <a href="/contact#formulier" class="btn btn-dark" data-e={e('hero.a2')} set:html={t('hero.a2')}></a>
+      <a href={contactLinks.bel} class="btn btn-light" data-e={e('hero.a3')} set:html={t('hero.a3')}></a>
+    </div>
+  </div>
+  <HeroReviews />
+  <HeroBanks />
+</header>
+
+<main id="inhoud" tabindex="-1">
+
+<section class="plaats-intro container">
+  <div class="plaats-intro-kop">
+    <span class="eyebrow" data-e={e('intro.span1')} set:html={t('intro.span1')}></span>
+    <h2 data-e={e('intro.h21')} set:html={t('intro.h21')}></h2>
+  </div>
+  <div class="plaats-intro-tekst">
+    <p class="plaats-lead" data-e={e('intro.p1')} set:html={t('intro.p1')}></p>
+    <p data-e={e('intro.p2')} set:html={t('intro.p2')}></p>
+  </div>
+</section>
+
+<section class="plaats-lokaal container">
+  <div class="plaats-kop">
+    <span class="eyebrow" data-e={e('lokaal.span1')} set:html={t('lokaal.span1')}></span>
+    <h2 data-e={e('lokaal.h21')} set:html={t('lokaal.h21')}></h2>
+    <p data-e={e('lokaal.p1')} set:html={t('lokaal.p1')}></p>
+  </div>
+  <ul class="plaats-feiten" data-el={e('lokaal')}>
+    {lijst('lokaal').map((x, n) => (
+      <li data-item class="plaats-feit">
+        <h3 data-e={e(`lokaal.${n}.h3`)} set:html={x['h3']}></h3>
+        <p data-e={e(`lokaal.${n}.p`)} set:html={x['p']}></p>
+      </li>
+    ))}
+  </ul>
+  <p class="plaats-bron" data-e={e('lokaal.p2')} set:html={t('lokaal.p2')}></p>
+</section>
+
+<section class="plaats-hulp container">
+  <div class="plaats-kop">
+    <span class="eyebrow" data-e={e('hulp.span1')} set:html={t('hulp.span1')}></span>
+    <h2 data-e={e('hulp.h21')} set:html={t('hulp.h21')}></h2>
+  </div>
+  <div class="plaats-hulp-lijst" data-el={e('hulp')}>
+    {lijst('hulp').map((x, n) => (
+      <a data-item class="plaats-hulp-item" href={x['link']} data-link="link">
+        <h3 data-e={e(`hulp.${n}.h3`)} set:html={x['h3']}></h3>
+        <p data-e={e(`hulp.${n}.p`)} set:html={x['p']}></p>
+        <i class="arrow" aria-hidden="true"></i>
+      </a>
+    ))}
+  </div>
+</section>
+
+<section class="faq faq--plaats container">
+  <div class="faq-side">
+    <span class="eyebrow" data-e={e('faq.span1')} set:html={t('faq.span1')}></span>
+    <h2 data-e={e('faq.h21')} set:html={t('faq.h21')}></h2>
+    <p data-e={e('faq.p1')} set:html={t('faq.p1')}></p>
+  </div>
+  <div class="faq-list" data-el={e('faq')}>
+    {lijst('faq').map((v, n) => (
+      <details open={n === 0} data-item><summary><span data-e={e(`faq.${n}.vraag`)} set:html={v.vraag} /><i class="faq-plus" aria-hidden="true"></i></summary><p data-e={e(`faq.${n}.antwoord`)} set:html={v.antwoord} /></details>
+    ))}
+  </div>
+</section>
+
+<nav class="plaats-anderen container" aria-label="Ook in de buurt">
+  <span data-e={e('anderen.span1')} set:html={t('anderen.span1')}></span>
+  <a href="/">Enkhuizen</a>
+  {anderen.map(p => <a href={p.pad}>{p.naam}</a>)}
+</nav>
+
+</main>
+
+<Footer />
+</Base>

@@ -76,6 +76,17 @@ export function artikelen() {
     .sort((a, b) => b.artikel.datum.localeCompare(a.artikel.datum));
 }
 
+/** Plaatspagina's (content/pages/plaats-<slug>.json → /hypotheekadviseur/<slug>), op volgorde van `plaats.volgorde` */
+export function plaatsen() {
+  return Object.entries(paginas)
+    .filter(([pad]) => /\/plaats-[a-z0-9-]+\.json$/.test(pad))
+    .map(([pad, inhoud]) => {
+      const slug = pad.replace(/^.*\/plaats-(.+)\.json$/, '$1');
+      return { bestand: `plaats-${slug}`, slug, pad: `/hypotheekadviseur/${slug}`, naam: inhoud.t['plaats.naam'], volgorde: Number(inhoud.t['plaats.volgorde'] ?? 99) };
+    })
+    .sort((a, b) => a.volgorde - b.volgorde || a.naam.localeCompare(b.naam));
+}
+
 export function inhoudVan(naam: string): Inhoud {
   if (naam === 'site') return site as Inhoud;
   const inhoud = naam.startsWith('blog/')
