@@ -14,7 +14,7 @@ export interface PaginaSeo {
 
 const vast: Record<string, PaginaSeo> = {
   home: { pad: '/', type: 'WebPage', kruimel: [], faq: true },
-  diensten: { pad: '/diensten', type: 'CollectionPage', kruimel: ['Diensten'] },
+  diensten: { pad: '/diensten', type: 'CollectionPage', kruimel: ['Hypotheken'] },
   werkwijze: { pad: '/werkwijze', type: 'WebPage', kruimel: ['Werkwijze & kosten'], faq: true },
   verzekeringen: { pad: '/verzekeringen', type: 'WebPage', kruimel: ['Verzekeringen'], faq: true },
   kredieten: { pad: '/kredieten', type: 'WebPage', kruimel: ['Kredieten'], faq: true },

@@ -28,7 +28,9 @@ gtag('set', 'url_passthrough', false);
 )}
 {cbid && (
   <script is:inline data-cookieconsent="ignore" define:vars={{ cbid }}>
-if (!/(^|; )hh_edit=1/.test(document.cookie) && !location.search.includes('hh-heatmap')) {
+var bewerkTab = false;
+try { bewerkTab = /(^|; )hh_edit=1/.test(document.cookie) && (sessionStorage.getItem('hh_bewerk') === '1' || /[?&]bewerken(=|&|$)/.test(location.search)); } catch (e) {}
+if (!bewerkTab && !location.search.includes('hh-heatmap')) {
   var cb = document.createElement('script');
   cb.id = 'Cookiebot';
   cb.src = 'https://consent.cookiebot.com/uc.js';

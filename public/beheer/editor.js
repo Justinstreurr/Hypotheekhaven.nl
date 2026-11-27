@@ -53,7 +53,7 @@
   async function start() {
     let sessie;
     try { sessie = await (await fetch('/api/beheer/sessie', { cache: 'no-store' })).json(); } catch { return; }
-    if (!sessie.ingelogd) { document.cookie = 'hh_edit=; Max-Age=0; path=/'; return; }
+    if (!sessie.ingelogd) { document.cookie = 'hh_edit=; Max-Age=0; path=/'; try { sessionStorage.removeItem('hh_bewerk'); } catch { /* geen opslag */ } return; }
     lokaal = sessie.lokaal;
     document.head.append($('link', { rel: 'stylesheet', href: '/beheer/editor.css' }));
     // Alle contentbestanden waar deze pagina uit bestaat (ook blogartikelen in het overzicht)
@@ -1349,7 +1349,7 @@
     if (wijzigingen.size && !confirm('Je hebt wijzigingen die nog niet live staan. Toch uitloggen?')) return;
     await fetch('/api/beheer/login', { method: 'DELETE' });
     wijzigingen.clear();
-    try { localStorage.removeItem(CONCEPT); sessionStorage.removeItem(STAPPEN); } catch { /* geen opslag */ }
+    try { localStorage.removeItem(CONCEPT); sessionStorage.removeItem(STAPPEN); sessionStorage.removeItem('hh_bewerk'); } catch { /* geen opslag */ }
     location.reload();
   }
 

@@ -20,8 +20,11 @@ const laadClarity = id => {
 };
 
 if (COOKIEBOT) {
-  // Niet in de bewerkmodus of heatmap: daar laadt Cookiebot ook niet
-  if (!/(^|; )hh_edit=1/.test(document.cookie) && !location.search.includes('hh-heatmap')) {
+  // Niet in het bewerk-tabblad of de heatmap: daar laadt Cookiebot ook niet. In een gewoon tabblad zie je als
+  // beheerder de banner zoals een bezoeker; GA en Clarity blijven voor jou uit (zie ga.js en laadClarity).
+  let bewerkTab = false;
+  try { bewerkTab = /(^|; )hh_edit=1/.test(document.cookie) && sessionStorage.getItem('hh_bewerk') === '1'; } catch { /* geen opslag */ }
+  if (!bewerkTab && !location.search.includes('hh-heatmap')) {
     let ingetrokken = false;
     const pasToe = () => {
       const cb = window.Cookiebot;
